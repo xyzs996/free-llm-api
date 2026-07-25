@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Source-backed free LLM API limits, compatibility, lifecycle, and explainable sample probe status.">
+  <title>Free LLM API</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell masthead__inner">
+      <div>
+        <p class="eyebrow">Verified provider facts · Reviewed 2026-07-25</p>
+        <h1>Free LLM API</h1>
+        <p class="lede">Compare official free-access terms without treating one sample key as an uptime monitor.</p>
+      </div>
+      <div class="masthead__stats" aria-label="Catalog summary">
+        <div><strong>26</strong><span>providers tracked</span></div>
+        <div><strong>25</strong><span>OpenAI compatible</span></div>
+        <div><strong>1</strong><span>retiring service</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="filter-band" aria-labelledby="filter-heading">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Catalog</p>
+            <h2 id="filter-heading">Find a usable free tier</h2>
+          </div>
+          <p><strong id="provider-count">26</strong> matches</p>
+        </div>
+        <form class="filters" id="provider-filters">
+          <label class="search-control">
+            <span>Search</span>
+            <input id="search-filter" name="query" type="search" placeholder="Provider, model, or limit" autocomplete="off">
+          </label>
+          <label>
+            <span>Free access type</span>
+            <select id="category-filter" name="category"><option value="all">All types</option><option value="provider-free-tier">Provider free tier</option><option value="trial-credit">Free trial credit</option><option value="free-model-aggregator">Free model aggregator</option><option value="retiring-free-tier">Retiring free tier</option><option value="metered-access">Metered access</option></select>
+          </label>
+          <label>
+            <span>Credit card</span>
+            <select id="card-filter" name="creditCard"><option value="all">Any</option><option value="not-required">Not required</option><option value="required">Required</option></select>
+          </label>
+          <label>
+            <span>OpenAI compatible</span>
+            <select id="compatibility-filter" name="openaiCompatible"><option value="all">Any</option><option value="yes">Yes</option><option value="no">No</option></select>
+          </label>
+          <label>
+            <span>Sample probe</span>
+            <select id="probe-filter" name="probe"><option value="all">Any state</option><option value="not-checked">Not checked</option><option value="available">Available</option><option value="credential-rejected">Credential rejected</option><option value="sample-rate-limited">Sample limited</option><option value="endpoint-error">Endpoint error</option><option value="network-error">Network error</option><option value="request-rejected">Request rejected</option></select>
+          </label>
+        </form>
+      </div>
+    </section>
+
+    <section class="table-band" aria-label="Free LLM API providers">
+      <div class="shell shell--wide">
+        <div class="table-wrap">
+          <table id="provider-table">
+            <thead><tr><th>Provider</th><th>Free access</th><th>Card</th><th>OpenAI</th><th>Limits</th><th>Sample probe</th><th>Sources checked</th><th>Access</th></tr></thead>
+            <tbody>
+          <tr data-provider-id="gemini">
+            <td data-label="Provider">
+              <strong>Google Gemini API</strong>
+              <span class="provider-meta">https://generativelanguage.googleapis.com/v1beta/openai/</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Rate limits apply per project, not per API key, and depend on the project&#39;s usage tier; the Free tier is the entry tier and moving up requires enabling billing. Google publishes the tier structure but directs you to AI Studio for the exact RPM, TPM and RPD active on your project, so no single free-tier number can be quoted here.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://ai.google.dev/gemini-api/docs/rate-limits" rel="noreferrer">Gemini API rate limits</a><span aria-hidden="true"> · </span><a href="https://ai.google.dev/gemini-api/docs/billing" rel="noreferrer">Gemini API billing</a><span aria-hidden="true"> · </span><a href="https://ai.google.dev/gemini-api/docs/openai" rel="noreferrer">Gemini OpenAI compatibility</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://aistudio.google.com/apikey" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="groq">
+            <td data-label="Provider">
+              <strong>GroqCloud</strong>
+              <span class="provider-meta">https://api.groq.com/openai/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">30 RPM · 1000 requests/day</strong>
+              <span class="cell-detail">Free plan limits are per model and enforced per organization. llama-3.3-70b-versatile: 30 RPM, 1,000 RPD, 12K TPM, 100K TPD. llama-3.1-8b-instant: 30 RPM, 14,400 RPD, 6K TPM, 500K TPD. openai/gpt-oss-120b and openai/gpt-oss-20b: 30 RPM, 1,000 RPD, 8K TPM, 200K TPD. groq/compound: 30 RPM, 250 RPD, 70K TPM. Cached tokens do not count toward token limits. The RPM/RPD columns here quote llama-3.3-70b-versatile.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://console.groq.com/docs/rate-limits" rel="noreferrer">GroqCloud rate limits</a><span aria-hidden="true"> · </span><a href="https://console.groq.com/docs/openai" rel="noreferrer">Groq OpenAI compatibility</a><span aria-hidden="true"> · </span><a href="https://console.groq.com/docs/billing-faqs" rel="noreferrer">Groq billing FAQ</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://console.groq.com/keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="sambanova">
+            <td data-label="Provider">
+              <strong>SambaNova Cloud</strong>
+              <span class="provider-meta">https://api.sambanova.ai/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">20 RPM · 20 requests/day</strong>
+              <span class="cell-detail">The Free Tier applies whenever no payment method is linked to the account. For DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b the free limits are 20 RPM, 20 RPD and 200,000 tokens per day. Linking a payment method moves the account to the Developer Tier (60-240 RPM, 12,000-48,000 RPD, 20M tokens/day across all models).</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://sambanova-systems.mintlify.dev/docs/en/models/rate-limits.md" rel="noreferrer">SambaNova model rate limits</a><span aria-hidden="true"> · </span><a href="https://docs.sambanova.ai/docs/en/get-started/overview" rel="noreferrer">SambaNova developer guide</a><span aria-hidden="true"> · </span><a href="https://docs.sambanova.ai/docs/en/features/openai-compatibility" rel="noreferrer">SambaNova OpenAI compatibility</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://cloud.sambanova.ai/apis" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="cohere">
+            <td data-label="Provider">
+              <strong>Cohere</strong>
+              <span class="provider-meta">https://api.cohere.ai/compatibility/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">20 RPM</strong>
+              <span class="cell-detail">Trial keys are free, rate limited and not licensed for production. Chat is limited to 20 requests/minute, Rerank to 10/minute, Audio Transcriptions and EmbedJob to 5/minute, Tokenize to 100/minute, and Embed to 2,000 inputs/minute. Every trial key is additionally capped at 1,000 API calls per month across the account.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.cohere.com/docs/rate-limits" rel="noreferrer">Cohere API rate limits</a><span aria-hidden="true"> · </span><a href="https://docs.cohere.com/docs/compatibility-api" rel="noreferrer">Cohere Compatibility API</a><span aria-hidden="true"> · </span><a href="https://cohere.com/pricing" rel="noreferrer">Cohere pricing</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://dashboard.cohere.com/api-keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="cloudflare-workers-ai">
+            <td data-label="Provider">
+              <strong>Cloudflare Workers AI</strong>
+              <span class="provider-meta">https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Both the Workers Free and Workers Paid plans include 10,000 Neurons per day at no charge, resetting daily at 00:00 UTC. Neurons are a compute unit rather than a request count, so the number of requests you get depends on the model and prompt size. On the Free plan there is no overage: once the allocation is spent, requests fail until reset. Workers Paid bills overage at $0.011 per 1,000 Neurons.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://developers.cloudflare.com/workers-ai/platform/pricing/" rel="noreferrer">Workers AI pricing</a><span aria-hidden="true"> · </span><a href="https://developers.cloudflare.com/workers-ai/configuration/open-ai-compatibility/" rel="noreferrer">Workers AI OpenAI compatible endpoints</a><span aria-hidden="true"> · </span><a href="https://developers.cloudflare.com/workers-ai/models/" rel="noreferrer">Workers AI models</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://dash.cloudflare.com/profile/api-tokens" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="huggingface">
+            <td data-label="Provider">
+              <strong>Hugging Face Inference Providers</strong>
+              <span class="provider-meta">https://router.huggingface.co/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Signed-in free users receive $0.10 in monthly Inference Provider credits (Hugging Face notes this is subject to change); PRO users receive $2.00 and Team or Enterprise organizations $2.00 per seat. Credits only apply to requests routed by Hugging Face, not to requests made with your own provider key. Once the monthly credits are spent you must purchase credits to continue.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://huggingface.co/docs/inference-providers/pricing" rel="noreferrer">Inference Providers pricing and billing</a><span aria-hidden="true"> · </span><a href="https://huggingface.co/docs/inference-providers/index" rel="noreferrer">Inference Providers OpenAI compatibility</a><span aria-hidden="true"> · </span><a href="https://huggingface.co/settings/inference-providers" rel="noreferrer">Inference Providers settings</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://huggingface.co/settings/tokens" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="siliconflow">
+            <td data-label="Provider">
+              <strong>SiliconFlow</strong>
+              <span class="provider-meta">https://api.siliconflow.com/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">1000 RPM</strong>
+              <span class="cell-detail">Rate limits for free models are fixed; paid models are tiered by monthly spend and start at tier L0 with 1,000 RPM and 40,000 TPM. Limits are enforced per user account rather than per API key, and each model is limited separately. deepseek-ai/DeepSeek-R1 and deepseek-ai/DeepSeek-V3 carry an extra cap of 30 requests/hour and 100 requests/day.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.siliconflow.com/en/userguide/rate-limits/rate-limit-and-upgradation" rel="noreferrer">SiliconFlow rate limits</a><span aria-hidden="true"> · </span><a href="https://docs.siliconflow.com/en/userguide/quickstart" rel="noreferrer">SiliconFlow quick start</a><span aria-hidden="true"> · </span><a href="https://cloud.siliconflow.com/models" rel="noreferrer">SiliconFlow models</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://cloud.siliconflow.com/account/ak" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="fireworks">
+            <td data-label="Provider">
+              <strong>Fireworks AI</strong>
+              <span class="provider-meta">https://api.fireworks.ai/inference/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">10 RPM</strong>
+              <span class="cell-detail">An account with no payment method and no credits is limited to 10 requests per minute across the entire account. Adding a payment method and active credits raises the ceiling to a maximum of 6,000 RPM. Fireworks is pre-paid, so the 10 RPM envelope is the only no-cost path and there is no published daily request cap on it.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.fireworks.ai/guides/quotas_usage/account-quotas" rel="noreferrer">Fireworks account quotas</a><span aria-hidden="true"> · </span><a href="https://docs.fireworks.ai/guides/quotas_usage/rate-limits" rel="noreferrer">Fireworks serverless rate limits</a><span aria-hidden="true"> · </span><a href="https://fireworks.ai/pricing" rel="noreferrer">Fireworks pricing</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://app.fireworks.ai/settings/users/api-keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="zai">
+            <td data-label="Provider">
+              <strong>Z.AI Open Platform</strong>
+              <span class="provider-meta">https://api.z.ai/api/paas/v4</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">GLM-4.7-Flash and GLM-4.5-Flash are listed at $0 for input, cached input and output on the official pricing table, making them free to call rather than merely discounted. Z.AI does not publish per-model RPM or TPM for these models on the pricing page; the rate limit reference is a separate page and the console is authoritative.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.z.ai/guides/overview/pricing" rel="noreferrer">Z.AI pricing</a><span aria-hidden="true"> · </span><a href="https://docs.z.ai/api-reference/rate-limit" rel="noreferrer">Z.AI rate limits</a><span aria-hidden="true"> · </span><a href="https://docs.z.ai/guides/develop/openai/python" rel="noreferrer">OpenAI Python SDK with Z.AI</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://z.ai/manage-apikey/apikey-list" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="novita">
+            <td data-label="Provider">
+              <strong>Novita AI</strong>
+              <span class="provider-meta">https://api.novita.ai/openai</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">The official pricing table lists inclusionai/Ling-3.0-flash and Mind Lab&#39;s Macaron V1 Venti with both input and output priced Free; every other listed model is billed per million tokens. Novita does not publish RPM or RPD for the free models on the pricing page.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://novita.ai/pricing" rel="noreferrer">Novita pricing</a><span aria-hidden="true"> · </span><a href="https://novita.ai/docs/api-reference/model-apis-llm-create-chat-completion" rel="noreferrer">Novita LLM API reference</a><span aria-hidden="true"> · </span><a href="https://novita.ai/models" rel="noreferrer">Novita model library</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://novita.ai/settings/key-management" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="mistral">
+            <td data-label="Provider">
+              <strong>Mistral La Plateforme</strong>
+              <span class="provider-meta">https://api.mistral.ai/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Mistral documents a Free mode (also referred to as the Experiment plan) that lets you activate a workspace and generate an API key without paying, but the public documentation does not currently expose a reachable rate-limit page for it: the tier URL listed in Mistral&#39;s own documentation index returns 404 as of the check date. The console is the only authoritative source for the Experiment plan&#39;s requests-per-second and tokens-per-minute ceilings.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.mistral.ai/" rel="noreferrer">Mistral La Plateforme documentation</a><span aria-hidden="true"> · </span><a href="https://mistral.ai/pricing" rel="noreferrer">Mistral pricing</a><span aria-hidden="true"> · </span><a href="https://docs.mistral.ai/llms.txt" rel="noreferrer">Mistral API documentation index</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://console.mistral.ai/api-keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="dashscope">
+            <td data-label="Provider">
+              <strong>Alibaba Cloud Model Studio</strong>
+              <span class="provider-meta">https://dashscope-intl.aliyuncs.com/compatible-mode/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Rate limiting is applied at the Alibaba Cloud root account level and aggregates usage across all RAM users, workspaces and API keys under that account. Each model carries its own RPM and TPM limit published in per-model tables, and free quota is granted per model rather than as one account-wide allowance, so no single free-tier number applies.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://www.alibabacloud.com/help/en/model-studio/rate-limit" rel="noreferrer">Model Studio rate limiting</a><span aria-hidden="true"> · </span><a href="https://www.alibabacloud.com/help/en/model-studio/compatibility-of-openai-with-dashscope" rel="noreferrer">Model Studio OpenAI compatibility</a><span aria-hidden="true"> · </span><a href="https://www.alibabacloud.com/help/en/model-studio/models" rel="noreferrer">Model Studio models</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://bailian.console.alibabacloud.com/" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="moonshot">
+            <td data-label="Provider">
+              <strong>Moonshot AI (Kimi)</strong>
+              <span class="provider-meta">https://api.moonshot.ai/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Limits are expressed as concurrency, RPM, TPM and TPD, and the published tier table is keyed to cumulative recharge rather than to a standing free allowance; reaching $5 of cumulative recharge grants a $5 voucher. New accounts start at the lowest tier, so treat the console tier page as authoritative before planning volume.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://platform.moonshot.ai/docs/pricing/limits" rel="noreferrer">Kimi rate limits</a><span aria-hidden="true"> · </span><a href="https://platform.moonshot.ai/docs/introduction" rel="noreferrer">Kimi API overview</a><span aria-hidden="true"> · </span><a href="https://platform.moonshot.ai/docs/pricing/chat" rel="noreferrer">Kimi pricing</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://platform.moonshot.ai/console/api-keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="pollinations">
+            <td data-label="Provider">
+              <strong>Pollinations.AI</strong>
+              <span class="provider-meta">https://text.pollinations.ai/openai</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Pollinations exposes an OpenAI-compatible text endpoint that can be called without a key for basic use, and the official API docs do not publish RPM or RPD figures. The docs do state that since 2025-03-31 free-tier images may include watermarks, so free-tier output is not identical to paid output.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://github.com/pollinations/pollinations/blob/master/APIDOCS.md" rel="noreferrer">Pollinations API documentation</a><span aria-hidden="true"> · </span><a href="https://github.com/pollinations/pollinations" rel="noreferrer">Pollinations project repository</a><span aria-hidden="true"> · </span><a href="https://pollinations.ai/" rel="noreferrer">Pollinations.AI home</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://pollinations.ai/" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="ollama-cloud">
+            <td data-label="Provider">
+              <strong>Ollama Cloud</strong>
+              <span class="provider-meta">https://ollama.com/v1</span>
+            </td>
+            <td data-label="Free access">Provider free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Cloud models run on Ollama&#39;s servers while keeping the local CLI workflow, and require only an ollama.com account to start. The Cloud documentation page describes access and model retirement policy but does not publish hourly or daily request limits, so the account page is the authoritative source for the active quota.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.ollama.com/cloud" rel="noreferrer">Ollama Cloud documentation</a><span aria-hidden="true"> · </span><a href="https://docs.ollama.com/api" rel="noreferrer">Ollama Cloud API access</a><span aria-hidden="true"> · </span><a href="https://ollama.com/library" rel="noreferrer">Ollama model library</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://ollama.com/settings/keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="cerebras">
+            <td data-label="Provider">
+              <strong>Cerebras Inference</strong>
+              <span class="provider-meta">https://api.cerebras.ai/v1</span>
+            </td>
+            <td data-label="Free access">Free trial credit</td>
+            <td data-label="Credit card">Required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">5 RPM</strong>
+              <span class="cell-detail">Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b, zai-glm-4.7 and gemma-4-31b. New accounts receive $5 in credits that expire 30 days after being granted. Cerebras states that if you skip adding a payment method at sign-up, Playground and API access remain inactive until you add one.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://inference-docs.cerebras.ai/support/rate-limits" rel="noreferrer">Cerebras rate limits</a><span aria-hidden="true"> · </span><a href="https://inference-docs.cerebras.ai/support/pricing" rel="noreferrer">Cerebras pricing</a><span aria-hidden="true"> · </span><a href="https://inference-docs.cerebras.ai/resources/openai" rel="noreferrer">Cerebras OpenAI compatibility</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://cloud.cerebras.ai/" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="vercel-ai-gateway">
+            <td data-label="Provider">
+              <strong>Vercel AI Gateway</strong>
+              <span class="provider-meta">https://ai-gateway.vercel.sh/v1</span>
+            </td>
+            <td data-label="Free access">Free trial credit</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Every Vercel team account receives $5 of AI Gateway credits per month on the free tier, usable only against the Free Tier model subset rather than the full catalogue. Free tier requests are additionally rate limited per model with lower limits than the paid tier, and Vercel does not publish those per-model numbers. Credits start counting from your first Gateway request.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://vercel.com/docs/ai-gateway/pricing" rel="noreferrer">AI Gateway pricing</a><span aria-hidden="true"> · </span><a href="https://vercel.com/docs/ai-gateway/getting-started" rel="noreferrer">AI Gateway getting started</a><span aria-hidden="true"> · </span><a href="https://vercel.com/docs/ai-gateway/models-and-providers" rel="noreferrer">AI Gateway models</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://vercel.com/dashboard/ai-gateway" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="watsonx">
+            <td data-label="Provider">
+              <strong>IBM watsonx.ai</strong>
+              <span class="provider-meta">https://us-south.ml.cloud.ibm.com/ml/v1</span>
+            </td>
+            <td data-label="Free access">Free trial credit</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">No</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">IBM offers a no-cost trial of watsonx.ai alongside the paid Essentials and Standard plans, and the pricing page invites you to start building at no cost. The page states plan pricing per resource unit but does not publish request-rate limits for the trial, so the console is authoritative for the trial&#39;s ceilings.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://www.ibm.com/products/watsonx-ai/pricing" rel="noreferrer">watsonx.ai pricing</a><span aria-hidden="true"> · </span><a href="https://cloud.ibm.com/apidocs/watsonx-ai" rel="noreferrer">watsonx.ai API reference</a><span aria-hidden="true"> · </span><a href="https://www.ibm.com/products/watsonx-ai/foundation-models" rel="noreferrer">watsonx.ai foundation models</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://dataplatform.cloud.ibm.com/registration/stepone" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="openrouter">
+            <td data-label="Provider">
+              <strong>OpenRouter</strong>
+              <span class="provider-meta">https://openrouter.ai/api/v1</span>
+            </td>
+            <td data-label="Free access">Free model aggregator</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">20 RPM · 50 requests/day</strong>
+              <span class="cell-detail">Model variants whose ID ends in :free are capped at 20 requests/minute regardless of account status. The daily cap depends on lifetime credit purchases: under 10 credits gives 50 requests/day, and 10 or more credits raises it to 1,000 requests/day. OpenRouter governs capacity globally, so extra accounts or extra API keys do not raise these limits.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://openrouter.ai/docs/api-reference/limits" rel="noreferrer">OpenRouter API rate limits</a><span aria-hidden="true"> · </span><a href="https://openrouter.ai/docs/guides/routing/model-variants/free" rel="noreferrer">OpenRouter free model variants</a><span aria-hidden="true"> · </span><a href="https://openrouter.ai/docs/quickstart" rel="noreferrer">OpenRouter quickstart</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://openrouter.ai/settings/keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="github-models">
+            <td data-label="Provider">
+              <strong>GitHub Models</strong>
+              <span class="provider-meta">https://models.github.ai/inference</span>
+              <span class="retirement">Retires 2026-07-30</span>
+            </td>
+            <td data-label="Free access">Retiring free tier</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Limits vary by model and Copilot plan. New customers are no longer accepted, and the service retires on 2026-07-30.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-15">2026-07-15</time>
+              <span class="source-links"><a href="https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/" rel="noreferrer">GitHub Models retirement announcement</a><span aria-hidden="true"> · </span><a href="https://docs.github.com/en/rest/models/catalog" rel="noreferrer">GitHub Models catalog API</a><span aria-hidden="true"> · </span><a href="https://docs.github.com/en/billing/concepts/product-billing/github-models" rel="noreferrer">GitHub Models billing</a></span>
+            </td>
+            <td data-label="Access"><span class="closed-label">New access closed</span></td>
+          </tr>
+          <tr data-provider-id="together">
+            <td data-label="Provider">
+              <strong>Together AI</strong>
+              <span class="provider-meta">https://api.together.xyz/v1</span>
+            </td>
+            <td data-label="Free access">Metered access</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Together applies dynamic per-model rate limits that rise with sustained successful traffic and fall when traffic drops, and states plainly that there are no fixed per-model limits published. Requests above your dynamic rate return 429 with x-ratelimit-reset; requests at or below it that still fail return 503. No standing free allowance is documented on the rate-limits page.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.together.ai/docs/serverless/rate-limits" rel="noreferrer">Together serverless rate limits</a><span aria-hidden="true"> · </span><a href="https://docs.together.ai/docs/openai-api-compatibility" rel="noreferrer">Together OpenAI compatibility</a><span aria-hidden="true"> · </span><a href="https://www.together.ai/pricing" rel="noreferrer">Together pricing</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://api.together.ai/settings/api-keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="nebius">
+            <td data-label="Provider">
+              <strong>Nebius Token Factory</strong>
+              <span class="provider-meta">https://api.tokenfactory.nebius.com/v1</span>
+            </td>
+            <td data-label="Free access">Metered access</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">60 RPM</strong>
+              <span class="cell-detail">Limits are dynamic with a published baseline of 60 RPM and 400,000 TPM. Usage is evaluated in rolling 15-minute windows: averaging at or above 80% of the current limit raises it by 20% for the next window, averaging at or below 50% divides it by 1.5, and the ceiling is 20x the base allocation before an Enterprise plan is required. No standing free allowance is documented on this page.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.tokenfactory.nebius.com/ai-models-inference/rate-limits" rel="noreferrer">Nebius rate limits and scaling</a><span aria-hidden="true"> · </span><a href="https://docs.tokenfactory.nebius.com/quickstart" rel="noreferrer">Nebius Token Factory quickstart</a><span aria-hidden="true"> · </span><a href="https://docs.tokenfactory.nebius.com/other-capabilities/billing-new" rel="noreferrer">Nebius billing and consumption</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://tokenfactory.nebius.com/" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="perplexity">
+            <td data-label="Provider">
+              <strong>Perplexity API</strong>
+              <span class="provider-meta">https://api.perplexity.ai</span>
+            </td>
+            <td data-label="Free access">Metered access</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">50 RPM</strong>
+              <span class="cell-detail">Usage tiers are set by cumulative API credit purchases and never downgrade. Tier 0 ($0 purchased) allows 1 query/second and 50 requests/minute on the Agent API; Tier 1 ($50+) allows 3 QPS and 150/min, rising to 33 QPS and 2,000/min at Tier 4. The Search API is separately limited to 50 requests/second at every tier. Tier 0 sets a rate ceiling but is not a free token grant, so credits are still required to make calls.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers" rel="noreferrer">Perplexity rate limits and usage tiers</a><span aria-hidden="true"> · </span><a href="https://docs.perplexity.ai/docs/getting-started/pricing" rel="noreferrer">Perplexity pricing</a><span aria-hidden="true"> · </span><a href="https://docs.perplexity.ai/docs/agent-api/openai-compatibility" rel="noreferrer">Perplexity OpenAI compatibility</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://www.perplexity.ai/account/api/keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="deepinfra">
+            <td data-label="Provider">
+              <strong>DeepInfra</strong>
+              <span class="provider-meta">https://api.deepinfra.com/v1/openai</span>
+            </td>
+            <td data-label="Free access">Metered access</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">The official pricing page lists a per-million-token input and output price for every serving model and does not describe a free allowance or publish request-rate limits. Treat DeepInfra as pay-as-you-go and check the dashboard for any promotional credit attached to a new account.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://deepinfra.com/pricing" rel="noreferrer">DeepInfra pricing</a><span aria-hidden="true"> · </span><a href="https://deepinfra.com/docs/openai_api" rel="noreferrer">DeepInfra OpenAI compatibility</a><span aria-hidden="true"> · </span><a href="https://deepinfra.com/models" rel="noreferrer">DeepInfra models</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://deepinfra.com/dash/api_keys" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="chutes">
+            <td data-label="Provider">
+              <strong>Chutes</strong>
+              <span class="provider-meta">https://llm.chutes.ai/v1</span>
+            </td>
+            <td data-label="Free access">Metered access</td>
+            <td data-label="Credit card">Not required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Chutes prices inference per token and sells subscription plans that bundle a daily quota: Plus at $10/month with a bundled daily quota and 6% off pay-as-you-go rates beyond it, and Pro at $20/month with a larger daily quota and 10% off. The pricing page documents no zero-cost tier, and per-plan request-rate numbers are shown on the plan limits page rather than in pricing.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://chutes.ai/pricing" rel="noreferrer">Chutes pricing</a><span aria-hidden="true"> · </span><a href="https://chutes.ai/docs" rel="noreferrer">Chutes documentation</a><span aria-hidden="true"> · </span><a href="https://chutes.ai/app" rel="noreferrer">Chutes app</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://chutes.ai/app/api" rel="noreferrer">Get API access</a></td>
+          </tr>
+          <tr data-provider-id="scaleway">
+            <td data-label="Provider">
+              <strong>Scaleway Generative APIs</strong>
+              <span class="provider-meta">https://api.scaleway.ai/v1</span>
+            </td>
+            <td data-label="Free access">Metered access</td>
+            <td data-label="Credit card">Required</td>
+            <td data-label="OpenAI compatible">Yes</td>
+            <td data-label="Limits">
+              <strong class="quota">Dynamic / unknown</strong>
+              <span class="cell-detail">Every model served through Generative APIs - Serverless is limited by tokens per minute, queries per minute and concurrent requests. Scaleway states that base limits apply only if you have registered a valid payment method, and that they increase automatically if you also verify your identity. The exact numbers live in the Organization quotas page rather than in the rate-limits documentation.</span>
+            </td>
+            <td data-label="Probe">
+              <span class="probe probe--not-checked">not-checked</span>
+              <span class="cell-detail">No authenticated probe has been published.</span>
+            </td>
+            <td data-label="Sources checked">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <span class="source-links"><a href="https://www.scaleway.com/en/docs/generative-apis/reference-content/rate-limits/" rel="noreferrer">Scaleway Generative APIs rate limits</a><span aria-hidden="true"> · </span><a href="https://www.scaleway.com/en/docs/generative-apis/quickstart/" rel="noreferrer">Scaleway Generative APIs quickstart</a><span aria-hidden="true"> · </span><a href="https://www.scaleway.com/en/docs/generative-apis/faq/" rel="noreferrer">Scaleway Generative APIs pricing</a></span>
+            </td>
+            <td data-label="Access"><a class="row-action" href="https://console.scaleway.com/" rel="noreferrer">Get API access</a></td>
+          </tr>
+            </tbody>
+          </table>
+          <p id="empty-state" class="empty-state" hidden>No providers match these filters.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="method-band">
+      <div class="shell method-grid">
+        <div>
+          <p class="eyebrow">Interpretation</p>
+          <h2>Sample facts, not status theater</h2>
+        </div>
+        <p><strong>401/403</strong> means the sample credential failed. <strong>429</strong> means that sample was limited. Only network and 5xx responses indicate a sampled endpoint reachability problem, never a provider-wide outage.</p>
+        <a class="hosted-cta" href="https://aiapiv2.pekpik.com/register?utm_source=github&amp;utm_medium=repo&amp;utm_campaign=free-llm-api">Need stable hosted access?</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell"><span>Data is reviewed against official sources.</span><a href="https://github.com/xyzs996/free-llm-api/blob/main/README.md#data">Methodology and data contract</a></div></footer>
+  <script id="provider-data" type="application/json">[{"id":"gemini","name":"Google Gemini API","category":"provider-free-tier","signup_url":"https://aistudio.google.com/apikey","base_url":"https://generativelanguage.googleapis.com/v1beta/openai/","openai_compatible":true,"credit_card_required":false,"models":["Free-tier eligibility varies by model","gemini-2.5-flash","gemini-2.5-flash-lite"],"limits":{"status":"tier-based","requests_per_minute":null,"requests_per_day":null,"summary":"Rate limits apply per project, not per API key, and depend on the project's usage tier; the Free tier is the entry tier and moving up requires enabling billing. Google publishes the tier structure but directs you to AI Studio for the exact RPM, TPM and RPD active on your project, so no single free-tier number can be quoted here."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"New projects start on the Free tier. Only selected models carry free-tier usage, and per-model limits are visible in AI Studio."},"official_sources":[{"title":"Gemini API rate limits","url":"https://ai.google.dev/gemini-api/docs/rate-limits"},{"title":"Gemini API billing","url":"https://ai.google.dev/gemini-api/docs/billing"},{"title":"Gemini OpenAI compatibility","url":"https://ai.google.dev/gemini-api/docs/openai"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"groq","name":"GroqCloud","category":"provider-free-tier","signup_url":"https://console.groq.com/keys","base_url":"https://api.groq.com/openai/v1","openai_compatible":true,"credit_card_required":false,"models":["llama-3.3-70b-versatile","llama-3.1-8b-instant","openai/gpt-oss-120b","openai/gpt-oss-20b","groq/compound"],"limits":{"status":"documented-per-model","requests_per_minute":30,"requests_per_day":1000,"summary":"Free plan limits are per model and enforced per organization. llama-3.3-70b-versatile: 30 RPM, 1,000 RPD, 12K TPM, 100K TPD. llama-3.1-8b-instant: 30 RPM, 14,400 RPD, 6K TPM, 500K TPD. openai/gpt-oss-120b and openai/gpt-oss-20b: 30 RPM, 1,000 RPD, 8K TPM, 200K TPD. groq/compound: 30 RPM, 250 RPD, 70K TPM. Cached tokens do not count toward token limits. The RPM/RPD columns here quote llama-3.3-70b-versatile."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization."},"official_sources":[{"title":"GroqCloud rate limits","url":"https://console.groq.com/docs/rate-limits"},{"title":"Groq OpenAI compatibility","url":"https://console.groq.com/docs/openai"},{"title":"Groq billing FAQ","url":"https://console.groq.com/docs/billing-faqs"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"sambanova","name":"SambaNova Cloud","category":"provider-free-tier","signup_url":"https://cloud.sambanova.ai/apis","base_url":"https://api.sambanova.ai/v1","openai_compatible":true,"credit_card_required":false,"models":["DeepSeek-V3.1","Meta-Llama-3.3-70B-Instruct","gpt-oss-120b"],"limits":{"status":"documented-per-model","requests_per_minute":20,"requests_per_day":20,"summary":"The Free Tier applies whenever no payment method is linked to the account. For DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b the free limits are 20 RPM, 20 RPD and 200,000 tokens per day. Linking a payment method moves the account to the Developer Tier (60-240 RPM, 12,000-48,000 RPD, 20M tokens/day across all models)."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. The 20 requests-per-day cap is the binding constraint for most users."},"official_sources":[{"title":"SambaNova model rate limits","url":"https://sambanova-systems.mintlify.dev/docs/en/models/rate-limits.md"},{"title":"SambaNova developer guide","url":"https://docs.sambanova.ai/docs/en/get-started/overview"},{"title":"SambaNova OpenAI compatibility","url":"https://docs.sambanova.ai/docs/en/features/openai-compatibility"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"cohere","name":"Cohere","category":"provider-free-tier","signup_url":"https://dashboard.cohere.com/api-keys","base_url":"https://api.cohere.ai/compatibility/v1","openai_compatible":true,"credit_card_required":false,"models":["command-a-03-2025","command-r-plus","embed-v4.0","rerank-v3.5"],"limits":{"status":"documented-per-endpoint","requests_per_minute":20,"requests_per_day":null,"summary":"Trial keys are free, rate limited and not licensed for production. Chat is limited to 20 requests/minute, Rerank to 10/minute, Audio Transcriptions and EmbedJob to 5/minute, Tokenize to 100/minute, and Embed to 2,000 inputs/minute. Every trial key is additionally capped at 1,000 API calls per month across the account."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Trial keys are explicitly excluded from production use by Cohere's terms; the 1,000 calls/month ceiling is the binding limit."},"official_sources":[{"title":"Cohere API rate limits","url":"https://docs.cohere.com/docs/rate-limits"},{"title":"Cohere Compatibility API","url":"https://docs.cohere.com/docs/compatibility-api"},{"title":"Cohere pricing","url":"https://cohere.com/pricing"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"cloudflare-workers-ai","name":"Cloudflare Workers AI","category":"provider-free-tier","signup_url":"https://dash.cloudflare.com/profile/api-tokens","base_url":"https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/v1","openai_compatible":true,"credit_card_required":false,"models":["@cf/meta/llama-3.3-70b-instruct-fp8-fast","@cf/openai/gpt-oss-120b","@cf/qwen/qwen2.5-coder-32b-instruct"],"limits":{"status":"documented-in-compute-units","requests_per_minute":null,"requests_per_day":null,"summary":"Both the Workers Free and Workers Paid plans include 10,000 Neurons per day at no charge, resetting daily at 00:00 UTC. Neurons are a compute unit rather than a request count, so the number of requests you get depends on the model and prompt size. On the Free plan there is no overage: once the allocation is spent, requests fail until reset. Workers Paid bills overage at $0.011 per 1,000 Neurons."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"The pricing page does not state whether a credit card is required to sign up for the Workers Free plan, so treat the card column as unverified for this entry."},"official_sources":[{"title":"Workers AI pricing","url":"https://developers.cloudflare.com/workers-ai/platform/pricing/"},{"title":"Workers AI OpenAI compatible endpoints","url":"https://developers.cloudflare.com/workers-ai/configuration/open-ai-compatibility/"},{"title":"Workers AI models","url":"https://developers.cloudflare.com/workers-ai/models/"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"huggingface","name":"Hugging Face Inference Providers","category":"provider-free-tier","signup_url":"https://huggingface.co/settings/tokens","base_url":"https://router.huggingface.co/v1","openai_compatible":true,"credit_card_required":false,"models":["deepseek-ai/DeepSeek-V3-0324","openai/gpt-oss-120b","200+ models routed across partner providers"],"limits":{"status":"documented-in-credits","requests_per_minute":null,"requests_per_day":null,"summary":"Signed-in free users receive $0.10 in monthly Inference Provider credits (Hugging Face notes this is subject to change); PRO users receive $2.00 and Team or Enterprise organizations $2.00 per seat. Credits only apply to requests routed by Hugging Face, not to requests made with your own provider key. Once the monthly credits are spent you must purchase credits to continue."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Hugging Face charges provider list rates with no markup, so the free allowance converts to very different request counts depending on which model you route to."},"official_sources":[{"title":"Inference Providers pricing and billing","url":"https://huggingface.co/docs/inference-providers/pricing"},{"title":"Inference Providers OpenAI compatibility","url":"https://huggingface.co/docs/inference-providers/index"},{"title":"Inference Providers settings","url":"https://huggingface.co/settings/inference-providers"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"siliconflow","name":"SiliconFlow","category":"provider-free-tier","signup_url":"https://cloud.siliconflow.com/account/ak","base_url":"https://api.siliconflow.com/v1","openai_compatible":true,"credit_card_required":false,"models":["Qwen/Qwen3-8B","THUDM/GLM-4-9B-0414","deepseek-ai/DeepSeek-R1"],"limits":{"status":"documented-per-tier","requests_per_minute":1000,"requests_per_day":null,"summary":"Rate limits for free models are fixed; paid models are tiered by monthly spend and start at tier L0 with 1,000 RPM and 40,000 TPM. Limits are enforced per user account rather than per API key, and each model is limited separately. deepseek-ai/DeepSeek-R1 and deepseek-ai/DeepSeek-V3 carry an extra cap of 30 requests/hour and 100 requests/day."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"The 1,000 RPM figure is the L0 paid-model ceiling. Free models have their own fixed limits published per model on the model pages."},"official_sources":[{"title":"SiliconFlow rate limits","url":"https://docs.siliconflow.com/en/userguide/rate-limits/rate-limit-and-upgradation"},{"title":"SiliconFlow quick start","url":"https://docs.siliconflow.com/en/userguide/quickstart"},{"title":"SiliconFlow models","url":"https://cloud.siliconflow.com/models"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"fireworks","name":"Fireworks AI","category":"provider-free-tier","signup_url":"https://app.fireworks.ai/settings/users/api-keys","base_url":"https://api.fireworks.ai/inference/v1","openai_compatible":true,"credit_card_required":false,"models":["accounts/fireworks/models/llama-v3p3-70b-instruct","accounts/fireworks/models/gpt-oss-120b"],"limits":{"status":"documented-account-wide","requests_per_minute":10,"requests_per_day":null,"summary":"An account with no payment method and no credits is limited to 10 requests per minute across the entire account. Adding a payment method and active credits raises the ceiling to a maximum of 6,000 RPM. Fireworks is pre-paid, so the 10 RPM envelope is the only no-cost path and there is no published daily request cap on it."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"The 10 RPM limit is a request-rate envelope, not a free token grant; serverless token throughput still depends on your spending tier."},"official_sources":[{"title":"Fireworks account quotas","url":"https://docs.fireworks.ai/guides/quotas_usage/account-quotas"},{"title":"Fireworks serverless rate limits","url":"https://docs.fireworks.ai/guides/quotas_usage/rate-limits"},{"title":"Fireworks pricing","url":"https://fireworks.ai/pricing"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"zai","name":"Z.AI Open Platform","category":"provider-free-tier","signup_url":"https://z.ai/manage-apikey/apikey-list","base_url":"https://api.z.ai/api/paas/v4","openai_compatible":true,"credit_card_required":false,"models":["GLM-4.7-Flash","GLM-4.5-Flash"],"limits":{"status":"free-models-listed","requests_per_minute":null,"requests_per_day":null,"summary":"GLM-4.7-Flash and GLM-4.5-Flash are listed at $0 for input, cached input and output on the official pricing table, making them free to call rather than merely discounted. Z.AI does not publish per-model RPM or TPM for these models on the pricing page; the rate limit reference is a separate page and the console is authoritative."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"The free Flash models sit alongside paid GLM models on the same key, so watch which model ID you send to avoid unintended charges."},"official_sources":[{"title":"Z.AI pricing","url":"https://docs.z.ai/guides/overview/pricing"},{"title":"Z.AI rate limits","url":"https://docs.z.ai/api-reference/rate-limit"},{"title":"OpenAI Python SDK with Z.AI","url":"https://docs.z.ai/guides/develop/openai/python"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"novita","name":"Novita AI","category":"provider-free-tier","signup_url":"https://novita.ai/settings/key-management","base_url":"https://api.novita.ai/openai","openai_compatible":true,"credit_card_required":false,"models":["inclusionai/Ling-3.0-flash","Mind Lab Macaron V1 Venti"],"limits":{"status":"free-models-listed","requests_per_minute":null,"requests_per_day":null,"summary":"The official pricing table lists inclusionai/Ling-3.0-flash and Mind Lab's Macaron V1 Venti with both input and output priced Free; every other listed model is billed per million tokens. Novita does not publish RPM or RPD for the free models on the pricing page."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Which models are free changes with the catalogue, so re-check the pricing table before depending on a specific free model ID."},"official_sources":[{"title":"Novita pricing","url":"https://novita.ai/pricing"},{"title":"Novita LLM API reference","url":"https://novita.ai/docs/api-reference/model-apis-llm-create-chat-completion"},{"title":"Novita model library","url":"https://novita.ai/models"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"mistral","name":"Mistral La Plateforme","category":"provider-free-tier","signup_url":"https://console.mistral.ai/api-keys","base_url":"https://api.mistral.ai/v1","openai_compatible":true,"credit_card_required":false,"models":["mistral-small-latest","open-mistral-nemo","codestral-latest"],"limits":{"status":"not_published","requests_per_minute":null,"requests_per_day":null,"summary":"Mistral documents a Free mode (also referred to as the Experiment plan) that lets you activate a workspace and generate an API key without paying, but the public documentation does not currently expose a reachable rate-limit page for it: the tier URL listed in Mistral's own documentation index returns 404 as of the check date. The console is the only authoritative source for the Experiment plan's requests-per-second and tokens-per-minute ceilings."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Mistral's consumer Free plan for the Vibe assistant is a different product from the API Free mode; do not read the assistant's message limits as API limits."},"official_sources":[{"title":"Mistral La Plateforme documentation","url":"https://docs.mistral.ai/"},{"title":"Mistral pricing","url":"https://mistral.ai/pricing"},{"title":"Mistral API documentation index","url":"https://docs.mistral.ai/llms.txt"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"dashscope","name":"Alibaba Cloud Model Studio","category":"provider-free-tier","signup_url":"https://bailian.console.alibabacloud.com/","base_url":"https://dashscope-intl.aliyuncs.com/compatible-mode/v1","openai_compatible":true,"credit_card_required":false,"models":["qwen-plus","qwen-turbo","qwen3-coder-plus"],"limits":{"status":"documented-per-model","requests_per_minute":null,"requests_per_day":null,"summary":"Rate limiting is applied at the Alibaba Cloud root account level and aggregates usage across all RAM users, workspaces and API keys under that account. Each model carries its own RPM and TPM limit published in per-model tables, and free quota is granted per model rather than as one account-wide allowance, so no single free-tier number applies."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Requests are rejected when a limit is hit and typically recover within one minute; the error text tells you whether RPM or TPM triggered."},"official_sources":[{"title":"Model Studio rate limiting","url":"https://www.alibabacloud.com/help/en/model-studio/rate-limit"},{"title":"Model Studio OpenAI compatibility","url":"https://www.alibabacloud.com/help/en/model-studio/compatibility-of-openai-with-dashscope"},{"title":"Model Studio models","url":"https://www.alibabacloud.com/help/en/model-studio/models"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"moonshot","name":"Moonshot AI (Kimi)","category":"provider-free-tier","signup_url":"https://platform.moonshot.ai/console/api-keys","base_url":"https://api.moonshot.ai/v1","openai_compatible":true,"credit_card_required":false,"models":["kimi-k2-0905-preview","moonshot-v1-8k","moonshot-v1-128k"],"limits":{"status":"documented-per-tier","requests_per_minute":null,"requests_per_day":null,"summary":"Limits are expressed as concurrency, RPM, TPM and TPD, and the published tier table is keyed to cumulative recharge rather than to a standing free allowance; reaching $5 of cumulative recharge grants a $5 voucher. New accounts start at the lowest tier, so treat the console tier page as authoritative before planning volume."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Because the tiers key off recharge rather than a free grant, budget for at least a small top-up if you need more than trivial throughput."},"official_sources":[{"title":"Kimi rate limits","url":"https://platform.moonshot.ai/docs/pricing/limits"},{"title":"Kimi API overview","url":"https://platform.moonshot.ai/docs/introduction"},{"title":"Kimi pricing","url":"https://platform.moonshot.ai/docs/pricing/chat"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"pollinations","name":"Pollinations.AI","category":"provider-free-tier","signup_url":"https://pollinations.ai/","base_url":"https://text.pollinations.ai/openai","openai_compatible":true,"credit_card_required":false,"models":["openai","mistral","Community-hosted open models"],"limits":{"status":"not_published","requests_per_minute":null,"requests_per_day":null,"summary":"Pollinations exposes an OpenAI-compatible text endpoint that can be called without a key for basic use, and the official API docs do not publish RPM or RPD figures. The docs do state that since 2025-03-31 free-tier images may include watermarks, so free-tier output is not identical to paid output."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"This is a community-operated service rather than a commercial provider; treat availability as best-effort and do not build production dependencies on it."},"official_sources":[{"title":"Pollinations API documentation","url":"https://github.com/pollinations/pollinations/blob/master/APIDOCS.md"},{"title":"Pollinations project repository","url":"https://github.com/pollinations/pollinations"},{"title":"Pollinations.AI home","url":"https://pollinations.ai/"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"ollama-cloud","name":"Ollama Cloud","category":"provider-free-tier","signup_url":"https://ollama.com/settings/keys","base_url":"https://ollama.com/v1","openai_compatible":true,"credit_card_required":false,"models":["gpt-oss:120b-cloud","gpt-oss:20b-cloud","qwen3-coder:480b-cloud"],"limits":{"status":"not_published","requests_per_minute":null,"requests_per_day":null,"summary":"Cloud models run on Ollama's servers while keeping the local CLI workflow, and require only an ollama.com account to start. The Cloud documentation page describes access and model retirement policy but does not publish hourly or daily request limits, so the account page is the authoritative source for the active quota."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Ollama periodically retires older cloud models as newer open-weight models ship; local models are unaffected by those retirements."},"official_sources":[{"title":"Ollama Cloud documentation","url":"https://docs.ollama.com/cloud"},{"title":"Ollama Cloud API access","url":"https://docs.ollama.com/api"},{"title":"Ollama model library","url":"https://ollama.com/library"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"cerebras","name":"Cerebras Inference","category":"trial-credit","signup_url":"https://cloud.cerebras.ai/","base_url":"https://api.cerebras.ai/v1","openai_compatible":true,"credit_card_required":true,"models":["gpt-oss-120b","zai-glm-4.7","gemma-4-31b"],"limits":{"status":"documented-per-model","requests_per_minute":5,"requests_per_day":null,"summary":"Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b, zai-glm-4.7 and gemma-4-31b. New accounts receive $5 in credits that expire 30 days after being granted. Cerebras states that if you skip adding a payment method at sign-up, Playground and API access remain inactive until you add one."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"This entry is marked as requiring a card because a verified payment method is a precondition for API access, even though the trial itself costs nothing."},"official_sources":[{"title":"Cerebras rate limits","url":"https://inference-docs.cerebras.ai/support/rate-limits"},{"title":"Cerebras pricing","url":"https://inference-docs.cerebras.ai/support/pricing"},{"title":"Cerebras OpenAI compatibility","url":"https://inference-docs.cerebras.ai/resources/openai"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"vercel-ai-gateway","name":"Vercel AI Gateway","category":"trial-credit","signup_url":"https://vercel.com/dashboard/ai-gateway","base_url":"https://ai-gateway.vercel.sh/v1","openai_compatible":true,"credit_card_required":false,"models":["Free Tier eligible model subset","openai/gpt-oss-120b","moonshotai/kimi-k2"],"limits":{"status":"documented-in-credits","requests_per_minute":null,"requests_per_day":null,"summary":"Every Vercel team account receives $5 of AI Gateway credits per month on the free tier, usable only against the Free Tier model subset rather than the full catalogue. Free tier requests are additionally rate limited per model with lower limits than the paid tier, and Vercel does not publish those per-model numbers. Credits start counting from your first Gateway request."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Purchasing AI Gateway credits moves the team to the paid tier, which serves the full model catalogue plus bring-your-own-key routing."},"official_sources":[{"title":"AI Gateway pricing","url":"https://vercel.com/docs/ai-gateway/pricing"},{"title":"AI Gateway getting started","url":"https://vercel.com/docs/ai-gateway/getting-started"},{"title":"AI Gateway models","url":"https://vercel.com/docs/ai-gateway/models-and-providers"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"watsonx","name":"IBM watsonx.ai","category":"trial-credit","signup_url":"https://dataplatform.cloud.ibm.com/registration/stepone","base_url":"https://us-south.ml.cloud.ibm.com/ml/v1","openai_compatible":false,"credit_card_required":false,"models":["ibm/granite-3-8b-instruct","meta-llama/llama-3-3-70b-instruct","mistralai/mistral-large"],"limits":{"status":"not_published","requests_per_minute":null,"requests_per_day":null,"summary":"IBM offers a no-cost trial of watsonx.ai alongside the paid Essentials and Standard plans, and the pricing page invites you to start building at no cost. The page states plan pricing per resource unit but does not publish request-rate limits for the trial, so the console is authoritative for the trial's ceilings."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"watsonx.ai is not OpenAI-wire-compatible by default; requests use IBM's own ML text-generation API shape."},"official_sources":[{"title":"watsonx.ai pricing","url":"https://www.ibm.com/products/watsonx-ai/pricing"},{"title":"watsonx.ai API reference","url":"https://cloud.ibm.com/apidocs/watsonx-ai"},{"title":"watsonx.ai foundation models","url":"https://www.ibm.com/products/watsonx-ai/foundation-models"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"openrouter","name":"OpenRouter","category":"free-model-aggregator","signup_url":"https://openrouter.ai/settings/keys","base_url":"https://openrouter.ai/api/v1","openai_compatible":true,"credit_card_required":false,"models":["Model IDs ending in :free","openrouter/free"],"limits":{"status":"documented-with-conditions","requests_per_minute":20,"requests_per_day":50,"summary":"Model variants whose ID ends in :free are capped at 20 requests/minute regardless of account status. The daily cap depends on lifetime credit purchases: under 10 credits gives 50 requests/day, and 10 or more credits raises it to 1,000 requests/day. OpenRouter governs capacity globally, so extra accounts or extra API keys do not raise these limits."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"A negative account balance can return 402 errors even on free models until the balance is topped back above zero."},"official_sources":[{"title":"OpenRouter API rate limits","url":"https://openrouter.ai/docs/api-reference/limits"},{"title":"OpenRouter free model variants","url":"https://openrouter.ai/docs/guides/routing/model-variants/free"},{"title":"OpenRouter quickstart","url":"https://openrouter.ai/docs/quickstart"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"github-models","name":"GitHub Models","category":"retiring-free-tier","signup_url":null,"base_url":"https://models.github.ai/inference","openai_compatible":true,"credit_card_required":false,"models":["Existing-customer catalog only until retirement"],"limits":{"status":"retiring","requests_per_minute":null,"requests_per_day":null,"summary":"Limits vary by model and Copilot plan. New customers are no longer accepted, and the service retires on 2026-07-30."},"availability":{"status":"retiring","accepting_new_users":false,"retires_at":"2026-07-30","note":"GitHub announced full retirement of the playground, catalog, inference API and BYOK on 2026-07-30."},"official_sources":[{"title":"GitHub Models retirement announcement","url":"https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/"},{"title":"GitHub Models catalog API","url":"https://docs.github.com/en/rest/models/catalog"},{"title":"GitHub Models billing","url":"https://docs.github.com/en/billing/concepts/product-billing/github-models"}],"source_checked_at":"2026-07-15","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"together","name":"Together AI","category":"metered-access","signup_url":"https://api.together.ai/settings/api-keys","base_url":"https://api.together.xyz/v1","openai_compatible":true,"credit_card_required":false,"models":["meta-llama/Llama-3.3-70B-Instruct-Turbo","openai/gpt-oss-120b","Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo"],"limits":{"status":"dynamic-no-fixed-numbers","requests_per_minute":null,"requests_per_day":null,"summary":"Together applies dynamic per-model rate limits that rise with sustained successful traffic and fall when traffic drops, and states plainly that there are no fixed per-model limits published. Requests above your dynamic rate return 429 with x-ratelimit-reset; requests at or below it that still fail return 503. No standing free allowance is documented on the rate-limits page."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Because limits are usage-derived, a new account cannot know its ceiling in advance; read the 429 response headers instead."},"official_sources":[{"title":"Together serverless rate limits","url":"https://docs.together.ai/docs/serverless/rate-limits"},{"title":"Together OpenAI compatibility","url":"https://docs.together.ai/docs/openai-api-compatibility"},{"title":"Together pricing","url":"https://www.together.ai/pricing"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"nebius","name":"Nebius Token Factory","category":"metered-access","signup_url":"https://tokenfactory.nebius.com/","base_url":"https://api.tokenfactory.nebius.com/v1","openai_compatible":true,"credit_card_required":false,"models":["deepseek-ai/DeepSeek-V3","meta-llama/Llama-3.3-70B-Instruct","Qwen/Qwen3-235B-A22B"],"limits":{"status":"documented-baseline","requests_per_minute":60,"requests_per_day":null,"summary":"Limits are dynamic with a published baseline of 60 RPM and 400,000 TPM. Usage is evaluated in rolling 15-minute windows: averaging at or above 80% of the current limit raises it by 20% for the next window, averaging at or below 50% divides it by 1.5, and the ceiling is 20x the base allocation before an Enterprise plan is required. No standing free allowance is documented on this page."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Requests above the limit may still be served at lower priority, flagged with an x-ratelimit-over-limit header, rather than failing outright."},"official_sources":[{"title":"Nebius rate limits and scaling","url":"https://docs.tokenfactory.nebius.com/ai-models-inference/rate-limits"},{"title":"Nebius Token Factory quickstart","url":"https://docs.tokenfactory.nebius.com/quickstart"},{"title":"Nebius billing and consumption","url":"https://docs.tokenfactory.nebius.com/other-capabilities/billing-new"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"perplexity","name":"Perplexity API","category":"metered-access","signup_url":"https://www.perplexity.ai/account/api/keys","base_url":"https://api.perplexity.ai","openai_compatible":true,"credit_card_required":false,"models":["sonar","sonar-pro","sonar-reasoning"],"limits":{"status":"documented-per-tier","requests_per_minute":50,"requests_per_day":null,"summary":"Usage tiers are set by cumulative API credit purchases and never downgrade. Tier 0 ($0 purchased) allows 1 query/second and 50 requests/minute on the Agent API; Tier 1 ($50+) allows 3 QPS and 150/min, rising to 33 QPS and 2,000/min at Tier 4. The Search API is separately limited to 50 requests/second at every tier. Tier 0 sets a rate ceiling but is not a free token grant, so credits are still required to make calls."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Perplexity Pro subscribers receive a monthly API credit allowance through their subscription; that allowance is not documented on the rate-limits page."},"official_sources":[{"title":"Perplexity rate limits and usage tiers","url":"https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers"},{"title":"Perplexity pricing","url":"https://docs.perplexity.ai/docs/getting-started/pricing"},{"title":"Perplexity OpenAI compatibility","url":"https://docs.perplexity.ai/docs/agent-api/openai-compatibility"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"deepinfra","name":"DeepInfra","category":"metered-access","signup_url":"https://deepinfra.com/dash/api_keys","base_url":"https://api.deepinfra.com/v1/openai","openai_compatible":true,"credit_card_required":false,"models":["deepseek-ai/DeepSeek-V3","Qwen/Qwen3-Next-80B-A3B-Instruct","meta-llama/Llama-4-Scout-17B-16E"],"limits":{"status":"not_published","requests_per_minute":null,"requests_per_day":null,"summary":"The official pricing page lists a per-million-token input and output price for every serving model and does not describe a free allowance or publish request-rate limits. Treat DeepInfra as pay-as-you-go and check the dashboard for any promotional credit attached to a new account."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Listed as metered rather than free because the pricing page we checked documents no free tier; this is not a statement that no signup credit exists."},"official_sources":[{"title":"DeepInfra pricing","url":"https://deepinfra.com/pricing"},{"title":"DeepInfra OpenAI compatibility","url":"https://deepinfra.com/docs/openai_api"},{"title":"DeepInfra models","url":"https://deepinfra.com/models"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"chutes","name":"Chutes","category":"metered-access","signup_url":"https://chutes.ai/app/api","base_url":"https://llm.chutes.ai/v1","openai_compatible":true,"credit_card_required":false,"models":["zai-org/GLM-5","Qwen/Qwen3-32B","unsloth/Mistral-Nemo-Instruct-2407"],"limits":{"status":"documented-in-plans","requests_per_minute":null,"requests_per_day":null,"summary":"Chutes prices inference per token and sells subscription plans that bundle a daily quota: Plus at $10/month with a bundled daily quota and 6% off pay-as-you-go rates beyond it, and Pro at $20/month with a larger daily quota and 10% off. The pricing page documents no zero-cost tier, and per-plan request-rate numbers are shown on the plan limits page rather than in pricing."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Models are served in TEE (trusted execution environment) variants, which is the differentiator rather than price."},"official_sources":[{"title":"Chutes pricing","url":"https://chutes.ai/pricing"},{"title":"Chutes documentation","url":"https://chutes.ai/docs"},{"title":"Chutes app","url":"https://chutes.ai/app"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}},{"id":"scaleway","name":"Scaleway Generative APIs","category":"metered-access","signup_url":"https://console.scaleway.com/","base_url":"https://api.scaleway.ai/v1","openai_compatible":true,"credit_card_required":true,"models":["llama-3.3-70b-instruct","gpt-oss-120b","qwen3-coder-30b-a3b-instruct"],"limits":{"status":"not_published","requests_per_minute":null,"requests_per_day":null,"summary":"Every model served through Generative APIs - Serverless is limited by tokens per minute, queries per minute and concurrent requests. Scaleway states that base limits apply only if you have registered a valid payment method, and that they increase automatically if you also verify your identity. The exact numbers live in the Organization quotas page rather than in the rate-limits documentation."},"availability":{"status":"active","accepting_new_users":true,"retires_at":null,"note":"Requests sent through the Batches API are not rate limited and are billed at a 50% discount, which is the documented escape hatch for non-real-time work."},"official_sources":[{"title":"Scaleway Generative APIs rate limits","url":"https://www.scaleway.com/en/docs/generative-apis/reference-content/rate-limits/"},{"title":"Scaleway Generative APIs quickstart","url":"https://www.scaleway.com/en/docs/generative-apis/quickstart/"},{"title":"Scaleway Generative APIs pricing","url":"https://www.scaleway.com/en/docs/generative-apis/faq/"}],"source_checked_at":"2026-07-25","probe":{"endpoint_reachable":null,"credential_valid":null,"sample_quota_exhausted":null,"model_available":null,"http_status":null,"latency_ms":null,"checked_at":null,"classification":"not-checked","explanation":"No authenticated probe has been published."}}]</script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

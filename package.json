@@ -1,0 +1,32 @@
+{
+  "name": "free-llm-api",
+  "version": "0.1.0",
+  "description": "Free LLM API list with live probes — free API keys, rate limits, and one-command setup for Claude Code, Codex, and Cline.",
+  "type": "module",
+  "bin": {
+    "free-llm-api": "src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check-repo.js",
+    "probe": "node scripts/probe.js",
+    "render": "node src/render.js",
+    "render:check": "node src/render.js --check",
+    "validate": "node src/validate.js",
+    "serve": "node src/serve.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "free-llm-api",
+    "free-api",
+    "llm-api",
+    "api-keys",
+    "claude-code",
+    "codex",
+    "cline",
+    "openai-compatible"
+  ],
+  "license": "MIT"
+}

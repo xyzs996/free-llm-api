@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+node_modules/
+coverage/
+data/probe-output.json
+docs/screenshots/
+*.log
+*.tmp
+.DS_Store
+.free-llm/

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "groq",
+    "name": "GroqCloud",
+    "category": "provider-free-tier",
+    "signup_url": "https://console.groq.com/keys",
+    "base_url": "https://api.groq.com/openai/v1",
+    "openai_compatible": true,
+    "credit_card_required": false,
+    "models": [
+      "llama-3.3-70b-versatile",
+      "llama-3.1-8b-instant",
+      "openai/gpt-oss-120b",
+      "openai/gpt-oss-20b",
+      "groq/compound"
+    ],
+    "limits": {
+      "status": "documented-per-model",
+      "requests_per_minute": 30,
+      "requests_per_day": 1000,
+      "summary": "Free plan limits are per model and enforced per organization. llama-3.3-70b-versatile: 30 RPM, 1,000 RPD, 12K TPM, 100K TPD. llama-3.1-8b-instant: 30 RPM, 14,400 RPD, 6K TPM, 500K TPD. openai/gpt-oss-120b and openai/gpt-oss-20b: 30 RPM, 1,000 RPD, 8K TPM, 200K TPD. groq/compound: 30 RPM, 250 RPD, 70K TPM. Cached tokens do not count toward token limits. The RPM/RPD columns here quote llama-3.3-70b-versatile."
+    },
+    "availability": {
+      "status": "active",
+      "accepting_new_users": true,
+      "retires_at": null,
+      "note": "The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization."
+    },
+    "official_sources": [],
+    "source_checked_at": "2026-07-25",
+    "probe": {
+      "endpoint_reachable": null,
+      "credential_valid": null,
+      "sample_quota_exhausted": null,
+      "model_available": null,
+      "http_status": null,
+      "latency_ms": null,
+      "checked_at": null,
+      "classification": "not-checked",
+      "explanation": "No authenticated probe has been published."
+    }
+  }
+]
