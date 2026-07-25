@@ -30,6 +30,7 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
     'docs/codex.md',
     'docs/index.html',
     'docs/providers.json',
+    'docs/verify.html',
   ]);
   assert.deepEqual(JSON.parse(first['docs/providers.json']), providers);
 });

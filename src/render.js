@@ -9,6 +9,7 @@ import {
   PROBE_CLASSIFICATION_LABELS,
 } from './probe-contract.js';
 import { CHANGELOG_CHANGE_LABELS } from './validate.js';
+import { SITE_URL, connectSrcOrigins, renderVerifyPage } from './verify-page.js';
 
 const rootDirectory = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const hostedCta = HOSTED_CTA_URL;
@@ -118,6 +119,7 @@ function renderReadme(providers, changelog) {
     .map(({ source_checked_at: checkedAt }) => checkedAt)
     .sort()
     .at(-1);
+  const browserCheckable = providers.filter(({ browser_check: check }) => check === 'supported').length;
   const rows = providers.map((provider) => {
     const primarySource = provider.official_sources[0];
     const access = provider.signup_url ? `[Open](${provider.signup_url})` : 'Closed to new users';
@@ -139,7 +141,13 @@ A source-backed list of free LLM API keys and free tiers, with explainable sampl
 
 > Sources last reviewed: ${latestSourceCheck}. A probe describes one sampled request, not provider-wide uptime.
 
-${renderChangelogSection(providers, changelog)}## Run locally
+${renderChangelogSection(providers, changelog)}## Check a key you already have
+
+Open the [browser key checker](${SITE_URL}verify.html). Nothing is installed and nothing is stored: the request goes from your browser straight to the provider, because the page's Content Security Policy allows connections to the ${connectSrcOrigins(providers).length} provider origins in this catalog and to nothing else — not to an analytics host, and not to this site.
+
+${browserCheckable} of ${providers.length} providers answer a cross-origin browser request. The other ${providers.length - browserCheckable} refuse one, so the page prints the equivalent \`curl\` command instead of guessing.
+
+## Run locally
 
 \`\`\`bash
 npm run render && npm run serve
@@ -232,6 +240,7 @@ function renderPage(providers) {
         <p class="eyebrow">Verified provider facts · Reviewed ${escapeHtml(sourceDate)}</p>
         <h1>Free LLM API</h1>
         <p class="lede">Compare official free-access terms without treating one sample key as an uptime monitor.</p>
+        <p class="masthead__actions"><a href="./verify.html">Already have a key? Check it in your browser →</a></p>
       </div>
       <div class="masthead__stats" aria-label="Catalog summary">
         <div><strong>${providers.length}</strong><span>providers tracked</span></div>
@@ -316,6 +325,7 @@ export function renderArtifacts(providers, changelog = null) {
     'README_zh.md': renderReadmeZh(providers, changelog),
     'docs/providers.json': `${JSON.stringify(providers, null, 2)}\n`,
     'docs/index.html': renderPage(providers),
+    'docs/verify.html': renderVerifyPage(providers),
     ...renderClientPages(providers),
   };
 }

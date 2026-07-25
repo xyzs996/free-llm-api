@@ -1,5 +1,6 @@
 import { HOSTED_CTA_URL } from './client-pages.js';
 import { escapeMarkdown } from './markdown.js';
+import { SITE_URL, connectSrcOrigins } from './verify-page.js';
 
 const GROUPED_CHANGE_THRESHOLD = 3;
 
@@ -64,6 +65,7 @@ ${bullets.join('\n')}
 }
 
 export function renderReadmeZh(providers, changelog) {
+  const browserCheckable = providers.filter(({ browser_check: check }) => check === 'supported').length;
   const latestSourceCheck = providers
     .map(({ source_checked_at: checkedAt }) => checkedAt)
     .sort()
@@ -90,7 +92,13 @@ export function renderReadmeZh(providers, changelog) {
 
 > 来源核验日期：${latestSourceCheck}。一次探活只描述那一次采样请求，不代表服务商整体可用性。
 
-${renderChangelogSectionZh(providers, changelog)}## 本地运行
+${renderChangelogSectionZh(providers, changelog)}## 验证你手上已有的 key
+
+打开[浏览器 key 检测页](${SITE_URL}verify.html)。不用安装、不留存任何内容：请求从你的浏览器直连服务商，因为该页面的 Content Security Policy 只允许连接本清单里的 ${connectSrcOrigins(providers).length} 个服务商源，除此之外一处都不允许——既没有统计服务，也没有本站自己。
+
+${providers.length} 家里有 ${browserCheckable} 家会响应跨域浏览器请求，其余 ${providers.length - browserCheckable} 家会拒绝；对这些服务商，页面直接给出等价的 \`curl\` 命令，而不是猜一个结论。
+
+## 本地运行
 
 \`\`\`bash
 npm run render && npm run serve

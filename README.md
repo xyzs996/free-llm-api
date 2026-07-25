@@ -17,6 +17,12 @@ Week of 2026-07-25. First published catalog: 26 providers, every published numbe
 
 Every entry above is dated and sourced in the catalog below. Full history: [`data/changelog.json`](data/changelog.json).
 
+## Check a key you already have
+
+Open the [browser key checker](https://xyzs996.github.io/free-llm-api/verify.html). Nothing is installed and nothing is stored: the request goes from your browser straight to the provider, because the page's Content Security Policy allows connections to the 26 provider origins in this catalog and to nothing else — not to an analytics host, and not to this site.
+
+21 of 26 providers answer a cross-origin browser request. The other 5 refuse one, so the page prints the equivalent `curl` command instead of guessing.
+
 ## Run locally
 
 ```bash

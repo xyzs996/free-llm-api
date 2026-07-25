@@ -17,6 +17,12 @@
 
 上面每一条都能在下方清单里找到对应的核验日期与官方来源。完整历史见 [`data/changelog.json`](data/changelog.json)。
 
+## 验证你手上已有的 key
+
+打开[浏览器 key 检测页](https://xyzs996.github.io/free-llm-api/verify.html)。不用安装、不留存任何内容：请求从你的浏览器直连服务商，因为该页面的 Content Security Policy 只允许连接本清单里的 26 个服务商源，除此之外一处都不允许——既没有统计服务，也没有本站自己。
+
+26 家里有 21 家会响应跨域浏览器请求，其余 5 家会拒绝；对这些服务商，页面直接给出等价的 `curl` 命令，而不是猜一个结论。
+
 ## 本地运行
 
 ```bash
