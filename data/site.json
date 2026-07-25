@@ -1,0 +1,21 @@
+{
+  "site_url": "https://xyzs996.github.io/free-llm-api/",
+  "repo_url": "https://github.com/xyzs996/free-llm-api",
+  "default_locale": "en",
+  "locales": [
+    {
+      "code": "en",
+      "hreflang": "en",
+      "label": "English",
+      "path_prefix": ""
+    },
+    {
+      "code": "zh",
+      "hreflang": "zh-Hans",
+      "label": "简体中文",
+      "path_prefix": "zh/"
+    }
+  ],
+  "google_site_verification": "",
+  "cloudflare_beacon_token": ""
+}

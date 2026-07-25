@@ -6,6 +6,9 @@
     "signup_url": "https://console.groq.com/keys",
     "base_url": "https://api.groq.com/openai/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "llama-3.3-70b-versatile",

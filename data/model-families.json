@@ -1,0 +1,65 @@
+[
+  {
+    "id": "gpt-oss",
+    "name": "gpt-oss",
+    "name_zh": "gpt-oss",
+    "pattern": "gpt-oss",
+    "vendor": "OpenAI",
+    "blurb": "OpenAI's open-weight gpt-oss models are hosted by more providers in this catalog than any other family, which makes them the easiest way to run an OpenAI-authored model without an OpenAI account.",
+    "blurb_zh": "gpt-oss 是 OpenAI 发布的开放权重模型，在本目录里被托管的服务商数量最多，也是最容易在没有 OpenAI 账号的情况下跑起 OpenAI 自家模型的一条路。"
+  },
+  {
+    "id": "llama",
+    "name": "Llama",
+    "name_zh": "Llama",
+    "pattern": "llama",
+    "vendor": "Meta",
+    "blurb": "Meta's Llama models are the default general-purpose choice on most inference platforms, so the same model ID often appears at several providers with very different free-tier limits.",
+    "blurb_zh": "Meta 的 Llama 系列是多数推理平台的默认通用选择，同一个模型 ID 常常出现在好几家服务商，但各家的免费额度差别很大。"
+  },
+  {
+    "id": "qwen",
+    "name": "Qwen",
+    "name_zh": "通义千问 Qwen",
+    "pattern": "qwen",
+    "vendor": "Alibaba",
+    "blurb": "Alibaba's Qwen family covers general chat and coding variants, and it is the family most consistently offered by providers headquartered in mainland China.",
+    "blurb_zh": "阿里的 Qwen 系列同时覆盖通用对话与代码变体，也是中国大陆服务商提供得最稳定的一个系列。"
+  },
+  {
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "name_zh": "DeepSeek",
+    "pattern": "deepseek",
+    "vendor": "DeepSeek",
+    "blurb": "DeepSeek's V3 and R1 models are the most requested reasoning-capable open weights, and several providers list them on free or trial-credit tiers.",
+    "blurb_zh": "DeepSeek 的 V3 与 R1 是被问得最多的开放权重推理模型，好几家服务商把它们放在免费层或赠送额度里。"
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral",
+    "name_zh": "Mistral",
+    "pattern": "mistral|codestral",
+    "vendor": "Mistral AI",
+    "blurb": "Mistral AI publishes both general models and the Codestral coding models; the free terms differ between Mistral's own API and the platforms that rehost the open weights.",
+    "blurb_zh": "Mistral AI 同时发布通用模型和 Codestral 代码模型；Mistral 官方 API 的免费条款与转托管开放权重的平台并不一样。"
+  },
+  {
+    "id": "glm",
+    "name": "GLM",
+    "name_zh": "GLM",
+    "pattern": "glm",
+    "vendor": "Z.ai",
+    "blurb": "Z.ai's GLM models show up both on the vendor's own free tier and on third-party platforms that host the open weights, which is the clearest case in this catalog of the same family costing nothing in two very different ways.",
+    "blurb_zh": "Z.ai 的 GLM 系列既出现在厂商自己的免费层，也出现在托管其开放权重的第三方平台上——这是本目录里同一系列以两种完全不同方式免费的最清楚例子。"
+  },
+  {
+    "id": "kimi",
+    "name": "Kimi",
+    "name_zh": "Kimi",
+    "pattern": "kimi|moonshot",
+    "vendor": "Moonshot AI",
+    "blurb": "Moonshot AI's Kimi models are long-context oriented, and access to them is split between Moonshot's own platform and gateways that resell the same model IDs.",
+    "blurb_zh": "月之暗面的 Kimi 系列以长上下文见长，获取途径分为 Moonshot 自家平台和转售同名模型 ID 的网关两类。"
+  }
+]

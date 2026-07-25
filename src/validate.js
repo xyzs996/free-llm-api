@@ -5,6 +5,25 @@ import { validateProbeInvariants } from './probe-contract.js';
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
+export const BROWSER_CHECK_STATES = Object.freeze({
+  SUPPORTED: 'supported',
+  BLOCKED: 'blocked',
+  UNVERIFIED: 'unverified',
+});
+
+const VERIFY_METHODS = Object.freeze(['GET', 'POST']);
+
+const OPTIONAL_PROVIDER_STRINGS = Object.freeze([
+  'region_notes',
+  'data_policy',
+]);
+
+const OPTIONAL_PROVIDER_URLS = Object.freeze([
+  'docs_url',
+  'pricing_url',
+  'console_url',
+]);
+
 export const CHANGELOG_CHANGE_TYPES = Object.freeze({
   added: 'added',
   'limit-changed': 'limit-changed',
@@ -90,6 +109,57 @@ function validateProbe(probe, path, errors) {
 
   for (const invariant of validateProbeInvariants(probe)) {
     errors.push(`${path}.${invariant.field} must ${invariant.expectation} for ${probe.classification}`);
+  }
+}
+
+function validateBrowserCheck(provider, path, errors) {
+  const states = Object.values(BROWSER_CHECK_STATES);
+  if (!states.includes(provider.browser_check)) {
+    errors.push(`${path}.browser_check must be one of ${states.join(', ')}`);
+  }
+  if (!isNonEmptyString(provider.browser_check_note)) {
+    errors.push(`${path}.browser_check_note must explain what the CORS preflight returned`);
+  }
+  if (!isRealDate(provider.browser_checked_at)) {
+    errors.push(`${path}.browser_checked_at must be a real YYYY-MM-DD date`);
+  }
+}
+
+function validateVerifyOverride(provider, path, errors) {
+  if (!Object.hasOwn(provider, 'verify')) return;
+
+  const verify = provider.verify;
+  if (!verify || typeof verify !== 'object' || Array.isArray(verify)) {
+    errors.push(`${path}.verify must be an object when present`);
+    return;
+  }
+  if (!VERIFY_METHODS.includes(verify.method)) {
+    errors.push(`${path}.verify.method must be one of ${VERIFY_METHODS.join(', ')}`);
+  }
+  if (!isNonEmptyString(verify.path)) {
+    errors.push(`${path}.verify.path must be a non-empty string`);
+  }
+  if (Object.hasOwn(verify, 'model') && !isNonEmptyString(verify.model)) {
+    errors.push(`${path}.verify.model must be a non-empty string when present`);
+  }
+}
+
+function validateOptionalCopy(provider, path, errors) {
+  for (const field of OPTIONAL_PROVIDER_STRINGS) {
+    if (Object.hasOwn(provider, field) && !isNonEmptyString(provider[field])) {
+      errors.push(`${path}.${field} must be a non-empty string when present`);
+    }
+  }
+  for (const field of OPTIONAL_PROVIDER_URLS) {
+    if (Object.hasOwn(provider, field) && !isHttpsUrl(provider[field])) {
+      errors.push(`${path}.${field} must be an HTTPS URL when present`);
+    }
+  }
+  if (Object.hasOwn(provider.limits ?? {}, 'summary_zh') && !isNonEmptyString(provider.limits.summary_zh)) {
+    errors.push(`${path}.limits.summary_zh must be a non-empty string when present`);
+  }
+  if (Object.hasOwn(provider.availability ?? {}, 'note_zh') && !isNonEmptyString(provider.availability.note_zh)) {
+    errors.push(`${path}.availability.note_zh must be a non-empty string when present`);
   }
 }
 
@@ -204,8 +274,132 @@ export function validateProviders(providers) {
     if (!isRealDate(provider.source_checked_at)) {
       errors.push(`${path}.source_checked_at must be a real YYYY-MM-DD date`);
     }
+    validateBrowserCheck(provider, path, errors);
+    validateVerifyOverride(provider, path, errors);
+    validateOptionalCopy(provider, path, errors);
     validateProbe(provider.probe, `${path}.probe`, errors);
   });
+
+  return errors;
+}
+
+export const LANDING_PAGE_MINIMUM_SUMMARY = 120;
+export const MODEL_FAMILY_MINIMUM_PROVIDERS = 2;
+
+/**
+ * A provider only earns its own landing page when it carries enough unique,
+ * sourced facts to be worth reading on its own. Everything below the bar still
+ * appears in the catalog table; it just does not become a thin page.
+ */
+export function isLandingPageEligible(provider) {
+  return isNonEmptyString(provider?.signup_url)
+    && typeof provider?.limits?.summary === 'string'
+    && provider.limits.summary.length >= LANDING_PAGE_MINIMUM_SUMMARY
+    && Array.isArray(provider?.official_sources)
+    && provider.official_sources.length >= 1;
+}
+
+export function providersInFamily(family, providers) {
+  let pattern;
+  try {
+    pattern = new RegExp(family.pattern, 'i');
+  } catch {
+    return [];
+  }
+  return providers.filter((provider) => (
+    Array.isArray(provider.models) && provider.models.some((model) => pattern.test(model))
+  ));
+}
+
+export function validateModelFamilies(families, providers = []) {
+  const errors = [];
+  if (!Array.isArray(families) || families.length === 0) {
+    return ['model families must be a non-empty array'];
+  }
+
+  const ids = new Set();
+  families.forEach((family, index) => {
+    const path = `modelFamilies[${index}]`;
+    if (!family || typeof family !== 'object' || Array.isArray(family)) {
+      errors.push(`${path} must be an object`);
+      return;
+    }
+
+    for (const field of ['id', 'name', 'name_zh', 'pattern', 'vendor', 'blurb', 'blurb_zh']) {
+      if (!isNonEmptyString(family[field])) {
+        errors.push(`${path}.${field} must be a non-empty string`);
+      }
+    }
+
+    if (ids.has(family.id)) errors.push(`${path}.id has duplicate id ${family.id}`);
+    ids.add(family.id);
+
+    try {
+      new RegExp(family.pattern, 'i');
+    } catch {
+      errors.push(`${path}.pattern must be a valid regular expression`);
+      return;
+    }
+
+    const matches = providersInFamily(family, providers);
+    if (matches.length < MODEL_FAMILY_MINIMUM_PROVIDERS) {
+      errors.push(
+        `${path}.pattern matches ${matches.length} provider(s); a family page needs at least ${MODEL_FAMILY_MINIMUM_PROVIDERS}`,
+      );
+    }
+  });
+
+  return errors;
+}
+
+export function validateSite(site) {
+  const errors = [];
+  if (!site || typeof site !== 'object' || Array.isArray(site)) {
+    return ['site must be an object'];
+  }
+
+  for (const field of ['site_url', 'repo_url']) {
+    if (!isHttpsUrl(site[field])) errors.push(`site.${field} must be an HTTPS URL`);
+  }
+  if (isHttpsUrl(site.site_url) && !site.site_url.endsWith('/')) {
+    errors.push('site.site_url must end with a slash so page paths can be appended');
+  }
+
+  if (!Array.isArray(site.locales) || site.locales.length === 0) {
+    errors.push('site.locales must be a non-empty array');
+  } else {
+    const codes = new Set();
+    site.locales.forEach((locale, index) => {
+      const path = `site.locales[${index}]`;
+      for (const field of ['code', 'hreflang', 'label']) {
+        if (!isNonEmptyString(locale?.[field])) {
+          errors.push(`${path}.${field} must be a non-empty string`);
+        }
+      }
+      if (typeof locale?.path_prefix !== 'string') {
+        errors.push(`${path}.path_prefix must be a string`);
+      } else if (locale.path_prefix !== '' && !locale.path_prefix.endsWith('/')) {
+        errors.push(`${path}.path_prefix must end with a slash when it is not empty`);
+      }
+      if (codes.has(locale?.code)) errors.push(`${path}.code has duplicate locale ${locale.code}`);
+      codes.add(locale?.code);
+    });
+
+    if (!codes.has(site.default_locale)) {
+      errors.push('site.default_locale must name one of site.locales');
+    }
+    if (site.locales.filter(({ path_prefix: prefix }) => prefix === '').length !== 1) {
+      errors.push('exactly one locale must serve the site root with an empty path_prefix');
+    }
+  }
+
+  // Both tokens are public site identifiers rather than secrets, but an unset
+  // token has to stay an empty string so the renderer can omit the tag entirely.
+  for (const field of ['google_site_verification', 'cloudflare_beacon_token']) {
+    if (typeof site[field] !== 'string') {
+      errors.push(`site.${field} must be a string, empty when unset`);
+    }
+  }
 
   return errors;
 }
@@ -343,6 +537,21 @@ async function main(argv) {
     errors.push(...validateChangelog(changelog, providers));
   }
 
+  // The site config and the model families describe the generated pages, so they
+  // are only meaningful when the real catalog is the one being validated.
+  const checksSiteData = options.providers === null;
+  let familyCount = 0;
+  let pageCount = 0;
+
+  if (checksSiteData) {
+    const site = JSON.parse(await readFile(resolve(root, 'data/site.json'), 'utf8'));
+    const families = JSON.parse(await readFile(resolve(root, 'data/model-families.json'), 'utf8'));
+    familyCount = Array.isArray(families) ? families.length : 0;
+    pageCount = Array.isArray(providers) ? providers.filter(isLandingPageEligible).length : 0;
+    errors.push(...validateSite(site));
+    errors.push(...validateModelFamilies(families, providers));
+  }
+
   if (errors.length > 0) {
     process.stderr.write(`${errors.map((error) => `- ${error}`).join('\n')}\n`);
     process.exitCode = 1;
@@ -355,6 +564,11 @@ async function main(argv) {
       ? `Validated ${catalogSize} providers.\n`
       : `Validated ${catalogSize} providers and ${weekCount} changelog ${weekCount === 1 ? 'week' : 'weeks'}.\n`,
   );
+  if (checksSiteData) {
+    process.stdout.write(
+      `Site config is valid: ${familyCount} model families, ${pageCount} of ${catalogSize} providers earn a landing page.\n`,
+    );
+  }
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

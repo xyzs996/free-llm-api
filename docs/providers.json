@@ -6,6 +6,9 @@
     "signup_url": "https://aistudio.google.com/apikey",
     "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight echoes the requesting origin and allows an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "Free-tier eligibility varies by model",
@@ -58,6 +61,9 @@
     "signup_url": "https://console.groq.com/keys",
     "base_url": "https://api.groq.com/openai/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "llama-3.3-70b-versatile",
@@ -112,6 +118,9 @@
     "signup_url": "https://cloud.sambanova.ai/apis",
     "base_url": "https://api.sambanova.ai/v1",
     "openai_compatible": true,
+    "browser_check": "blocked",
+    "browser_check_note": "The CORS preflight succeeds but returns no allow-origin header, so a browser refuses to send the Authorization header.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "DeepSeek-V3.1",
@@ -164,6 +173,9 @@
     "signup_url": "https://dashboard.cohere.com/api-keys",
     "base_url": "https://api.cohere.ai/compatibility/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "command-a-03-2025",
@@ -217,6 +229,9 @@
     "signup_url": "https://dash.cloudflare.com/profile/api-tokens",
     "base_url": "https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/v1",
     "openai_compatible": true,
+    "browser_check": "blocked",
+    "browser_check_note": "The endpoint answers the CORS preflight with 405 and no allow-origin header, so a browser refuses to send the Authorization header.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -269,6 +284,9 @@
     "signup_url": "https://huggingface.co/settings/tokens",
     "base_url": "https://router.huggingface.co/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "deepseek-ai/DeepSeek-V3-0324",
@@ -321,6 +339,9 @@
     "signup_url": "https://cloud.siliconflow.com/account/ak",
     "base_url": "https://api.siliconflow.com/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "Qwen/Qwen3-8B",
@@ -373,6 +394,9 @@
     "signup_url": "https://app.fireworks.ai/settings/users/api-keys",
     "base_url": "https://api.fireworks.ai/inference/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "accounts/fireworks/models/llama-v3p3-70b-instruct",
@@ -424,6 +448,9 @@
     "signup_url": "https://z.ai/manage-apikey/apikey-list",
     "base_url": "https://api.z.ai/api/paas/v4",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight echoes the requesting origin and allows an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "GLM-4.7-Flash",
@@ -475,6 +502,9 @@
     "signup_url": "https://novita.ai/settings/key-management",
     "base_url": "https://api.novita.ai/openai",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "inclusionai/Ling-3.0-flash",
@@ -526,6 +556,9 @@
     "signup_url": "https://console.mistral.ai/api-keys",
     "base_url": "https://api.mistral.ai/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "mistral-small-latest",
@@ -578,6 +611,9 @@
     "signup_url": "https://bailian.console.alibabacloud.com/",
     "base_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "qwen-plus",
@@ -630,6 +666,9 @@
     "signup_url": "https://platform.moonshot.ai/console/api-keys",
     "base_url": "https://api.moonshot.ai/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight echoes the requesting origin and allows an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "kimi-k2-0905-preview",
@@ -682,6 +721,9 @@
     "signup_url": "https://pollinations.ai/",
     "base_url": "https://text.pollinations.ai/openai",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "openai",
@@ -734,6 +776,9 @@
     "signup_url": "https://ollama.com/settings/keys",
     "base_url": "https://ollama.com/v1",
     "openai_compatible": true,
+    "browser_check": "blocked",
+    "browser_check_note": "The endpoint answers the CORS preflight with 405 and no allow-origin header, so a browser refuses to send the Authorization header.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "gpt-oss:120b-cloud",
@@ -786,6 +831,9 @@
     "signup_url": "https://cloud.cerebras.ai/",
     "base_url": "https://api.cerebras.ai/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": true,
     "models": [
       "gpt-oss-120b",
@@ -838,6 +886,9 @@
     "signup_url": "https://vercel.com/dashboard/ai-gateway",
     "base_url": "https://ai-gateway.vercel.sh/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight echoes the requesting origin and allows an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "Free Tier eligible model subset",
@@ -890,6 +941,9 @@
     "signup_url": "https://dataplatform.cloud.ibm.com/registration/stepone",
     "base_url": "https://us-south.ml.cloud.ibm.com/ml/v1",
     "openai_compatible": false,
+    "browser_check": "blocked",
+    "browser_check_note": "The CORS preflight succeeds but returns no allow-origin header, so a browser refuses to send the Authorization header.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "ibm/granite-3-8b-instruct",
@@ -942,6 +996,9 @@
     "signup_url": "https://openrouter.ai/settings/keys",
     "base_url": "https://openrouter.ai/api/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "Model IDs ending in :free",
@@ -993,6 +1050,9 @@
     "signup_url": null,
     "base_url": "https://models.github.ai/inference",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "Existing-customer catalog only until retirement"
@@ -1043,6 +1103,9 @@
     "signup_url": "https://api.together.ai/settings/api-keys",
     "base_url": "https://api.together.xyz/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "meta-llama/Llama-3.3-70B-Instruct-Turbo",
@@ -1095,6 +1158,9 @@
     "signup_url": "https://tokenfactory.nebius.com/",
     "base_url": "https://api.tokenfactory.nebius.com/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "deepseek-ai/DeepSeek-V3",
@@ -1147,6 +1213,9 @@
     "signup_url": "https://www.perplexity.ai/account/api/keys",
     "base_url": "https://api.perplexity.ai",
     "openai_compatible": true,
+    "browser_check": "blocked",
+    "browser_check_note": "The endpoint answers the CORS preflight with 404 and no allow-origin header, so a browser refuses to send the Authorization header.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "sonar",
@@ -1199,6 +1268,9 @@
     "signup_url": "https://deepinfra.com/dash/api_keys",
     "base_url": "https://api.deepinfra.com/v1/openai",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "deepseek-ai/DeepSeek-V3",
@@ -1251,6 +1323,9 @@
     "signup_url": "https://chutes.ai/app/api",
     "base_url": "https://llm.chutes.ai/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
       "zai-org/GLM-5",
@@ -1303,6 +1378,9 @@
     "signup_url": "https://console.scaleway.com/",
     "base_url": "https://api.scaleway.ai/v1",
     "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight echoes the requesting origin and allows an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-07-25",
     "credit_card_required": true,
     "models": [
       "llama-3.3-70b-instruct",
