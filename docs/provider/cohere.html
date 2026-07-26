@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Cohere free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
   <title>Cohere free tier: limits and models</title>
-  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/cohere.html">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/cohere.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/cohere.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/cohere.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="Cohere free tier: limits and models">
+  <meta property="og:description" content="Cohere free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/cohere.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cohere free tier: limits and models">
+  <meta name="twitter:description" content="Cohere free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Cohere","item":"https://xyzs996.github.io/free-llm-api/provider/cohere.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cohere free tier terms","description":"Trial keys are free, rate limited and not licensed for production. Chat is limited to 20 requests/minute, Rerank to 10/minute, Audio Transcriptions and EmbedJob to 5/minute, Tokenize to 100/minute, and Embed to 2,000 inputs/minute. Every trial key is additionally capped at 1,000 API calls per month across the account.","url":"https://xyzs996.github.io/free-llm-api/provider/cohere.html","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Cohere API rate limits","url":"https://docs.cohere.com/docs/rate-limits"},{"@type":"CreativeWork","name":"Cohere Compatibility API","url":"https://docs.cohere.com/docs/compatibility-api"},{"@type":"CreativeWork","name":"Cohere pricing","url":"https://cohere.com/pricing"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Cohere ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Cohere is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Cohere's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Cohere publishes 20 requests per minute. Those are the numbers in its own documentation as reviewed on 2026-07-25."}},{"@type":"Question","name":"What happens when a Cohere key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Cohere free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Cohere's own documentation says so as of 2026-07-25. Trial keys are explicitly excluded from production use by Cohere's terms; the 1,000 calls/month ceiling is the binding limit."}},{"@type":"Question","name":"Can Cohere be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Cohere serves the OpenAI chat completions protocol at https://api.cohere.ai/compatibility/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">

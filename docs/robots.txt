@@ -1,0 +1,5 @@
+# Everything published here is meant to be indexed; nothing is gated.
+User-agent: *
+Allow: /
+
+Sitemap: https://xyzs996.github.io/free-llm-api/sitemap.xml

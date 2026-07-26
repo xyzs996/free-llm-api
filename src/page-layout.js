@@ -1,8 +1,8 @@
 import { escapeHtml } from './html.js';
+import { breadcrumbNode, renderHead } from './seo.js';
+import { DEFAULT_LOCALE, SITE_URL } from './site.js';
 
-// Kept in step with data/site.json by a test; the SEO task threads the whole
-// site config through the renderer and this constant goes away then.
-export const SITE_URL = 'https://xyzs996.github.io/free-llm-api/';
+export { SITE_URL };
 
 export const TITLE_LIMIT = 60;
 export const DESCRIPTION_LIMIT = 160;
@@ -46,11 +46,13 @@ ${blocks.join('\n')}
 
 export function renderDocument({
   depth = 0,
-  lang = 'en',
+  locale = DEFAULT_LOCALE,
   title,
   description,
   canonicalPath,
   head = '',
+  jsonLd = [],
+  analytics = true,
   breadcrumb = [],
   eyebrow,
   h1,
@@ -67,16 +69,27 @@ export function renderDocument({
   }
 
   const prefix = relativePrefix(depth);
+  // The visible trail and the structured one are the same data, so a page
+  // cannot show one path and tell a crawler about another.
+  const structured = breadcrumb.length > 1
+    ? [breadcrumbNode(breadcrumb, canonicalPath), ...jsonLd]
+    : jsonLd;
 
   return `<!doctype html>
-<html lang="${escapeHtml(lang)}">
+<html lang="${escapeHtml(locale.hreflang)}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapeHtml(description)}">
   <title>${escapeHtml(title)}</title>
-  <link rel="canonical" href="${escapeHtml(SITE_URL + canonicalPath)}">
-  <link rel="stylesheet" href="${prefix}styles.css">${head}
+  <link rel="stylesheet" href="${prefix}styles.css">${renderHead({
+    path: canonicalPath,
+    title,
+    description,
+    locale,
+    jsonLd: structured,
+    analytics,
+  })}${head}
 </head>
 <body>
   <header class="page-head">

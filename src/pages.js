@@ -3,6 +3,14 @@ import { escapeHtml, externalLink } from './html.js';
 import { limitStatusLabel } from './client-pages.js';
 import { renderDocument } from './page-layout.js';
 import {
+  faqPageNode,
+  howToNode,
+  itemListNode,
+  providerDatasetNode,
+  techArticleNode,
+} from './seo.js';
+import { pageUrl } from './site.js';
+import {
   SNIPPET_CLIENTS,
   keyEnvForProvider,
   renderSnippet,
@@ -271,7 +279,7 @@ ${codeBlock(renderSnippet('curl', { baseUrl: provider.base_url, keyEnv }).conten
 ${usage}
 
         <h2>Questions about the ${escapeHtml(provider.name)} free tier</h2>
-${faq(providerFaq(provider, context))}
+${faq(context.faqEntries)}
 
         <h2>Official sources</h2>
         <ul class="source-list">
@@ -286,12 +294,17 @@ function providerPage(provider, context) {
   const memberFamilies = familiesOf(provider, families, providers);
   const clientLinks = (provider.openai_compatible ? ['codex', 'cline', 'continue'] : ['claude-code', 'codex'])
     .map((id) => ({ href: `client/${id}.html`, text: `${CLIENT_NOTES[id].title} setup` }));
+  // The questions are written once and used twice: as the visible FAQ and as
+  // the structured one, so a crawler can never be shown an answer the page
+  // does not print.
+  const faqEntries = providerFaq(provider, context);
 
   return renderDocument({
     depth: 1,
     title: `${provider.name} free tier: limits and models`.slice(0, 60),
     description: `${provider.name} free-tier rate limits, free models, browser reachability, and setup, taken from official sources on ${provider.source_checked_at}.`.slice(0, 160),
     canonicalPath: `provider/${provider.id}.html`,
+    jsonLd: [providerDatasetNode(provider), faqPageNode(faqEntries)],
     breadcrumb: [
       { href: 'index.html', text: 'Free LLM API' },
       { href: 'index.html', text: 'Providers' },
@@ -300,7 +313,7 @@ function providerPage(provider, context) {
     eyebrow: `${categoryTitle(provider.category)} · Sources reviewed ${provider.source_checked_at}`,
     h1: `${provider.name} free tier`,
     lede: `What ${provider.name} publishes about its free allowance, which models it covers, and how to point an existing tool at it.`,
-    body: providerBody(provider, { ...context, peers: siblings }),
+    body: providerBody(provider, { ...context, peers: siblings, faqEntries }),
     related: [
       {
         heading: 'Compare with',
@@ -376,6 +389,14 @@ function modelPage(family, context) {
     title: `Free ${family.name} API: ${members.length} providers compared`.slice(0, 60),
     description: `Which providers serve ${family.name} models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed ${context.checkedAt}.`.slice(0, 160),
     canonicalPath: `model/${family.id}.html`,
+    jsonLd: [itemListNode({
+      name: `Providers offering ${family.name} on free terms`,
+      description: `Every provider in this catalog that lists a ${family.name} model as free, ordered as the comparison table on the page.`,
+      items: members.map((provider) => ({
+        name: provider.name,
+        url: pageUrl(`provider/${provider.id}.html`),
+      })),
+    })],
     breadcrumb: [
       { href: 'index.html', text: 'Free LLM API' },
       { href: 'index.html', text: 'Model families' },
@@ -468,6 +489,38 @@ ${codeBlock(snippet.content)}
         <p>Provider figures shown here come from each provider’s own documentation, reviewed on ${escapeHtml(context.checkedAt)}. The <a href="../methodology.html">methodology</a> covers what is recorded and what is deliberately left blank.</p>`;
 }
 
+// The steps describe what a reader does, in the order the page describes it,
+// so the structured version stays a summary of the page rather than a second
+// set of instructions that can drift from it.
+function clientSteps(clientId, note, context) {
+  const client = SNIPPET_CLIENTS.find(({ id }) => id === clientId);
+  const keyEnv = keyEnvForProvider(context.sampleProvider);
+  const guided = client.mode === 'guided';
+
+  return [
+    {
+      name: 'Create your own key',
+      text: 'Pick a free tier from the catalog and create the key on that provider’s own site. This project distributes no key and never receives yours.',
+    },
+    {
+      name: 'Generate the configuration',
+      text: guided
+        ? `Run npx free-llm-api setup ${clientId}. It writes ${client.filename}, a review guide rather than a config file, because ${note.title} takes these values in its own settings panel.`
+        : `Run npx free-llm-api setup ${clientId}. It writes ${client.filename} from the catalog entry, so the base URL and the model id are the ones the provider documents.`,
+    },
+    {
+      name: guided ? 'Enter the key yourself' : 'Keep the key in the environment',
+      text: guided
+        ? `Type the key into ${note.title} by hand. This project does not read or write another tool’s credential storage.`
+        : `Export the key as ${keyEnv}. The generated file names that variable and never contains the value, which keeps the credential out of a repository by construction.`,
+    },
+    {
+      name: 'Check the key before blaming the client',
+      text: 'Open the browser key checker and confirm the provider accepts the key. A rejected credential, a rate limit and an unreachable endpoint look alike from inside the client and have different fixes.',
+    },
+  ];
+}
+
 function clientPage(clientId, context) {
   const note = CLIENT_NOTES[clientId];
   const others = ring(
@@ -481,6 +534,14 @@ function clientPage(clientId, context) {
     title: `Free LLM API for ${note.title}: setup and providers`.slice(0, 60),
     description: `How to point ${note.title} at a free OpenAI-compatible tier, what the generated config contains, and which providers are worth trying first.`.slice(0, 160),
     canonicalPath: `client/${clientId}.html`,
+    jsonLd: [howToNode({
+      name: `Point ${note.title} at a free LLM API`,
+      description: note.summary.replaceAll('`', ''),
+      url: pageUrl(`client/${clientId}.html`),
+      tool: note.title,
+      supply: 'A free-tier API key you created at the provider',
+      steps: clientSteps(clientId, note, context),
+    })],
     breadcrumb: [
       { href: 'index.html', text: 'Free LLM API' },
       { href: 'index.html', text: 'Clients' },
@@ -547,6 +608,12 @@ function methodologyPage(context) {
     title: 'Methodology: how this free LLM API data is collected',
     description: 'What counts as a free tier, where every rate limit comes from, what a probe proves, and why some providers get a page while others stay catalog rows.',
     canonicalPath: 'methodology.html',
+    jsonLd: [techArticleNode({
+      headline: 'How this free LLM API data is collected',
+      description: 'The rules behind every entry: what qualifies as a free tier, where each number comes from, what a probe proves, and which providers are deliberately left as catalog rows.',
+      url: pageUrl('methodology.html'),
+      dateModified: context.checkedAt,
+    })],
     breadcrumb: [
       { href: 'index.html', text: 'Free LLM API' },
       { text: 'Methodology' },

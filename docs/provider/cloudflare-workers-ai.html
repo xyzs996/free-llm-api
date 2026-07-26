@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Cloudflare Workers AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
   <title>Cloudflare Workers AI free tier: limits and models</title>
-  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="Cloudflare Workers AI free tier: limits and models">
+  <meta property="og:description" content="Cloudflare Workers AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cloudflare Workers AI free tier: limits and models">
+  <meta name="twitter:description" content="Cloudflare Workers AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Cloudflare Workers AI","item":"https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cloudflare Workers AI free tier terms","description":"Both the Workers Free and Workers Paid plans include 10,000 Neurons per day at no charge, resetting daily at 00:00 UTC. Neurons are a compute unit rather than a request count, so the number of requests you get depends on the model and prompt size. On the Free plan there is no overage: once the allocation is spent, requests fail until reset. Workers Paid bills overage at $0.011 per 1,000 Neurons.","url":"https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Workers AI pricing","url":"https://developers.cloudflare.com/workers-ai/platform/pricing/"},{"@type":"CreativeWork","name":"Workers AI OpenAI compatible endpoints","url":"https://developers.cloudflare.com/workers-ai/configuration/open-ai-compatibility/"},{"@type":"CreativeWork","name":"Workers AI models","url":"https://developers.cloudflare.com/workers-ai/models/"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Cloudflare Workers AI ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Cloudflare Workers AI is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Cloudflare Workers AI's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Cloudflare Workers AI publishes no single free-tier number: its limits are published in compute units. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Cloudflare Workers AI key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Cloudflare Workers AI free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Cloudflare Workers AI's own documentation says so as of 2026-07-25. The pricing page does not state whether a credit card is required to sign up for the Workers Free plan, so treat the card column as unverified for this entry."}},{"@type":"Question","name":"Can Cloudflare Workers AI be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Cloudflare Workers AI serves the OpenAI chat completions protocol at https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">

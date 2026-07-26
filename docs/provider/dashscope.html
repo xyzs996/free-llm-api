@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Alibaba Cloud Model Studio free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
   <title>Alibaba Cloud Model Studio free tier: limits and models</title>
-  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/dashscope.html">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/dashscope.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/dashscope.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/dashscope.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="Alibaba Cloud Model Studio free tier: limits and models">
+  <meta property="og:description" content="Alibaba Cloud Model Studio free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/dashscope.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alibaba Cloud Model Studio free tier: limits and models">
+  <meta name="twitter:description" content="Alibaba Cloud Model Studio free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Alibaba Cloud Model Studio","item":"https://xyzs996.github.io/free-llm-api/provider/dashscope.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Alibaba Cloud Model Studio free tier terms","description":"Rate limiting is applied at the Alibaba Cloud root account level and aggregates usage across all RAM users, workspaces and API keys under that account. Each model carries its own RPM and TPM limit published in per-model tables, and free quota is granted per model rather than as one account-wide allowance, so no single free-tier number applies.","url":"https://xyzs996.github.io/free-llm-api/provider/dashscope.html","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Model Studio rate limiting","url":"https://www.alibabacloud.com/help/en/model-studio/rate-limit"},{"@type":"CreativeWork","name":"Model Studio OpenAI compatibility","url":"https://www.alibabacloud.com/help/en/model-studio/compatibility-of-openai-with-dashscope"},{"@type":"CreativeWork","name":"Model Studio models","url":"https://www.alibabacloud.com/help/en/model-studio/models"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Alibaba Cloud Model Studio ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Alibaba Cloud Model Studio is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Alibaba Cloud Model Studio's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Alibaba Cloud Model Studio publishes no single free-tier number: its limits are published per model. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Alibaba Cloud Model Studio key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Alibaba Cloud Model Studio free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Alibaba Cloud Model Studio's own documentation says so as of 2026-07-25. Requests are rejected when a limit is hit and typically recover within one minute; the error text tells you whether RPM or TPM triggered."}},{"@type":"Question","name":"Can Alibaba Cloud Model Studio be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Alibaba Cloud Model Studio serves the OpenAI chat completions protocol at https://dashscope-intl.aliyuncs.com/compatible-mode/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">

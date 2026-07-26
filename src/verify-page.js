@@ -1,5 +1,6 @@
 import { embedJson, escapeHtml } from './html.js';
-import { SITE_URL } from './page-layout.js';
+import { renderHead, webApplicationNode } from './seo.js';
+import { SITE_URL, pageUrl } from './site.js';
 import { keyEnvForProvider, renderSnippet } from './snippets.js';
 import { verifyUrl } from '../docs/verify-contract.js';
 
@@ -76,8 +77,26 @@ export function renderVerifyPage(providers) {
   <meta http-equiv="Content-Security-Policy" content="${escapeHtml(contentSecurityPolicy(providers))}">
   <meta name="description" content="${escapeHtml(PAGE_DESCRIPTION)}">
   <title>${escapeHtml(PAGE_TITLE)} · Free LLM API</title>
-  <link rel="canonical" href="${SITE_URL}verify.html">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css">${renderHead({
+    path: 'verify.html',
+    title: `${PAGE_TITLE} · Free LLM API`,
+    description: PAGE_DESCRIPTION,
+    // The one page that must load nothing it does not control. The policy
+    // above would block a beacon anyway; not emitting it is the honest half of
+    // the same promise.
+    analytics: false,
+    jsonLd: [webApplicationNode({
+      name: 'Free LLM API key checker',
+      description: PAGE_DESCRIPTION,
+      url: pageUrl('verify.html'),
+      features: [
+        `Checks a key against ${checkable.length} providers directly from the browser`,
+        'Sends the key only to the provider it belongs to, enforced by a Content Security Policy',
+        'Stores nothing: no cookie, no local storage, no key in the address bar',
+        'Prints an equivalent curl command for providers a browser cannot reach',
+      ],
+    })],
+  })}
 </head>
 <body>
   <header class="masthead">
@@ -127,6 +146,7 @@ export function renderVerifyPage(providers) {
 ${origins.map((origin) => `            <li><code>${escapeHtml(origin)}</code></li>`).join('\n')}
           </ul>
           <p>The key stays in one JavaScript variable for the length of one request. It is never written to <code>localStorage</code>, a cookie, or the address bar, and a key handed to this page in a query string is discarded and stripped from your history.</p>
+          <p>This page loads no third-party script of any kind — no analytics beacon, no tag manager, no font or widget host. The only script it runs is the one served from this repository, and the policy above would block anything else even if someone added it.</p>
           <p><a href="https://github.com/xyzs996/free-llm-api/blob/main/docs/verify.js" rel="noreferrer">Read the script that does it</a>.</p>
         </aside>
       </div>

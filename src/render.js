@@ -16,8 +16,10 @@ import {
   PROBE_CLASSIFICATIONS,
   PROBE_CLASSIFICATION_LABELS,
 } from './probe-contract.js';
+import { catalogDatasetNode, renderHead, renderSiteFiles, webSiteNode } from './seo.js';
+import { SITE_URL } from './site.js';
 import { CHANGELOG_CHANGE_LABELS, isLandingPageEligible } from './validate.js';
-import { SITE_URL, connectSrcOrigins, renderVerifyPage } from './verify-page.js';
+import { connectSrcOrigins, renderVerifyPage } from './verify-page.js';
 
 const rootDirectory = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const hostedCta = HOSTED_CTA_URL;
@@ -216,16 +218,29 @@ function renderPage(providers, families) {
     .map(({ source_checked_at: checkedAt }) => checkedAt)
     .sort()
     .at(-1);
+  const title = 'Free LLM API';
+  const description = 'Source-backed free LLM API limits, compatibility, lifecycle, and explainable sample probe status.';
 
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Source-backed free LLM API limits, compatibility, lifecycle, and explainable sample probe status.">
-  <title>Free LLM API</title>
-  <link rel="canonical" href="${SITE_URL}">
-  <link rel="stylesheet" href="./styles.css">
+  <meta name="description" content="${escapeHtml(description)}">
+  <title>${escapeHtml(title)}</title>
+  <link rel="stylesheet" href="./styles.css">${renderHead({
+    path: '',
+    title,
+    description,
+    jsonLd: [
+      webSiteNode(description),
+      catalogDatasetNode({
+        description: `Free-tier terms for ${providers.length} LLM API providers: published rate limits, credit-card requirement, OpenAI protocol compatibility, lifecycle, and the official source behind each figure.`,
+        checkedAt: sourceDate,
+        providerCount: providers.length,
+      }),
+    ],
+  })}
 </head>
 <body>
   <header class="masthead">
@@ -347,7 +362,7 @@ ${clientPageIds.map((id) => `              <li><a href="./client/${escapeHtml(id
 }
 
 export function renderArtifacts(providers, changelog = null, families = MODEL_FAMILIES) {
-  return {
+  const artifacts = {
     'README.md': renderReadme(providers, changelog),
     'README_zh.md': renderReadmeZh(providers, changelog),
     'docs/providers.json': `${JSON.stringify(providers, null, 2)}\n`,
@@ -356,6 +371,10 @@ export function renderArtifacts(providers, changelog = null, families = MODEL_FA
     ...renderClientPages(providers),
     ...renderMatrixPages(providers, families),
   };
+
+  // Derived last and from the artifacts themselves, so the sitemap lists every
+  // page that exists and no page that does not.
+  return { ...artifacts, ...renderSiteFiles(providers, artifacts) };
 }
 
 export async function writeArtifacts(providers, changelog = null, destination = rootDirectory) {

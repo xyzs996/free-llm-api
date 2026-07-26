@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Z.AI Open Platform free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
   <title>Z.AI Open Platform free tier: limits and models</title>
-  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/zai.html">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/zai.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/zai.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/zai.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="Z.AI Open Platform free tier: limits and models">
+  <meta property="og:description" content="Z.AI Open Platform free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/zai.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Z.AI Open Platform free tier: limits and models">
+  <meta name="twitter:description" content="Z.AI Open Platform free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Z.AI Open Platform","item":"https://xyzs996.github.io/free-llm-api/provider/zai.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Z.AI Open Platform free tier terms","description":"GLM-4.7-Flash and GLM-4.5-Flash are listed at $0 for input, cached input and output on the official pricing table, making them free to call rather than merely discounted. Z.AI does not publish per-model RPM or TPM for these models on the pricing page; the rate limit reference is a separate page and the console is authoritative.","url":"https://xyzs996.github.io/free-llm-api/provider/zai.html","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Z.AI pricing","url":"https://docs.z.ai/guides/overview/pricing"},{"@type":"CreativeWork","name":"Z.AI rate limits","url":"https://docs.z.ai/api-reference/rate-limit"},{"@type":"CreativeWork","name":"OpenAI Python SDK with Z.AI","url":"https://docs.z.ai/guides/develop/openai/python"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Z.AI Open Platform ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Z.AI Open Platform is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Z.AI Open Platform's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Z.AI Open Platform publishes no single free-tier number: its limits are selected models priced at zero. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Z.AI Open Platform key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Z.AI Open Platform free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Z.AI Open Platform's own documentation says so as of 2026-07-25. The free Flash models sit alongside paid GLM models on the same key, so watch which model ID you send to avoid unintended charges."}},{"@type":"Question","name":"Can Z.AI Open Platform be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Z.AI Open Platform serves the OpenAI chat completions protocol at https://api.z.ai/api/paas/v4, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">

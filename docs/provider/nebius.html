@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Nebius Token Factory free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
   <title>Nebius Token Factory free tier: limits and models</title>
-  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/nebius.html">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/nebius.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/nebius.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/nebius.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="Nebius Token Factory free tier: limits and models">
+  <meta property="og:description" content="Nebius Token Factory free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/nebius.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nebius Token Factory free tier: limits and models">
+  <meta name="twitter:description" content="Nebius Token Factory free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Nebius Token Factory","item":"https://xyzs996.github.io/free-llm-api/provider/nebius.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nebius Token Factory free tier terms","description":"Limits are dynamic with a published baseline of 60 RPM and 400,000 TPM. Usage is evaluated in rolling 15-minute windows: averaging at or above 80% of the current limit raises it by 20% for the next window, averaging at or below 50% divides it by 1.5, and the ceiling is 20x the base allocation before an Enterprise plan is required. No standing free allowance is documented on this page.","url":"https://xyzs996.github.io/free-llm-api/provider/nebius.html","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Nebius rate limits and scaling","url":"https://docs.tokenfactory.nebius.com/ai-models-inference/rate-limits"},{"@type":"CreativeWork","name":"Nebius Token Factory quickstart","url":"https://docs.tokenfactory.nebius.com/quickstart"},{"@type":"CreativeWork","name":"Nebius billing and consumption","url":"https://docs.tokenfactory.nebius.com/other-capabilities/billing-new"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Nebius Token Factory ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Nebius Token Factory is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Nebius Token Factory's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Nebius Token Factory publishes 60 requests per minute. Those are the numbers in its own documentation as reviewed on 2026-07-25."}},{"@type":"Question","name":"What happens when a Nebius Token Factory key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Nebius Token Factory free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Nebius Token Factory's own documentation says so as of 2026-07-25. Requests above the limit may still be served at lower priority, flagged with an x-ratelimit-over-limit header, rather than failing outright."}},{"@type":"Question","name":"Can Nebius Token Factory be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Nebius Token Factory serves the OpenAI chat completions protocol at https://api.tokenfactory.nebius.com/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">

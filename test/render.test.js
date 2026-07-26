@@ -29,12 +29,15 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
   assert.deepEqual(Object.keys(first).filter((path) => !matrix.test(path)).sort(), [
     'README.md',
     'README_zh.md',
+    'docs/.nojekyll',
     'docs/claude-code.md',
     'docs/cline.md',
     'docs/codex.md',
     'docs/index.html',
     'docs/methodology.html',
     'docs/providers.json',
+    'docs/robots.txt',
+    'docs/sitemap.xml',
     'docs/verify.html',
   ]);
   assert.deepEqual(JSON.parse(first['docs/providers.json']), providers);

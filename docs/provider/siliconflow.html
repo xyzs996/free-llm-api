@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="SiliconFlow free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
   <title>SiliconFlow free tier: limits and models</title>
-  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/siliconflow.html">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/siliconflow.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/siliconflow.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/siliconflow.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="SiliconFlow free tier: limits and models">
+  <meta property="og:description" content="SiliconFlow free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/siliconflow.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SiliconFlow free tier: limits and models">
+  <meta name="twitter:description" content="SiliconFlow free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"SiliconFlow","item":"https://xyzs996.github.io/free-llm-api/provider/siliconflow.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"SiliconFlow free tier terms","description":"Rate limits for free models are fixed; paid models are tiered by monthly spend and start at tier L0 with 1,000 RPM and 40,000 TPM. Limits are enforced per user account rather than per API key, and each model is limited separately. deepseek-ai/DeepSeek-R1 and deepseek-ai/DeepSeek-V3 carry an extra cap of 30 requests/hour and 100 requests/day.","url":"https://xyzs996.github.io/free-llm-api/provider/siliconflow.html","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"SiliconFlow rate limits","url":"https://docs.siliconflow.com/en/userguide/rate-limits/rate-limit-and-upgradation"},{"@type":"CreativeWork","name":"SiliconFlow quick start","url":"https://docs.siliconflow.com/en/userguide/quickstart"},{"@type":"CreativeWork","name":"SiliconFlow models","url":"https://cloud.siliconflow.com/models"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does SiliconFlow ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. SiliconFlow is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are SiliconFlow's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"SiliconFlow publishes 1000 requests per minute. Those are the numbers in its own documentation as reviewed on 2026-07-25."}},{"@type":"Question","name":"What happens when a SiliconFlow key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the SiliconFlow free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in SiliconFlow's own documentation says so as of 2026-07-25. The 1,000 RPM figure is the L0 paid-model ceiling. Free models have their own fixed limits published per model on the model pages."}},{"@type":"Question","name":"Can SiliconFlow be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. SiliconFlow serves the OpenAI chat completions protocol at https://api.siliconflow.com/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">
