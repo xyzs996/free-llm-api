@@ -182,8 +182,8 @@
 | 数据、i18n 和测试扩展 | 已完成 | 中英新增字符串保持键集合一致；推荐、页面与筛选规则均有自动测试 | i18n 11/11；增长策略 3/3 | 后续新增枚举仍需同步两种语言 |
 | 严格自动化与浏览器验收 | 已验收 | 完成全量自动化、确定性生成、HTTP、多视口浏览器、键盘、控制台和关键外链检查 | 166/166 测试通过；101 个产物一致；10/10 HTTP 路径为 200；360/768/1280 视口无横向溢出 | 外部站点的 403/307 属于反爬或跳转，未据此判定链接失效 |
 | 用户确认验收结果 | 已验收 | 用户于 2026-07-26 明确回复“没问题” | 对话验收记录 | 无 |
-| 更新最终文档 | 已完成 | 已记录实现、验收、部署、配置、回滚与 Git 交接信息 | 本任务文档及实施计划 | Git hash 和远程发布结果在实际完成后追加 |
-| Git 提交、推送与远程元数据更新 | 进行中 | 已确认 `main` 与 `origin/main` 同步、远程公开且认证有效；准备提交和推送 | `git status -sb`、`git ls-remote origin HEAD`、`gh auth status` | GitHub CI 与 Pages 发布状态需推送后验证 |
+| 更新最终文档 | 已验收 | 已记录实现、验收、部署、配置、回滚、Git 与线上发布结果 | 本任务文档及实施计划 | 无 |
+| Git 提交、推送与远程元数据更新 | 已验收 | 实现提交已推送至 `origin/main`；Description、Homepage、Topics 已更新；CI 和 Pages 均成功 | commit `19cf6f8`；CI run `30195164708`；Pages run `30195164347` | 平台流量增长需发布后持续观察 |
 
 ## 严格验收条件
 
@@ -273,7 +273,7 @@
 - 项目运行时依赖：未新增，仍为 Node.js 20+ 和零运行时依赖。
 - Provider 事实数据：本轮未修改 `data/providers.json`；新增展示均从既有数据派生。
 - 本地验收工具：用户授权后安装 Bun、GStack 浏览器工具和 Playwright Chromium 缓存，仅存在于用户工具目录，不进入项目依赖或仓库。
-- 远程元数据计划：保留并扩展高意图 Topics，将 Homepage 指向 GitHub Pages，并把 Description 更新为强调 verified、no-card、direct API key links 和 OpenAI-compatible 的自然描述。
+- 远程元数据：Homepage 已设置为 `https://xyzs996.github.io/free-llm-api/`；Description 已更新为强调 verified、no-card、direct API key links、rate limits、OpenAI-compatible 和 coding-agent guides；Topics 在原有集合上新增 `ai-api`、`free-llm-api`、`gemini-api`、`github-pages`、`groq-api`。
 
 ### 回滚方式
 
@@ -287,7 +287,12 @@
 - 远程：`origin` → `https://github.com/xyzs996/free-llm-api.git`。
 - 公共仓库：`https://github.com/xyzs996/free-llm-api`。
 - 发布前基线：`30edd203dea2dea5a5c2053b26404965e26bf15a`，本地、`origin/main` 与远程 HEAD 一致。
-- 本次实现提交和推送结果：在 Git 收尾完成后追加到本节。
+- 实现提交：`19cf6f888b1d219d7ae290e26e8e8d9f31b07344`，提交说明 `feat: 完成 GitHub 增长与 SEO 双引擎改版`。
+- 推送结果：`main -> origin/main` 成功，未使用 force push。
+- GitHub CI：run `30195164708`，结论 `success`，对应 head 为 `19cf6f8`。
+- GitHub Pages：run `30195164347`，结论 `success`，对应 head 为 `19cf6f8`。
+- 线上验证：公开首页、中文首页、中英文无需信用卡比较页、Groq Provider 页及 sitemap 共 6/6 返回 HTTP 200；线上正文已包含新版 Hero，比较页已包含 `FAQPage` 结构化数据。
+- 发布记录：本文件通过紧随实现提交的 `docs: 记录双引擎改版发布结果` 文档提交发布，具体 hash 以仓库 Git 历史为准。
 
 ## 用户确认
 
