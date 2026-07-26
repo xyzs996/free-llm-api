@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What counts as a free tier, where every rate limit comes from, what a probe proves, and why some providers get a page while others stay catalog rows.">
+  <title>Methodology: how this free LLM API data is collected</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/methodology.html">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="./index.html">Free LLM API</a></li><li><span aria-current="page">Methodology</span></li></ol></nav>
+      <p class="eyebrow">Data contract · Reviewed 2026-07-25</p>
+      <h1>How this data is collected</h1>
+      <p class="lede">Every rule this catalog follows, including the ones that keep numbers out of it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What counts as a free LLM API here</h2>
+        <p>An entry qualifies when the provider itself documents access that costs nothing to start: a standing free tier, a pool of models priced at zero, or signup credit. Reverse-engineered endpoints, leaked keys, and gateways reselling someone else’s quota are out of scope, and no key of any kind is distributed by this project. Every entry links to the page you would use to create your own.</p>
+        <p>The catalog currently holds 26 providers across 5 access types and 7 model families that appear at more than one provider.</p>
+
+        <h2>Where the numbers come from</h2>
+        <p>Each provider record carries at least one official source URL and a <code>source_checked_at</code> date. A rate limit may only be recorded if a source states it; the validator fails the build otherwise. When a provider publishes limits only inside a logged-in console, or scales them by tier, the field stays empty and the status says so. That is why some rows read "set by project tier" instead of a number: inventing a plausible figure would make the table look more complete and be worth less.</p>
+
+        <h2>What a probe does and does not prove</h2>
+        <p>A probe is one sampled request against one endpoint at one moment. <code>200</code> means that request succeeded. <code>401</code> or <code>403</code> means the sample credential was refused and says nothing about the provider. <code>429</code> means that sample was throttled, with no information about anyone’s remaining quota. Only a network failure or a <code>5xx</code> points at the endpoint, and even then it describes one sample rather than an outage. Probes run outside CI and read their key from an environment variable; the published output records the classification, status, latency, and timestamp, never the key or the response body.</p>
+
+        <h2>How browser reachability is measured</h2>
+        <p>Each base URL gets a CORS preflight from the site’s own origin. If the response allows that origin and lists <code>authorization</code> among the permitted headers, a browser can call the endpoint and the provider is marked supported. If the origin is refused, it is marked blocked and the key checker does not pretend otherwise. If the origin is allowed but the header is not listed, the result is recorded as unverified rather than guessed. No credential is involved in this measurement, which is why it can run for every provider.</p>
+
+        <h2>Which providers get their own page</h2>
+        <p>25 of the 26 providers have a page. A provider earns one only when its free terms are documented in enough detail to say something specific: a limits summary of at least 120 characters, at least one official source, and a signup URL a reader can act on. 1 currently do not (GitHub Models), so they appear as catalog rows only. The alternative — a page per provider regardless — produces pages that differ by a name and nothing else, which helps nobody and is the pattern search engines classify as a doorway.</p>
+
+        <h2>How this is kept honest</h2>
+        <p>Every page on this site is generated from the data files by a renderer, and a check step fails if any published file differs from what the current data would produce. Editing a page by hand is therefore not possible without the change being reverted, and a data correction updates the README, the catalog, and every page that cites it at the same time. Corrections are welcome as issues or pull requests against the data file, not the output.</p>
+        <p>The repository ships no credentials, and the key checker sends what you paste only to the provider you picked, enforced by a Content Security Policy rather than by a promise.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Start here</h2>
+          <ul><li><a href="./index.html">All providers</a></li><li><a href="./verify.html">Browser key checker</a></li></ul>
+        </div>
+        <div>
+          <h2>Model families</h2>
+          <ul><li><a href="./model/gpt-oss.html">Free gpt-oss API</a></li><li><a href="./model/llama.html">Free Llama API</a></li><li><a href="./model/qwen.html">Free Qwen API</a></li><li><a href="./model/deepseek.html">Free DeepSeek API</a></li><li><a href="./model/mistral.html">Free Mistral API</a></li><li><a href="./model/glm.html">Free GLM API</a></li><li><a href="./model/kimi.html">Free Kimi API</a></li></ul>
+        </div>
+        <div>
+          <h2>Client setup</h2>
+          <ul><li><a href="./client/codex.html">Codex CLI</a></li><li><a href="./client/claude-code.html">Claude Code</a></li><li><a href="./client/continue.html">Continue</a></li><li><a href="./client/cursor.html">Cursor</a></li><li><a href="./client/cline.html">Cline</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="./index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

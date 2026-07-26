@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Perplexity API free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>Perplexity API free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/perplexity.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Perplexity API</span></li></ol></nav>
+      <p class="eyebrow">Metered access · Sources reviewed 2026-07-25</p>
+      <h1>Perplexity API free tier</h1>
+      <p class="lede">What Perplexity API publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What Perplexity API's free tier allows</h2>
+        <p>Usage tiers are set by cumulative API credit purchases and never downgrade. Tier 0 ($0 purchased) allows 1 query/second and 50 requests/minute on the Agent API; Tier 1 ($50+) allows 3 QPS and 150/min, rising to 33 QPS and 2,000/min at Tier 4. The Search API is separately limited to 50 requests/second at every tier. Tier 0 sets a rate ceiling but is not a free token grant, so credits are still required to make calls.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>50 requests per minute</dd></div>
+          <div><dt>Free access type</dt><dd>Metered access</dd></div>
+          <div><dt>Credit card</dt><dd>Not required</dd></div>
+          <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://api.perplexity.ai</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>Perplexity Pro subscribers receive a monthly API credit allowance through their subscription; that allowance is not documented on the rate-limits page.</p>
+
+        <h2>Where Perplexity API sits in this catalog</h2>
+        <p>Perplexity API is one of 6 metered access entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes fixed numbers — 50 requests per minute — which only 9 of the 25 do.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">Perplexity API (this page)</td>
+                <td data-label="Published limits">50 requests per minute</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.perplexity.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/deepinfra.html">DeepInfra</a></td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.deepinfra.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/chutes.html">Chutes</a></td>
+                <td data-label="Published limits">Published per paid plan</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>llm.chutes.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/scaleway.html">Scaleway Generative APIs</a></td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Required</td>
+                <td data-label="Endpoint"><code>api.scaleway.ai</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models Perplexity API lists as free</h2>
+        <ul class="model-list">
+          <li><code>sonar</code> — not part of any family this catalog tracks across providers</li>
+          <li><code>sonar-pro</code> — not part of any family this catalog tracks across providers</li>
+          <li><code>sonar-reasoning</code> — not part of any family this catalog tracks across providers</li>
+        </ul>
+        <p>The models above do not fall into any of the multi-provider families this catalog tracks, so Perplexity API is the only route to them here.</p>
+
+        <h2>Checking a Perplexity API key</h2>
+        <p>The endpoint answers the CORS preflight with 404 and no allow-origin header, so a browser refuses to send the Authorization header. That was measured against <code>https://api.perplexity.ai</code> on 2026-07-25.</p>
+        <p>So the browser checker cannot reach it and does not pretend otherwise. Run this instead:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${PERPLEXITY_API_KEY:?Set PERPLEXITY_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $PERPLEXITY_API_KEY&quot; \
+  &#39;https://api.perplexity.ai/models&#39;
+</code></pre>
+
+        <h2>Using a Perplexity API key</h2>
+<p>Perplexity API serves the OpenAI chat completions protocol at <code>https://api.perplexity.ai</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>PERPLEXITY_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;sonar&quot;
+model_provider = &quot;perplexity&quot;
+
+[model_providers.perplexity]
+name = &quot;Perplexity API OpenAI-compatible gateway&quot;
+base_url = &quot;https://api.perplexity.ai&quot;
+env_key = &quot;PERPLEXITY_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the Perplexity API free tier</h2>
+        <h3>Does Perplexity API ask for a credit card?</h3>
+        <p>No. Perplexity API is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
+        <h3>What are Perplexity API&#39;s free-tier rate limits?</h3>
+        <p>Perplexity API publishes 50 requests per minute. Those are the numbers in its own documentation as reviewed on 2026-07-25.</p>
+        <h3>What happens when a Perplexity API key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the Perplexity API free tier going away?</h3>
+        <p>Nothing in Perplexity API's own documentation says so as of 2026-07-25. Perplexity Pro subscribers receive a monthly API credit allowance through their subscription; that allowance is not documented on the rate-limits page.</p>
+        <h3>Can Perplexity API be used with Codex, Cline, or Continue?</h3>
+        <p>Yes. Perplexity API serves the OpenAI chat completions protocol at <code>https://api.perplexity.ai</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers" rel="noreferrer">Perplexity rate limits and usage tiers</a><span class="source-url">https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers</span></li>
+          <li><a href="https://docs.perplexity.ai/docs/getting-started/pricing" rel="noreferrer">Perplexity pricing</a><span class="source-url">https://docs.perplexity.ai/docs/getting-started/pricing</span></li>
+          <li><a href="https://docs.perplexity.ai/docs/agent-api/openai-compatibility" rel="noreferrer">Perplexity OpenAI compatibility</a><span class="source-url">https://docs.perplexity.ai/docs/agent-api/openai-compatibility</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/deepinfra.html">DeepInfra</a></li><li><a href="../provider/chutes.html">Chutes</a></li><li><a href="../provider/scaleway.html">Scaleway Generative APIs</a></li></ul>
+        </div>
+        <div>
+          <h2>Popular model families</h2>
+          <ul><li><a href="../model/gpt-oss.html">Free gpt-oss API</a></li><li><a href="../model/llama.html">Free Llama API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI setup</a></li><li><a href="../client/cline.html">Cline setup</a></li><li><a href="../client/continue.html">Continue setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

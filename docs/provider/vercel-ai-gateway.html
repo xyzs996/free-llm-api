@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vercel AI Gateway free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>Vercel AI Gateway free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/vercel-ai-gateway.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Vercel AI Gateway</span></li></ol></nav>
+      <p class="eyebrow">Free trial credit · Sources reviewed 2026-07-25</p>
+      <h1>Vercel AI Gateway free tier</h1>
+      <p class="lede">What Vercel AI Gateway publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What Vercel AI Gateway's free tier allows</h2>
+        <p>Every Vercel team account receives $5 of AI Gateway credits per month on the free tier, usable only against the Free Tier model subset rather than the full catalogue. Free tier requests are additionally rate limited per model with lower limits than the paid tier, and Vercel does not publish those per-model numbers. Credits start counting from your first Gateway request.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>Published as a credit balance</dd></div>
+          <div><dt>Free access type</dt><dd>Free trial credit</dd></div>
+          <div><dt>Credit card</dt><dd>Not required</dd></div>
+          <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://ai-gateway.vercel.sh/v1</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>Purchasing AI Gateway credits moves the team to the paid tier, which serves the full model catalogue plus bring-your-own-key routing.</p>
+
+        <h2>Where Vercel AI Gateway sits in this catalog</h2>
+        <p>Vercel AI Gateway is one of 3 free trial credit entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">Vercel AI Gateway (this page)</td>
+                <td data-label="Published limits">Published as a credit balance</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>ai-gateway.vercel.sh</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/watsonx.html">IBM watsonx.ai</a></td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>us-south.ml.cloud.ibm.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/cerebras.html">Cerebras Inference</a></td>
+                <td data-label="Published limits">5 requests per minute</td>
+                <td data-label="Card">Required</td>
+                <td data-label="Endpoint"><code>api.cerebras.ai</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models Vercel AI Gateway lists as free</h2>
+        <ul class="model-list">
+          <li><code>Free Tier eligible model subset</code> — not part of any family this catalog tracks across providers</li>
+          <li><code>openai/gpt-oss-120b</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
+          <li><code>moonshotai/kimi-k2</code> — <a href="../model/kimi.html">Kimi</a>, also free at 1 other provider here</li>
+        </ul>
+        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 1 other provider here also host the <a href="../model/kimi.html">Kimi</a> family on free terms, and the terms are not the same: <a href="../provider/moonshot.html">Moonshot AI (Kimi)</a>.</p>
+
+        <h2>Checking a Vercel AI Gateway key</h2>
+        <p>The CORS preflight echoes the requesting origin and allows an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://ai-gateway.vercel.sh</code> on 2026-07-25.</p>
+        <p>So a key can be checked in the <a href="../verify.html?provider=vercel-ai-gateway">browser checker</a> without installing anything. If you would rather not paste a key into a web page, this does the same thing:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${VERCEL_AI_GATEWAY_API_KEY:?Set VERCEL_AI_GATEWAY_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $VERCEL_AI_GATEWAY_API_KEY&quot; \
+  &#39;https://ai-gateway.vercel.sh/v1/models&#39;
+</code></pre>
+
+        <h2>Using a Vercel AI Gateway key</h2>
+<p>Vercel AI Gateway serves the OpenAI chat completions protocol at <code>https://ai-gateway.vercel.sh/v1</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>VERCEL_AI_GATEWAY_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;openai/gpt-oss-120b&quot;
+model_provider = &quot;vercel-ai-gateway&quot;
+
+[model_providers.vercel-ai-gateway]
+name = &quot;Vercel AI Gateway OpenAI-compatible gateway&quot;
+base_url = &quot;https://ai-gateway.vercel.sh/v1&quot;
+env_key = &quot;VERCEL_AI_GATEWAY_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the Vercel AI Gateway free tier</h2>
+        <h3>Does Vercel AI Gateway ask for a credit card?</h3>
+        <p>No. Vercel AI Gateway is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
+        <h3>What are Vercel AI Gateway&#39;s free-tier rate limits?</h3>
+        <p>Vercel AI Gateway publishes no single free-tier number: its limits are published as a credit balance. This catalog leaves that blank rather than guessing a figure.</p>
+        <h3>What happens when a Vercel AI Gateway key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the Vercel AI Gateway free tier going away?</h3>
+        <p>Nothing in Vercel AI Gateway's own documentation says so as of 2026-07-25. Purchasing AI Gateway credits moves the team to the paid tier, which serves the full model catalogue plus bring-your-own-key routing.</p>
+        <h3>Can Vercel AI Gateway be used with Codex, Cline, or Continue?</h3>
+        <p>Yes. Vercel AI Gateway serves the OpenAI chat completions protocol at <code>https://ai-gateway.vercel.sh/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://vercel.com/docs/ai-gateway/pricing" rel="noreferrer">AI Gateway pricing</a><span class="source-url">https://vercel.com/docs/ai-gateway/pricing</span></li>
+          <li><a href="https://vercel.com/docs/ai-gateway/getting-started" rel="noreferrer">AI Gateway getting started</a><span class="source-url">https://vercel.com/docs/ai-gateway/getting-started</span></li>
+          <li><a href="https://vercel.com/docs/ai-gateway/models-and-providers" rel="noreferrer">AI Gateway models</a><span class="source-url">https://vercel.com/docs/ai-gateway/models-and-providers</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/watsonx.html">IBM watsonx.ai</a></li><li><a href="../provider/cerebras.html">Cerebras Inference</a></li></ul>
+        </div>
+        <div>
+          <h2>Model families</h2>
+          <ul><li><a href="../model/gpt-oss.html">Free gpt-oss API</a></li><li><a href="../model/kimi.html">Free Kimi API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI setup</a></li><li><a href="../client/cline.html">Cline setup</a></li><li><a href="../client/continue.html">Continue setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

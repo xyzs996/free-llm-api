@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="IBM watsonx.ai free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>IBM watsonx.ai free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/watsonx.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">IBM watsonx.ai</span></li></ol></nav>
+      <p class="eyebrow">Free trial credit · Sources reviewed 2026-07-25</p>
+      <h1>IBM watsonx.ai free tier</h1>
+      <p class="lede">What IBM watsonx.ai publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What IBM watsonx.ai's free tier allows</h2>
+        <p>IBM offers a no-cost trial of watsonx.ai alongside the paid Essentials and Standard plans, and the pricing page invites you to start building at no cost. The page states plan pricing per resource unit but does not publish request-rate limits for the trial, so the console is authoritative for the trial&#39;s ceilings.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>Enforced but not published</dd></div>
+          <div><dt>Free access type</dt><dd>Free trial credit</dd></div>
+          <div><dt>Credit card</dt><dd>Not required</dd></div>
+          <div><dt>Protocol</dt><dd>Provider-specific at <code>https://us-south.ml.cloud.ibm.com/ml/v1</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>watsonx.ai is not OpenAI-wire-compatible by default; requests use IBM&#39;s own ML text-generation API shape.</p>
+
+        <h2>Where IBM watsonx.ai sits in this catalog</h2>
+        <p>IBM watsonx.ai is one of 3 free trial credit entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">IBM watsonx.ai (this page)</td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>us-south.ml.cloud.ibm.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/cerebras.html">Cerebras Inference</a></td>
+                <td data-label="Published limits">5 requests per minute</td>
+                <td data-label="Card">Required</td>
+                <td data-label="Endpoint"><code>api.cerebras.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a></td>
+                <td data-label="Published limits">Published as a credit balance</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>ai-gateway.vercel.sh</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models IBM watsonx.ai lists as free</h2>
+        <ul class="model-list">
+          <li><code>ibm/granite-3-8b-instruct</code> — not part of any family this catalog tracks across providers</li>
+          <li><code>meta-llama/llama-3-3-70b-instruct</code> — <a href="../model/llama.html">Llama</a>, also free at 8 other providers here</li>
+          <li><code>mistralai/mistral-large</code> — <a href="../model/mistral.html">Mistral</a>, also free at 3 other providers here</li>
+        </ul>
+        <p>8 other providers here also host the <a href="../model/llama.html">Llama</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 3 other providers here also host the <a href="../model/mistral.html">Mistral</a> family on free terms, and the terms are not the same: <a href="../provider/mistral.html">Mistral La Plateforme</a>, <a href="../provider/pollinations.html">Pollinations.AI</a>, <a href="../provider/chutes.html">Chutes</a>.</p>
+
+        <h2>Checking a IBM watsonx.ai key</h2>
+        <p>The CORS preflight succeeds but returns no allow-origin header, so a browser refuses to send the Authorization header. That was measured against <code>https://us-south.ml.cloud.ibm.com</code> on 2026-07-25.</p>
+        <p>So the browser checker cannot reach it and does not pretend otherwise. Run this instead:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${WATSONX_API_KEY:?Set WATSONX_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $WATSONX_API_KEY&quot; \
+  &#39;https://us-south.ml.cloud.ibm.com/ml/v1/models&#39;
+</code></pre>
+
+        <h2>Using a IBM watsonx.ai key</h2>
+<p>IBM watsonx.ai serves the OpenAI chat completions protocol at <code>https://us-south.ml.cloud.ibm.com/ml/v1</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>WATSONX_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;ibm/granite-3-8b-instruct&quot;
+model_provider = &quot;watsonx&quot;
+
+[model_providers.watsonx]
+name = &quot;IBM watsonx.ai OpenAI-compatible gateway&quot;
+base_url = &quot;https://us-south.ml.cloud.ibm.com/ml/v1&quot;
+env_key = &quot;WATSONX_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the IBM watsonx.ai free tier</h2>
+        <h3>Does IBM watsonx.ai ask for a credit card?</h3>
+        <p>No. IBM watsonx.ai is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
+        <h3>What are IBM watsonx.ai&#39;s free-tier rate limits?</h3>
+        <p>IBM watsonx.ai publishes no single free-tier number: its limits are enforced but not published. This catalog leaves that blank rather than guessing a figure.</p>
+        <h3>What happens when a IBM watsonx.ai key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the IBM watsonx.ai free tier going away?</h3>
+        <p>Nothing in IBM watsonx.ai's own documentation says so as of 2026-07-25. watsonx.ai is not OpenAI-wire-compatible by default; requests use IBM&#39;s own ML text-generation API shape.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://www.ibm.com/products/watsonx-ai/pricing" rel="noreferrer">watsonx.ai pricing</a><span class="source-url">https://www.ibm.com/products/watsonx-ai/pricing</span></li>
+          <li><a href="https://cloud.ibm.com/apidocs/watsonx-ai" rel="noreferrer">watsonx.ai API reference</a><span class="source-url">https://cloud.ibm.com/apidocs/watsonx-ai</span></li>
+          <li><a href="https://www.ibm.com/products/watsonx-ai/foundation-models" rel="noreferrer">watsonx.ai foundation models</a><span class="source-url">https://www.ibm.com/products/watsonx-ai/foundation-models</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/cerebras.html">Cerebras Inference</a></li><li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a></li></ul>
+        </div>
+        <div>
+          <h2>Model families</h2>
+          <ul><li><a href="../model/llama.html">Free Llama API</a></li><li><a href="../model/mistral.html">Free Mistral API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/claude-code.html">Claude Code setup</a></li><li><a href="../client/codex.html">Codex CLI setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

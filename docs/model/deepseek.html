@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Which providers serve DeepSeek models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <title>Free DeepSeek API: 5 providers compared</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/model/deepseek.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Model families</a></li><li><span aria-current="page">DeepSeek</span></li></ol></nav>
+      <p class="eyebrow">DeepSeek · 5 providers in this catalog</p>
+      <h1>Free DeepSeek API access</h1>
+      <p class="lede">Every provider in this catalog that lists a DeepSeek model on free terms, with the limit each one publishes.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What the DeepSeek family is</h2>
+        <p>DeepSeek&#39;s V3 and R1 models are the most requested reasoning-capable open weights, and several providers list them on free or trial-credit tiers.</p>
+
+        <h2>Providers offering DeepSeek on free terms</h2>
+        <p>5 of the 25 providers detailed in this catalog list at least one DeepSeek model. Because DeepSeek publishes the weights rather than the service, the model id can be identical across all of them while the free allowance is not.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Provider</th><th>Free access</th><th>Published limits</th><th>Card</th><th>Matching models</th></tr></thead>
+            <tbody>
+            <tr>
+              <td data-label="Provider"><a href="../provider/sambanova.html">SambaNova Cloud</a></td>
+              <td data-label="Free access">Provider free tier</td>
+              <td data-label="Published limits">20 requests per minute, 20 requests per day</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">DeepSeek-V3.1</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/huggingface.html">Hugging Face Inference Providers</a></td>
+              <td data-label="Free access">Provider free tier</td>
+              <td data-label="Published limits">Published as a credit balance</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">deepseek-ai/DeepSeek-V3-0324</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/siliconflow.html">SiliconFlow</a></td>
+              <td data-label="Free access">Provider free tier</td>
+              <td data-label="Published limits">1000 requests per minute</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">deepseek-ai/DeepSeek-R1</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
+              <td data-label="Free access">Metered access</td>
+              <td data-label="Published limits">60 requests per minute</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">deepseek-ai/DeepSeek-V3</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/deepinfra.html">DeepInfra</a></td>
+              <td data-label="Free access">Metered access</td>
+              <td data-label="Published limits">Enforced but not published</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">deepseek-ai/DeepSeek-V3</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>How the free terms actually differ</h2>
+        <ul class="difference-list">
+          <li><a href="../provider/sambanova.html">SambaNova Cloud</a> — The Free Tier applies whenever no payment method is linked to the account.</li>
+          <li><a href="../provider/huggingface.html">Hugging Face Inference Providers</a> — Signed-in free users receive $0.10 in monthly Inference Provider credits (Hugging Face notes this is subject to change); PRO users receive $2.00 and Team or Enterprise organizations $2.00 per seat.</li>
+          <li><a href="../provider/siliconflow.html">SiliconFlow</a> — Rate limits for free models are fixed; paid models are tiered by monthly spend and start at tier L0 with 1,000 RPM and 40,000 TPM.</li>
+          <li><a href="../provider/nebius.html">Nebius Token Factory</a> — Limits are dynamic with a published baseline of 60 RPM and 400,000 TPM.</li>
+          <li><a href="../provider/deepinfra.html">DeepInfra</a> — The official pricing page lists a per-million-token input and output price for every serving model and does not describe a free allowance or publish request-rate limits.</li>
+        </ul>
+
+        <h2>Picking one</h2>
+        <p>3 of these 5 publish a fixed request count; the rest state a tier or a credit balance instead, which means the only honest answer to "how much is free" is the one in their console. 5 take no credit card. 4 answer a cross-origin browser request, so a key for those can be checked from the <a href="../verify.html">browser checker</a> with nothing installed.</p>
+        <p>A model id that matches DeepSeek is not a promise that the free tier includes it. Providers move individual models between paid and free without changing the id, which is why each row links to the provider page carrying that provider's own wording and the date it was read.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Providers hosting it</h2>
+          <ul><li><a href="../provider/sambanova.html">SambaNova Cloud</a></li><li><a href="../provider/huggingface.html">Hugging Face Inference Providers</a></li><li><a href="../provider/siliconflow.html">SiliconFlow</a></li><li><a href="../provider/nebius.html">Nebius Token Factory</a></li><li><a href="../provider/deepinfra.html">DeepInfra</a></li></ul>
+        </div>
+        <div>
+          <h2>Other families</h2>
+          <ul><li><a href="../model/mistral.html">Free Mistral API</a></li><li><a href="../model/glm.html">Free GLM API</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SiliconFlow free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>SiliconFlow free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/siliconflow.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">SiliconFlow</span></li></ol></nav>
+      <p class="eyebrow">Provider free tier · Sources reviewed 2026-07-25</p>
+      <h1>SiliconFlow free tier</h1>
+      <p class="lede">What SiliconFlow publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What SiliconFlow's free tier allows</h2>
+        <p>Rate limits for free models are fixed; paid models are tiered by monthly spend and start at tier L0 with 1,000 RPM and 40,000 TPM. Limits are enforced per user account rather than per API key, and each model is limited separately. deepseek-ai/DeepSeek-R1 and deepseek-ai/DeepSeek-V3 carry an extra cap of 30 requests/hour and 100 requests/day.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>1000 requests per minute</dd></div>
+          <div><dt>Free access type</dt><dd>Provider free tier</dd></div>
+          <div><dt>Credit card</dt><dd>Not required</dd></div>
+          <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://api.siliconflow.com/v1</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>The 1,000 RPM figure is the L0 paid-model ceiling. Free models have their own fixed limits published per model on the model pages.</p>
+
+        <h2>Where SiliconFlow sits in this catalog</h2>
+        <p>SiliconFlow is one of 15 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes fixed numbers — 1000 requests per minute — which only 9 of the 25 do.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">SiliconFlow (this page)</td>
+                <td data-label="Published limits">1000 requests per minute</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.siliconflow.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/fireworks.html">Fireworks AI</a></td>
+                <td data-label="Published limits">10 requests per minute</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.fireworks.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/zai.html">Z.AI Open Platform</a></td>
+                <td data-label="Published limits">Selected models priced at zero</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.z.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/novita.html">Novita AI</a></td>
+                <td data-label="Published limits">Selected models priced at zero</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.novita.ai</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models SiliconFlow lists as free</h2>
+        <ul class="model-list">
+          <li><code>Qwen/Qwen3-8B</code> — <a href="../model/qwen.html">Qwen</a>, also free at 8 other providers here</li>
+          <li><code>THUDM/GLM-4-9B-0414</code> — <a href="../model/glm.html">GLM</a>, also free at 3 other providers here</li>
+          <li><code>deepseek-ai/DeepSeek-R1</code> — <a href="../model/deepseek.html">DeepSeek</a>, also free at 4 other providers here</li>
+        </ul>
+        <p>8 other providers here also host the <a href="../model/qwen.html">Qwen</a> family on free terms, and the terms are not the same: <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/chutes.html">Chutes</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 4 other providers here also host the <a href="../model/deepseek.html">DeepSeek</a> family on free terms, and the terms are not the same: <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>. 3 other providers here also host the <a href="../model/glm.html">GLM</a> family on free terms, and the terms are not the same: <a href="../provider/zai.html">Z.AI Open Platform</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/chutes.html">Chutes</a>.</p>
+
+        <h2>Checking a SiliconFlow key</h2>
+        <p>The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://api.siliconflow.com</code> on 2026-07-25.</p>
+        <p>So a key can be checked in the <a href="../verify.html?provider=siliconflow">browser checker</a> without installing anything. If you would rather not paste a key into a web page, this does the same thing:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${SILICONFLOW_API_KEY:?Set SILICONFLOW_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $SILICONFLOW_API_KEY&quot; \
+  &#39;https://api.siliconflow.com/v1/models&#39;
+</code></pre>
+
+        <h2>Using a SiliconFlow key</h2>
+<p>SiliconFlow serves the OpenAI chat completions protocol at <code>https://api.siliconflow.com/v1</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>SILICONFLOW_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;Qwen/Qwen3-8B&quot;
+model_provider = &quot;siliconflow&quot;
+
+[model_providers.siliconflow]
+name = &quot;SiliconFlow OpenAI-compatible gateway&quot;
+base_url = &quot;https://api.siliconflow.com/v1&quot;
+env_key = &quot;SILICONFLOW_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the SiliconFlow free tier</h2>
+        <h3>Does SiliconFlow ask for a credit card?</h3>
+        <p>No. SiliconFlow is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
+        <h3>What are SiliconFlow&#39;s free-tier rate limits?</h3>
+        <p>SiliconFlow publishes 1000 requests per minute. Those are the numbers in its own documentation as reviewed on 2026-07-25.</p>
+        <h3>What happens when a SiliconFlow key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the SiliconFlow free tier going away?</h3>
+        <p>Nothing in SiliconFlow's own documentation says so as of 2026-07-25. The 1,000 RPM figure is the L0 paid-model ceiling. Free models have their own fixed limits published per model on the model pages.</p>
+        <h3>Can SiliconFlow be used with Codex, Cline, or Continue?</h3>
+        <p>Yes. SiliconFlow serves the OpenAI chat completions protocol at <code>https://api.siliconflow.com/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://docs.siliconflow.com/en/userguide/rate-limits/rate-limit-and-upgradation" rel="noreferrer">SiliconFlow rate limits</a><span class="source-url">https://docs.siliconflow.com/en/userguide/rate-limits/rate-limit-and-upgradation</span></li>
+          <li><a href="https://docs.siliconflow.com/en/userguide/quickstart" rel="noreferrer">SiliconFlow quick start</a><span class="source-url">https://docs.siliconflow.com/en/userguide/quickstart</span></li>
+          <li><a href="https://cloud.siliconflow.com/models" rel="noreferrer">SiliconFlow models</a><span class="source-url">https://cloud.siliconflow.com/models</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/fireworks.html">Fireworks AI</a></li><li><a href="../provider/zai.html">Z.AI Open Platform</a></li><li><a href="../provider/novita.html">Novita AI</a></li></ul>
+        </div>
+        <div>
+          <h2>Model families</h2>
+          <ul><li><a href="../model/qwen.html">Free Qwen API</a></li><li><a href="../model/deepseek.html">Free DeepSeek API</a></li><li><a href="../model/glm.html">Free GLM API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI setup</a></li><li><a href="../client/cline.html">Cline setup</a></li><li><a href="../client/continue.html">Continue setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

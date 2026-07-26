@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DeepInfra free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>DeepInfra free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/deepinfra.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">DeepInfra</span></li></ol></nav>
+      <p class="eyebrow">Metered access · Sources reviewed 2026-07-25</p>
+      <h1>DeepInfra free tier</h1>
+      <p class="lede">What DeepInfra publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What DeepInfra's free tier allows</h2>
+        <p>The official pricing page lists a per-million-token input and output price for every serving model and does not describe a free allowance or publish request-rate limits. Treat DeepInfra as pay-as-you-go and check the dashboard for any promotional credit attached to a new account.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>Enforced but not published</dd></div>
+          <div><dt>Free access type</dt><dd>Metered access</dd></div>
+          <div><dt>Credit card</dt><dd>Not required</dd></div>
+          <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://api.deepinfra.com/v1/openai</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>Listed as metered rather than free because the pricing page we checked documents no free tier; this is not a statement that no signup credit exists.</p>
+
+        <h2>Where DeepInfra sits in this catalog</h2>
+        <p>DeepInfra is one of 6 metered access entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">DeepInfra (this page)</td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.deepinfra.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/chutes.html">Chutes</a></td>
+                <td data-label="Published limits">Published per paid plan</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>llm.chutes.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/scaleway.html">Scaleway Generative APIs</a></td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Required</td>
+                <td data-label="Endpoint"><code>api.scaleway.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/together.html">Together AI</a></td>
+                <td data-label="Published limits">Dynamic, no fixed numbers</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.together.xyz</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models DeepInfra lists as free</h2>
+        <ul class="model-list">
+          <li><code>deepseek-ai/DeepSeek-V3</code> — <a href="../model/deepseek.html">DeepSeek</a>, also free at 4 other providers here</li>
+          <li><code>Qwen/Qwen3-Next-80B-A3B-Instruct</code> — <a href="../model/qwen.html">Qwen</a>, also free at 8 other providers here</li>
+          <li><code>meta-llama/Llama-4-Scout-17B-16E</code> — <a href="../model/llama.html">Llama</a>, also free at 8 other providers here</li>
+        </ul>
+        <p>8 other providers here also host the <a href="../model/llama.html">Llama</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/watsonx.html">IBM watsonx.ai</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 8 other providers here also host the <a href="../model/qwen.html">Qwen</a> family on free terms, and the terms are not the same: <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/chutes.html">Chutes</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 4 other providers here also host the <a href="../model/deepseek.html">DeepSeek</a> family on free terms, and the terms are not the same: <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>.</p>
+
+        <h2>Checking a DeepInfra key</h2>
+        <p>The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://api.deepinfra.com</code> on 2026-07-25.</p>
+        <p>So a key can be checked in the <a href="../verify.html?provider=deepinfra">browser checker</a> without installing anything. If you would rather not paste a key into a web page, this does the same thing:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${DEEPINFRA_API_KEY:?Set DEEPINFRA_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $DEEPINFRA_API_KEY&quot; \
+  &#39;https://api.deepinfra.com/v1/openai/models&#39;
+</code></pre>
+
+        <h2>Using a DeepInfra key</h2>
+<p>DeepInfra serves the OpenAI chat completions protocol at <code>https://api.deepinfra.com/v1/openai</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>DEEPINFRA_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;deepseek-ai/DeepSeek-V3&quot;
+model_provider = &quot;deepinfra&quot;
+
+[model_providers.deepinfra]
+name = &quot;DeepInfra OpenAI-compatible gateway&quot;
+base_url = &quot;https://api.deepinfra.com/v1/openai&quot;
+env_key = &quot;DEEPINFRA_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the DeepInfra free tier</h2>
+        <h3>Does DeepInfra ask for a credit card?</h3>
+        <p>No. DeepInfra is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
+        <h3>What are DeepInfra&#39;s free-tier rate limits?</h3>
+        <p>DeepInfra publishes no single free-tier number: its limits are enforced but not published. This catalog leaves that blank rather than guessing a figure.</p>
+        <h3>What happens when a DeepInfra key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the DeepInfra free tier going away?</h3>
+        <p>Nothing in DeepInfra's own documentation says so as of 2026-07-25. Listed as metered rather than free because the pricing page we checked documents no free tier; this is not a statement that no signup credit exists.</p>
+        <h3>Can DeepInfra be used with Codex, Cline, or Continue?</h3>
+        <p>Yes. DeepInfra serves the OpenAI chat completions protocol at <code>https://api.deepinfra.com/v1/openai</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://deepinfra.com/pricing" rel="noreferrer">DeepInfra pricing</a><span class="source-url">https://deepinfra.com/pricing</span></li>
+          <li><a href="https://deepinfra.com/docs/openai_api" rel="noreferrer">DeepInfra OpenAI compatibility</a><span class="source-url">https://deepinfra.com/docs/openai_api</span></li>
+          <li><a href="https://deepinfra.com/models" rel="noreferrer">DeepInfra models</a><span class="source-url">https://deepinfra.com/models</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/chutes.html">Chutes</a></li><li><a href="../provider/scaleway.html">Scaleway Generative APIs</a></li><li><a href="../provider/together.html">Together AI</a></li></ul>
+        </div>
+        <div>
+          <h2>Model families</h2>
+          <ul><li><a href="../model/llama.html">Free Llama API</a></li><li><a href="../model/qwen.html">Free Qwen API</a></li><li><a href="../model/deepseek.html">Free DeepSeek API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI setup</a></li><li><a href="../client/cline.html">Cline setup</a></li><li><a href="../client/continue.html">Continue setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

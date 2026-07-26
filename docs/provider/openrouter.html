@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="OpenRouter free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>OpenRouter free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/openrouter.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">OpenRouter</span></li></ol></nav>
+      <p class="eyebrow">Free model aggregator · Sources reviewed 2026-07-25</p>
+      <h1>OpenRouter free tier</h1>
+      <p class="lede">What OpenRouter publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What OpenRouter's free tier allows</h2>
+        <p>Model variants whose ID ends in :free are capped at 20 requests/minute regardless of account status. The daily cap depends on lifetime credit purchases: under 10 credits gives 50 requests/day, and 10 or more credits raises it to 1,000 requests/day. OpenRouter governs capacity globally, so extra accounts or extra API keys do not raise these limits.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>20 requests per minute, 50 requests per day</dd></div>
+          <div><dt>Free access type</dt><dd>Free model aggregator</dd></div>
+          <div><dt>Credit card</dt><dd>Not required</dd></div>
+          <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://openrouter.ai/api/v1</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>A negative account balance can return 402 errors even on free models until the balance is topped back above zero.</p>
+
+        <h2>Where OpenRouter sits in this catalog</h2>
+        <p>OpenRouter is one of 1 free model aggregator entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes fixed numbers — 20 requests per minute, 50 requests per day — which only 9 of the 25 do.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">OpenRouter (this page)</td>
+                <td data-label="Published limits">20 requests per minute, 50 requests per day</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>openrouter.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/together.html">Together AI</a></td>
+                <td data-label="Published limits">Dynamic, no fixed numbers</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.together.xyz</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
+                <td data-label="Published limits">60 requests per minute</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.tokenfactory.nebius.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/perplexity.html">Perplexity API</a></td>
+                <td data-label="Published limits">50 requests per minute</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.perplexity.ai</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models OpenRouter lists as free</h2>
+        <ul class="model-list">
+          <li><code>Model IDs ending in :free</code> — not part of any family this catalog tracks across providers</li>
+          <li><code>openrouter/free</code> — not part of any family this catalog tracks across providers</li>
+        </ul>
+        <p>The models above do not fall into any of the multi-provider families this catalog tracks, so OpenRouter is the only route to them here.</p>
+
+        <h2>Checking a OpenRouter key</h2>
+        <p>The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://openrouter.ai</code> on 2026-07-25.</p>
+        <p>So a key can be checked in the <a href="../verify.html?provider=openrouter">browser checker</a> without installing anything. If you would rather not paste a key into a web page, this does the same thing:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${OPENROUTER_API_KEY:?Set OPENROUTER_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $OPENROUTER_API_KEY&quot; \
+  &#39;https://openrouter.ai/api/v1/models&#39;
+</code></pre>
+
+        <h2>Using a OpenRouter key</h2>
+<p>OpenRouter serves the OpenAI chat completions protocol at <code>https://openrouter.ai/api/v1</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>OPENROUTER_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;openrouter/free&quot;
+model_provider = &quot;openrouter&quot;
+
+[model_providers.openrouter]
+name = &quot;OpenRouter OpenAI-compatible gateway&quot;
+base_url = &quot;https://openrouter.ai/api/v1&quot;
+env_key = &quot;OPENROUTER_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the OpenRouter free tier</h2>
+        <h3>Does OpenRouter ask for a credit card?</h3>
+        <p>No. OpenRouter is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
+        <h3>What are OpenRouter&#39;s free-tier rate limits?</h3>
+        <p>OpenRouter publishes 20 requests per minute, 50 requests per day. Those are the numbers in its own documentation as reviewed on 2026-07-25.</p>
+        <h3>What happens when a OpenRouter key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the OpenRouter free tier going away?</h3>
+        <p>Nothing in OpenRouter's own documentation says so as of 2026-07-25. A negative account balance can return 402 errors even on free models until the balance is topped back above zero.</p>
+        <h3>Can OpenRouter be used with Codex, Cline, or Continue?</h3>
+        <p>Yes. OpenRouter serves the OpenAI chat completions protocol at <code>https://openrouter.ai/api/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://openrouter.ai/docs/api-reference/limits" rel="noreferrer">OpenRouter API rate limits</a><span class="source-url">https://openrouter.ai/docs/api-reference/limits</span></li>
+          <li><a href="https://openrouter.ai/docs/guides/routing/model-variants/free" rel="noreferrer">OpenRouter free model variants</a><span class="source-url">https://openrouter.ai/docs/guides/routing/model-variants/free</span></li>
+          <li><a href="https://openrouter.ai/docs/quickstart" rel="noreferrer">OpenRouter quickstart</a><span class="source-url">https://openrouter.ai/docs/quickstart</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/together.html">Together AI</a></li><li><a href="../provider/nebius.html">Nebius Token Factory</a></li><li><a href="../provider/perplexity.html">Perplexity API</a></li></ul>
+        </div>
+        <div>
+          <h2>Popular model families</h2>
+          <ul><li><a href="../model/gpt-oss.html">Free gpt-oss API</a></li><li><a href="../model/llama.html">Free Llama API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI setup</a></li><li><a href="../client/cline.html">Cline setup</a></li><li><a href="../client/continue.html">Continue setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

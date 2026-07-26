@@ -22,13 +22,18 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
   const second = renderer.renderArtifacts(structuredClone(providers));
 
   assert.deepEqual(first, second);
-  assert.deepEqual(Object.keys(first).sort(), [
+  // The per-provider, per-family and per-client matrix is counted in
+  // test/pages.test.js; everything outside it is enumerated here so a new
+  // top-level artifact cannot appear unnoticed.
+  const matrix = /^docs\/(provider|model|client)\/[a-z0-9-]+\.html$/;
+  assert.deepEqual(Object.keys(first).filter((path) => !matrix.test(path)).sort(), [
     'README.md',
     'README_zh.md',
     'docs/claude-code.md',
     'docs/cline.md',
     'docs/codex.md',
     'docs/index.html',
+    'docs/methodology.html',
     'docs/providers.json',
     'docs/verify.html',
   ]);

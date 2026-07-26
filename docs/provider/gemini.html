@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Google Gemini API free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>Google Gemini API free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/gemini.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Google Gemini API</span></li></ol></nav>
+      <p class="eyebrow">Provider free tier · Sources reviewed 2026-07-25</p>
+      <h1>Google Gemini API free tier</h1>
+      <p class="lede">What Google Gemini API publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What Google Gemini API's free tier allows</h2>
+        <p>Rate limits apply per project, not per API key, and depend on the project&#39;s usage tier; the Free tier is the entry tier and moving up requires enabling billing. Google publishes the tier structure but directs you to AI Studio for the exact RPM, TPM and RPD active on your project, so no single free-tier number can be quoted here.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>Set by project tier</dd></div>
+          <div><dt>Free access type</dt><dd>Provider free tier</dd></div>
+          <div><dt>Credit card</dt><dd>Not required</dd></div>
+          <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://generativelanguage.googleapis.com/v1beta/openai/</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>New projects start on the Free tier. Only selected models carry free-tier usage, and per-model limits are visible in AI Studio.</p>
+
+        <h2>Where Google Gemini API sits in this catalog</h2>
+        <p>Google Gemini API is one of 15 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">Google Gemini API (this page)</td>
+                <td data-label="Published limits">Set by project tier</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>generativelanguage.googleapis.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/groq.html">GroqCloud</a></td>
+                <td data-label="Published limits">30 requests per minute, 1000 requests per day</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.groq.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/sambanova.html">SambaNova Cloud</a></td>
+                <td data-label="Published limits">20 requests per minute, 20 requests per day</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.sambanova.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/cohere.html">Cohere</a></td>
+                <td data-label="Published limits">20 requests per minute</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.cohere.ai</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models Google Gemini API lists as free</h2>
+        <ul class="model-list">
+          <li><code>Free-tier eligibility varies by model</code> — not part of any family this catalog tracks across providers</li>
+          <li><code>gemini-2.5-flash</code> — not part of any family this catalog tracks across providers</li>
+          <li><code>gemini-2.5-flash-lite</code> — not part of any family this catalog tracks across providers</li>
+        </ul>
+        <p>The models above do not fall into any of the multi-provider families this catalog tracks, so Google Gemini API is the only route to them here.</p>
+
+        <h2>Checking a Google Gemini API key</h2>
+        <p>The CORS preflight echoes the requesting origin and allows an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://generativelanguage.googleapis.com</code> on 2026-07-25.</p>
+        <p>So a key can be checked in the <a href="../verify.html?provider=gemini">browser checker</a> without installing anything. If you would rather not paste a key into a web page, this does the same thing:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${GEMINI_API_KEY:?Set GEMINI_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $GEMINI_API_KEY&quot; \
+  &#39;https://generativelanguage.googleapis.com/v1beta/openai/models&#39;
+</code></pre>
+
+        <h2>Using a Google Gemini API key</h2>
+<p>Google Gemini API serves the OpenAI chat completions protocol at <code>https://generativelanguage.googleapis.com/v1beta/openai/</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>GEMINI_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;gemini-2.5-flash&quot;
+model_provider = &quot;gemini&quot;
+
+[model_providers.gemini]
+name = &quot;Google Gemini API OpenAI-compatible gateway&quot;
+base_url = &quot;https://generativelanguage.googleapis.com/v1beta/openai&quot;
+env_key = &quot;GEMINI_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the Google Gemini API free tier</h2>
+        <h3>Does Google Gemini API ask for a credit card?</h3>
+        <p>No. Google Gemini API is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
+        <h3>What are Google Gemini API&#39;s free-tier rate limits?</h3>
+        <p>Google Gemini API publishes no single free-tier number: its limits are set by project tier. This catalog leaves that blank rather than guessing a figure.</p>
+        <h3>What happens when a Google Gemini API key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the Google Gemini API free tier going away?</h3>
+        <p>Nothing in Google Gemini API's own documentation says so as of 2026-07-25. New projects start on the Free tier. Only selected models carry free-tier usage, and per-model limits are visible in AI Studio.</p>
+        <h3>Can Google Gemini API be used with Codex, Cline, or Continue?</h3>
+        <p>Yes. Google Gemini API serves the OpenAI chat completions protocol at <code>https://generativelanguage.googleapis.com/v1beta/openai/</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://ai.google.dev/gemini-api/docs/rate-limits" rel="noreferrer">Gemini API rate limits</a><span class="source-url">https://ai.google.dev/gemini-api/docs/rate-limits</span></li>
+          <li><a href="https://ai.google.dev/gemini-api/docs/billing" rel="noreferrer">Gemini API billing</a><span class="source-url">https://ai.google.dev/gemini-api/docs/billing</span></li>
+          <li><a href="https://ai.google.dev/gemini-api/docs/openai" rel="noreferrer">Gemini OpenAI compatibility</a><span class="source-url">https://ai.google.dev/gemini-api/docs/openai</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/groq.html">GroqCloud</a></li><li><a href="../provider/sambanova.html">SambaNova Cloud</a></li><li><a href="../provider/cohere.html">Cohere</a></li></ul>
+        </div>
+        <div>
+          <h2>Popular model families</h2>
+          <ul><li><a href="../model/gpt-oss.html">Free gpt-oss API</a></li><li><a href="../model/llama.html">Free Llama API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI setup</a></li><li><a href="../client/cline.html">Cline setup</a></li><li><a href="../client/continue.html">Continue setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

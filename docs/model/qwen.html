@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Which providers serve Qwen models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <title>Free Qwen API: 9 providers compared</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/model/qwen.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Model families</a></li><li><span aria-current="page">Qwen</span></li></ol></nav>
+      <p class="eyebrow">Alibaba · 9 providers in this catalog</p>
+      <h1>Free Qwen API access</h1>
+      <p class="lede">Every provider in this catalog that lists a Qwen model on free terms, with the limit each one publishes.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What the Qwen family is</h2>
+        <p>Alibaba&#39;s Qwen family covers general chat and coding variants, and it is the family most consistently offered by providers headquartered in mainland China.</p>
+
+        <h2>Providers offering Qwen on free terms</h2>
+        <p>9 of the 25 providers detailed in this catalog list at least one Qwen model. Because Alibaba publishes the weights rather than the service, the model id can be identical across all of them while the free allowance is not.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Provider</th><th>Free access</th><th>Published limits</th><th>Card</th><th>Matching models</th></tr></thead>
+            <tbody>
+            <tr>
+              <td data-label="Provider"><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a></td>
+              <td data-label="Free access">Provider free tier</td>
+              <td data-label="Published limits">Published in compute units</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">@cf/qwen/qwen2.5-coder-32b-instruct</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/siliconflow.html">SiliconFlow</a></td>
+              <td data-label="Free access">Provider free tier</td>
+              <td data-label="Published limits">1000 requests per minute</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">Qwen/Qwen3-8B</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a></td>
+              <td data-label="Free access">Provider free tier</td>
+              <td data-label="Published limits">Published per model</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">qwen-plus, qwen-turbo, qwen3-coder-plus</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/ollama-cloud.html">Ollama Cloud</a></td>
+              <td data-label="Free access">Provider free tier</td>
+              <td data-label="Published limits">Enforced but not published</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">qwen3-coder:480b-cloud</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/together.html">Together AI</a></td>
+              <td data-label="Free access">Metered access</td>
+              <td data-label="Published limits">Dynamic, no fixed numbers</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
+              <td data-label="Free access">Metered access</td>
+              <td data-label="Published limits">60 requests per minute</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">Qwen/Qwen3-235B-A22B</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/deepinfra.html">DeepInfra</a></td>
+              <td data-label="Free access">Metered access</td>
+              <td data-label="Published limits">Enforced but not published</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">Qwen/Qwen3-Next-80B-A3B-Instruct</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/chutes.html">Chutes</a></td>
+              <td data-label="Free access">Metered access</td>
+              <td data-label="Published limits">Published per paid plan</td>
+              <td data-label="Card">Not required</td>
+              <td data-label="Matching models">Qwen/Qwen3-32B</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/scaleway.html">Scaleway Generative APIs</a></td>
+              <td data-label="Free access">Metered access</td>
+              <td data-label="Published limits">Enforced but not published</td>
+              <td data-label="Card">Required</td>
+              <td data-label="Matching models">qwen3-coder-30b-a3b-instruct</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>How the free terms actually differ</h2>
+        <ul class="difference-list">
+          <li><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a> — Both the Workers Free and Workers Paid plans include 10,000 Neurons per day at no charge, resetting daily at 00:00 UTC.</li>
+          <li><a href="../provider/siliconflow.html">SiliconFlow</a> — Rate limits for free models are fixed; paid models are tiered by monthly spend and start at tier L0 with 1,000 RPM and 40,000 TPM.</li>
+          <li><a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a> — Rate limiting is applied at the Alibaba Cloud root account level and aggregates usage across all RAM users, workspaces and API keys under that account.</li>
+          <li><a href="../provider/ollama-cloud.html">Ollama Cloud</a> — Cloud models run on Ollama&#39;s servers while keeping the local CLI workflow, and require only an ollama.com account to start.</li>
+          <li><a href="../provider/together.html">Together AI</a> — Together applies dynamic per-model rate limits that rise with sustained successful traffic and fall when traffic drops, and states plainly that there are no fixed per-model limits published.</li>
+          <li><a href="../provider/nebius.html">Nebius Token Factory</a> — Limits are dynamic with a published baseline of 60 RPM and 400,000 TPM.</li>
+          <li><a href="../provider/deepinfra.html">DeepInfra</a> — The official pricing page lists a per-million-token input and output price for every serving model and does not describe a free allowance or publish request-rate limits.</li>
+          <li><a href="../provider/chutes.html">Chutes</a> — Chutes prices inference per token and sells subscription plans that bundle a daily quota: Plus at $10/month with a bundled daily quota and 6% off pay-as-you-go rates beyond it, and Pro at $20/month with a larger daily quota and 10% off.</li>
+          <li><a href="../provider/scaleway.html">Scaleway Generative APIs</a> — Every model served through Generative APIs - Serverless is limited by tokens per minute, queries per minute and concurrent requests.</li>
+        </ul>
+
+        <h2>Picking one</h2>
+        <p>2 of these 9 publish a fixed request count; the rest state a tier or a credit balance instead, which means the only honest answer to "how much is free" is the one in their console. 8 take no credit card. 7 answer a cross-origin browser request, so a key for those can be checked from the <a href="../verify.html">browser checker</a> with nothing installed.</p>
+        <p>A model id that matches Qwen is not a promise that the free tier includes it. Providers move individual models between paid and free without changing the id, which is why each row links to the provider page carrying that provider's own wording and the date it was read.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Providers hosting it</h2>
+          <ul><li><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a></li><li><a href="../provider/siliconflow.html">SiliconFlow</a></li><li><a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a></li><li><a href="../provider/ollama-cloud.html">Ollama Cloud</a></li><li><a href="../provider/together.html">Together AI</a></li><li><a href="../provider/nebius.html">Nebius Token Factory</a></li><li><a href="../provider/deepinfra.html">DeepInfra</a></li><li><a href="../provider/chutes.html">Chutes</a></li><li><a href="../provider/scaleway.html">Scaleway Generative APIs</a></li></ul>
+        </div>
+        <div>
+          <h2>Other families</h2>
+          <ul><li><a href="../model/deepseek.html">Free DeepSeek API</a></li><li><a href="../model/mistral.html">Free Mistral API</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

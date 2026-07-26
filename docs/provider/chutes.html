@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chutes free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>Chutes free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/chutes.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Chutes</span></li></ol></nav>
+      <p class="eyebrow">Metered access · Sources reviewed 2026-07-25</p>
+      <h1>Chutes free tier</h1>
+      <p class="lede">What Chutes publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What Chutes's free tier allows</h2>
+        <p>Chutes prices inference per token and sells subscription plans that bundle a daily quota: Plus at $10/month with a bundled daily quota and 6% off pay-as-you-go rates beyond it, and Pro at $20/month with a larger daily quota and 10% off. The pricing page documents no zero-cost tier, and per-plan request-rate numbers are shown on the plan limits page rather than in pricing.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>Published per paid plan</dd></div>
+          <div><dt>Free access type</dt><dd>Metered access</dd></div>
+          <div><dt>Credit card</dt><dd>Not required</dd></div>
+          <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://llm.chutes.ai/v1</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>Models are served in TEE (trusted execution environment) variants, which is the differentiator rather than price.</p>
+
+        <h2>Where Chutes sits in this catalog</h2>
+        <p>Chutes is one of 6 metered access entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">Chutes (this page)</td>
+                <td data-label="Published limits">Published per paid plan</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>llm.chutes.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/scaleway.html">Scaleway Generative APIs</a></td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Required</td>
+                <td data-label="Endpoint"><code>api.scaleway.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/together.html">Together AI</a></td>
+                <td data-label="Published limits">Dynamic, no fixed numbers</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.together.xyz</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
+                <td data-label="Published limits">60 requests per minute</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.tokenfactory.nebius.com</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models Chutes lists as free</h2>
+        <ul class="model-list">
+          <li><code>zai-org/GLM-5</code> — <a href="../model/glm.html">GLM</a>, also free at 3 other providers here</li>
+          <li><code>Qwen/Qwen3-32B</code> — <a href="../model/qwen.html">Qwen</a>, also free at 8 other providers here</li>
+          <li><code>unsloth/Mistral-Nemo-Instruct-2407</code> — <a href="../model/mistral.html">Mistral</a>, also free at 3 other providers here</li>
+        </ul>
+        <p>8 other providers here also host the <a href="../model/qwen.html">Qwen</a> family on free terms, and the terms are not the same: <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 3 other providers here also host the <a href="../model/mistral.html">Mistral</a> family on free terms, and the terms are not the same: <a href="../provider/mistral.html">Mistral La Plateforme</a>, <a href="../provider/pollinations.html">Pollinations.AI</a>, <a href="../provider/watsonx.html">IBM watsonx.ai</a>. 3 other providers here also host the <a href="../model/glm.html">GLM</a> family on free terms, and the terms are not the same: <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/zai.html">Z.AI Open Platform</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>.</p>
+
+        <h2>Checking a Chutes key</h2>
+        <p>The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://llm.chutes.ai</code> on 2026-07-25.</p>
+        <p>So a key can be checked in the <a href="../verify.html?provider=chutes">browser checker</a> without installing anything. If you would rather not paste a key into a web page, this does the same thing:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${CHUTES_API_KEY:?Set CHUTES_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $CHUTES_API_KEY&quot; \
+  &#39;https://llm.chutes.ai/v1/models&#39;
+</code></pre>
+
+        <h2>Using a Chutes key</h2>
+<p>Chutes serves the OpenAI chat completions protocol at <code>https://llm.chutes.ai/v1</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>CHUTES_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;zai-org/GLM-5&quot;
+model_provider = &quot;chutes&quot;
+
+[model_providers.chutes]
+name = &quot;Chutes OpenAI-compatible gateway&quot;
+base_url = &quot;https://llm.chutes.ai/v1&quot;
+env_key = &quot;CHUTES_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the Chutes free tier</h2>
+        <h3>Does Chutes ask for a credit card?</h3>
+        <p>No. Chutes is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
+        <h3>What are Chutes&#39;s free-tier rate limits?</h3>
+        <p>Chutes publishes no single free-tier number: its limits are published per paid plan. This catalog leaves that blank rather than guessing a figure.</p>
+        <h3>What happens when a Chutes key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the Chutes free tier going away?</h3>
+        <p>Nothing in Chutes's own documentation says so as of 2026-07-25. Models are served in TEE (trusted execution environment) variants, which is the differentiator rather than price.</p>
+        <h3>Can Chutes be used with Codex, Cline, or Continue?</h3>
+        <p>Yes. Chutes serves the OpenAI chat completions protocol at <code>https://llm.chutes.ai/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://chutes.ai/pricing" rel="noreferrer">Chutes pricing</a><span class="source-url">https://chutes.ai/pricing</span></li>
+          <li><a href="https://chutes.ai/docs" rel="noreferrer">Chutes documentation</a><span class="source-url">https://chutes.ai/docs</span></li>
+          <li><a href="https://chutes.ai/app" rel="noreferrer">Chutes app</a><span class="source-url">https://chutes.ai/app</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/scaleway.html">Scaleway Generative APIs</a></li><li><a href="../provider/together.html">Together AI</a></li><li><a href="../provider/nebius.html">Nebius Token Factory</a></li></ul>
+        </div>
+        <div>
+          <h2>Model families</h2>
+          <ul><li><a href="../model/qwen.html">Free Qwen API</a></li><li><a href="../model/mistral.html">Free Mistral API</a></li><li><a href="../model/glm.html">Free GLM API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI setup</a></li><li><a href="../client/cline.html">Cline setup</a></li><li><a href="../client/continue.html">Continue setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

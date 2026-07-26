@@ -1,22 +1,13 @@
+import { embedJson, escapeHtml } from './html.js';
+import { SITE_URL } from './page-layout.js';
 import { keyEnvForProvider, renderSnippet } from './snippets.js';
 import { verifyUrl } from '../docs/verify-contract.js';
 
-// Kept in step with data/site.json by a test; the SEO task threads the whole
-// site config through the renderer and this constant goes away then.
-export const SITE_URL = 'https://xyzs996.github.io/free-llm-api/';
+export { SITE_URL };
 
 const PAGE_TITLE = 'Check a free LLM API key in your browser';
 const PAGE_DESCRIPTION = 'Paste a key you already own and see whether the provider accepts it. '
-  + 'The request goes straight from your browser to that provider; this site has no server to send it to.';
-
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
+  + 'The request goes from your browser straight to that provider, never through this site.';
 
 export function connectSrcOrigins(providers) {
   return [...new Set(providers.map(({ base_url: baseUrl }) => new URL(baseUrl).origin))].sort();
@@ -74,7 +65,7 @@ export function renderVerifyPage(providers) {
   const targets = verifyTargets(providers);
   const origins = connectSrcOrigins(providers);
   const checkable = targets.filter(({ browserCheck }) => browserCheck === 'supported');
-  const embedded = JSON.stringify(targets).replaceAll('<', '\\u003c');
+  const embedded = embedJson(targets);
   const checkedAt = targets.map(({ browserCheckedAt }) => browserCheckedAt).sort().at(-1);
 
   return `<!doctype html>
@@ -149,6 +140,7 @@ ${origins.map((origin) => `            <li><code>${escapeHtml(origin)}</code></l
         <pre class="verify-fallback"><code id="verify-fallback"></code></pre>
         <p class="provider-links">Official sources: <span id="provider-sources"></span></p>
         <p><a class="row-action" id="provider-signup" href="#" rel="noreferrer" hidden>Get a key from this provider</a></p>
+        <p class="provider-links">Read on: <a href="./index.html">the full provider catalog</a><span aria-hidden="true"> · </span><a href="./methodology.html">how reachability is measured</a><span aria-hidden="true"> · </span><a href="./client/codex.html">pointing a coding agent at a free tier</a></p>
       </div>
     </section>
   </main>

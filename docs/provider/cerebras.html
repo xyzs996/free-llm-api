@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cerebras Inference free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <title>Cerebras Inference free tier: limits and models</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/cerebras.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Cerebras Inference</span></li></ol></nav>
+      <p class="eyebrow">Free trial credit · Sources reviewed 2026-07-25</p>
+      <h1>Cerebras Inference free tier</h1>
+      <p class="lede">What Cerebras Inference publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What Cerebras Inference's free tier allows</h2>
+        <p>Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b, zai-glm-4.7 and gemma-4-31b. New accounts receive $5 in credits that expire 30 days after being granted. Cerebras states that if you skip adding a payment method at sign-up, Playground and API access remain inactive until you add one.</p>
+        <dl class="fact-grid">
+          <div><dt>Published limits</dt><dd>5 requests per minute</dd></div>
+          <div><dt>Free access type</dt><dd>Free trial credit</dd></div>
+          <div><dt>Credit card</dt><dd>Required</dd></div>
+          <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://api.cerebras.ai/v1</code></dd></div>
+          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>This entry is marked as requiring a card because a verified payment method is a precondition for API access, even though the trial itself costs nothing.</p>
+
+        <h2>Where Cerebras Inference sits in this catalog</h2>
+        <p>Cerebras Inference is one of 3 free trial credit entries among the 25 providers detailed here. It asks for a credit card, as 2 of the 25 do. It publishes fixed numbers — 5 requests per minute — which only 9 of the 25 do.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="Compared with">Cerebras Inference (this page)</td>
+                <td data-label="Published limits">5 requests per minute</td>
+                <td data-label="Card">Required</td>
+                <td data-label="Endpoint"><code>api.cerebras.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a></td>
+                <td data-label="Published limits">Published as a credit balance</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>ai-gateway.vercel.sh</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/watsonx.html">IBM watsonx.ai</a></td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>us-south.ml.cloud.ibm.com</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Models Cerebras Inference lists as free</h2>
+        <ul class="model-list">
+          <li><code>gpt-oss-120b</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
+          <li><code>zai-glm-4.7</code> — <a href="../model/glm.html">GLM</a>, also free at 3 other providers here</li>
+          <li><code>gemma-4-31b</code> — not part of any family this catalog tracks across providers</li>
+        </ul>
+        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 3 other providers here also host the <a href="../model/glm.html">GLM</a> family on free terms, and the terms are not the same: <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/zai.html">Z.AI Open Platform</a>, <a href="../provider/chutes.html">Chutes</a>.</p>
+
+        <h2>Checking a Cerebras Inference key</h2>
+        <p>The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://api.cerebras.ai</code> on 2026-07-25.</p>
+        <p>So a key can be checked in the <a href="../verify.html?provider=cerebras">browser checker</a> without installing anything. If you would rather not paste a key into a web page, this does the same thing:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${CEREBRAS_API_KEY:?Set CEREBRAS_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $CEREBRAS_API_KEY&quot; \
+  &#39;https://api.cerebras.ai/v1/models&#39;
+</code></pre>
+
+        <h2>Using a Cerebras Inference key</h2>
+<p>Cerebras Inference serves the OpenAI chat completions protocol at <code>https://api.cerebras.ai/v1</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>CEREBRAS_API_KEY</code> so the value never lands in a config file:</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;gpt-oss-120b&quot;
+model_provider = &quot;cerebras&quot;
+
+[model_providers.cerebras]
+name = &quot;Cerebras Inference OpenAI-compatible gateway&quot;
+base_url = &quot;https://api.cerebras.ai/v1&quot;
+env_key = &quot;CEREBRAS_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>Questions about the Cerebras Inference free tier</h2>
+        <h3>Does Cerebras Inference ask for a credit card?</h3>
+        <p>Yes. Cerebras Inference requires a card on file before the free allowance is usable, which 2 of the 25 providers with a page here also do.</p>
+        <h3>What are Cerebras Inference&#39;s free-tier rate limits?</h3>
+        <p>Cerebras Inference publishes 5 requests per minute. Those are the numbers in its own documentation as reviewed on 2026-07-25.</p>
+        <h3>What happens when a Cerebras Inference key hits the limit?</h3>
+        <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
+        <h3>Is the Cerebras Inference free tier going away?</h3>
+        <p>Nothing in Cerebras Inference's own documentation says so as of 2026-07-25. This entry is marked as requiring a card because a verified payment method is a precondition for API access, even though the trial itself costs nothing.</p>
+        <h3>Can Cerebras Inference be used with Codex, Cline, or Continue?</h3>
+        <p>Yes. Cerebras Inference serves the OpenAI chat completions protocol at <code>https://api.cerebras.ai/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
+
+        <h2>Official sources</h2>
+        <ul class="source-list">
+          <li><a href="https://inference-docs.cerebras.ai/support/rate-limits" rel="noreferrer">Cerebras rate limits</a><span class="source-url">https://inference-docs.cerebras.ai/support/rate-limits</span></li>
+          <li><a href="https://inference-docs.cerebras.ai/support/pricing" rel="noreferrer">Cerebras pricing</a><span class="source-url">https://inference-docs.cerebras.ai/support/pricing</span></li>
+          <li><a href="https://inference-docs.cerebras.ai/resources/openai" rel="noreferrer">Cerebras OpenAI compatibility</a><span class="source-url">https://inference-docs.cerebras.ai/resources/openai</span></li>
+        </ul>
+        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Compare with</h2>
+          <ul><li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a></li><li><a href="../provider/watsonx.html">IBM watsonx.ai</a></li></ul>
+        </div>
+        <div>
+          <h2>Model families</h2>
+          <ul><li><a href="../model/gpt-oss.html">Free gpt-oss API</a></li><li><a href="../model/glm.html">Free GLM API</a></li></ul>
+        </div>
+        <div>
+          <h2>Use it with</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI setup</a></li><li><a href="../client/cline.html">Cline setup</a></li><li><a href="../client/continue.html">Continue setup</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

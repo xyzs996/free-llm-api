@@ -2,41 +2,28 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { HOSTED_CTA_URL, renderClientPages } from './client-pages.js';
+import { embedJson, escapeHtml, externalLink, joinInline } from './html.js';
 import { escapeMarkdown } from './markdown.js';
+import {
+  CLIENT_PAGE_TITLES as clientLabels,
+  MODEL_FAMILIES,
+  categoryTitle as titleForCategory,
+  clientPageIds,
+  renderMatrixPages,
+} from './pages.js';
 import { renderReadmeZh } from './readme-zh.js';
 import {
   PROBE_CLASSIFICATIONS,
   PROBE_CLASSIFICATION_LABELS,
 } from './probe-contract.js';
-import { CHANGELOG_CHANGE_LABELS } from './validate.js';
+import { CHANGELOG_CHANGE_LABELS, isLandingPageEligible } from './validate.js';
 import { SITE_URL, connectSrcOrigins, renderVerifyPage } from './verify-page.js';
 
 const rootDirectory = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const hostedCta = HOSTED_CTA_URL;
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-function titleForCategory(category) {
-  return {
-    'provider-free-tier': 'Provider free tier',
-    'free-model-aggregator': 'Free model aggregator',
-    'trial-credit': 'Free trial credit',
-    'metered-access': 'Metered access',
-    'retiring-free-tier': 'Retiring free tier',
-  }[category] ?? category;
-}
-
 function renderSources(sources) {
-  return sources
-    .map(({ title, url }) => `<a href="${escapeHtml(url)}" rel="noreferrer">${escapeHtml(title)}</a>`)
-    .join('<span aria-hidden="true"> · </span>');
+  return joinInline(sources.map(({ title, url }) => externalLink(url, title)));
 }
 
 function renderProviderRow(provider) {
@@ -55,9 +42,15 @@ function renderProviderRow(provider) {
       : `${provider.limits.requests_per_day} requests/day`,
   ].filter(Boolean).join(' · ');
 
+  // A provider without a detail page keeps the plain name rather than a link
+  // to a page that was deliberately not generated.
+  const heading = isLandingPageEligible(provider)
+    ? `<a href="./provider/${escapeHtml(provider.id)}.html">${escapeHtml(provider.name)}</a>`
+    : escapeHtml(provider.name);
+
   return `          <tr data-provider-id="${escapeHtml(provider.id)}">
             <td data-label="Provider">
-              <strong>${escapeHtml(provider.name)}</strong>
+              <strong>${heading}</strong>
               <span class="provider-meta">${escapeHtml(provider.base_url)}</span>${retirement}
             </td>
             <td data-label="Free access">${escapeHtml(titleForCategory(provider.category))}</td>
@@ -209,7 +202,7 @@ This repository contains no working credentials. Keep probe keys in environment 
 `;
 }
 
-function renderPage(providers) {
+function renderPage(providers, families) {
   const categories = [...new Set(providers.map(({ category }) => category))];
   const categoryOptions = categories
     .map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(titleForCategory(category))}</option>`)
@@ -218,7 +211,7 @@ function renderPage(providers) {
     .map((classification) => `<option value="${classification}">${PROBE_CLASSIFICATION_LABELS[classification]}</option>`)
     .join('');
   const rows = providers.map(renderProviderRow).join('\n');
-  const embeddedData = JSON.stringify(providers).replaceAll('<', '\\u003c');
+  const embeddedData = embedJson(providers);
   const sourceDate = providers
     .map(({ source_checked_at: checkedAt }) => checkedAt)
     .sort()
@@ -231,6 +224,7 @@ function renderPage(providers) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Source-backed free LLM API limits, compatibility, lifecycle, and explainable sample probe status.">
   <title>Free LLM API</title>
+  <link rel="canonical" href="${SITE_URL}">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -299,13 +293,46 @@ ${rows}
       </div>
     </section>
 
+    <section class="browse-band" aria-labelledby="browse-heading">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Browse</p>
+            <h2 id="browse-heading">By model family or by client</h2>
+          </div>
+        </div>
+        <div class="browse-grid">
+          <div>
+            <h3>Model families</h3>
+            <ul>
+${families.map((family) => `              <li><a href="./model/${escapeHtml(family.id)}.html">Free ${escapeHtml(family.name)} API</a></li>`).join('\n')}
+            </ul>
+          </div>
+          <div>
+            <h3>Coding clients</h3>
+            <ul>
+${clientPageIds.map((id) => `              <li><a href="./client/${escapeHtml(id)}.html">${escapeHtml(clientLabels[id])}</a></li>`).join('\n')}
+            </ul>
+          </div>
+          <div>
+            <h3>About the data</h3>
+            <ul>
+              <li><a href="./methodology.html">How this data is collected</a></li>
+              <li><a href="./verify.html">Check a key in your browser</a></li>
+              <li><a href="./providers.json">Raw catalog JSON</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="method-band">
       <div class="shell method-grid">
         <div>
           <p class="eyebrow">Interpretation</p>
           <h2>Sample facts, not status theater</h2>
         </div>
-        <p><strong>401/403</strong> means the sample credential failed. <strong>429</strong> means that sample was limited. Only network and 5xx responses indicate a sampled endpoint reachability problem, never a provider-wide outage.</p>
+        <p><strong>401/403</strong> means the sample credential failed. <strong>429</strong> means that sample was limited. Only network and 5xx responses indicate a sampled endpoint reachability problem, never a provider-wide outage. <a href="./methodology.html">Read the full methodology</a>.</p>
         <a class="hosted-cta" href="${escapeHtml(hostedCta)}">Need stable hosted access?</a>
       </div>
     </section>
@@ -319,14 +346,15 @@ ${rows}
 `;
 }
 
-export function renderArtifacts(providers, changelog = null) {
+export function renderArtifacts(providers, changelog = null, families = MODEL_FAMILIES) {
   return {
     'README.md': renderReadme(providers, changelog),
     'README_zh.md': renderReadmeZh(providers, changelog),
     'docs/providers.json': `${JSON.stringify(providers, null, 2)}\n`,
-    'docs/index.html': renderPage(providers),
+    'docs/index.html': renderPage(providers, families),
     'docs/verify.html': renderVerifyPage(providers),
     ...renderClientPages(providers),
+    ...renderMatrixPages(providers, families),
   };
 }
 

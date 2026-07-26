@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to point Claude Code at a free OpenAI-compatible tier, what the generated config contains, and which providers are worth trying first.">
+  <title>Free LLM API for Claude Code: setup and providers</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/client/claude-code.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Clients</a></li><li><span aria-current="page">Claude Code</span></li></ol></nav>
+      <p class="eyebrow">Client setup · Catalog reviewed 2026-07-25</p>
+      <h1>Claude Code with a free LLM API</h1>
+      <p class="lede">The configuration Claude Code needs, generated from the catalog, plus the free tiers that actually work with it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What Claude Code needs</h2>
+        <p>Claude Code speaks the Anthropic Messages API, while nearly every free tier in this catalog speaks the OpenAI chat completions API.</p>
+        <ol class="requirement-list">
+          <li><code>ANTHROPIC_BASE_URL</code> has to point at an endpoint that accepts Anthropic-format requests. Claude Code appends its own API path, so the value is a gateway root and not a <code>/v1</code> suffix.</li>
+          <li><code>ANTHROPIC_AUTH_TOKEN</code> holds the key, read from the environment at start-up.</li>
+          <li>The model you name has to exist on that endpoint. A wrong model id comes back as a 404 from the provider, not as a Claude Code error.</li>
+          <li>That protocol mismatch, not the key, is what usually breaks a free Claude Code setup. Either put a translating router in front of an OpenAI-compatible free tier, or use a gateway that already speaks Anthropic.</li>
+        </ol>
+
+        <h2>The file this produces</h2>
+        <p>Running <code>npx free-llm-api setup claude-code</code> writes <code>run-claude-code.sh</code>. It is generated from the catalog, so the base URL and model id are the ones the provider documents rather than ones you have to look up. Here it is filled in for GroqCloud:</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${GROQ_API_KEY:?Set GROQ_API_KEY before running Claude Code}&quot;
+ANTHROPIC_BASE_URL=&#39;https://api.groq.com/openai/v1&#39; \
+ANTHROPIC_AUTH_TOKEN=&quot;$GROQ_API_KEY&quot; \
+exec claude &quot;$@&quot;
+</code></pre>
+        <p>Nothing in that file is a key. The value is read from <code>GROQ_API_KEY</code> at run time, which is the one habit that keeps a credential out of a repository by construction.</p>
+
+        <h2>Which free tiers fit Claude Code</h2>
+        <p>Only 1 entry in this catalog is not OpenAI-compatible, so there is no table of drop-in free tiers for Claude Code. The realistic routes are a local translating router holding your own provider keys, or a gateway that already answers in the Anthropic format.</p>
+
+        <h2>What to expect on a free tier</h2>
+        <p>Agentic sessions burn a daily quota far faster than chat does, because every tool call is another long prompt. A 429 tells you that one request was limited and nothing about the quota left, unless the provider returns a reset header.</p>
+        <p>Before blaming the client, check the key itself: the <a href="../verify.html">browser checker</a> separates a rejected credential from a rate limit from an endpoint that is simply down, and each of those has a different fix.</p>
+
+        <h2>Sources</h2>
+        <ul class="source-list">
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/llm-gateway" rel="noreferrer">Claude Code LLM gateway configuration</a></li>
+        </ul>
+        <p>Provider figures shown here come from each provider’s own documentation, reviewed on 2026-07-25. The <a href="../methodology.html">methodology</a> covers what is recorded and what is deliberately left blank.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Providers to try</h2>
+          <ul><li><a href="../provider/gemini.html">Google Gemini API</a></li><li><a href="../provider/groq.html">GroqCloud</a></li><li><a href="../provider/sambanova.html">SambaNova Cloud</a></li><li><a href="../provider/cohere.html">Cohere</a></li></ul>
+        </div>
+        <div>
+          <h2>Other clients</h2>
+          <ul><li><a href="../client/continue.html">Continue</a></li><li><a href="../client/cursor.html">Cursor</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

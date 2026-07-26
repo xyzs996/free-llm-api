@@ -174,11 +174,24 @@ function validateProviderId(value) {
 // Appears inside a TOML double-quoted string and after a YAML `name:` key.
 // Parentheses are allowed because catalog names such as "Moonshot AI (Kimi)"
 // carry them; quotes, colons, and line breaks stay out.
+const PROVIDER_NAME_PATTERN = /^[A-Za-z0-9][A-Za-z0-9 ()._-]*$/;
+
 function validateProviderName(value) {
-  if (typeof value !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9 ()._-]*$/.test(value)) {
+  if (typeof value !== 'string' || !PROVIDER_NAME_PATTERN.test(value)) {
     throw new Error('providerName must not contain quotes, colons, or line breaks');
   }
   return value;
+}
+
+// A catalog name is display text and a config-file name is a value inside TOML
+// or YAML syntax. They are usually the same string, and when they are not the
+// id is used, because a page that quietly drops the snippet would be worse than
+// one that labels the gateway `openrouter` instead of `OpenRouter`.
+export function snippetProviderName(provider) {
+  const name = provider?.name;
+  return typeof name === 'string' && PROVIDER_NAME_PATTERN.test(name)
+    ? name
+    : String(provider?.id ?? DEFAULT_PROVIDER_NAME);
 }
 
 // `github-models` becomes GITHUB_MODELS_API_KEY. Provider pages use this so a

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to point Continue at a free OpenAI-compatible tier, what the generated config contains, and which providers are worth trying first.">
+  <title>Free LLM API for Continue: setup and providers</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/client/continue.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Clients</a></li><li><span aria-current="page">Continue</span></li></ol></nav>
+      <p class="eyebrow">Client setup · Catalog reviewed 2026-07-25</p>
+      <h1>Continue with a free LLM API</h1>
+      <p class="lede">The configuration Continue needs, generated from the catalog, plus the free tiers that actually work with it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What Continue needs</h2>
+        <p>Continue reads a YAML assistant file and treats an OpenAI-compatible endpoint as a first-class provider, with the key resolved from its secret store.</p>
+        <ol class="requirement-list">
+          <li>Each entry under <code>models:</code> needs <code>provider: openai</code>, an <code>apiBase</code> that serves <code>/chat/completions</code>, and the provider’s exact <code>model</code> id.</li>
+          <li><code>apiKey</code> uses the <code>${{ secrets.NAME }}</code> form, so the file can be committed while the value stays outside it.</li>
+          <li><code>roles</code> decides where the model is offered. A small free model is usually fine for <code>chat</code> and unreliable for <code>apply</code>, and listing a role it cannot handle shows up as broken edits rather than an API error.</li>
+          <li>A model id that begins with <code>@</code>, as Cloudflare’s do, has to be quoted, because YAML reserves that character.</li>
+        </ol>
+
+        <h2>The file this produces</h2>
+        <p>Running <code>npx free-llm-api setup continue</code> writes <code>config.yaml</code>. It is generated from the catalog, so the base URL and model id are the ones the provider documents rather than ones you have to look up. Here it is filled in for GroqCloud:</p>
+        <pre class="page-code"><code>name: GroqCloud Free LLM
+version: 0.1.0
+schema: v1
+models:
+  - name: GroqCloud llama-3.3-70b-versatile
+    provider: openai
+    model: llama-3.3-70b-versatile
+    apiBase: https://api.groq.com/openai/v1
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+    roles:
+      - chat
+      - edit
+      - apply
+</code></pre>
+        <p>Nothing in that file is a key. The value is read from <code>GROQ_API_KEY</code> at run time, which is the one habit that keeps a credential out of a repository by construction.</p>
+
+        <h2>Which free tiers fit Continue</h2>
+        <p>22 providers here serve the OpenAI protocol and take no credit card, which makes them the ones worth trying first with Continue. The full list, including the ones that do ask for a card, is in the <a href="../index.html">catalog</a>.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Provider</th><th>Base URL</th><th>Published limits</th></tr></thead>
+            <tbody>
+            <tr>
+              <td data-label="Provider"><a href="../provider/gemini.html">Google Gemini API</a></td>
+              <td data-label="Base URL"><code>https://generativelanguage.googleapis.com/v1beta/openai/</code></td>
+              <td data-label="Published limits">Set by project tier</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/groq.html">GroqCloud</a></td>
+              <td data-label="Base URL"><code>https://api.groq.com/openai/v1</code></td>
+              <td data-label="Published limits">30 requests per minute, 1000 requests per day</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/sambanova.html">SambaNova Cloud</a></td>
+              <td data-label="Base URL"><code>https://api.sambanova.ai/v1</code></td>
+              <td data-label="Published limits">20 requests per minute, 20 requests per day</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/cohere.html">Cohere</a></td>
+              <td data-label="Base URL"><code>https://api.cohere.ai/compatibility/v1</code></td>
+              <td data-label="Published limits">20 requests per minute</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a></td>
+              <td data-label="Base URL"><code>https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/v1</code></td>
+              <td data-label="Published limits">Published in compute units</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/huggingface.html">Hugging Face Inference Providers</a></td>
+              <td data-label="Base URL"><code>https://router.huggingface.co/v1</code></td>
+              <td data-label="Published limits">Published as a credit balance</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/siliconflow.html">SiliconFlow</a></td>
+              <td data-label="Base URL"><code>https://api.siliconflow.com/v1</code></td>
+              <td data-label="Published limits">1000 requests per minute</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/fireworks.html">Fireworks AI</a></td>
+              <td data-label="Base URL"><code>https://api.fireworks.ai/inference/v1</code></td>
+              <td data-label="Published limits">10 requests per minute</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>What to expect on a free tier</h2>
+        <p>Continue keeps a persistent context of open files, so the request size grows with the session rather than with what you typed. Token-per-day limits bind before request-per-day limits do.</p>
+        <p>Before blaming the client, check the key itself: the <a href="../verify.html">browser checker</a> separates a rejected credential from a rate limit from an endpoint that is simply down, and each of those has a different fix.</p>
+
+        <h2>Sources</h2>
+        <ul class="source-list">
+          <li><a href="https://docs.continue.dev/reference" rel="noreferrer">Continue configuration reference</a></li>
+        </ul>
+        <p>Provider figures shown here come from each provider’s own documentation, reviewed on 2026-07-25. The <a href="../methodology.html">methodology</a> covers what is recorded and what is deliberately left blank.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Providers to try</h2>
+          <ul><li><a href="../provider/gemini.html">Google Gemini API</a></li><li><a href="../provider/groq.html">GroqCloud</a></li><li><a href="../provider/sambanova.html">SambaNova Cloud</a></li><li><a href="../provider/cohere.html">Cohere</a></li></ul>
+        </div>
+        <div>
+          <h2>Other clients</h2>
+          <ul><li><a href="../client/cursor.html">Cursor</a></li><li><a href="../client/cline.html">Cline</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>

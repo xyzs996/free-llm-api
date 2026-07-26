@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to point Cline at a free OpenAI-compatible tier, what the generated config contains, and which providers are worth trying first.">
+  <title>Free LLM API for Cline: setup and providers</title>
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/client/cline.html">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Clients</a></li><li><span aria-current="page">Cline</span></li></ol></nav>
+      <p class="eyebrow">Client setup · Catalog reviewed 2026-07-25</p>
+      <h1>Cline with a free LLM API</h1>
+      <p class="lede">The configuration Cline needs, generated from the catalog, plus the free tiers that actually work with it.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>What Cline needs</h2>
+        <p>Cline ships an OpenAI Compatible provider type that takes three values: base URL, API key, and model id.</p>
+        <ol class="requirement-list">
+          <li>The base URL is the root that serves <code>/chat/completions</code>. Most providers document it with the <code>/v1</code> suffix already included.</li>
+          <li>The model id is the provider’s exact id and not a display name; Cline passes it through verbatim.</li>
+          <li>The model has to handle tool calls well enough to emit valid diffs. This is the real filter: small free models often return malformed edits, which Cline surfaces as repeated failed apply attempts rather than as an API error.</li>
+          <li>Values are entered in the Cline settings panel by hand. This project does not read or write VS Code extension storage.</li>
+        </ol>
+
+        <h2>The file this produces</h2>
+        <p>Running <code>npx free-llm-api setup cline</code> writes <code>SETUP.md</code>. It is a review guide rather than a config file, because the values are typed into a settings panel and this project does not write to another tool’s credential storage. Here it is filled in for GroqCloud:</p>
+        <pre class="page-code"><code># Cline setup
+
+This project does not modify VS Code or Cline extension storage.
+
+1. Open Cline settings and choose **OpenAI Compatible** as the API Provider.
+2. Set **Base URL** to `https://api.groq.com/openai/v1`.
+3. Paste the key held in `GROQ_API_KEY` into Cline&#39;s API Key field manually.
+4. Set **Model ID** to `llama-3.3-70b-versatile`, save, and send a small test message.
+</code></pre>
+        <p>Nothing in that file is a key. The value is read from <code>GROQ_API_KEY</code> at run time, which is the one habit that keeps a credential out of a repository by construction.</p>
+
+        <h2>Which free tiers fit Cline</h2>
+        <p>22 providers here serve the OpenAI protocol and take no credit card, which makes them the ones worth trying first with Cline. The full list, including the ones that do ask for a card, is in the <a href="../index.html">catalog</a>.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Provider</th><th>Base URL</th><th>Published limits</th></tr></thead>
+            <tbody>
+            <tr>
+              <td data-label="Provider"><a href="../provider/gemini.html">Google Gemini API</a></td>
+              <td data-label="Base URL"><code>https://generativelanguage.googleapis.com/v1beta/openai/</code></td>
+              <td data-label="Published limits">Set by project tier</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/groq.html">GroqCloud</a></td>
+              <td data-label="Base URL"><code>https://api.groq.com/openai/v1</code></td>
+              <td data-label="Published limits">30 requests per minute, 1000 requests per day</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/sambanova.html">SambaNova Cloud</a></td>
+              <td data-label="Base URL"><code>https://api.sambanova.ai/v1</code></td>
+              <td data-label="Published limits">20 requests per minute, 20 requests per day</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/cohere.html">Cohere</a></td>
+              <td data-label="Base URL"><code>https://api.cohere.ai/compatibility/v1</code></td>
+              <td data-label="Published limits">20 requests per minute</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a></td>
+              <td data-label="Base URL"><code>https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/v1</code></td>
+              <td data-label="Published limits">Published in compute units</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/huggingface.html">Hugging Face Inference Providers</a></td>
+              <td data-label="Base URL"><code>https://router.huggingface.co/v1</code></td>
+              <td data-label="Published limits">Published as a credit balance</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/siliconflow.html">SiliconFlow</a></td>
+              <td data-label="Base URL"><code>https://api.siliconflow.com/v1</code></td>
+              <td data-label="Published limits">1000 requests per minute</td>
+            </tr>
+            <tr>
+              <td data-label="Provider"><a href="../provider/fireworks.html">Fireworks AI</a></td>
+              <td data-label="Base URL"><code>https://api.fireworks.ai/inference/v1</code></td>
+              <td data-label="Published limits">10 requests per minute</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>What to expect on a free tier</h2>
+        <p>Plan mode and Act mode send very different prompt sizes, so a provider that plans fine can still fail on a large diff. If edits keep failing while the API returns 200, the model is the constraint and not the quota.</p>
+        <p>Before blaming the client, check the key itself: the <a href="../verify.html">browser checker</a> separates a rejected credential from a rate limit from an endpoint that is simply down, and each of those has a different fix.</p>
+
+        <h2>Sources</h2>
+        <ul class="source-list">
+          <li><a href="https://docs.cline.bot/provider-config/openai-compatible" rel="noreferrer">Cline OpenAI Compatible provider</a></li>
+        </ul>
+        <p>Provider figures shown here come from each provider’s own documentation, reviewed on 2026-07-25. The <a href="../methodology.html">methodology</a> covers what is recorded and what is deliberately left blank.</p>
+      </article>
+      <aside class="related" aria-label="Related pages">
+        <div>
+          <h2>Providers to try</h2>
+          <ul><li><a href="../provider/gemini.html">Google Gemini API</a></li><li><a href="../provider/groq.html">GroqCloud</a></li><li><a href="../provider/sambanova.html">SambaNova Cloud</a></li><li><a href="../provider/cohere.html">Cohere</a></li></ul>
+        </div>
+        <div>
+          <h2>Other clients</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI</a></li><li><a href="../client/claude-code.html">Claude Code</a></li></ul>
+        </div>
+        <div>
+          <h2>This catalog</h2>
+          <ul><li><a href="../index.html">All providers</a></li><li><a href="../verify.html">Browser key checker</a></li><li><a href="../methodology.html">How this data is collected</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+</body>
+</html>
