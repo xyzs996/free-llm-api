@@ -1,6 +1,7 @@
+import { renderBadges, starHistory } from './badges.js';
 import { HOSTED_CTA_URL } from './client-pages.js';
 import { escapeMarkdown } from './markdown.js';
-import { LOCALES, SITE_URL, localePath } from './site.js';
+import { LOCALES, REPO_URL, SITE_URL, localePath } from './site.js';
 import { connectSrcOrigins } from './verify-page.js';
 
 // This README sends readers to the Chinese edition of the site, not to the
@@ -90,9 +91,22 @@ export function renderReadmeZh(providers, changelog) {
     return `| [${escapeMarkdown(provider.name)}](${primarySource.url}) | ${escapeMarkdown(categoryTitle(provider.category))} | ${provider.credit_card_required ? '是' : '否'} | ${provider.openai_compatible ? '是' : '否'} | ${escapeMarkdown(limits)} | ${escapeMarkdown(lifecycle)} | ${access} |`;
   }).join('\n');
 
+  const badges = renderBadges(
+    {
+      ci: 'CI',
+      license: '许可证 MIT',
+      providers: '服务商',
+      checked: '来源核验于',
+    },
+    { home: zhUrl(''), methodology: zhUrl('methodology.html') },
+  );
+  const stars = starHistory();
+
   return `# 免费 LLM API 清单
 
 [English](README.md) · 简体中文
+
+${badges}
 
 一份有官方来源可查的免费 LLM API 目录：每家去哪里自己领 key、官方公布的限额到底是多少，以及怎么把编码 agent 指过去。
 
@@ -160,9 +174,18 @@ GROQ_API_KEY=YOUR_API_KEY npm run probe -- --provider groq
 - \`docs/providers.json\`、\`docs/index.html\` 以及本文件由 \`npm run render\` 确定性生成，请勿手改产物。
 - 每条记录都带官方来源与 \`source_checked_at\` 日期；写了额度却没有来源时 \`npm run validate\` 会失败。
 
+## 参与贡献
+
+这个项目最需要的贡献是纠错：某家限额改了、某家关了注册、某个链接失效了。目录里每一条都引用官方页面，
+所以一次修正就是「改数据 + 附来源」。见 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [issue 模板](${REPO_URL}/issues/new/choose)。
+
 ## 安全
 
 本仓库不含任何可用凭据。探活用的 key 请放在环境变量里，报告中请抹掉 Authorization 头。详见 [SECURITY.md](SECURITY.md)。
+
+## Star 历史
+
+[![Star History Chart](${stars.image})](${stars.link})
 
 ## 相关项目
 

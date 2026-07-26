@@ -34,6 +34,8 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
     'README.md',
     'README_zh.md',
     'docs/.nojekyll',
+    'docs/badges/checked.json',
+    'docs/badges/providers.json',
     'docs/claude-code.md',
     'docs/cline.md',
     'docs/codex.md',
@@ -46,6 +48,10 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
     'docs/zh/index.html',
     'docs/zh/methodology.html',
     'docs/zh/verify.html',
+    'examples/README.md',
+    'examples/curl/verify.sh',
+    'examples/node/chat.mjs',
+    'examples/python/chat.py',
   ]);
   assert.deepEqual(JSON.parse(first['docs/providers.json']), providers);
 });

@@ -735,6 +735,17 @@ export const CLIENT_PAGE_TITLES = Object.freeze(Object.fromEntries(
   Object.entries(CLIENT_NOTES).map(([id, note]) => [id, note.title]),
 ));
 
+// The one provider every filled-in example is written against. A config with a
+// placeholder in it teaches nothing, so the example needs a provider that
+// publishes a pasteable model id rather than a catalog blurb. The client pages
+// and the files in examples/ both come through here, so the repository and the
+// website can never demonstrate two different endpoints.
+export function sampleProviderFrom(providers) {
+  return providers.find((provider) => provider.id === 'groq' && snippetModelFor(provider))
+    ?? providers.find((provider) => snippetModelFor(provider))
+    ?? providers[0];
+}
+
 export function buildContext(providers, families = MODEL_FAMILIES, locale = DEFAULT_LOCALE) {
   const pages = providers.filter(isLandingPageEligible);
   const pageIds = new Set(pages.map(({ id }) => id));
@@ -761,11 +772,7 @@ export function buildContext(providers, families = MODEL_FAMILIES, locale = DEFA
     cardRequired: pages.filter(({ credit_card_required: card }) => card).length,
     cardFree: pages.filter(({ credit_card_required: card }) => !card).length,
     withNumbers: pages.filter(publishesFixedNumbers).length,
-    // The client pages show one filled-in config, so the example has to be a
-    // provider that publishes a pasteable model id rather than a catalog blurb.
-    sampleProvider: pages.find((provider) => provider.id === 'groq' && snippetModelFor(provider))
-      ?? pages.find((provider) => snippetModelFor(provider))
-      ?? pages[0],
+    sampleProvider: sampleProviderFrom(pages),
     checkedAt: providers.map(({ source_checked_at: date }) => date).sort().at(-1),
   };
 }

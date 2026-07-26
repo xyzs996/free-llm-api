@@ -1,7 +1,9 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { renderBadgeEndpoints, renderBadges, starHistory } from './badges.js';
 import { HOSTED_CTA_URL, renderClientPages } from './client-pages.js';
+import { renderExamples } from './examples.js';
 import { embedJson, escapeHtml, externalLink, joinInline } from './html.js';
 import { dataSentence, localized, translator } from './i18n.js';
 import { escapeMarkdown } from './markdown.js';
@@ -16,7 +18,7 @@ import {
 import { renderReadmeZh } from './readme-zh.js';
 import { PROBE_CLASSIFICATIONS } from './probe-contract.js';
 import { catalogDatasetNode, renderHead, renderSiteFiles, webSiteNode } from './seo.js';
-import { DEFAULT_LOCALE, LOCALES, SITE_URL, localeDepth, localePath } from './site.js';
+import { DEFAULT_LOCALE, LOCALES, REPO_URL, SITE_URL, localeDepth, localePath } from './site.js';
 import { CHANGELOG_CHANGE_LABELS, isLandingPageEligible } from './validate.js';
 import { connectSrcOrigins, renderVerifyPage } from './verify-page.js';
 
@@ -127,9 +129,22 @@ function renderReadme(providers, changelog) {
     return `| [${escapeMarkdown(provider.name)}](${primarySource.url}) | ${escapeMarkdown(titleForCategory(provider.category))} | ${provider.credit_card_required ? 'Yes' : 'No'} | ${provider.openai_compatible ? 'Yes' : 'No'} | ${escapeMarkdown(limits)} | ${escapeMarkdown(lifecycle)} | ${access} |`;
   }).join('\n');
 
+  const badges = renderBadges(
+    {
+      ci: 'CI',
+      license: 'License: MIT',
+      providers: 'providers',
+      checked: 'sources checked',
+    },
+    { home: SITE_URL, methodology: `${SITE_URL}methodology.html` },
+  );
+  const stars = starHistory();
+
   return `# Free LLM API
 
 English · [简体中文](README_zh.md)
+
+${badges}
 
 A source-backed directory of free LLM API tiers: where to get your own API key from each provider, what the published limits actually are, and how to point a coding agent at one.
 
@@ -197,9 +212,20 @@ The default and only supported output is the ignored \`data/probe-output.json\`.
 - \`docs/providers.json\`, \`docs/index.html\`, and this README are generated deterministically by \`npm run render\`.
 - Every provider entry includes official sources and a \`source_checked_at\` date. \`npm run validate\` fails when a quota is stated without one.
 
+## Contributing
+
+Corrections are the contribution this project runs on: a limit that moved, a
+provider that closed signups, a link that died. Every claim in the catalog cites
+an official page, so a fix is a data edit with a source next to it — see
+[CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](${REPO_URL}/issues/new/choose).
+
 ## Security
 
 This repository contains no working credentials. Keep probe keys in environment variables and redact Authorization headers from reports. See [SECURITY.md](SECURITY.md).
+
+## Star history
+
+[![Star History Chart](${stars.image})](${stars.link})
 
 ## Related projects
 
@@ -376,7 +402,11 @@ export function renderArtifacts(providers, changelog = null, families = MODEL_FA
     'README.md': renderReadme(providers, changelog),
     'README_zh.md': renderReadmeZh(providers, changelog),
     'docs/providers.json': `${JSON.stringify(providers, null, 2)}\n`,
+    ...renderBadgeEndpoints(providers),
     ...renderClientPages(providers),
+    // Generated for the same reason the README is: an example that drifts from
+    // the endpoint it names is worse than no example.
+    ...renderExamples(providers),
   };
 
   // Every locale gets the same page set, because the hreflang links promise a

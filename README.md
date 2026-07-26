@@ -2,6 +2,11 @@
 
 English · [简体中文](README_zh.md)
 
+[![CI](https://github.com/xyzs996/free-llm-api/actions/workflows/ci.yml/badge.svg)](https://github.com/xyzs996/free-llm-api/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![providers](https://img.shields.io/endpoint?url=https%3A%2F%2Fxyzs996.github.io%2Ffree-llm-api%2Fbadges%2Fproviders.json&label=providers)](https://xyzs996.github.io/free-llm-api/)
+[![sources checked](https://img.shields.io/endpoint?url=https%3A%2F%2Fxyzs996.github.io%2Ffree-llm-api%2Fbadges%2Fchecked.json&label=sources%20checked)](https://xyzs996.github.io/free-llm-api/methodology.html)
+
 A source-backed directory of free LLM API tiers: where to get your own API key from each provider, what the published limits actually are, and how to point a coding agent at one.
 
 > Sources last reviewed: 2026-07-25. No keys are distributed here — every entry links to the provider's own signup. A probe describes one sampled request, not provider-wide uptime.
@@ -104,9 +109,20 @@ The default and only supported output is the ignored `data/probe-output.json`. I
 - `docs/providers.json`, `docs/index.html`, and this README are generated deterministically by `npm run render`.
 - Every provider entry includes official sources and a `source_checked_at` date. `npm run validate` fails when a quota is stated without one.
 
+## Contributing
+
+Corrections are the contribution this project runs on: a limit that moved, a
+provider that closed signups, a link that died. Every claim in the catalog cites
+an official page, so a fix is a data edit with a source next to it — see
+[CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](https://github.com/xyzs996/free-llm-api/issues/new/choose).
+
 ## Security
 
 This repository contains no working credentials. Keep probe keys in environment variables and redact Authorization headers from reports. See [SECURITY.md](SECURITY.md).
+
+## Star history
+
+[![Star History Chart](https://api.star-history.com/svg?repos=xyzs996/free-llm-api&type=Date)](https://star-history.com/#xyzs996/free-llm-api&Date)
 
 ## Related projects
 

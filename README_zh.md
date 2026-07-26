@@ -2,6 +2,11 @@
 
 [English](README.md) · 简体中文
 
+[![CI](https://github.com/xyzs996/free-llm-api/actions/workflows/ci.yml/badge.svg)](https://github.com/xyzs996/free-llm-api/actions/workflows/ci.yml)
+[![许可证 MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![服务商](https://img.shields.io/endpoint?url=https%3A%2F%2Fxyzs996.github.io%2Ffree-llm-api%2Fbadges%2Fproviders.json&label=%E6%9C%8D%E5%8A%A1%E5%95%86)](https://xyzs996.github.io/free-llm-api/zh/)
+[![来源核验于](https://img.shields.io/endpoint?url=https%3A%2F%2Fxyzs996.github.io%2Ffree-llm-api%2Fbadges%2Fchecked.json&label=%E6%9D%A5%E6%BA%90%E6%A0%B8%E9%AA%8C%E4%BA%8E)](https://xyzs996.github.io/free-llm-api/zh/methodology.html)
+
 一份有官方来源可查的免费 LLM API 目录：每家去哪里自己领 key、官方公布的限额到底是多少，以及怎么把编码 agent 指过去。
 
 > 来源核验日期：2026-07-25。本仓库不分发任何 key，每条记录都指向服务商自己的注册页。一次探活只描述那一次采样请求，不代表服务商整体可用性。
@@ -104,9 +109,18 @@ GROQ_API_KEY=YOUR_API_KEY npm run probe -- --provider groq
 - `docs/providers.json`、`docs/index.html` 以及本文件由 `npm run render` 确定性生成，请勿手改产物。
 - 每条记录都带官方来源与 `source_checked_at` 日期；写了额度却没有来源时 `npm run validate` 会失败。
 
+## 参与贡献
+
+这个项目最需要的贡献是纠错：某家限额改了、某家关了注册、某个链接失效了。目录里每一条都引用官方页面，
+所以一次修正就是「改数据 + 附来源」。见 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [issue 模板](https://github.com/xyzs996/free-llm-api/issues/new/choose)。
+
 ## 安全
 
 本仓库不含任何可用凭据。探活用的 key 请放在环境变量里，报告中请抹掉 Authorization 头。详见 [SECURITY.md](SECURITY.md)。
+
+## Star 历史
+
+[![Star History Chart](https://api.star-history.com/svg?repos=xyzs996/free-llm-api&type=Date)](https://star-history.com/#xyzs996/free-llm-api&Date)
 
 ## 相关项目
 
