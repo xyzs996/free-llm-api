@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/gemini.html">
   <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/gemini.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://xyzs996.github.io/free-llm-api/zh/provider/gemini.html">
   <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/gemini.html">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta property="og:type" content="website">
@@ -24,7 +25,7 @@
   <meta name="twitter:description" content="Google Gemini API free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Google Gemini API","item":"https://xyzs996.github.io/free-llm-api/provider/gemini.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Google Gemini API free tier terms","description":"Rate limits apply per project, not per API key, and depend on the project's usage tier; the Free tier is the entry tier and moving up requires enabling billing. Google publishes the tier structure but directs you to AI Studio for the exact RPM, TPM and RPD active on your project, so no single free-tier number can be quoted here.","url":"https://xyzs996.github.io/free-llm-api/provider/gemini.html","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Gemini API rate limits","url":"https://ai.google.dev/gemini-api/docs/rate-limits"},{"@type":"CreativeWork","name":"Gemini API billing","url":"https://ai.google.dev/gemini-api/docs/billing"},{"@type":"CreativeWork","name":"Gemini OpenAI compatibility","url":"https://ai.google.dev/gemini-api/docs/openai"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Google Gemini API free tier terms","description":"Rate limits apply per project, not per API key, and depend on the project's usage tier; the Free tier is the entry tier and moving up requires enabling billing. Google publishes the tier structure but directs you to AI Studio for the exact RPM, TPM and RPD active on your project, so no single free-tier number can be quoted here.","url":"https://xyzs996.github.io/free-llm-api/provider/gemini.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Gemini API rate limits","url":"https://ai.google.dev/gemini-api/docs/rate-limits"},{"@type":"CreativeWork","name":"Gemini API billing","url":"https://ai.google.dev/gemini-api/docs/billing"},{"@type":"CreativeWork","name":"Gemini OpenAI compatibility","url":"https://ai.google.dev/gemini-api/docs/openai"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Google Gemini API ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Google Gemini API is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Google Gemini API's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Google Gemini API publishes no single free-tier number: its limits are set by project tier. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Google Gemini API key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Google Gemini API free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Google Gemini API's own documentation says so as of 2026-07-25. New projects start on the Free tier. Only selected models carry free-tier usage, and per-model limits are visible in AI Studio."}},{"@type":"Question","name":"Can Google Gemini API be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Google Gemini API serves the OpenAI chat completions protocol at https://generativelanguage.googleapis.com/v1beta/openai/, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
@@ -47,7 +48,7 @@
           <div><dt>Free access type</dt><dd>Provider free tier</dd></div>
           <div><dt>Credit card</dt><dd>Not required</dd></div>
           <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://generativelanguage.googleapis.com/v1beta/openai/</code></dd></div>
-          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Lifecycle</dt><dd>Active</dd></div>
           <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
         </dl>
         <p>New projects start on the Free tier. Only selected models carry free-tier usage, and per-model limits are visible in AI Studio.</p>
@@ -165,6 +166,6 @@ wire_api = &quot;responses&quot;
     </div>
   </main>
 
-  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a><a lang="zh-Hans" hreflang="zh-Hans" href="../zh/provider/gemini.html">简体中文</a></div></footer>
 </body>
 </html>

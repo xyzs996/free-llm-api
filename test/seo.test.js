@@ -4,7 +4,7 @@ import test from 'node:test';
 import { plainText } from '../src/html.js';
 import { renderArtifacts } from '../src/render.js';
 import { ANALYTICS_EXCLUDED_PATHS, SOCIAL_IMAGE_PATH, renderHead } from '../src/seo.js';
-import { RENDERED_LOCALES, SITE, SITE_URL } from '../src/site.js';
+import { RENDERED_LOCALES, SITE, SITE_URL, artifactUrl, neutralPath } from '../src/site.js';
 
 const providers = JSON.parse(
   await readFile(new URL('../data/providers.json', import.meta.url), 'utf8'),
@@ -14,12 +14,13 @@ const changelog = JSON.parse(
 );
 const artifacts = renderArtifacts(providers, changelog);
 
-// Every generated page, keyed the way it is published: the catalog lives at the
-// site root, so its path is the empty string rather than `index.html`.
+// Every generated page, keyed the way it is published rather than the way it is
+// written: a directory index is served at its directory, so the catalog is the
+// empty path and the Chinese catalog is `zh/`, not `zh/index.html`.
 const pages = new Map(
   Object.entries(artifacts)
     .filter(([path]) => path.endsWith('.html'))
-    .map(([path, html]) => [path === 'docs/index.html' ? '' : path.slice('docs/'.length), html]),
+    .map(([path, html]) => [artifactUrl(path).slice(SITE_URL.length), html]),
 );
 const pageUrls = new Set([...pages.keys()].map((path) => `${SITE_URL}${path}`));
 
@@ -192,7 +193,11 @@ test('each sitemap entry is dated by the sources behind that page', () => {
   assert.equal(entries.length, pageUrls.size);
   for (const [, url, lastmod] of entries) {
     assert.match(lastmod, /^\d{4}-\d{2}-\d{2}$/, url);
-    const provider = providers.find(({ id }) => url === `${SITE_URL}provider/${id}.html`);
+    // A translation is only as current as the sources behind the page it
+    // translates, so the locale prefix comes off before the lookup. Matching
+    // the English address alone would leave every translated page unchecked.
+    const path = neutralPath(url.slice(SITE_URL.length));
+    const provider = providers.find(({ id }) => path === `provider/${id}.html`);
     assert.equal(lastmod, provider ? provider.source_checked_at : newest, url);
   }
 });
@@ -240,15 +245,30 @@ test('the only script a page may load from elsewhere is the beacon, and never on
     for (const [, src] of html.matchAll(/<script[^>]*\ssrc="([^"]+)"/g)) {
       if (!/^https?:/i.test(src)) continue;
       assert.equal(new URL(src).host, allowedHost, `${path} loads a script from somewhere unexpected`);
-      assert.equal(ANALYTICS_EXCLUDED_PATHS.has(path), false, `${path} must load nothing third-party`);
+      // The exclusion list is written in locale-neutral paths, so a translated
+      // copy of an excluded page has to be measured against the same entry.
+      assert.equal(
+        ANALYTICS_EXCLUDED_PATHS.has(neutralPath(path)),
+        false,
+        `${path} must load nothing third-party`,
+      );
     }
   }
 
   const verify = pages.get('verify.html');
   assert.match(verify, /This page loads no third-party script of any kind/);
   assert.match(verify, /<script type="module" src="\.\/verify\.js"><\/script>/);
-  assert.doesNotMatch(
-    verify.match(/content="([^"]*connect-src[^"]*)"/)[1],
-    /cloudflareinsights|xyzs996\.github\.io/,
-  );
+
+  // Each edition is a separate document that the browser polices on its own,
+  // so the promise that a pasted key reaches nobody but the provider is
+  // checked on every copy of the checker rather than on the English one.
+  const checkers = [...pages.keys()].filter((path) => neutralPath(path) === 'verify.html');
+  assert.equal(checkers.length, RENDERED_LOCALES.length);
+  for (const path of checkers) {
+    assert.doesNotMatch(
+      pages.get(path).match(/content="([^"]*connect-src[^"]*)"/)[1],
+      /cloudflareinsights|xyzs996\.github\.io/,
+      path,
+    );
+  }
 });

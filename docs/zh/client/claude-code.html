@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="怎么把 Claude Code 指向一个免费的 OpenAI 兼容端点、生成的配置里有什么，以及优先值得一试的是哪几家。">
+  <title>Claude Code 用免费 LLM API：配置与服务商</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/client/claude-code.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/client/claude-code.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://xyzs996.github.io/free-llm-api/zh/client/claude-code.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/client/claude-code.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="Claude Code 用免费 LLM API：配置与服务商">
+  <meta property="og:description" content="怎么把 Claude Code 指向一个免费的 OpenAI 兼容端点、生成的配置里有什么，以及优先值得一试的是哪几家。">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/client/claude-code.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Claude Code 用免费 LLM API：配置与服务商">
+  <meta name="twitter:description" content="怎么把 Claude Code 指向一个免费的 OpenAI 兼容端点、生成的配置里有什么，以及优先值得一试的是哪几家。">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"Claude Code","item":"https://xyzs996.github.io/free-llm-api/zh/client/claude-code.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"把 Claude Code 指向一个免费 LLM API","description":"Claude Code 讲的是 Anthropic Messages API，而本清单里几乎每一个免费额度讲的都是 OpenAI chat completions API。","url":"https://xyzs996.github.io/free-llm-api/zh/client/claude-code.html","inLanguage":"zh-Hans","totalTime":"PT5M","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"},"tool":[{"@type":"HowToTool","name":"Claude Code"}],"supply":[{"@type":"HowToSupply","name":"一个你自己在服务商处创建的免费额度 API key"}],"step":[{"@type":"HowToStep","position":1,"name":"自己去创建一个 key","text":"从清单里挑一个免费额度，到该服务商自己的站点上创建 key。本项目不分发任何 key，也永远不会收到你的 key。"},{"@type":"HowToStep","position":2,"name":"生成配置","text":"运行 npx free-llm-api setup claude-code，它会按清单条目写出 run-claude-code.sh，其中的 base URL 和 model id 都是服务商文档里的原值。"},{"@type":"HowToStep","position":3,"name":"把 key 留在环境变量里","text":"把 key 导出为 GROQ_API_KEY。生成的文件只写变量名、从不写值，这样凭据从结构上就进不了仓库。"},{"@type":"HowToStep","position":4,"name":"怪客户端之前先验 key","text":"打开浏览器 key 检测页，确认服务商认这个 key。凭据被拒、被限流、端点连不上，这三种情况在客户端里看起来一模一样，解法却完全不同。"}]}</script>
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">客户端</a></li><li><span aria-current="page">Claude Code</span></li></ol></nav>
+      <p class="eyebrow">客户端接入 · 清单核验于 2026-07-25</p>
+      <h1>Claude Code 搭配免费 LLM API</h1>
+      <p class="lede">Claude Code 需要的配置由清单直接生成，另附真正能配合它工作的免费额度。</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>Claude Code 需要什么</h2>
+        <p>Claude Code 讲的是 Anthropic Messages API，而本清单里几乎每一个免费额度讲的都是 OpenAI chat completions API。</p>
+        <ol class="requirement-list">
+          <li><code>ANTHROPIC_BASE_URL</code> 必须指向一个接受 Anthropic 格式请求的端点。Claude Code 会自己拼接 API 路径，所以这个值是网关根地址，不带 <code>/v1</code> 后缀。</li>
+          <li><code>ANTHROPIC_AUTH_TOKEN</code> 持有 key，在启动时从环境变量读取。</li>
+          <li>你写的模型名必须在那个端点上真实存在。写错的 model id 会由服务商返回 404，而不是由 Claude Code 报错。</li>
+          <li>真正让免费 Claude Code 配置失败的通常是这层协议不匹配，而不是 key。要么在兼容 OpenAI 的免费端点前面加一个做协议转换的路由，要么直接用一个本身就讲 Anthropic 的网关。</li>
+        </ol>
+
+        <h2>这条命令会生成什么文件</h2>
+        <p>运行 <code>npx free-llm-api setup claude-code</code> 会写出 <code>run-claude-code.sh</code>。它由清单生成，所以 base URL 和 model id 都是服务商文档里的原值，不用你再去翻。下面是按 GroqCloud 填好的样子：</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${GROQ_API_KEY:?Set GROQ_API_KEY before running Claude Code}&quot;
+ANTHROPIC_BASE_URL=&#39;https://api.groq.com/openai/v1&#39; \
+ANTHROPIC_AUTH_TOKEN=&quot;$GROQ_API_KEY&quot; \
+exec claude &quot;$@&quot;
+</code></pre>
+        <p>那个文件里没有 key。值在运行时从 <code>GROQ_API_KEY</code> 读取——就这一个习惯，从结构上保证凭据进不了仓库。</p>
+
+        <h2>哪些免费额度适合 Claude Code</h2>
+        <p>本清单里只有 1 条不兼容 OpenAI 协议，所以没法给 Claude Code 列一张开箱即用的免费额度表。现实的路子有两条：本地起一个做协议转换的路由、由它持有你自己的服务商 key，或者用一个本身就按 Anthropic 格式应答的网关。</p>
+
+        <h2>用免费额度该有什么预期</h2>
+        <p>Agent 会话消耗每日额度的速度远快于聊天，因为每一次工具调用都是又一段长 prompt。429 只告诉你那一次请求被限流，除非服务商返回了 reset 头，否则它不说明还剩多少额度。</p>
+        <p>在怪客户端之前，先验 key 本身：<a href="../verify.html">浏览器检测页</a>能把「凭据被拒」「被限流」和「端点根本没起来」这三种情况分开，而它们的解法各不相同。</p>
+
+        <h2>来源</h2>
+        <ul class="source-list">
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/llm-gateway" rel="noreferrer">Claude Code LLM gateway configuration</a></li>
+        </ul>
+        <p>这里引用的服务商数字，都来自各家自己的文档，核验日期 2026-07-25。哪些内容会被记录、哪些是有意留空的，见<a href="../methodology.html">数据方法</a>。</p>
+      </article>
+      <aside class="related" aria-label="相关页面">
+        <div>
+          <h2>值得先试的服务商</h2>
+          <ul><li><a href="../provider/gemini.html">Google Gemini API</a></li><li><a href="../provider/groq.html">GroqCloud</a></li><li><a href="../provider/sambanova.html">SambaNova Cloud</a></li><li><a href="../provider/cohere.html">Cohere</a></li></ul>
+        </div>
+        <div>
+          <h2>其他客户端</h2>
+          <ul><li><a href="../client/continue.html">Continue</a></li><li><a href="../client/cursor.html">Cursor</a></li></ul>
+        </div>
+        <div>
+          <h2>本清单</h2>
+          <ul><li><a href="../index.html">全部服务商</a></li><li><a href="../verify.html">浏览器 key 检测</a></li><li><a href="../methodology.html">这份数据是怎么来的</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>本页每个数字都来自服务商自己的文档，核验日期记录在清单里。</span><a href="../index.html">免费 LLM API 清单</a><a lang="en" hreflang="en" href="../../client/claude-code.html">English</a></div></footer>
+</body>
+</html>

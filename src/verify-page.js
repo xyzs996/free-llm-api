@@ -1,14 +1,12 @@
 import { embedJson, escapeHtml } from './html.js';
+import { dataSentence, rawString, translator } from './i18n.js';
+import { relativePrefix, renderLanguageSwitch } from './page-layout.js';
 import { renderHead, webApplicationNode } from './seo.js';
-import { SITE_URL, pageUrl } from './site.js';
+import { DEFAULT_LOCALE, SITE_URL, localeDepth, localePath, pageUrl } from './site.js';
 import { keyEnvForProvider, renderSnippet } from './snippets.js';
-import { verifyUrl } from '../docs/verify-contract.js';
+import { VERIFY_STATES, verifyUrl } from '../docs/verify-contract.js';
 
 export { SITE_URL };
-
-const PAGE_TITLE = 'Check a free LLM API key in your browser';
-const PAGE_DESCRIPTION = 'Paste a key you already own and see whether the provider accepts it. '
-  + 'The request goes from your browser straight to that provider, never through this site.';
 
 export function connectSrcOrigins(providers) {
   return [...new Set(providers.map(({ base_url: baseUrl }) => new URL(baseUrl).origin))].sort();
@@ -31,7 +29,7 @@ export function contentSecurityPolicy(providers) {
   ].join('; ');
 }
 
-export function verifyTargets(providers) {
+export function verifyTargets(providers, locale = DEFAULT_LOCALE) {
   return providers.map((provider) => {
     const keyEnv = keyEnvForProvider(provider);
     return {
@@ -41,7 +39,7 @@ export function verifyTargets(providers) {
       url: verifyUrl(provider.base_url),
       keyEnv,
       browserCheck: provider.browser_check,
-      browserCheckNote: provider.browser_check_note,
+      browserCheckNote: dataSentence(provider.browser_check_note, locale),
       browserCheckedAt: provider.browser_checked_at,
       signupUrl: provider.signup_url,
       sources: provider.official_sources,
@@ -53,6 +51,27 @@ export function verifyTargets(providers) {
   });
 }
 
+// The strings the script writes into the page after it runs. They travel as
+// data rather than as a second copy of the script, so both editions load the
+// same `verify.js` and the verdict logic cannot drift between languages.
+export function verifyStrings(locale = DEFAULT_LOCALE) {
+  const t = translator(locale);
+  const byState = (prefix) => Object.fromEntries(
+    Object.values(VERIFY_STATES).map((state) => [state, t(`${prefix}.${state}`)]),
+  );
+
+  return {
+    submit: t('verify.submit'),
+    submitBlocked: t('verify.submitBlocked'),
+    checking: t('verify.checking'),
+    // The provider name is only known in the browser, so this one crosses as a
+    // template rather than a finished sentence.
+    asking: rawString('verify.asking', locale),
+    labels: byState('verify.state'),
+    explanations: byState('verify.explain'),
+  };
+}
+
 function renderOptions(targets, browserCheck) {
   return targets
     .filter((target) => (browserCheck === 'supported'
@@ -62,39 +81,45 @@ function renderOptions(targets, browserCheck) {
     .join('');
 }
 
-export function renderVerifyPage(providers) {
-  const targets = verifyTargets(providers);
+export function renderVerifyPage(providers, locale = DEFAULT_LOCALE) {
+  const t = translator(locale);
+  const targets = verifyTargets(providers, locale);
   const origins = connectSrcOrigins(providers);
   const checkable = targets.filter(({ browserCheck }) => browserCheck === 'supported');
   const embedded = embedJson(targets);
   const checkedAt = targets.map(({ browserCheckedAt }) => browserCheckedAt).sort().at(-1);
+  const title = `${t('verify.title')} · ${t('layout.brand')}`;
+  const description = t('verify.description');
+  const rootPrefix = relativePrefix(localeDepth(locale));
 
   return `<!doctype html>
-<html lang="en">
+<html lang="${escapeHtml(locale.hreflang)}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="${escapeHtml(contentSecurityPolicy(providers))}">
-  <meta name="description" content="${escapeHtml(PAGE_DESCRIPTION)}">
-  <title>${escapeHtml(PAGE_TITLE)} · Free LLM API</title>
-  <link rel="stylesheet" href="./styles.css">${renderHead({
-    path: 'verify.html',
-    title: `${PAGE_TITLE} · Free LLM API`,
-    description: PAGE_DESCRIPTION,
+  <meta name="description" content="${escapeHtml(description)}">
+  <title>${escapeHtml(title)}</title>
+  <link rel="stylesheet" href="${rootPrefix}styles.css">${renderHead({
+    path: localePath('verify.html', locale),
+    title,
+    description,
+    locale,
     // The one page that must load nothing it does not control. The policy
     // above would block a beacon anyway; not emitting it is the honest half of
     // the same promise.
     analytics: false,
     jsonLd: [webApplicationNode({
-      name: 'Free LLM API key checker',
-      description: PAGE_DESCRIPTION,
-      url: pageUrl('verify.html'),
+      name: t('verify.appName'),
+      description,
+      url: pageUrl('verify.html', locale),
       features: [
-        `Checks a key against ${checkable.length} providers directly from the browser`,
-        'Sends the key only to the provider it belongs to, enforced by a Content Security Policy',
-        'Stores nothing: no cookie, no local storage, no key in the address bar',
-        'Prints an equivalent curl command for providers a browser cannot reach',
+        t('verify.feature1', { count: checkable.length }),
+        t('verify.feature2'),
+        t('verify.feature3'),
+        t('verify.feature4'),
       ],
+      locale,
     })],
   })}
 </head>
@@ -102,14 +127,14 @@ export function renderVerifyPage(providers) {
   <header class="masthead">
     <div class="shell masthead__inner">
       <div>
-        <p class="eyebrow">Browser key checker · Reachability measured ${escapeHtml(checkedAt)}</p>
-        <h1>${escapeHtml(PAGE_TITLE)}</h1>
-        <p class="lede">Bring a key you created yourself. Nothing is installed, nothing is stored, and the request never passes through this site.</p>
+        <p class="eyebrow">${escapeHtml(t('verify.eyebrow', { date: checkedAt }))}</p>
+        <h1>${escapeHtml(t('verify.title'))}</h1>
+        <p class="lede">${escapeHtml(t('verify.lede'))}</p>
       </div>
-      <div class="masthead__stats" aria-label="Checker summary">
-        <div><strong>${checkable.length}</strong><span>reachable from a browser</span></div>
-        <div><strong>${targets.length - checkable.length}</strong><span>need the terminal</span></div>
-        <div><strong>0</strong><span>keys reach this site</span></div>
+      <div class="masthead__stats" aria-label="${escapeHtml(t('verify.statsLabel'))}">
+        <div><strong>${checkable.length}</strong><span>${escapeHtml(t('verify.statBrowser'))}</span></div>
+        <div><strong>${targets.length - checkable.length}</strong><span>${escapeHtml(t('verify.statTerminal'))}</span></div>
+        <div><strong>0</strong><span>${escapeHtml(t('verify.statZero'))}</span></div>
       </div>
     </div>
   </header>
@@ -118,56 +143,57 @@ export function renderVerifyPage(providers) {
     <section class="verify-band" aria-labelledby="check-heading">
       <div class="shell verify-grid">
         <form class="verify-form" id="verify-form" autocomplete="off" novalidate>
-          <h2 id="check-heading">Check a key</h2>
+          <h2 id="check-heading">${escapeHtml(t('verify.formHeading'))}</h2>
           <label>
-            <span>Provider</span>
+            <span>${escapeHtml(t('verify.providerLabel'))}</span>
             <select id="provider-select" name="provider">
-              <optgroup label="Checkable in a browser">${renderOptions(targets, 'supported')}</optgroup>
-              <optgroup label="Terminal only">${renderOptions(targets, 'blocked')}</optgroup>
+              <optgroup label="${escapeHtml(t('verify.groupBrowser'))}">${renderOptions(targets, 'supported')}</optgroup>
+              <optgroup label="${escapeHtml(t('verify.groupTerminal'))}">${renderOptions(targets, 'blocked')}</optgroup>
             </select>
           </label>
           <label>
-            <span>Your API key</span>
-            <input id="key-input" name="key" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Paste the key you created at the provider">
+            <span>${escapeHtml(t('verify.keyLabel'))}</span>
+            <input id="key-input" name="key" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="${escapeHtml(t('verify.keyPlaceholder'))}">
           </label>
-          <button id="verify-submit" type="submit">Check this key</button>
-          <p class="verify-endpoint">Request: <code>GET</code> <code id="verify-endpoint">${escapeHtml(checkable[0]?.url ?? '')}</code></p>
+          <button id="verify-submit" type="submit">${escapeHtml(t('verify.submit'))}</button>
+          <p class="verify-endpoint">${escapeHtml(t('verify.requestLabel'))} <code>GET</code> <code id="verify-endpoint">${escapeHtml(checkable[0]?.url ?? '')}</code></p>
           <p class="verify-result" id="verify-result" data-tone="unknown" hidden>
             <strong id="result-label"></strong>
             <span id="result-detail"></span>
           </p>
-          <noscript><p class="verify-note">This check runs entirely in your browser, so it needs JavaScript. The terminal command below does the same thing without it.</p></noscript>
+          <noscript><p class="verify-note">${escapeHtml(t('verify.noscript'))}</p></noscript>
         </form>
 
         <aside class="verify-side">
-          <h2>Where your key goes</h2>
-          <p>Exactly one place: the provider you picked. This page declares a Content Security Policy whose <code>connect-src</code> lists the ${origins.length} provider origins below and nothing else — no analytics host, and not this site's own domain. Your browser blocks any other destination before a request leaves it.</p>
+          <h2>${escapeHtml(t('verify.whereHeading'))}</h2>
+          <p>${t('verify.whereBody', { count: origins.length })}</p>
           <ul class="origin-list">
 ${origins.map((origin) => `            <li><code>${escapeHtml(origin)}</code></li>`).join('\n')}
           </ul>
-          <p>The key stays in one JavaScript variable for the length of one request. It is never written to <code>localStorage</code>, a cookie, or the address bar, and a key handed to this page in a query string is discarded and stripped from your history.</p>
-          <p>This page loads no third-party script of any kind — no analytics beacon, no tag manager, no font or widget host. The only script it runs is the one served from this repository, and the policy above would block anything else even if someone added it.</p>
-          <p><a href="https://github.com/xyzs996/free-llm-api/blob/main/docs/verify.js" rel="noreferrer">Read the script that does it</a>.</p>
+          <p>${t('verify.whereStorage')}</p>
+          <p>${t('verify.whereThirdParty')}</p>
+          <p><a href="https://github.com/xyzs996/free-llm-api/blob/main/docs/verify.js" rel="noreferrer">${escapeHtml(t('verify.readScript'))}</a>.</p>
         </aside>
       </div>
     </section>
 
     <section class="method-band" aria-labelledby="provider-heading">
       <div class="shell">
-        <h2 id="provider-heading">About this provider</h2>
+        <h2 id="provider-heading">${escapeHtml(t('verify.aboutHeading'))}</h2>
         <p id="browser-note" class="browser-note"></p>
-        <p>Set your key as <code id="verify-env"></code> and run this instead if the browser cannot reach the provider, or if you would rather not paste a key into a web page at all:</p>
+        <p>${t('verify.fallbackIntro')}</p>
         <pre class="verify-fallback"><code id="verify-fallback"></code></pre>
-        <p class="provider-links">Official sources: <span id="provider-sources"></span></p>
-        <p><a class="row-action" id="provider-signup" href="#" rel="noreferrer" hidden>Get a key from this provider</a></p>
-        <p class="provider-links">Read on: <a href="./index.html">the full provider catalog</a><span aria-hidden="true"> · </span><a href="./methodology.html">how reachability is measured</a><span aria-hidden="true"> · </span><a href="./client/codex.html">pointing a coding agent at a free tier</a></p>
+        <p class="provider-links">${escapeHtml(t('verify.sourcesLabel'))} <span id="provider-sources"></span></p>
+        <p><a class="row-action" id="provider-signup" href="#" rel="noreferrer" hidden>${escapeHtml(t('verify.signup'))}</a></p>
+        <p class="provider-links">${escapeHtml(t('verify.readOn'))} <a href="./index.html">${escapeHtml(t('verify.readCatalog'))}</a><span aria-hidden="true"> · </span><a href="./methodology.html">${escapeHtml(t('verify.readMethodology'))}</a><span aria-hidden="true"> · </span><a href="./client/codex.html">${escapeHtml(t('verify.readClient'))}</a></p>
       </div>
     </section>
   </main>
 
-  <footer><div class="shell"><span>No key you type here is transmitted to, logged by, or stored on this site.</span><a href="./index.html">Back to the provider catalog</a></div></footer>
+  <footer><div class="shell"><span>${escapeHtml(t('verify.footerNote'))}</span><a href="./index.html">${escapeHtml(t('verify.footerLink'))}</a>${renderLanguageSwitch('verify.html', locale, rootPrefix)}</div></footer>
   <script id="verify-data" type="application/json">${embedded}</script>
-  <script type="module" src="./verify.js"></script>
+  <script id="verify-strings" type="application/json">${embedJson(verifyStrings(locale))}</script>
+  <script type="module" src="${rootPrefix}verify.js"></script>
 </body>
 </html>
 `;

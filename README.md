@@ -2,20 +2,15 @@
 
 English · [简体中文](README_zh.md)
 
-A source-backed list of free LLM API keys and free tiers, with explainable sample probes, a filterable status page, and one-command setup for coding agents.
+A source-backed directory of free LLM API tiers: where to get your own API key from each provider, what the published limits actually are, and how to point a coding agent at one.
 
-> Sources last reviewed: 2026-07-25. A probe describes one sampled request, not provider-wide uptime.
+> Sources last reviewed: 2026-07-25. No keys are distributed here — every entry links to the provider's own signup. A probe describes one sampled request, not provider-wide uptime.
 
-## Changed this week
+**[Status page](https://xyzs996.github.io/free-llm-api/) · [Browser key checker](https://xyzs996.github.io/free-llm-api/verify.html) · [Provider catalog](#provider-catalog) · [How this is checked](https://xyzs996.github.io/free-llm-api/methodology.html)**
 
-Week of 2026-07-25. First published catalog: 26 providers, every published number traced to an official page checked this week.
+[![Filterable LLM free-tier status page](docs/assets/status-page.png)](https://xyzs996.github.io/free-llm-api/)
 
-- **Added (26):** Google Gemini API, GroqCloud, SambaNova Cloud, Cohere, Cloudflare Workers AI, Hugging Face Inference Providers, SiliconFlow, Fireworks AI, Z.AI Open Platform, Novita AI, Mistral La Plateforme, Alibaba Cloud Model Studio, Moonshot AI (Kimi), Pollinations.AI, Ollama Cloud, Cerebras Inference, Vercel AI Gateway, IBM watsonx.ai, OpenRouter, GitHub Models, Together AI, Nebius Token Factory, Perplexity API, DeepInfra, Chutes, Scaleway Generative APIs
-- **Lifecycle — GitHub Models:** Free tier retires 2026-07-30, so the catalog carries no signup link for it.
-- **Corrected — Cerebras Inference:** A verified payment method is a precondition for API access, so this is not a card-free free tier.
-- **Corrected — Fireworks AI:** The 10 RPM cap for accounts without a payment method applies account-wide, not per model.
-
-Every entry above is dated and sourced in the catalog below. Full history: [`data/changelog.json`](data/changelog.json).
+Star this repository to bookmark the dataset and follow releases. A star changes nothing about any provider's keys, credits, or limits, and this project gives nothing in return for one.
 
 ## Check a key you already have
 
@@ -23,13 +18,7 @@ Open the [browser key checker](https://xyzs996.github.io/free-llm-api/verify.htm
 
 21 of 26 providers answer a cross-origin browser request. The other 5 refuse one, so the page prints the equivalent `curl` command instead of guessing.
 
-## Run locally
-
-```bash
-npm run render && npm run serve
-```
-
-Open `http://127.0.0.1:4173`. Node.js 20+ is required; there are no runtime dependencies and no API keys are needed.
+## Point a coding agent at one
 
 Point a coding agent at any endpoint you already have access to:
 
@@ -41,9 +30,24 @@ Client guides: [Claude Code](docs/claude-code.md) · [Codex CLI](docs/codex.md) 
 
 Rotating keys across eight providers and hitting 429 every day? One OpenAI-compatible endpoint covers every model. [Create a PekPik API account](https://aiapiv2.pekpik.com/register?utm_source=github&utm_medium=repo&utm_campaign=free-llm-api).
 
-Star this repository to bookmark the dataset and follow releases. A star changes nothing about any provider's keys, credits, or limits, and this project gives nothing in return for one.
+## Run locally
 
-![Filterable LLM free-tier status page](docs/assets/status-page.png)
+```bash
+npm run render && npm run serve
+```
+
+Open `http://127.0.0.1:4173`. Node.js 20+ is required; there are no runtime dependencies and no API keys are needed.
+
+## Changed this week
+
+Week of 2026-07-25. First published catalog: 26 providers, every published number traced to an official page checked this week.
+
+- **Added (26):** Google Gemini API, GroqCloud, SambaNova Cloud, Cohere, Cloudflare Workers AI, Hugging Face Inference Providers, SiliconFlow, Fireworks AI, Z.AI Open Platform, Novita AI, Mistral La Plateforme, Alibaba Cloud Model Studio, Moonshot AI (Kimi), Pollinations.AI, Ollama Cloud, Cerebras Inference, Vercel AI Gateway, IBM watsonx.ai, OpenRouter, GitHub Models, Together AI, Nebius Token Factory, Perplexity API, DeepInfra, Chutes, Scaleway Generative APIs
+- **Lifecycle — GitHub Models:** Free tier retires 2026-07-30, so the catalog carries no signup link for it.
+- **Corrected — Cerebras Inference:** A verified payment method is a precondition for API access, so this is not a card-free free tier.
+- **Corrected — Fireworks AI:** The 10 RPM cap for accounts without a payment method applies account-wide, not per model.
+
+Every entry above is dated and sourced in the catalog below. Full history: [`data/changelog.json`](data/changelog.json).
 
 ## Provider catalog
 

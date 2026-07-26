@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { LOCALES } from '../src/site.js';
 
 const providers = JSON.parse(
   await readFile(new URL('../data/providers.json', import.meta.url), 'utf8'),
@@ -24,8 +25,11 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
   assert.deepEqual(first, second);
   // The per-provider, per-family and per-client matrix is counted in
   // test/pages.test.js; everything outside it is enumerated here so a new
-  // top-level artifact cannot appear unnoticed.
-  const matrix = /^docs\/(provider|model|client)\/[a-z0-9-]+\.html$/;
+  // top-level artifact cannot appear unnoticed. Every locale publishes that
+  // same matrix under its own prefix, so the prefixes come from the locale
+  // list rather than from a pattern loose enough to swallow a stray folder.
+  const prefixes = LOCALES.map(({ path_prefix: prefix }) => prefix).join('|');
+  const matrix = new RegExp(`^docs/(${prefixes})(provider|model|client)/[a-z0-9-]+\\.html$`);
   assert.deepEqual(Object.keys(first).filter((path) => !matrix.test(path)).sort(), [
     'README.md',
     'README_zh.md',
@@ -39,6 +43,9 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
     'docs/robots.txt',
     'docs/sitemap.xml',
     'docs/verify.html',
+    'docs/zh/index.html',
+    'docs/zh/methodology.html',
+    'docs/zh/verify.html',
   ]);
   assert.deepEqual(JSON.parse(first['docs/providers.json']), providers);
 });

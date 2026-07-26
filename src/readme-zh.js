@@ -1,29 +1,35 @@
 import { HOSTED_CTA_URL } from './client-pages.js';
 import { escapeMarkdown } from './markdown.js';
-import { SITE_URL, connectSrcOrigins } from './verify-page.js';
+import { LOCALES, SITE_URL, localePath } from './site.js';
+import { connectSrcOrigins } from './verify-page.js';
+
+// This README sends readers to the Chinese edition of the site, not to the
+// English page that happens to share the filename. If the Chinese pages are
+// ever dropped from the render the links fall back to the root rather than
+// pointing at an address nothing publishes.
+const ZH_LOCALE = LOCALES.find(({ code }) => code === 'zh') ?? { path_prefix: '' };
+
+function zhUrl(path) {
+  return `${SITE_URL}${localePath(path, ZH_LOCALE)}`;
+}
+
+// The same vocabulary the Chinese pages print, taken from the one string table
+// rather than restated here. This file had these words first; keeping a second
+// copy is how a category ends up translated on the site and left as a raw slug
+// in the README.
+export {
+  AVAILABILITY_STATUS_ZH,
+  CATEGORY_TITLES_ZH,
+  CHANGE_LABELS_ZH,
+} from './i18n.js';
+
+import {
+  AVAILABILITY_STATUS_ZH,
+  CATEGORY_TITLES_ZH,
+  CHANGE_LABELS_ZH,
+} from './i18n.js';
 
 const GROUPED_CHANGE_THRESHOLD = 3;
-
-export const CATEGORY_TITLES_ZH = Object.freeze({
-  'provider-free-tier': '厂商免费额度',
-  'free-model-aggregator': '免费模型聚合',
-  'trial-credit': '注册赠送额度',
-  'metered-access': '按量计费',
-  'retiring-free-tier': '即将下线的免费额度',
-});
-
-export const AVAILABILITY_STATUS_ZH = Object.freeze({
-  active: '正常开放',
-  retiring: '即将下线',
-});
-
-export const CHANGE_LABELS_ZH = Object.freeze({
-  added: '新增',
-  'limit-changed': '限额变化',
-  lifecycle: '生命周期',
-  correction: '更正',
-  removed: '移除',
-});
 
 function categoryTitle(category) {
   return CATEGORY_TITLES_ZH[category] ?? category;
@@ -88,23 +94,23 @@ export function renderReadmeZh(providers, changelog) {
 
 [English](README.md) · 简体中文
 
-一份有官方来源可查的免费 LLM API 与免费额度清单，附可解释的采样探活、可筛选的状态页，以及面向编码 agent 的一条命令配置。
+一份有官方来源可查的免费 LLM API 目录：每家去哪里自己领 key、官方公布的限额到底是多少，以及怎么把编码 agent 指过去。
 
-> 来源核验日期：${latestSourceCheck}。一次探活只描述那一次采样请求，不代表服务商整体可用性。
+> 来源核验日期：${latestSourceCheck}。本仓库不分发任何 key，每条记录都指向服务商自己的注册页。一次探活只描述那一次采样请求，不代表服务商整体可用性。
 
-${renderChangelogSectionZh(providers, changelog)}## 验证你手上已有的 key
+**[状态页](${zhUrl('')}) · [浏览器 key 检测](${zhUrl('verify.html')}) · [服务商清单](#服务商清单) · [核验方法](${zhUrl('methodology.html')})**
 
-打开[浏览器 key 检测页](${SITE_URL}verify.html)。不用安装、不留存任何内容：请求从你的浏览器直连服务商，因为该页面的 Content Security Policy 只允许连接本清单里的 ${connectSrcOrigins(providers).length} 个服务商源，除此之外一处都不允许——既没有统计服务，也没有本站自己。
+[![可筛选的 LLM 免费额度状态页](docs/assets/status-page.png)](${zhUrl('')})
+
+Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任何服务商的 key、额度或限流，本项目也不会因为 Star 给出任何回报。
+
+## 验证你手上已有的 key
+
+打开[浏览器 key 检测页](${zhUrl('verify.html')})。不用安装、不留存任何内容：请求从你的浏览器直连服务商，因为该页面的 Content Security Policy 只允许连接本清单里的 ${connectSrcOrigins(providers).length} 个服务商源，除此之外一处都不允许——既没有统计服务，也没有本站自己。
 
 ${providers.length} 家里有 ${browserCheckable} 家会响应跨域浏览器请求，其余 ${providers.length - browserCheckable} 家会拒绝；对这些服务商，页面直接给出等价的 \`curl\` 命令，而不是猜一个结论。
 
-## 本地运行
-
-\`\`\`bash
-npm run render && npm run serve
-\`\`\`
-
-打开 \`http://127.0.0.1:4173\`。需要 Node.js 20+，无运行时依赖，也不需要任何 API key。
+## 配置编码 agent
 
 把编码 agent 指向你已经拿到访问权限的任意端点：
 
@@ -116,11 +122,15 @@ npx free-llm-api setup claude-code
 
 在八家服务商之间轮换 key、每天都撞 429？一个 OpenAI 兼容端点即可覆盖全部模型。[创建 PekPik API 账号](${HOSTED_CTA_URL})。
 
-Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任何服务商的 key、额度或限流，本项目也不会因为 Star 给出任何回报。
+## 本地运行
 
-![可筛选的 LLM 免费额度状态页](docs/assets/status-page.png)
+\`\`\`bash
+npm run render && npm run serve
+\`\`\`
 
-## 服务商清单
+打开 \`http://127.0.0.1:4173\`。需要 Node.js 20+，无运行时依赖，也不需要任何 API key。
+
+${renderChangelogSectionZh(providers, changelog)}## 服务商清单
 
 | 服务商 | 免费形式 | 需信用卡 | OpenAI 兼容 | 官方公布限额 | 状态 | 注册 |
 | --- | --- | --- | --- | --- | --- | --- |

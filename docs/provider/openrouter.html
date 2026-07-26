@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/openrouter.html">
   <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/openrouter.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://xyzs996.github.io/free-llm-api/zh/provider/openrouter.html">
   <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/openrouter.html">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta property="og:type" content="website">
@@ -24,7 +25,7 @@
   <meta name="twitter:description" content="OpenRouter free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"OpenRouter","item":"https://xyzs996.github.io/free-llm-api/provider/openrouter.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"OpenRouter free tier terms","description":"Model variants whose ID ends in :free are capped at 20 requests/minute regardless of account status. The daily cap depends on lifetime credit purchases: under 10 credits gives 50 requests/day, and 10 or more credits raises it to 1,000 requests/day. OpenRouter governs capacity globally, so extra accounts or extra API keys do not raise these limits.","url":"https://xyzs996.github.io/free-llm-api/provider/openrouter.html","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"OpenRouter API rate limits","url":"https://openrouter.ai/docs/api-reference/limits"},{"@type":"CreativeWork","name":"OpenRouter free model variants","url":"https://openrouter.ai/docs/guides/routing/model-variants/free"},{"@type":"CreativeWork","name":"OpenRouter quickstart","url":"https://openrouter.ai/docs/quickstart"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"OpenRouter free tier terms","description":"Model variants whose ID ends in :free are capped at 20 requests/minute regardless of account status. The daily cap depends on lifetime credit purchases: under 10 credits gives 50 requests/day, and 10 or more credits raises it to 1,000 requests/day. OpenRouter governs capacity globally, so extra accounts or extra API keys do not raise these limits.","url":"https://xyzs996.github.io/free-llm-api/provider/openrouter.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"OpenRouter API rate limits","url":"https://openrouter.ai/docs/api-reference/limits"},{"@type":"CreativeWork","name":"OpenRouter free model variants","url":"https://openrouter.ai/docs/guides/routing/model-variants/free"},{"@type":"CreativeWork","name":"OpenRouter quickstart","url":"https://openrouter.ai/docs/quickstart"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does OpenRouter ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. OpenRouter is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are OpenRouter's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"OpenRouter publishes 20 requests per minute, 50 requests per day. Those are the numbers in its own documentation as reviewed on 2026-07-25."}},{"@type":"Question","name":"What happens when a OpenRouter key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the OpenRouter free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in OpenRouter's own documentation says so as of 2026-07-25. A negative account balance can return 402 errors even on free models until the balance is topped back above zero."}},{"@type":"Question","name":"Can OpenRouter be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenRouter serves the OpenAI chat completions protocol at https://openrouter.ai/api/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
@@ -47,7 +48,7 @@
           <div><dt>Free access type</dt><dd>Free model aggregator</dd></div>
           <div><dt>Credit card</dt><dd>Not required</dd></div>
           <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://openrouter.ai/api/v1</code></dd></div>
-          <div><dt>Lifecycle</dt><dd>active</dd></div>
+          <div><dt>Lifecycle</dt><dd>Active</dd></div>
           <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
         </dl>
         <p>A negative account balance can return 402 errors even on free models until the balance is topped back above zero.</p>
@@ -164,6 +165,6 @@ wire_api = &quot;responses&quot;
     </div>
   </main>
 
-  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a><a lang="zh-Hans" hreflang="zh-Hans" href="../zh/provider/openrouter.html">简体中文</a></div></footer>
 </body>
 </html>

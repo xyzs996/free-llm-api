@@ -1,6 +1,7 @@
 import {
   VERIFY_STATES,
   classifyVerifyResponse,
+  localizedVerdict,
   readPageQuery,
   scrubbedSearch,
   selectProvider,
@@ -9,6 +10,21 @@ import {
 } from './verify-contract.js';
 
 const REQUEST_TIMEOUT_MS = 12_000;
+
+// The English wording, used when the page ships no string table. Every other
+// edition overrides these from its own `#verify-strings` block.
+const DEFAULT_STRINGS = Object.freeze({
+  submit: 'Check this key',
+  submitBlocked: 'Not checkable in a browser',
+  checking: 'Checking…',
+  asking: 'Asking {name} to list its models.',
+});
+
+function readStrings() {
+  const element = document.querySelector('#verify-strings');
+  if (!element) return DEFAULT_STRINGS;
+  return { ...DEFAULT_STRINGS, ...JSON.parse(element.textContent) };
+}
 
 // The key exists in one variable and one request header. It is never written to
 // storage, never put in the URL, and never sent anywhere but the provider — the
@@ -65,6 +81,7 @@ function initialize() {
   if (!dataElement || !form || !select) return;
 
   const targets = JSON.parse(dataElement.textContent);
+  const strings = readStrings();
   const keyInput = form.querySelector('#key-input');
   const submit = form.querySelector('#verify-submit');
   const result = document.querySelector('#verify-result');
@@ -102,7 +119,7 @@ function initialize() {
     if (current.signupUrl) signup.href = current.signupUrl;
 
     submit.disabled = blocked;
-    submit.textContent = blocked ? 'Not checkable in a browser' : 'Check this key';
+    submit.textContent = blocked ? strings.submitBlocked : strings.submit;
     result.hidden = true;
   };
 
@@ -116,24 +133,25 @@ function initialize() {
 
     const target = current;
     submit.disabled = true;
-    submit.textContent = 'Checking…';
+    submit.textContent = strings.checking;
     result.hidden = false;
     result.dataset.tone = 'pending';
-    resultLabel.textContent = 'Checking…';
-    resultDetail.textContent = `Asking ${target.name} to list its models.`;
+    resultLabel.textContent = strings.checking;
+    resultDetail.textContent = strings.asking.replace('{name}', target.name);
 
-    const verdict = await checkKey(target, key);
+    const raw = await checkKey(target, key);
     // Switching provider mid-request already redrew the panel; showing this
     // verdict now would label it with the wrong provider.
     if (current !== target) return;
 
+    const verdict = localizedVerdict(raw, strings);
     result.dataset.tone = verdict.tone;
     resultLabel.textContent = verdict.status === null
       ? verdict.label
       : `${verdict.label} · HTTP ${verdict.status}`;
     resultDetail.textContent = verdict.explanation;
     submit.disabled = false;
-    submit.textContent = 'Check this key';
+    submit.textContent = strings.submit;
   });
 
   select.addEventListener('change', showTarget);

@@ -19,13 +19,15 @@
       "status": "tier-based",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Rate limits apply per project, not per API key, and depend on the project's usage tier; the Free tier is the entry tier and moving up requires enabling billing. Google publishes the tier structure but directs you to AI Studio for the exact RPM, TPM and RPD active on your project, so no single free-tier number can be quoted here."
+      "summary": "Rate limits apply per project, not per API key, and depend on the project's usage tier; the Free tier is the entry tier and moving up requires enabling billing. Google publishes the tier structure but directs you to AI Studio for the exact RPM, TPM and RPD active on your project, so no single free-tier number can be quoted here.",
+      "summary_zh": "限流按项目（project）而不是按 API key 计算，取决于该项目所处的用量层级；Free 是入门层级，往上走需要开启计费。Google 公布了层级结构，但把具体生效的 RPM、TPM 和 RPD 指向 AI Studio 查看，因此这里给不出单一的免费额度数字。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "New projects start on the Free tier. Only selected models carry free-tier usage, and per-model limits are visible in AI Studio."
+      "note": "New projects start on the Free tier. Only selected models carry free-tier usage, and per-model limits are visible in AI Studio.",
+      "note_zh": "新项目默认处于 Free 层级。只有部分模型带免费用量，按模型的具体限额在 AI Studio 里可以看到。"
     },
     "official_sources": [
       {
@@ -76,13 +78,15 @@
       "status": "documented-per-model",
       "requests_per_minute": 30,
       "requests_per_day": 1000,
-      "summary": "Free plan limits are per model and enforced per organization. llama-3.3-70b-versatile: 30 RPM, 1,000 RPD, 12K TPM, 100K TPD. llama-3.1-8b-instant: 30 RPM, 14,400 RPD, 6K TPM, 500K TPD. openai/gpt-oss-120b and openai/gpt-oss-20b: 30 RPM, 1,000 RPD, 8K TPM, 200K TPD. groq/compound: 30 RPM, 250 RPD, 70K TPM. Cached tokens do not count toward token limits. The RPM/RPD columns here quote llama-3.3-70b-versatile."
+      "summary": "Free plan limits are per model and enforced per organization. llama-3.3-70b-versatile: 30 RPM, 1,000 RPD, 12K TPM, 100K TPD. llama-3.1-8b-instant: 30 RPM, 14,400 RPD, 6K TPM, 500K TPD. openai/gpt-oss-120b and openai/gpt-oss-20b: 30 RPM, 1,000 RPD, 8K TPM, 200K TPD. groq/compound: 30 RPM, 250 RPD, 70K TPM. Cached tokens do not count toward token limits. The RPM/RPD columns here quote llama-3.3-70b-versatile.",
+      "summary_zh": "免费计划的限额按模型区分，并按组织（organization）合并计算。llama-3.3-70b-versatile：30 RPM、1,000 RPD、12K TPM、100K TPD。llama-3.1-8b-instant：30 RPM、14,400 RPD、6K TPM、500K TPD。openai/gpt-oss-120b 与 openai/gpt-oss-20b：30 RPM、1,000 RPD、8K TPM、200K TPD。groq/compound：30 RPM、250 RPD、70K TPM。命中缓存的 token 不计入 token 限额。本页 RPM/RPD 两列取的是 llama-3.3-70b-versatile 的数值。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization."
+      "note": "The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization.",
+      "note_zh": "免费计划不需要绑定支付方式；你所在组织实际生效的额度，以账号里的 Limits 页面为准。"
     },
     "official_sources": [
       {
@@ -131,13 +135,15 @@
       "status": "documented-per-model",
       "requests_per_minute": 20,
       "requests_per_day": 20,
-      "summary": "The Free Tier applies whenever no payment method is linked to the account. For DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b the free limits are 20 RPM, 20 RPD and 200,000 tokens per day. Linking a payment method moves the account to the Developer Tier (60-240 RPM, 12,000-48,000 RPD, 20M tokens/day across all models)."
+      "summary": "The Free Tier applies whenever no payment method is linked to the account. For DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b the free limits are 20 RPM, 20 RPD and 200,000 tokens per day. Linking a payment method moves the account to the Developer Tier (60-240 RPM, 12,000-48,000 RPD, 20M tokens/day across all models).",
+      "summary_zh": "只要账号没有绑定支付方式，就处于 Free Tier。DeepSeek-V3.1、Meta-Llama-3.3-70B-Instruct 和 gpt-oss-120b 的免费限额是 20 RPM、每天 20 次请求、每天 20 万 token。绑定支付方式后账号转入 Developer Tier（全模型合计 60–240 RPM、12,000–48,000 RPD、每天 2,000 万 token）。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. The 20 requests-per-day cap is the binding constraint for most users."
+      "note": "Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. The 20 requests-per-day cap is the binding constraint for most users.",
+      "note_zh": "Free Tier 的定义就是\"没有绑定支付方式\"，所以不用信用卡也能用上。每天 20 次请求这一条，对多数人才是真正的瓶颈。"
     },
     "official_sources": [
       {
@@ -187,13 +193,15 @@
       "status": "documented-per-endpoint",
       "requests_per_minute": 20,
       "requests_per_day": null,
-      "summary": "Trial keys are free, rate limited and not licensed for production. Chat is limited to 20 requests/minute, Rerank to 10/minute, Audio Transcriptions and EmbedJob to 5/minute, Tokenize to 100/minute, and Embed to 2,000 inputs/minute. Every trial key is additionally capped at 1,000 API calls per month across the account."
+      "summary": "Trial keys are free, rate limited and not licensed for production. Chat is limited to 20 requests/minute, Rerank to 10/minute, Audio Transcriptions and EmbedJob to 5/minute, Tokenize to 100/minute, and Embed to 2,000 inputs/minute. Every trial key is additionally capped at 1,000 API calls per month across the account.",
+      "summary_zh": "试用 key 免费、有限流，并且按条款不得用于生产。Chat 限 20 次/分钟，Rerank 限 10 次/分钟，Audio Transcriptions 与 EmbedJob 限 5 次/分钟，Tokenize 限 100 次/分钟，Embed 限 2,000 条输入/分钟。此外每个试用 key 在账号维度还有每月 1,000 次 API 调用的封顶。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Trial keys are explicitly excluded from production use by Cohere's terms; the 1,000 calls/month ceiling is the binding limit."
+      "note": "Trial keys are explicitly excluded from production use by Cohere's terms; the 1,000 calls/month ceiling is the binding limit.",
+      "note_zh": "Cohere 的条款明确把试用 key 排除在生产用途之外；每月 1,000 次调用才是真正卡住你的那条线。"
     },
     "official_sources": [
       {
@@ -242,13 +250,15 @@
       "status": "documented-in-compute-units",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Both the Workers Free and Workers Paid plans include 10,000 Neurons per day at no charge, resetting daily at 00:00 UTC. Neurons are a compute unit rather than a request count, so the number of requests you get depends on the model and prompt size. On the Free plan there is no overage: once the allocation is spent, requests fail until reset. Workers Paid bills overage at $0.011 per 1,000 Neurons."
+      "summary": "Both the Workers Free and Workers Paid plans include 10,000 Neurons per day at no charge, resetting daily at 00:00 UTC. Neurons are a compute unit rather than a request count, so the number of requests you get depends on the model and prompt size. On the Free plan there is no overage: once the allocation is spent, requests fail until reset. Workers Paid bills overage at $0.011 per 1,000 Neurons.",
+      "summary_zh": "Workers Free 和 Workers Paid 两个计划都包含每天 10,000 Neurons 的免费额度，每天 UTC 00:00 重置。Neuron 是计算单位而不是请求数，所以能换到多少次请求取决于模型和 prompt 大小。Free 计划没有超额继续用这一说：额度花完后请求直接失败，直到下次重置。Workers Paid 的超额按每 1,000 Neurons 0.011 美元计费。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "The pricing page does not state whether a credit card is required to sign up for the Workers Free plan, so treat the card column as unverified for this entry."
+      "note": "The pricing page does not state whether a credit card is required to sign up for the Workers Free plan, so treat the card column as unverified for this entry.",
+      "note_zh": "定价页没有说明注册 Workers Free 计划是否需要信用卡，所以这一条的\"需信用卡\"按未核实处理。"
     },
     "official_sources": [
       {
@@ -297,13 +307,15 @@
       "status": "documented-in-credits",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Signed-in free users receive $0.10 in monthly Inference Provider credits (Hugging Face notes this is subject to change); PRO users receive $2.00 and Team or Enterprise organizations $2.00 per seat. Credits only apply to requests routed by Hugging Face, not to requests made with your own provider key. Once the monthly credits are spent you must purchase credits to continue."
+      "summary": "Signed-in free users receive $0.10 in monthly Inference Provider credits (Hugging Face notes this is subject to change); PRO users receive $2.00 and Team or Enterprise organizations $2.00 per seat. Credits only apply to requests routed by Hugging Face, not to requests made with your own provider key. Once the monthly credits are spent you must purchase credits to continue.",
+      "summary_zh": "登录的免费用户每月获得 0.10 美元的 Inference Provider 额度（Hugging Face 注明这个数额可能调整）；PRO 用户 2.00 美元，Team 或 Enterprise 组织按每席位 2.00 美元。额度只作用于经 Hugging Face 路由的请求，用你自己的服务商 key 直连既不消耗也不享受。每月额度花完后需要另行购买才能继续。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Hugging Face charges provider list rates with no markup, so the free allowance converts to very different request counts depending on which model you route to."
+      "note": "Hugging Face charges provider list rates with no markup, so the free allowance converts to very different request counts depending on which model you route to.",
+      "note_zh": "Hugging Face 按各服务商的原价计费、不加价，所以同样一份额度换算成请求数，会因为路由到哪个模型而差别极大。"
     },
     "official_sources": [
       {
@@ -352,13 +364,15 @@
       "status": "documented-per-tier",
       "requests_per_minute": 1000,
       "requests_per_day": null,
-      "summary": "Rate limits for free models are fixed; paid models are tiered by monthly spend and start at tier L0 with 1,000 RPM and 40,000 TPM. Limits are enforced per user account rather than per API key, and each model is limited separately. deepseek-ai/DeepSeek-R1 and deepseek-ai/DeepSeek-V3 carry an extra cap of 30 requests/hour and 100 requests/day."
+      "summary": "Rate limits for free models are fixed; paid models are tiered by monthly spend and start at tier L0 with 1,000 RPM and 40,000 TPM. Limits are enforced per user account rather than per API key, and each model is limited separately. deepseek-ai/DeepSeek-R1 and deepseek-ai/DeepSeek-V3 carry an extra cap of 30 requests/hour and 100 requests/day.",
+      "summary_zh": "免费模型的限流是固定值；付费模型按月消费分层，L0 起步为 1,000 RPM、40,000 TPM。限流按用户账号而不是按 API key 计算，而且每个模型单独计限。deepseek-ai/DeepSeek-R1 与 deepseek-ai/DeepSeek-V3 另有每小时 30 次、每天 100 次的额外封顶。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "The 1,000 RPM figure is the L0 paid-model ceiling. Free models have their own fixed limits published per model on the model pages."
+      "note": "The 1,000 RPM figure is the L0 paid-model ceiling. Free models have their own fixed limits published per model on the model pages.",
+      "note_zh": "1,000 RPM 是付费模型 L0 档的上限。免费模型有各自固定的限额，分别公布在对应的模型页上。"
     },
     "official_sources": [
       {
@@ -406,13 +420,15 @@
       "status": "documented-account-wide",
       "requests_per_minute": 10,
       "requests_per_day": null,
-      "summary": "An account with no payment method and no credits is limited to 10 requests per minute across the entire account. Adding a payment method and active credits raises the ceiling to a maximum of 6,000 RPM. Fireworks is pre-paid, so the 10 RPM envelope is the only no-cost path and there is no published daily request cap on it."
+      "summary": "An account with no payment method and no credits is limited to 10 requests per minute across the entire account. Adding a payment method and active credits raises the ceiling to a maximum of 6,000 RPM. Fireworks is pre-paid, so the 10 RPM envelope is the only no-cost path and there is no published daily request cap on it.",
+      "summary_zh": "既没有绑定支付方式、也没有余额的账号，整个账号合计限 10 次请求/分钟。绑定支付方式并有可用余额后，上限最高能到 6,000 RPM。Fireworks 是预付费模式，所以 10 RPM 这个区间是唯一的零成本路径，官方也没有为它公布每日请求上限。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "The 10 RPM limit is a request-rate envelope, not a free token grant; serverless token throughput still depends on your spending tier."
+      "note": "The 10 RPM limit is a request-rate envelope, not a free token grant; serverless token throughput still depends on your spending tier.",
+      "note_zh": "10 RPM 是请求速率的封顶，不是一份免费 token 赠额；serverless 的 token 吞吐仍然取决于你的消费层级。"
     },
     "official_sources": [
       {
@@ -460,13 +476,15 @@
       "status": "free-models-listed",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "GLM-4.7-Flash and GLM-4.5-Flash are listed at $0 for input, cached input and output on the official pricing table, making them free to call rather than merely discounted. Z.AI does not publish per-model RPM or TPM for these models on the pricing page; the rate limit reference is a separate page and the console is authoritative."
+      "summary": "GLM-4.7-Flash and GLM-4.5-Flash are listed at $0 for input, cached input and output on the official pricing table, making them free to call rather than merely discounted. Z.AI does not publish per-model RPM or TPM for these models on the pricing page; the rate limit reference is a separate page and the console is authoritative.",
+      "summary_zh": "官方定价表把 GLM-4.7-Flash 和 GLM-4.5-Flash 的输入、缓存输入与输出都标成 $0，也就是真的免费调用，而不只是打折。Z.AI 没有在定价页上给出这两个模型的 RPM 或 TPM，限流说明在另一个页面上，实际以控制台为准。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "The free Flash models sit alongside paid GLM models on the same key, so watch which model ID you send to avoid unintended charges."
+      "note": "The free Flash models sit alongside paid GLM models on the same key, so watch which model ID you send to avoid unintended charges.",
+      "note_zh": "免费的 Flash 模型和付费的 GLM 模型共用同一个 key，所以要留意发出去的 model ID，免得意外产生费用。"
     },
     "official_sources": [
       {
@@ -514,13 +532,15 @@
       "status": "free-models-listed",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "The official pricing table lists inclusionai/Ling-3.0-flash and Mind Lab's Macaron V1 Venti with both input and output priced Free; every other listed model is billed per million tokens. Novita does not publish RPM or RPD for the free models on the pricing page."
+      "summary": "The official pricing table lists inclusionai/Ling-3.0-flash and Mind Lab's Macaron V1 Venti with both input and output priced Free; every other listed model is billed per million tokens. Novita does not publish RPM or RPD for the free models on the pricing page.",
+      "summary_zh": "官方定价表把 inclusionai/Ling-3.0-flash 和 Mind Lab 的 Macaron V1 Venti 的输入与输出都标成 Free，其余列出的模型都按每百万 token 计费。Novita 没有在定价页上给出这些免费模型的 RPM 或 RPD。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Which models are free changes with the catalogue, so re-check the pricing table before depending on a specific free model ID."
+      "note": "Which models are free changes with the catalogue, so re-check the pricing table before depending on a specific free model ID.",
+      "note_zh": "哪些模型免费会随目录调整，把某个具体的免费 model ID 写进依赖之前，请重新核对定价表。"
     },
     "official_sources": [
       {
@@ -569,13 +589,15 @@
       "status": "not_published",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Mistral documents a Free mode (also referred to as the Experiment plan) that lets you activate a workspace and generate an API key without paying, but the public documentation does not currently expose a reachable rate-limit page for it: the tier URL listed in Mistral's own documentation index returns 404 as of the check date. The console is the only authoritative source for the Experiment plan's requests-per-second and tokens-per-minute ceilings."
+      "summary": "Mistral documents a Free mode (also referred to as the Experiment plan) that lets you activate a workspace and generate an API key without paying, but the public documentation does not currently expose a reachable rate-limit page for it: the tier URL listed in Mistral's own documentation index returns 404 as of the check date. The console is the only authoritative source for the Experiment plan's requests-per-second and tokens-per-minute ceilings.",
+      "summary_zh": "Mistral 文档里有一个 Free 模式（也称 Experiment 计划），不付费就能激活工作区并生成 API key，但公开文档目前没有一个打得开的限流页面：核验当天，Mistral 自己文档索引里给出的该层级 URL 返回 404。Experiment 计划的每秒请求数和每分钟 token 数，只能以控制台为准。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Mistral's consumer Free plan for the Vibe assistant is a different product from the API Free mode; do not read the assistant's message limits as API limits."
+      "note": "Mistral's consumer Free plan for the Vibe assistant is a different product from the API Free mode; do not read the assistant's message limits as API limits.",
+      "note_zh": "Mistral 面向消费者的 Vibe 助手也有个 Free 计划，那是另一个产品；不要把助手的消息条数读成 API 的限额。"
     },
     "official_sources": [
       {
@@ -624,13 +646,15 @@
       "status": "documented-per-model",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Rate limiting is applied at the Alibaba Cloud root account level and aggregates usage across all RAM users, workspaces and API keys under that account. Each model carries its own RPM and TPM limit published in per-model tables, and free quota is granted per model rather than as one account-wide allowance, so no single free-tier number applies."
+      "summary": "Rate limiting is applied at the Alibaba Cloud root account level and aggregates usage across all RAM users, workspaces and API keys under that account. Each model carries its own RPM and TPM limit published in per-model tables, and free quota is granted per model rather than as one account-wide allowance, so no single free-tier number applies.",
+      "summary_zh": "限流在阿里云主账号这一层生效，会把该账号下所有 RAM 用户、工作空间和 API key 的用量合并计算。每个模型有各自的 RPM 和 TPM，公布在按模型的表格里，免费额度也是按模型发放而不是给一份账号级总额，因此没有单一的免费额度数字。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Requests are rejected when a limit is hit and typically recover within one minute; the error text tells you whether RPM or TPM triggered."
+      "note": "Requests are rejected when a limit is hit and typically recover within one minute; the error text tells you whether RPM or TPM triggered.",
+      "note_zh": "触发限流时请求会被拒绝，通常一分钟内恢复；报错文本会告诉你触发的是 RPM 还是 TPM。"
     },
     "official_sources": [
       {
@@ -679,13 +703,15 @@
       "status": "documented-per-tier",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Limits are expressed as concurrency, RPM, TPM and TPD, and the published tier table is keyed to cumulative recharge rather than to a standing free allowance; reaching $5 of cumulative recharge grants a $5 voucher. New accounts start at the lowest tier, so treat the console tier page as authoritative before planning volume."
+      "summary": "Limits are expressed as concurrency, RPM, TPM and TPD, and the published tier table is keyed to cumulative recharge rather than to a standing free allowance; reaching $5 of cumulative recharge grants a $5 voucher. New accounts start at the lowest tier, so treat the console tier page as authoritative before planning volume.",
+      "summary_zh": "限额用并发数、RPM、TPM 和 TPD 表示，公布的分层表对应的是累计充值金额，而不是一份常设的免费额度；累计充值达到 5 美元会赠送 5 美元代金券。新账号从最低档起步，所以规划用量之前请以控制台的层级页面为准。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Because the tiers key off recharge rather than a free grant, budget for at least a small top-up if you need more than trivial throughput."
+      "note": "Because the tiers key off recharge rather than a free grant, budget for at least a small top-up if you need more than trivial throughput.",
+      "note_zh": "因为分层跟充值挂钩而不是跟免费赠额挂钩，吞吐需求一旦超过尝鲜级别，就得预留一笔小额充值。"
     },
     "official_sources": [
       {
@@ -734,13 +760,15 @@
       "status": "not_published",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Pollinations exposes an OpenAI-compatible text endpoint that can be called without a key for basic use, and the official API docs do not publish RPM or RPD figures. The docs do state that since 2025-03-31 free-tier images may include watermarks, so free-tier output is not identical to paid output."
+      "summary": "Pollinations exposes an OpenAI-compatible text endpoint that can be called without a key for basic use, and the official API docs do not publish RPM or RPD figures. The docs do state that since 2025-03-31 free-tier images may include watermarks, so free-tier output is not identical to paid output.",
+      "summary_zh": "Pollinations 提供一个 OpenAI 兼容的文本端点，基础用法不带 key 也能调用，官方 API 文档也没有公布 RPM 或 RPD。文档确实写明自 2025-03-31 起免费层的图片可能带水印，所以免费层的产出和付费层并不完全一样。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "This is a community-operated service rather than a commercial provider; treat availability as best-effort and do not build production dependencies on it."
+      "note": "This is a community-operated service rather than a commercial provider; treat availability as best-effort and do not build production dependencies on it.",
+      "note_zh": "这是社区运营的服务而不是商业服务商，可用性按尽力而为看待，不要把生产依赖压在上面。"
     },
     "official_sources": [
       {
@@ -789,13 +817,15 @@
       "status": "not_published",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Cloud models run on Ollama's servers while keeping the local CLI workflow, and require only an ollama.com account to start. The Cloud documentation page describes access and model retirement policy but does not publish hourly or daily request limits, so the account page is the authoritative source for the active quota."
+      "summary": "Cloud models run on Ollama's servers while keeping the local CLI workflow, and require only an ollama.com account to start. The Cloud documentation page describes access and model retirement policy but does not publish hourly or daily request limits, so the account page is the authoritative source for the active quota.",
+      "summary_zh": "云端模型跑在 Ollama 自己的服务器上，本地 CLI 的用法保持不变，只要一个 ollama.com 账号就能开始。Cloud 文档页说明了访问方式和模型下线策略，但没有公布每小时或每天的请求限额，实际生效的额度以账号页面为准。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Ollama periodically retires older cloud models as newer open-weight models ship; local models are unaffected by those retirements."
+      "note": "Ollama periodically retires older cloud models as newer open-weight models ship; local models are unaffected by those retirements.",
+      "note_zh": "随着新的开放权重模型发布，Ollama 会定期下线较旧的云端模型；本地模型不受这些下线影响。"
     },
     "official_sources": [
       {
@@ -844,13 +874,15 @@
       "status": "documented-per-model",
       "requests_per_minute": 5,
       "requests_per_day": null,
-      "summary": "Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b, zai-glm-4.7 and gemma-4-31b. New accounts receive $5 in credits that expire 30 days after being granted. Cerebras states that if you skip adding a payment method at sign-up, Playground and API access remain inactive until you add one."
+      "summary": "Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b, zai-glm-4.7 and gemma-4-31b. New accounts receive $5 in credits that expire 30 days after being granted. Cerebras states that if you skip adding a payment method at sign-up, Playground and API access remain inactive until you add one.",
+      "summary_zh": "免费试用的限额是每个模型 5 RPM、30K TPM，并有每小时 100 万 token、每天 100 万 token 的封顶，适用于 gpt-oss-120b、zai-glm-4.7 和 gemma-4-31b。新账号获得 5 美元额度，自发放起 30 天过期。Cerebras 说明：注册时如果跳过绑定支付方式，Playground 和 API 访问会一直是未激活状态，直到补上为止。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "This entry is marked as requiring a card because a verified payment method is a precondition for API access, even though the trial itself costs nothing."
+      "note": "This entry is marked as requiring a card because a verified payment method is a precondition for API access, even though the trial itself costs nothing.",
+      "note_zh": "这一条标为需要信用卡，是因为通过验证的支付方式是拿到 API 访问权的前置条件，尽管试用本身不花钱。"
     },
     "official_sources": [
       {
@@ -899,13 +931,15 @@
       "status": "documented-in-credits",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Every Vercel team account receives $5 of AI Gateway credits per month on the free tier, usable only against the Free Tier model subset rather than the full catalogue. Free tier requests are additionally rate limited per model with lower limits than the paid tier, and Vercel does not publish those per-model numbers. Credits start counting from your first Gateway request."
+      "summary": "Every Vercel team account receives $5 of AI Gateway credits per month on the free tier, usable only against the Free Tier model subset rather than the full catalogue. Free tier requests are additionally rate limited per model with lower limits than the paid tier, and Vercel does not publish those per-model numbers. Credits start counting from your first Gateway request.",
+      "summary_zh": "免费层下每个 Vercel 团队账号每月获得 5 美元的 AI Gateway 额度，而且只能用在 Free Tier 那部分模型上，不是整个模型目录。免费层的请求还会按模型单独限流，限额低于付费层，Vercel 没有公布这些按模型的具体数字。额度从你第一次调用 Gateway 起开始计算。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Purchasing AI Gateway credits moves the team to the paid tier, which serves the full model catalogue plus bring-your-own-key routing."
+      "note": "Purchasing AI Gateway credits moves the team to the paid tier, which serves the full model catalogue plus bring-your-own-key routing.",
+      "note_zh": "购买 AI Gateway 额度会把团队转到付费层，付费层提供完整模型目录，并支持自带 key 路由。"
     },
     "official_sources": [
       {
@@ -954,13 +988,15 @@
       "status": "not_published",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "IBM offers a no-cost trial of watsonx.ai alongside the paid Essentials and Standard plans, and the pricing page invites you to start building at no cost. The page states plan pricing per resource unit but does not publish request-rate limits for the trial, so the console is authoritative for the trial's ceilings."
+      "summary": "IBM offers a no-cost trial of watsonx.ai alongside the paid Essentials and Standard plans, and the pricing page invites you to start building at no cost. The page states plan pricing per resource unit but does not publish request-rate limits for the trial, so the console is authoritative for the trial's ceilings.",
+      "summary_zh": "IBM 在付费的 Essentials 和 Standard 计划之外，提供 watsonx.ai 的免费试用，定价页也明确邀请你零成本开始构建。该页面按资源单位列出了各计划的价格，但没有公布试用的请求速率限制，试用的上限以控制台为准。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "watsonx.ai is not OpenAI-wire-compatible by default; requests use IBM's own ML text-generation API shape."
+      "note": "watsonx.ai is not OpenAI-wire-compatible by default; requests use IBM's own ML text-generation API shape.",
+      "note_zh": "watsonx.ai 默认不兼容 OpenAI 协议；请求走的是 IBM 自己的 ML 文本生成 API 格式。"
     },
     "official_sources": [
       {
@@ -1008,13 +1044,15 @@
       "status": "documented-with-conditions",
       "requests_per_minute": 20,
       "requests_per_day": 50,
-      "summary": "Model variants whose ID ends in :free are capped at 20 requests/minute regardless of account status. The daily cap depends on lifetime credit purchases: under 10 credits gives 50 requests/day, and 10 or more credits raises it to 1,000 requests/day. OpenRouter governs capacity globally, so extra accounts or extra API keys do not raise these limits."
+      "summary": "Model variants whose ID ends in :free are capped at 20 requests/minute regardless of account status. The daily cap depends on lifetime credit purchases: under 10 credits gives 50 requests/day, and 10 or more credits raises it to 1,000 requests/day. OpenRouter governs capacity globally, so extra accounts or extra API keys do not raise these limits.",
+      "summary_zh": "model ID 以 :free 结尾的变体一律限 20 次请求/分钟，与账号状态无关。每日上限取决于历史累计购买的额度：不足 10 credits 是每天 50 次请求，达到 10 credits 及以上提升到每天 1,000 次。OpenRouter 在全局层面调度容量，所以多开账号或多建 API key 都不会把这些限额抬高。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "A negative account balance can return 402 errors even on free models until the balance is topped back above zero."
+      "note": "A negative account balance can return 402 errors even on free models until the balance is topped back above zero.",
+      "note_zh": "账号余额为负时，即使调用免费模型也可能收到 402，直到把余额补回零以上为止。"
     },
     "official_sources": [
       {
@@ -1061,13 +1099,15 @@
       "status": "retiring",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Limits vary by model and Copilot plan. New customers are no longer accepted, and the service retires on 2026-07-30."
+      "summary": "Limits vary by model and Copilot plan. New customers are no longer accepted, and the service retires on 2026-07-30.",
+      "summary_zh": "限额随模型和 Copilot 计划而不同。已不再接受新客户，服务将于 2026-07-30 下线。"
     },
     "availability": {
       "status": "retiring",
       "accepting_new_users": false,
       "retires_at": "2026-07-30",
-      "note": "GitHub announced full retirement of the playground, catalog, inference API and BYOK on 2026-07-30."
+      "note": "GitHub announced full retirement of the playground, catalog, inference API and BYOK on 2026-07-30.",
+      "note_zh": "GitHub 宣布 playground、模型目录、推理 API 和 BYOK 将于 2026-07-30 全部下线。"
     },
     "official_sources": [
       {
@@ -1116,13 +1156,15 @@
       "status": "dynamic-no-fixed-numbers",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Together applies dynamic per-model rate limits that rise with sustained successful traffic and fall when traffic drops, and states plainly that there are no fixed per-model limits published. Requests above your dynamic rate return 429 with x-ratelimit-reset; requests at or below it that still fail return 503. No standing free allowance is documented on the rate-limits page."
+      "summary": "Together applies dynamic per-model rate limits that rise with sustained successful traffic and fall when traffic drops, and states plainly that there are no fixed per-model limits published. Requests above your dynamic rate return 429 with x-ratelimit-reset; requests at or below it that still fail return 503. No standing free allowance is documented on the rate-limits page.",
+      "summary_zh": "Together 采用按模型的动态限流：持续成功的流量会把限额抬上去，流量降下来限额也跟着回落，官方明确说明不公布固定的按模型限额。超过动态速率的请求返回 429 并带 x-ratelimit-reset；在限额之内却仍然失败的请求返回 503。限流页面上没有记录任何常设的免费额度。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Because limits are usage-derived, a new account cannot know its ceiling in advance; read the 429 response headers instead."
+      "note": "Because limits are usage-derived, a new account cannot know its ceiling in advance; read the 429 response headers instead.",
+      "note_zh": "因为限额是从用量推导出来的，新账号无法事先知道自己的上限；改读 429 的响应头才是办法。"
     },
     "official_sources": [
       {
@@ -1171,13 +1213,15 @@
       "status": "documented-baseline",
       "requests_per_minute": 60,
       "requests_per_day": null,
-      "summary": "Limits are dynamic with a published baseline of 60 RPM and 400,000 TPM. Usage is evaluated in rolling 15-minute windows: averaging at or above 80% of the current limit raises it by 20% for the next window, averaging at or below 50% divides it by 1.5, and the ceiling is 20x the base allocation before an Enterprise plan is required. No standing free allowance is documented on this page."
+      "summary": "Limits are dynamic with a published baseline of 60 RPM and 400,000 TPM. Usage is evaluated in rolling 15-minute windows: averaging at or above 80% of the current limit raises it by 20% for the next window, averaging at or below 50% divides it by 1.5, and the ceiling is 20x the base allocation before an Enterprise plan is required. No standing free allowance is documented on this page.",
+      "summary_zh": "限额是动态的，公布的基线为 60 RPM 和 400,000 TPM。用量按 15 分钟滚动窗口评估：窗口内平均达到或超过当前限额的 80%，下一个窗口上调 20%；平均低于或等于 50% 则除以 1.5；上限是基础配额的 20 倍，再往上要走 Enterprise 计划。该页面没有记录任何常设的免费额度。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Requests above the limit may still be served at lower priority, flagged with an x-ratelimit-over-limit header, rather than failing outright."
+      "note": "Requests above the limit may still be served at lower priority, flagged with an x-ratelimit-over-limit header, rather than failing outright.",
+      "note_zh": "超出限额的请求可能仍然会以较低优先级被处理，并带上 x-ratelimit-over-limit 响应头，而不是直接失败。"
     },
     "official_sources": [
       {
@@ -1226,13 +1270,15 @@
       "status": "documented-per-tier",
       "requests_per_minute": 50,
       "requests_per_day": null,
-      "summary": "Usage tiers are set by cumulative API credit purchases and never downgrade. Tier 0 ($0 purchased) allows 1 query/second and 50 requests/minute on the Agent API; Tier 1 ($50+) allows 3 QPS and 150/min, rising to 33 QPS and 2,000/min at Tier 4. The Search API is separately limited to 50 requests/second at every tier. Tier 0 sets a rate ceiling but is not a free token grant, so credits are still required to make calls."
+      "summary": "Usage tiers are set by cumulative API credit purchases and never downgrade. Tier 0 ($0 purchased) allows 1 query/second and 50 requests/minute on the Agent API; Tier 1 ($50+) allows 3 QPS and 150/min, rising to 33 QPS and 2,000/min at Tier 4. The Search API is separately limited to 50 requests/second at every tier. Tier 0 sets a rate ceiling but is not a free token grant, so credits are still required to make calls.",
+      "summary_zh": "用量层级由累计购买的 API 额度决定，而且只升不降。Tier 0（累计购买 0 美元）在 Agent API 上允许 1 QPS、50 次请求/分钟；Tier 1（50 美元以上）是 3 QPS、150 次/分钟，到 Tier 4 提升到 33 QPS、2,000 次/分钟。Search API 在所有层级都单独限为 50 次请求/秒。Tier 0 只是划定了速率上限，并不是一份免费 token 赠额，调用之前仍然要先有余额。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Perplexity Pro subscribers receive a monthly API credit allowance through their subscription; that allowance is not documented on the rate-limits page."
+      "note": "Perplexity Pro subscribers receive a monthly API credit allowance through their subscription; that allowance is not documented on the rate-limits page.",
+      "note_zh": "Perplexity Pro 订阅者会通过订阅拿到每月的 API 额度；这份额度没有写在限流页面上。"
     },
     "official_sources": [
       {
@@ -1281,13 +1327,15 @@
       "status": "not_published",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "The official pricing page lists a per-million-token input and output price for every serving model and does not describe a free allowance or publish request-rate limits. Treat DeepInfra as pay-as-you-go and check the dashboard for any promotional credit attached to a new account."
+      "summary": "The official pricing page lists a per-million-token input and output price for every serving model and does not describe a free allowance or publish request-rate limits. Treat DeepInfra as pay-as-you-go and check the dashboard for any promotional credit attached to a new account.",
+      "summary_zh": "官方定价页为每个在服模型列出了每百万 token 的输入与输出价格，既没有描述免费额度，也没有公布请求速率限制。请把 DeepInfra 当作按量付费来看待，新账号是否附带推广额度，到控制台确认。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Listed as metered rather than free because the pricing page we checked documents no free tier; this is not a statement that no signup credit exists."
+      "note": "Listed as metered rather than free because the pricing page we checked documents no free tier; this is not a statement that no signup credit exists.",
+      "note_zh": "归到按量计费而不是免费，是因为我们核验的那份定价页没有记录任何免费层；这不等于说注册就一定没有赠送额度。"
     },
     "official_sources": [
       {
@@ -1336,13 +1384,15 @@
       "status": "documented-in-plans",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Chutes prices inference per token and sells subscription plans that bundle a daily quota: Plus at $10/month with a bundled daily quota and 6% off pay-as-you-go rates beyond it, and Pro at $20/month with a larger daily quota and 10% off. The pricing page documents no zero-cost tier, and per-plan request-rate numbers are shown on the plan limits page rather than in pricing."
+      "summary": "Chutes prices inference per token and sells subscription plans that bundle a daily quota: Plus at $10/month with a bundled daily quota and 6% off pay-as-you-go rates beyond it, and Pro at $20/month with a larger daily quota and 10% off. The pricing page documents no zero-cost tier, and per-plan request-rate numbers are shown on the plan limits page rather than in pricing.",
+      "summary_zh": "Chutes 按 token 计费，并出售包含每日额度的订阅计划：Plus 每月 10 美元，含一份每日额度，超出部分在按量价上打 94 折；Pro 每月 20 美元，每日额度更大，超出部分打 9 折。定价页没有记录任何零成本层级，各计划的请求速率数字在计划限额页上，而不在定价页上。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Models are served in TEE (trusted execution environment) variants, which is the differentiator rather than price."
+      "note": "Models are served in TEE (trusted execution environment) variants, which is the differentiator rather than price.",
+      "note_zh": "模型以 TEE（可信执行环境）变体提供，这才是它的差异点，而不是价格。"
     },
     "official_sources": [
       {
@@ -1391,13 +1441,15 @@
       "status": "not_published",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Every model served through Generative APIs - Serverless is limited by tokens per minute, queries per minute and concurrent requests. Scaleway states that base limits apply only if you have registered a valid payment method, and that they increase automatically if you also verify your identity. The exact numbers live in the Organization quotas page rather than in the rate-limits documentation."
+      "summary": "Every model served through Generative APIs - Serverless is limited by tokens per minute, queries per minute and concurrent requests. Scaleway states that base limits apply only if you have registered a valid payment method, and that they increase automatically if you also verify your identity. The exact numbers live in the Organization quotas page rather than in the rate-limits documentation.",
+      "summary_zh": "通过 Generative APIs - Serverless 提供的每个模型，都同时受每分钟 token 数、每分钟查询数和并发请求数三重限制。Scaleway 说明基础限额只在你登记了有效支付方式之后才适用，若再完成身份验证还会自动提高。具体数字在组织配额页面上，而不在限流文档里。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Requests sent through the Batches API are not rate limited and are billed at a 50% discount, which is the documented escape hatch for non-real-time work."
+      "note": "Requests sent through the Batches API are not rate limited and are billed at a 50% discount, which is the documented escape hatch for non-real-time work.",
+      "note_zh": "走 Batches API 的请求不受限流，并且按五折计费，这是官方给非实时任务留的口子。"
     },
     "official_sources": [
       {

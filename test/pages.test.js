@@ -172,9 +172,11 @@ test('every generated page declares a canonical URL that matches where it is wri
   for (const [path, html] of Object.entries(pages)) {
     const canonical = html.match(/<link rel="canonical" href="([^"]+)">/);
     assert.ok(canonical, `${path} has no canonical link`);
-    // The home page's canonical is the bare site root, because that is the URL
-    // readers link to; every other page canonicalises to its own file.
-    const expected = path === 'docs/index.html' ? SITE_URL : `${SITE_URL}${path.replace(/^docs\//, '')}`;
+    // A directory index canonicalises to its directory, because that is the URL
+    // readers link to: the catalog is the bare site root and its translation is
+    // the locale folder. Every other page canonicalises to its own file.
+    const published = path.replace(/^docs\//, '').replace(/(^|\/)index\.html$/, '$1');
+    const expected = `${SITE_URL}${published}`;
     assert.equal(canonical[1], expected, `${path} points its canonical URL somewhere else`);
   }
 });

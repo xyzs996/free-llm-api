@@ -3,7 +3,9 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { HOSTED_CTA_URL, renderClientPages } from './client-pages.js';
 import { embedJson, escapeHtml, externalLink, joinInline } from './html.js';
+import { dataSentence, localized, translator } from './i18n.js';
 import { escapeMarkdown } from './markdown.js';
+import { relativePrefix, renderLanguageSwitch } from './page-layout.js';
 import {
   CLIENT_PAGE_TITLES as clientLabels,
   MODEL_FAMILIES,
@@ -12,12 +14,9 @@ import {
   renderMatrixPages,
 } from './pages.js';
 import { renderReadmeZh } from './readme-zh.js';
-import {
-  PROBE_CLASSIFICATIONS,
-  PROBE_CLASSIFICATION_LABELS,
-} from './probe-contract.js';
+import { PROBE_CLASSIFICATIONS } from './probe-contract.js';
 import { catalogDatasetNode, renderHead, renderSiteFiles, webSiteNode } from './seo.js';
-import { SITE_URL } from './site.js';
+import { DEFAULT_LOCALE, LOCALES, SITE_URL, localeDepth, localePath } from './site.js';
 import { CHANGELOG_CHANGE_LABELS, isLandingPageEligible } from './validate.js';
 import { connectSrcOrigins, renderVerifyPage } from './verify-page.js';
 
@@ -28,20 +27,20 @@ function renderSources(sources) {
   return joinInline(sources.map(({ title, url }) => externalLink(url, title)));
 }
 
-function renderProviderRow(provider) {
+function renderProviderRow(provider, t, locale) {
   const retirement = provider.availability.retires_at
-    ? `\n              <span class="retirement">Retires ${escapeHtml(provider.availability.retires_at)}</span>`
+    ? `\n              <span class="retirement">${t('home.rowRetires', { date: escapeHtml(provider.availability.retires_at) })}</span>`
     : '';
   const signup = provider.signup_url
-    ? `<a class="row-action" href="${escapeHtml(provider.signup_url)}" rel="noreferrer">Get API access</a>`
-    : '<span class="closed-label">New access closed</span>';
+    ? `<a class="row-action" href="${escapeHtml(provider.signup_url)}" rel="noreferrer">${escapeHtml(t('home.rowSignup'))}</a>`
+    : `<span class="closed-label">${escapeHtml(t('home.rowClosed'))}</span>`;
   const quota = [
     provider.limits.requests_per_minute === null
       ? null
-      : `${provider.limits.requests_per_minute} RPM`,
+      : t('home.rowRpm', { count: provider.limits.requests_per_minute }),
     provider.limits.requests_per_day === null
       ? null
-      : `${provider.limits.requests_per_day} requests/day`,
+      : t('home.rowRpd', { count: provider.limits.requests_per_day }),
   ].filter(Boolean).join(' · ');
 
   // A provider without a detail page keeps the plain name rather than a link
@@ -51,26 +50,26 @@ function renderProviderRow(provider) {
     : escapeHtml(provider.name);
 
   return `          <tr data-provider-id="${escapeHtml(provider.id)}">
-            <td data-label="Provider">
+            <td data-label="${escapeHtml(t('home.colProvider'))}">
               <strong>${heading}</strong>
               <span class="provider-meta">${escapeHtml(provider.base_url)}</span>${retirement}
             </td>
-            <td data-label="Free access">${escapeHtml(titleForCategory(provider.category))}</td>
-            <td data-label="Credit card">${provider.credit_card_required ? 'Required' : 'Not required'}</td>
-            <td data-label="OpenAI compatible">${provider.openai_compatible ? 'Yes' : 'No'}</td>
-            <td data-label="Limits">
-              ${quota ? `<strong class="quota">${escapeHtml(quota)}</strong>` : '<strong class="quota">Dynamic / unknown</strong>'}
-              <span class="cell-detail">${escapeHtml(provider.limits.summary)}</span>
+            <td data-label="${escapeHtml(t('home.colAccess'))}">${escapeHtml(t(`category.${provider.category}`))}</td>
+            <td data-label="${escapeHtml(t('home.cellCard'))}">${escapeHtml(t(provider.credit_card_required ? 'word.required' : 'word.notRequired'))}</td>
+            <td data-label="${escapeHtml(t('home.cellOpenAi'))}">${escapeHtml(t(provider.openai_compatible ? 'word.yes' : 'word.no'))}</td>
+            <td data-label="${escapeHtml(t('home.colLimits'))}">
+              ${quota ? `<strong class="quota">${escapeHtml(quota)}</strong>` : `<strong class="quota">${escapeHtml(t('home.rowUnknown'))}</strong>`}
+              <span class="cell-detail">${escapeHtml(localized(provider.limits, 'summary', locale))}</span>
             </td>
-            <td data-label="Probe">
-              <span class="probe probe--${escapeHtml(provider.probe.classification)}">${escapeHtml(provider.probe.classification)}</span>
-              <span class="cell-detail">${escapeHtml(provider.probe.explanation)}</span>
+            <td data-label="${escapeHtml(t('home.cellProbe'))}">
+              <span class="probe probe--${escapeHtml(provider.probe.classification)}">${escapeHtml(t(`probe.${provider.probe.classification}`))}</span>
+              <span class="cell-detail">${escapeHtml(dataSentence(provider.probe.explanation, locale))}</span>
             </td>
-            <td data-label="Sources checked">
+            <td data-label="${escapeHtml(t('home.colChecked'))}">
               <time datetime="${escapeHtml(provider.source_checked_at)}">${escapeHtml(provider.source_checked_at)}</time>
               <span class="source-links">${renderSources(provider.official_sources)}</span>
             </td>
-            <td data-label="Access">${signup}</td>
+            <td data-label="${escapeHtml(t('home.colSignup'))}">${signup}</td>
           </tr>`;
 }
 
@@ -132,23 +131,23 @@ function renderReadme(providers, changelog) {
 
 English · [简体中文](README_zh.md)
 
-A source-backed list of free LLM API keys and free tiers, with explainable sample probes, a filterable status page, and one-command setup for coding agents.
+A source-backed directory of free LLM API tiers: where to get your own API key from each provider, what the published limits actually are, and how to point a coding agent at one.
 
-> Sources last reviewed: ${latestSourceCheck}. A probe describes one sampled request, not provider-wide uptime.
+> Sources last reviewed: ${latestSourceCheck}. No keys are distributed here — every entry links to the provider's own signup. A probe describes one sampled request, not provider-wide uptime.
 
-${renderChangelogSection(providers, changelog)}## Check a key you already have
+**[Status page](${SITE_URL}) · [Browser key checker](${SITE_URL}verify.html) · [Provider catalog](#provider-catalog) · [How this is checked](${SITE_URL}methodology.html)**
+
+[![Filterable LLM free-tier status page](docs/assets/status-page.png)](${SITE_URL})
+
+Star this repository to bookmark the dataset and follow releases. A star changes nothing about any provider's keys, credits, or limits, and this project gives nothing in return for one.
+
+## Check a key you already have
 
 Open the [browser key checker](${SITE_URL}verify.html). Nothing is installed and nothing is stored: the request goes from your browser straight to the provider, because the page's Content Security Policy allows connections to the ${connectSrcOrigins(providers).length} provider origins in this catalog and to nothing else — not to an analytics host, and not to this site.
 
 ${browserCheckable} of ${providers.length} providers answer a cross-origin browser request. The other ${providers.length - browserCheckable} refuse one, so the page prints the equivalent \`curl\` command instead of guessing.
 
-## Run locally
-
-\`\`\`bash
-npm run render && npm run serve
-\`\`\`
-
-Open \`http://127.0.0.1:4173\`. Node.js 20+ is required; there are no runtime dependencies and no API keys are needed.
+## Point a coding agent at one
 
 Point a coding agent at any endpoint you already have access to:
 
@@ -160,11 +159,15 @@ Client guides: [Claude Code](docs/claude-code.md) · [Codex CLI](docs/codex.md) 
 
 Rotating keys across eight providers and hitting 429 every day? One OpenAI-compatible endpoint covers every model. [Create a PekPik API account](${hostedCta}).
 
-Star this repository to bookmark the dataset and follow releases. A star changes nothing about any provider's keys, credits, or limits, and this project gives nothing in return for one.
+## Run locally
 
-![Filterable LLM free-tier status page](docs/assets/status-page.png)
+\`\`\`bash
+npm run render && npm run serve
+\`\`\`
 
-## Provider catalog
+Open \`http://127.0.0.1:4173\`. Node.js 20+ is required; there are no runtime dependencies and no API keys are needed.
+
+${renderChangelogSection(providers, changelog)}## Provider catalog
 
 | Provider | Free access type | Credit card | OpenAI compatible | Published limits | Lifecycle | Signup |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -204,40 +207,47 @@ This repository contains no working credentials. Keep probe keys in environment 
 `;
 }
 
-function renderPage(providers, families) {
+function renderPage(providers, families, locale = DEFAULT_LOCALE) {
+  const t = translator(locale);
   const categories = [...new Set(providers.map(({ category }) => category))];
   const categoryOptions = categories
-    .map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(titleForCategory(category))}</option>`)
+    .map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(t(`category.${category}`))}</option>`)
     .join('');
   const probeOptions = Object.values(PROBE_CLASSIFICATIONS)
-    .map((classification) => `<option value="${classification}">${PROBE_CLASSIFICATION_LABELS[classification]}</option>`)
+    .map((classification) => `<option value="${classification}">${escapeHtml(t(`probe.${classification}`))}</option>`)
     .join('');
-  const rows = providers.map(renderProviderRow).join('\n');
+  const rows = providers.map((provider) => renderProviderRow(provider, t, locale)).join('\n');
   const embeddedData = embedJson(providers);
   const sourceDate = providers
     .map(({ source_checked_at: checkedAt }) => checkedAt)
     .sort()
     .at(-1);
-  const title = 'Free LLM API';
-  const description = 'Source-backed free LLM API limits, compatibility, lifecycle, and explainable sample probe status.';
+  const title = t('home.title');
+  const description = t('home.description');
+  // The catalog is the one page that lives at a directory root rather than in a
+  // section, so its own links stay flat while the shared assets it loads move up
+  // by however deep the locale sits.
+  const rootPrefix = relativePrefix(localeDepth(locale));
 
   return `<!doctype html>
-<html lang="en">
+<html lang="${escapeHtml(locale.hreflang)}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapeHtml(description)}">
   <title>${escapeHtml(title)}</title>
-  <link rel="stylesheet" href="./styles.css">${renderHead({
-    path: '',
+  <link rel="stylesheet" href="${rootPrefix}styles.css">${renderHead({
+    path: localePath('', locale),
     title,
     description,
+    locale,
     jsonLd: [
       webSiteNode(description),
       catalogDatasetNode({
-        description: `Free-tier terms for ${providers.length} LLM API providers: published rate limits, credit-card requirement, OpenAI protocol compatibility, lifecycle, and the official source behind each figure.`,
+        description: t('home.datasetDescription', { count: providers.length }),
         checkedAt: sourceDate,
         providerCount: providers.length,
+        locale,
       }),
     ],
   })}
@@ -246,15 +256,15 @@ function renderPage(providers, families) {
   <header class="masthead">
     <div class="shell masthead__inner">
       <div>
-        <p class="eyebrow">Verified provider facts · Reviewed ${escapeHtml(sourceDate)}</p>
-        <h1>Free LLM API</h1>
-        <p class="lede">Compare official free-access terms without treating one sample key as an uptime monitor.</p>
-        <p class="masthead__actions"><a href="./verify.html">Already have a key? Check it in your browser →</a></p>
+        <p class="eyebrow">${escapeHtml(t('home.eyebrow', { date: sourceDate }))}</p>
+        <h1>${escapeHtml(t('home.h1'))}</h1>
+        <p class="lede">${escapeHtml(t('home.lede'))}</p>
+        <p class="masthead__actions"><a href="./verify.html">${escapeHtml(t('home.verifyCta'))}</a></p>
       </div>
-      <div class="masthead__stats" aria-label="Catalog summary">
-        <div><strong>${providers.length}</strong><span>providers tracked</span></div>
-        <div><strong>${providers.filter(({ openai_compatible: compatible }) => compatible).length}</strong><span>OpenAI compatible</span></div>
-        <div><strong>${providers.filter(({ availability }) => availability.status === 'retiring').length}</strong><span>retiring service</span></div>
+      <div class="masthead__stats" aria-label="${escapeHtml(t('home.statsLabel'))}">
+        <div><strong>${providers.length}</strong><span>${escapeHtml(t('home.statProviders'))}</span></div>
+        <div><strong>${providers.filter(({ openai_compatible: compatible }) => compatible).length}</strong><span>${escapeHtml(t('home.statCompatible'))}</span></div>
+        <div><strong>${providers.filter(({ availability }) => availability.status === 'retiring').length}</strong><span>${escapeHtml(t('home.statRetiring'))}</span></div>
       </div>
     </div>
   </header>
@@ -264,46 +274,46 @@ function renderPage(providers, families) {
       <div class="shell">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Catalog</p>
-            <h2 id="filter-heading">Find a usable free tier</h2>
+            <p class="eyebrow">${escapeHtml(t('home.filterEyebrow'))}</p>
+            <h2 id="filter-heading">${escapeHtml(t('home.filterHeading'))}</h2>
           </div>
-          <p><strong id="provider-count">${providers.length}</strong> matches</p>
+          <p><strong id="provider-count">${providers.length}</strong> ${escapeHtml(t('home.matches'))}</p>
         </div>
         <form class="filters" id="provider-filters">
           <label class="search-control">
-            <span>Search</span>
-            <input id="search-filter" name="query" type="search" placeholder="Provider, model, or limit" autocomplete="off">
+            <span>${escapeHtml(t('home.searchLabel'))}</span>
+            <input id="search-filter" name="query" type="search" placeholder="${escapeHtml(t('home.searchPlaceholder'))}" autocomplete="off">
           </label>
           <label>
-            <span>Free access type</span>
-            <select id="category-filter" name="category"><option value="all">All types</option>${categoryOptions}</select>
+            <span>${escapeHtml(t('home.categoryLabel'))}</span>
+            <select id="category-filter" name="category"><option value="all">${escapeHtml(t('home.allTypes'))}</option>${categoryOptions}</select>
           </label>
           <label>
-            <span>Credit card</span>
-            <select id="card-filter" name="creditCard"><option value="all">Any</option><option value="not-required">Not required</option><option value="required">Required</option></select>
+            <span>${escapeHtml(t('home.cardLabel'))}</span>
+            <select id="card-filter" name="creditCard"><option value="all">${escapeHtml(t('word.any'))}</option><option value="not-required">${escapeHtml(t('word.notRequired'))}</option><option value="required">${escapeHtml(t('word.required'))}</option></select>
           </label>
           <label>
-            <span>OpenAI compatible</span>
-            <select id="compatibility-filter" name="openaiCompatible"><option value="all">Any</option><option value="yes">Yes</option><option value="no">No</option></select>
+            <span>${escapeHtml(t('home.compatibilityLabel'))}</span>
+            <select id="compatibility-filter" name="openaiCompatible"><option value="all">${escapeHtml(t('word.any'))}</option><option value="yes">${escapeHtml(t('word.yes'))}</option><option value="no">${escapeHtml(t('word.no'))}</option></select>
           </label>
           <label>
-            <span>Sample probe</span>
-            <select id="probe-filter" name="probe"><option value="all">Any state</option>${probeOptions}</select>
+            <span>${escapeHtml(t('home.probeLabel'))}</span>
+            <select id="probe-filter" name="probe"><option value="all">${escapeHtml(t('home.anyState'))}</option>${probeOptions}</select>
           </label>
         </form>
       </div>
     </section>
 
-    <section class="table-band" aria-label="Free LLM API providers">
+    <section class="table-band" aria-label="${escapeHtml(t('home.tableLabel'))}">
       <div class="shell shell--wide">
         <div class="table-wrap">
           <table id="provider-table">
-            <thead><tr><th>Provider</th><th>Free access</th><th>Card</th><th>OpenAI</th><th>Limits</th><th>Sample probe</th><th>Sources checked</th><th>Access</th></tr></thead>
+            <thead><tr><th>${escapeHtml(t('home.colProvider'))}</th><th>${escapeHtml(t('home.colAccess'))}</th><th>${escapeHtml(t('home.colCard'))}</th><th>${escapeHtml(t('home.colOpenAi'))}</th><th>${escapeHtml(t('home.colLimits'))}</th><th>${escapeHtml(t('home.colProbe'))}</th><th>${escapeHtml(t('home.colChecked'))}</th><th>${escapeHtml(t('home.colSignup'))}</th></tr></thead>
             <tbody>
 ${rows}
             </tbody>
           </table>
-          <p id="empty-state" class="empty-state" hidden>No providers match these filters.</p>
+          <p id="empty-state" class="empty-state" hidden>${escapeHtml(t('home.emptyState'))}</p>
         </div>
       </div>
     </section>
@@ -312,29 +322,29 @@ ${rows}
       <div class="shell">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Browse</p>
-            <h2 id="browse-heading">By model family or by client</h2>
+            <p class="eyebrow">${escapeHtml(t('home.browseEyebrow'))}</p>
+            <h2 id="browse-heading">${escapeHtml(t('home.browseHeading'))}</h2>
           </div>
         </div>
         <div class="browse-grid">
           <div>
-            <h3>Model families</h3>
+            <h3>${escapeHtml(t('home.browseFamilies'))}</h3>
             <ul>
-${families.map((family) => `              <li><a href="./model/${escapeHtml(family.id)}.html">Free ${escapeHtml(family.name)} API</a></li>`).join('\n')}
+${families.map((family) => `              <li><a href="./model/${escapeHtml(family.id)}.html">${escapeHtml(t('layout.familyLink', { name: localized(family, 'name', locale) }))}</a></li>`).join('\n')}
             </ul>
           </div>
           <div>
-            <h3>Coding clients</h3>
+            <h3>${escapeHtml(t('home.browseClients'))}</h3>
             <ul>
 ${clientPageIds.map((id) => `              <li><a href="./client/${escapeHtml(id)}.html">${escapeHtml(clientLabels[id])}</a></li>`).join('\n')}
             </ul>
           </div>
           <div>
-            <h3>About the data</h3>
+            <h3>${escapeHtml(t('home.browseData'))}</h3>
             <ul>
-              <li><a href="./methodology.html">How this data is collected</a></li>
-              <li><a href="./verify.html">Check a key in your browser</a></li>
-              <li><a href="./providers.json">Raw catalog JSON</a></li>
+              <li><a href="./methodology.html">${escapeHtml(t('layout.methodologyLink'))}</a></li>
+              <li><a href="./verify.html">${escapeHtml(t('home.checkInBrowser'))}</a></li>
+              <li><a href="${rootPrefix}providers.json">${escapeHtml(t('home.rawJson'))}</a></li>
             </ul>
           </div>
         </div>
@@ -344,18 +354,18 @@ ${clientPageIds.map((id) => `              <li><a href="./client/${escapeHtml(id
     <section class="method-band">
       <div class="shell method-grid">
         <div>
-          <p class="eyebrow">Interpretation</p>
-          <h2>Sample facts, not status theater</h2>
+          <p class="eyebrow">${escapeHtml(t('home.methodEyebrow'))}</p>
+          <h2>${escapeHtml(t('home.methodHeading'))}</h2>
         </div>
-        <p><strong>401/403</strong> means the sample credential failed. <strong>429</strong> means that sample was limited. Only network and 5xx responses indicate a sampled endpoint reachability problem, never a provider-wide outage. <a href="./methodology.html">Read the full methodology</a>.</p>
-        <a class="hosted-cta" href="${escapeHtml(hostedCta)}">Need stable hosted access?</a>
+        <p>${t('home.methodBody')} <a href="./methodology.html">${escapeHtml(t('home.methodLink'))}</a>.</p>
+        <a class="hosted-cta" href="${escapeHtml(hostedCta)}">${escapeHtml(t('home.hostedCta'))}</a>
       </div>
     </section>
   </main>
 
-  <footer><div class="shell"><span>Data is reviewed against official sources.</span><a href="https://github.com/xyzs996/free-llm-api/blob/main/README.md#data">Methodology and data contract</a></div></footer>
+  <footer><div class="shell"><span>${escapeHtml(t('home.footerNote'))}</span><a href="${escapeHtml(t('home.footerHref'))}">${escapeHtml(t('home.footerLink'))}</a>${renderLanguageSwitch('index.html', locale, rootPrefix)}</div></footer>
   <script id="provider-data" type="application/json">${embeddedData}</script>
-  <script type="module" src="./app.js"></script>
+  <script type="module" src="${rootPrefix}app.js"></script>
 </body>
 </html>
 `;
@@ -366,11 +376,18 @@ export function renderArtifacts(providers, changelog = null, families = MODEL_FA
     'README.md': renderReadme(providers, changelog),
     'README_zh.md': renderReadmeZh(providers, changelog),
     'docs/providers.json': `${JSON.stringify(providers, null, 2)}\n`,
-    'docs/index.html': renderPage(providers, families),
-    'docs/verify.html': renderVerifyPage(providers),
     ...renderClientPages(providers),
-    ...renderMatrixPages(providers, families),
   };
+
+  // Every locale gets the same page set, because the hreflang links promise a
+  // translation of each page rather than a smaller site in another language.
+  // Missing a page here would advertise an address that returns a 404.
+  for (const locale of LOCALES) {
+    const directory = `docs/${locale.path_prefix}`;
+    artifacts[`${directory}index.html`] = renderPage(providers, families, locale);
+    artifacts[`${directory}verify.html`] = renderVerifyPage(providers, locale);
+    Object.assign(artifacts, renderMatrixPages(providers, families, locale));
+  }
 
   // Derived last and from the artifacts themselves, so the sitemap lists every
   // page that exists and no page that does not.

@@ -1,4 +1,5 @@
 import { embedJson, escapeHtml, plainText } from './html.js';
+import { localized } from './i18n.js';
 import {
   DEFAULT_LOCALE,
   LOCALES,
@@ -117,11 +118,12 @@ export function webSiteNode(description) {
   });
 }
 
-export function catalogDatasetNode({ description, checkedAt, providerCount }) {
+export function catalogDatasetNode({ description, checkedAt, providerCount, locale = DEFAULT_LOCALE }) {
   return node('Dataset', {
     name: CATALOG_NAME,
     description,
-    url: SITE_URL,
+    url: pageUrl('index.html', locale),
+    inLanguage: locale.hreflang,
     identifier: `${REPO_URL}/blob/main/data/providers.json`,
     license: LICENSE_URL,
     isAccessibleForFree: true,
@@ -149,11 +151,12 @@ export function catalogDatasetNode({ description, checkedAt, providerCount }) {
   });
 }
 
-export function providerDatasetNode(provider) {
+export function providerDatasetNode(provider, locale = DEFAULT_LOCALE) {
   return node('Dataset', {
     name: `${provider.name} free tier terms`,
-    description: provider.limits.summary,
-    url: pageUrl(`provider/${provider.id}.html`),
+    description: localized(provider.limits, 'summary', locale),
+    url: pageUrl(`provider/${provider.id}.html`, locale),
+    inLanguage: locale.hreflang,
     isAccessibleForFree: true,
     dateModified: provider.source_checked_at,
     creator: PUBLISHER,
@@ -183,12 +186,12 @@ export function faqPageNode(entries) {
 // A crumb without an href is the page itself. Two crumbs that resolve to the
 // same URL — "Free LLM API" and "Providers" both being the catalog — collapse
 // into one entry, because a trail that visits an address twice is not a trail.
-export function breadcrumbNode(trail, selfPath) {
+export function breadcrumbNode(trail, selfPath, locale = DEFAULT_LOCALE) {
   const items = [];
   const seen = new Set();
 
   for (const { href, text } of trail) {
-    const url = pageUrl(neutralPath(href ?? selfPath));
+    const url = pageUrl(neutralPath(href ?? selfPath), locale);
     if (seen.has(url)) continue;
     seen.add(url);
     items.push({
@@ -216,11 +219,12 @@ export function itemListNode({ name, description, items }) {
   });
 }
 
-export function howToNode({ name, description, url, tool, supply, steps }) {
+export function howToNode({ name, description, url, tool, supply, steps, locale = DEFAULT_LOCALE }) {
   return node('HowTo', {
     name,
     description,
     url,
+    inLanguage: locale.hreflang,
     totalTime: 'PT5M',
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'USD', value: '0' },
     tool: [{ '@type': 'HowToTool', name: tool }],
@@ -234,11 +238,12 @@ export function howToNode({ name, description, url, tool, supply, steps }) {
   });
 }
 
-export function webApplicationNode({ name, description, url, features }) {
+export function webApplicationNode({ name, description, url, features, locale = DEFAULT_LOCALE }) {
   return node('WebApplication', {
     name,
     description,
     url,
+    inLanguage: locale.hreflang,
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Any',
     browserRequirements: 'Requires JavaScript and the Fetch API',
@@ -249,13 +254,13 @@ export function webApplicationNode({ name, description, url, features }) {
   });
 }
 
-export function techArticleNode({ headline, description, url, dateModified }) {
+export function techArticleNode({ headline, description, url, dateModified, locale = DEFAULT_LOCALE }) {
   return node('TechArticle', {
     headline,
     description,
     url,
     dateModified,
-    inLanguage: DEFAULT_LOCALE.hreflang,
+    inLanguage: locale.hreflang,
     author: PUBLISHER,
     publisher: PUBLISHER,
     license: LICENSE_URL,

@@ -13,9 +13,8 @@ export const SITE_NAME = 'Free LLM API';
 // The locales this renderer actually emits pages for. An hreflang alternate
 // pointing at a page nobody generated is worse than no alternate at all, so
 // this list is held equal to the artifacts on disk by test/seo.test.js rather
-// than being a statement of intent. The Chinese mirror joins it when the
-// mirror exists.
-export const RENDERED_LOCALES = Object.freeze(['en']);
+// than being a statement of intent.
+export const RENDERED_LOCALES = Object.freeze(['en', 'zh']);
 
 export const LOCALES = Object.freeze(
   SITE.locales.filter(({ code }) => RENDERED_LOCALES.includes(code)),
@@ -23,11 +22,30 @@ export const LOCALES = Object.freeze(
 
 export const DEFAULT_LOCALE = LOCALES.find(({ code }) => code === SITE.default_locale) ?? LOCALES[0];
 
-// The catalog is published at the site root, so both spellings of its path
-// resolve to the single URL used by every canonical link, sitemap entry and
-// breadcrumb. Anything else would split one page across two addresses.
+// A directory and its index file are one page, not two, so `index.html` comes
+// off the end of every address this site publishes. Otherwise the catalog would
+// be reachable at two URLs and would compete with itself for both of them.
 export function pageUrl(path, locale = DEFAULT_LOCALE) {
-  return `${SITE_URL}${locale.path_prefix}${path === 'index.html' ? '' : path}`;
+  return `${SITE_URL}${locale.path_prefix}${path.replace(/(^|\/)index\.html$/, '$1')}`;
+}
+
+// The address a generated file is served at, derived from where it is written.
+// Tests use this rather than restating the rule, so the sitemap, the canonical
+// links and the assertions about them cannot disagree.
+export function artifactUrl(artifactPath) {
+  return pageUrl(artifactPath.replace(/^docs\//, ''));
+}
+
+// How many directories a locale's pages sit below the site root: the default
+// locale publishes at the root, every other one inside its own folder.
+export function localeDepth(locale) {
+  return locale.path_prefix === '' ? 0 : 1;
+}
+
+// Where a locale-neutral path is published for a given locale, as a repository
+// path rather than a URL.
+export function localePath(path, locale) {
+  return `${locale.path_prefix}${path}`;
 }
 
 // A path may arrive carrying a locale prefix (a generated Chinese page) or

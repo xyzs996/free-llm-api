@@ -76,6 +76,18 @@ export function verdictFor(state, status = null) {
   };
 }
 
+// The page ships its own wording as data, so the Chinese edition loads exactly
+// this script and this verdict logic rather than a translated copy of it. A
+// state the table does not cover keeps its English text instead of printing an
+// empty result panel.
+export function localizedVerdict(verdict, strings = null) {
+  return {
+    ...verdict,
+    label: strings?.labels?.[verdict.state] ?? verdict.label,
+    explanation: strings?.explanations?.[verdict.state] ?? verdict.explanation,
+  };
+}
+
 // A key pasted into a query string ends up in browser history, in bookmark
 // sync, and in any referrer the page emits. The page therefore refuses to read
 // one and rewrites the address bar without it.

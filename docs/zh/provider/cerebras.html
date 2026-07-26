@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cerebras Inference 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <title>Cerebras Inference 免费额度：限流与可用模型</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/cerebras.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/cerebras.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="Cerebras Inference 免费额度：限流与可用模型">
+  <meta property="og:description" content="Cerebras Inference 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cerebras Inference 免费额度：限流与可用模型">
+  <meta name="twitter:description" content="Cerebras Inference 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"Cerebras Inference","item":"https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cerebras Inference free tier terms","description":"免费试用的限额是每个模型 5 RPM、30K TPM，并有每小时 100 万 token、每天 100 万 token 的封顶，适用于 gpt-oss-120b、zai-glm-4.7 和 gemma-4-31b。新账号获得 5 美元额度，自发放起 30 天过期。Cerebras 说明：注册时如果跳过绑定支付方式，Playground 和 API 访问会一直是未激活状态，直到补上为止。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Cerebras rate limits","url":"https://inference-docs.cerebras.ai/support/rate-limits"},{"@type":"CreativeWork","name":"Cerebras pricing","url":"https://inference-docs.cerebras.ai/support/pricing"},{"@type":"CreativeWork","name":"Cerebras OpenAI compatibility","url":"https://inference-docs.cerebras.ai/resources/openai"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Cerebras Inference 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"需要。Cerebras Inference 要求先绑卡，免费额度才可用；本站有独立页面的 25 家里，有 2 家同样如此。"}},{"@type":"Question","name":"Cerebras Inference 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"Cerebras Inference 公布的是每分钟 5 次请求。这些数字来自它自己的文档，核验日期为 2026-07-25。"}},{"@type":"Question","name":"Cerebras Inference 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"Cerebras Inference 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-07-25，Cerebras Inference 自己的文档里没有这样的说法。这一条标为需要信用卡，是因为通过验证的支付方式是拿到 API 访问权的前置条件，尽管试用本身不花钱。"}},{"@type":"Question","name":"Cerebras Inference 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。Cerebras Inference 在 https://api.cerebras.ai/v1 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">服务商</a></li><li><span aria-current="page">Cerebras Inference</span></li></ol></nav>
+      <p class="eyebrow">注册赠送额度 · 来源核验于 2026-07-25</p>
+      <h1>Cerebras Inference 免费额度</h1>
+      <p class="lede">Cerebras Inference 官方就免费额度公布了什么、覆盖哪些模型，以及怎么把现有工具指过去。</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>Cerebras Inference 的免费额度给到哪一步</h2>
+        <p>免费试用的限额是每个模型 5 RPM、30K TPM，并有每小时 100 万 token、每天 100 万 token 的封顶，适用于 gpt-oss-120b、zai-glm-4.7 和 gemma-4-31b。新账号获得 5 美元额度，自发放起 30 天过期。Cerebras 说明：注册时如果跳过绑定支付方式，Playground 和 API 访问会一直是未激活状态，直到补上为止。</p>
+        <dl class="fact-grid">
+          <div><dt>官方公布限额</dt><dd>每分钟 5 次请求</dd></div>
+          <div><dt>免费形式</dt><dd>注册赠送额度</dd></div>
+          <div><dt>信用卡</dt><dd>需要</dd></div>
+          <div><dt>协议</dt><dd>兼容 OpenAI，端点 <code>https://api.cerebras.ai/v1</code></dd></div>
+          <div><dt>生命周期</dt><dd>正常开放</dd></div>
+          <div><dt>来源核验日期</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>这一条标为需要信用卡，是因为通过验证的支付方式是拿到 API 访问权的前置条件，尽管试用本身不花钱。</p>
+
+        <h2>Cerebras Inference 在这份清单里处于什么位置</h2>
+        <p>本站详列的 25 家服务商里，属于注册赠送额度的有 3 家，Cerebras Inference 是其中之一。它要求绑信用卡，25 家里有 2 家是这样。它公布了固定数值——每分钟 5 次请求——25 家里只有 9 家做到了这一点。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>对比对象</th><th>官方公布限额</th><th>信用卡</th><th>端点</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="对比对象">Cerebras Inference（当前页）</td>
+                <td data-label="官方公布限额">每分钟 5 次请求</td>
+                <td data-label="信用卡">需要</td>
+                <td data-label="端点"><code>api.cerebras.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="对比对象"><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a></td>
+                <td data-label="官方公布限额">以额度余额公布</td>
+                <td data-label="信用卡">不需要</td>
+                <td data-label="端点"><code>ai-gateway.vercel.sh</code></td>
+              </tr>
+              <tr>
+                <td data-label="对比对象"><a href="../provider/watsonx.html">IBM watsonx.ai</a></td>
+                <td data-label="官方公布限额">有限流但未公布数值</td>
+                <td data-label="信用卡">不需要</td>
+                <td data-label="端点"><code>us-south.ml.cloud.ibm.com</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Cerebras Inference 标为免费的模型</h2>
+        <ul class="model-list">
+          <li><code>gpt-oss-120b</code> —— <a href="../model/gpt-oss.html">gpt-oss</a>，本站另有 9 家服务商也免费提供</li>
+          <li><code>zai-glm-4.7</code> —— <a href="../model/glm.html">GLM</a>，本站另有 3 家服务商也免费提供</li>
+          <li><code>gemma-4-31b</code> —— 不属于本清单跨服务商跟踪的任何系列</li>
+        </ul>
+        <p>本站另有 9 家服务商也以免费条款提供 <a href="../model/gpt-oss.html">gpt-oss</a> 系列，而且条款并不相同：<a href="../provider/groq.html">GroqCloud</a>、<a href="../provider/sambanova.html">SambaNova Cloud</a>、<a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>、<a href="../provider/huggingface.html">Hugging Face Inference Providers</a>、<a href="../provider/fireworks.html">Fireworks AI</a>、<a href="../provider/ollama-cloud.html">Ollama Cloud</a>、<a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>、<a href="../provider/together.html">Together AI</a>、<a href="../provider/scaleway.html">Scaleway Generative APIs</a>。本站另有 3 家服务商也以免费条款提供 <a href="../model/glm.html">GLM</a> 系列，而且条款并不相同：<a href="../provider/siliconflow.html">SiliconFlow</a>、<a href="../provider/zai.html">Z.AI Open Platform</a>、<a href="../provider/chutes.html">Chutes</a>。</p>
+
+        <h2>怎么验一个 Cerebras Inference 的 key</h2>
+        <p>CORS 预检允许任意源携带 Authorization 请求头，所以浏览器可以直接调用这个端点。这一结论是 2026-07-25 针对 <code>https://api.cerebras.ai</code> 实测得到的。</p>
+        <p>所以不用装任何东西，直接在<a href="../verify.html?provider=cerebras">浏览器检测页</a>里就能验。如果你不愿意把 key 粘进网页，下面这条命令是等价的：</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${CEREBRAS_API_KEY:?Set CEREBRAS_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $CEREBRAS_API_KEY&quot; \
+  &#39;https://api.cerebras.ai/v1/models&#39;
+</code></pre>
+
+        <h2>怎么用一个 Cerebras Inference 的 key</h2>
+<p>Cerebras Inference 在 <code>https://api.cerebras.ai/v1</code> 上提供 OpenAI chat completions 协议。把任何支持自定义 base URL 的客户端指过去，并让客户端从 <code>CEREBRAS_API_KEY</code> 读取 key，这样 key 本身永远不会落进配置文件：</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;gpt-oss-120b&quot;
+model_provider = &quot;cerebras&quot;
+
+[model_providers.cerebras]
+name = &quot;Cerebras Inference OpenAI-compatible gateway&quot;
+base_url = &quot;https://api.cerebras.ai/v1&quot;
+env_key = &quot;CEREBRAS_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>关于 Cerebras Inference 免费额度的常见问题</h2>
+        <h3>Cerebras Inference 需要绑信用卡吗？</h3>
+        <p>需要。Cerebras Inference 要求先绑卡，免费额度才可用；本站有独立页面的 25 家里，有 2 家同样如此。</p>
+        <h3>Cerebras Inference 免费额度的限流是多少？</h3>
+        <p>Cerebras Inference 公布的是每分钟 5 次请求。这些数字来自它自己的文档，核验日期为 2026-07-25。</p>
+        <h3>Cerebras Inference 的 key 撞到限额会怎样？</h3>
+        <p>端点返回 <code>429</code>。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。</p>
+        <h3>Cerebras Inference 的免费额度会取消吗？</h3>
+        <p>截至 2026-07-25，Cerebras Inference 自己的文档里没有这样的说法。这一条标为需要信用卡，是因为通过验证的支付方式是拿到 API 访问权的前置条件，尽管试用本身不花钱。</p>
+        <h3>Cerebras Inference 能配合 Codex、Cline 或 Continue 使用吗？</h3>
+        <p>可以。Cerebras Inference 在 <code>https://api.cerebras.ai/v1</code> 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。</p>
+
+        <h2>官方来源</h2>
+        <ul class="source-list">
+          <li><a href="https://inference-docs.cerebras.ai/support/rate-limits" rel="noreferrer">Cerebras rate limits</a><span class="source-url">https://inference-docs.cerebras.ai/support/rate-limits</span></li>
+          <li><a href="https://inference-docs.cerebras.ai/support/pricing" rel="noreferrer">Cerebras pricing</a><span class="source-url">https://inference-docs.cerebras.ai/support/pricing</span></li>
+          <li><a href="https://inference-docs.cerebras.ai/resources/openai" rel="noreferrer">Cerebras OpenAI compatibility</a><span class="source-url">https://inference-docs.cerebras.ai/resources/openai</span></li>
+        </ul>
+        <p>以上每个数字都是 2026-07-25 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
+      </article>
+      <aside class="related" aria-label="相关页面">
+        <div>
+          <h2>横向对比</h2>
+          <ul><li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a></li><li><a href="../provider/watsonx.html">IBM watsonx.ai</a></li></ul>
+        </div>
+        <div>
+          <h2>模型系列</h2>
+          <ul><li><a href="../model/gpt-oss.html">gpt-oss 免费 API</a></li><li><a href="../model/glm.html">GLM 免费 API</a></li></ul>
+        </div>
+        <div>
+          <h2>搭配使用</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI 接入</a></li><li><a href="../client/cline.html">Cline 接入</a></li><li><a href="../client/continue.html">Continue 接入</a></li></ul>
+        </div>
+        <div>
+          <h2>本清单</h2>
+          <ul><li><a href="../index.html">全部服务商</a></li><li><a href="../verify.html">浏览器 key 检测</a></li><li><a href="../methodology.html">这份数据是怎么来的</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>本页每个数字都来自服务商自己的文档，核验日期记录在清单里。</span><a href="../index.html">免费 LLM API 清单</a><a lang="en" hreflang="en" href="../../provider/cerebras.html">English</a></div></footer>
+</body>
+</html>

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/client/cline.html">
   <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/client/cline.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://xyzs996.github.io/free-llm-api/zh/client/cline.html">
   <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/client/cline.html">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta property="og:type" content="website">
@@ -24,7 +25,7 @@
   <meta name="twitter:description" content="How to point Cline at a free OpenAI-compatible tier, what the generated config contains, and which providers are worth trying first.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Cline","item":"https://xyzs996.github.io/free-llm-api/client/cline.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Point Cline at a free LLM API","description":"Cline ships an OpenAI Compatible provider type that takes three values: base URL, API key, and model id.","url":"https://xyzs996.github.io/free-llm-api/client/cline.html","totalTime":"PT5M","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"},"tool":[{"@type":"HowToTool","name":"Cline"}],"supply":[{"@type":"HowToSupply","name":"A free-tier API key you created at the provider"}],"step":[{"@type":"HowToStep","position":1,"name":"Create your own key","text":"Pick a free tier from the catalog and create the key on that provider’s own site. This project distributes no key and never receives yours."},{"@type":"HowToStep","position":2,"name":"Generate the configuration","text":"Run npx free-llm-api setup cline. It writes SETUP.md, a review guide rather than a config file, because Cline takes these values in its own settings panel."},{"@type":"HowToStep","position":3,"name":"Enter the key yourself","text":"Type the key into Cline by hand. This project does not read or write another tool’s credential storage."},{"@type":"HowToStep","position":4,"name":"Check the key before blaming the client","text":"Open the browser key checker and confirm the provider accepts the key. A rejected credential, a rate limit and an unreachable endpoint look alike from inside the client and have different fixes."}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Point Cline at a free LLM API","description":"Cline ships an OpenAI Compatible provider type that takes three values: base URL, API key, and model id.","url":"https://xyzs996.github.io/free-llm-api/client/cline.html","inLanguage":"en","totalTime":"PT5M","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"},"tool":[{"@type":"HowToTool","name":"Cline"}],"supply":[{"@type":"HowToSupply","name":"A free-tier API key you created at the provider"}],"step":[{"@type":"HowToStep","position":1,"name":"Create your own key","text":"Pick a free tier from the catalog and create the key on that provider’s own site. This project distributes no key and never receives yours."},{"@type":"HowToStep","position":2,"name":"Generate the configuration","text":"Run npx free-llm-api setup cline. It writes SETUP.md, a review guide rather than a config file, because Cline takes these values in its own settings panel."},{"@type":"HowToStep","position":3,"name":"Enter the key yourself","text":"Type the key into Cline by hand. This project does not read or write another tool’s credential storage."},{"@type":"HowToStep","position":4,"name":"Check the key before blaming the client","text":"Open the browser key checker and confirm the provider accepts the key. A rejected credential, a rate limit and an unreachable endpoint look alike from inside the client and have different fixes."}]}</script>
 </head>
 <body>
   <header class="page-head">
@@ -138,6 +139,6 @@ This project does not modify VS Code or Cline extension storage.
     </div>
   </main>
 
-  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a></div></footer>
+  <footer><div class="shell"><span>Every number on this page comes from the provider’s own documentation, dated in the catalog.</span><a href="../index.html">Free LLM API catalog</a><a lang="zh-Hans" hreflang="zh-Hans" href="../zh/client/cline.html">简体中文</a></div></footer>
 </body>
 </html>

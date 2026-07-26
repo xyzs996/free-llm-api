@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Google Gemini API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <title>Google Gemini API 免费额度：限流与可用模型</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/provider/gemini.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/provider/gemini.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://xyzs996.github.io/free-llm-api/zh/provider/gemini.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/provider/gemini.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="Google Gemini API 免费额度：限流与可用模型">
+  <meta property="og:description" content="Google Gemini API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/provider/gemini.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Google Gemini API 免费额度：限流与可用模型">
+  <meta name="twitter:description" content="Google Gemini API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"Google Gemini API","item":"https://xyzs996.github.io/free-llm-api/zh/provider/gemini.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Google Gemini API free tier terms","description":"限流按项目（project）而不是按 API key 计算，取决于该项目所处的用量层级；Free 是入门层级，往上走需要开启计费。Google 公布了层级结构，但把具体生效的 RPM、TPM 和 RPD 指向 AI Studio 查看，因此这里给不出单一的免费额度数字。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/gemini.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Gemini API rate limits","url":"https://ai.google.dev/gemini-api/docs/rate-limits"},{"@type":"CreativeWork","name":"Gemini API billing","url":"https://ai.google.dev/gemini-api/docs/billing"},{"@type":"CreativeWork","name":"Gemini OpenAI compatibility","url":"https://ai.google.dev/gemini-api/docs/openai"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Google Gemini API 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，Google Gemini API 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"Google Gemini API 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"Google Gemini API 没有公布单一的免费额度数字：它的限额形式是「按项目层级设定」。本清单在这里留空，而不是猜一个数。"}},{"@type":"Question","name":"Google Gemini API 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"Google Gemini API 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-07-25，Google Gemini API 自己的文档里没有这样的说法。新项目默认处于 Free 层级。只有部分模型带免费用量，按模型的具体限额在 AI Studio 里可以看到。"}},{"@type":"Question","name":"Google Gemini API 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。Google Gemini API 在 https://generativelanguage.googleapis.com/v1beta/openai/ 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">服务商</a></li><li><span aria-current="page">Google Gemini API</span></li></ol></nav>
+      <p class="eyebrow">厂商免费额度 · 来源核验于 2026-07-25</p>
+      <h1>Google Gemini API 免费额度</h1>
+      <p class="lede">Google Gemini API 官方就免费额度公布了什么、覆盖哪些模型，以及怎么把现有工具指过去。</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>Google Gemini API 的免费额度给到哪一步</h2>
+        <p>限流按项目（project）而不是按 API key 计算，取决于该项目所处的用量层级；Free 是入门层级，往上走需要开启计费。Google 公布了层级结构，但把具体生效的 RPM、TPM 和 RPD 指向 AI Studio 查看，因此这里给不出单一的免费额度数字。</p>
+        <dl class="fact-grid">
+          <div><dt>官方公布限额</dt><dd>按项目层级设定</dd></div>
+          <div><dt>免费形式</dt><dd>厂商免费额度</dd></div>
+          <div><dt>信用卡</dt><dd>不需要</dd></div>
+          <div><dt>协议</dt><dd>兼容 OpenAI，端点 <code>https://generativelanguage.googleapis.com/v1beta/openai/</code></dd></div>
+          <div><dt>生命周期</dt><dd>正常开放</dd></div>
+          <div><dt>来源核验日期</dt><dd>2026-07-25</dd></div>
+        </dl>
+        <p>新项目默认处于 Free 层级。只有部分模型带免费用量，按模型的具体限额在 AI Studio 里可以看到。</p>
+
+        <h2>Google Gemini API 在这份清单里处于什么位置</h2>
+        <p>本站详列的 25 家服务商里，属于厂商免费额度的有 15 家，Google Gemini API 是其中之一。它不要求绑信用卡，25 家里有 23 家是这样。它没有公布固定的请求次数，25 家里有 16 家同样没有。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>对比对象</th><th>官方公布限额</th><th>信用卡</th><th>端点</th></tr></thead>
+            <tbody>
+              <tr class="row-self">
+                <td data-label="对比对象">Google Gemini API（当前页）</td>
+                <td data-label="官方公布限额">按项目层级设定</td>
+                <td data-label="信用卡">不需要</td>
+                <td data-label="端点"><code>generativelanguage.googleapis.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="对比对象"><a href="../provider/groq.html">GroqCloud</a></td>
+                <td data-label="官方公布限额">每分钟 30 次请求，每天 1000 次请求</td>
+                <td data-label="信用卡">不需要</td>
+                <td data-label="端点"><code>api.groq.com</code></td>
+              </tr>
+              <tr>
+                <td data-label="对比对象"><a href="../provider/sambanova.html">SambaNova Cloud</a></td>
+                <td data-label="官方公布限额">每分钟 20 次请求，每天 20 次请求</td>
+                <td data-label="信用卡">不需要</td>
+                <td data-label="端点"><code>api.sambanova.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="对比对象"><a href="../provider/cohere.html">Cohere</a></td>
+                <td data-label="官方公布限额">每分钟 20 次请求</td>
+                <td data-label="信用卡">不需要</td>
+                <td data-label="端点"><code>api.cohere.ai</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Google Gemini API 标为免费的模型</h2>
+        <ul class="model-list">
+          <li><code>Free-tier eligibility varies by model</code> —— 不属于本清单跨服务商跟踪的任何系列</li>
+          <li><code>gemini-2.5-flash</code> —— 不属于本清单跨服务商跟踪的任何系列</li>
+          <li><code>gemini-2.5-flash-lite</code> —— 不属于本清单跨服务商跟踪的任何系列</li>
+        </ul>
+        <p>上面这些模型不属于本清单跨服务商跟踪的任何系列，因此在这里 Google Gemini API 是拿到它们的唯一入口。</p>
+
+        <h2>怎么验一个 Google Gemini API 的 key</h2>
+        <p>CORS 预检回显了发起请求的源，并允许 Authorization 请求头，所以浏览器可以直接调用这个端点。这一结论是 2026-07-25 针对 <code>https://generativelanguage.googleapis.com</code> 实测得到的。</p>
+        <p>所以不用装任何东西，直接在<a href="../verify.html?provider=gemini">浏览器检测页</a>里就能验。如果你不愿意把 key 粘进网页，下面这条命令是等价的：</p>
+        <pre class="page-code"><code>#!/usr/bin/env sh
+set -eu
+
+: &quot;${GEMINI_API_KEY:?Set GEMINI_API_KEY to a key you created yourself at the provider console}&quot;
+
+# Prints the models this key can reach, then the HTTP status on its own line so
+# 200, 401, and 429 stay distinguishable.
+curl --silent --show-error \
+  --write-out &#39;\nHTTP %{http_code}\n&#39; \
+  --header &quot;Authorization: Bearer $GEMINI_API_KEY&quot; \
+  &#39;https://generativelanguage.googleapis.com/v1beta/openai/models&#39;
+</code></pre>
+
+        <h2>怎么用一个 Google Gemini API 的 key</h2>
+<p>Google Gemini API 在 <code>https://generativelanguage.googleapis.com/v1beta/openai/</code> 上提供 OpenAI chat completions 协议。把任何支持自定义 base URL 的客户端指过去，并让客户端从 <code>GEMINI_API_KEY</code> 读取 key，这样 key 本身永远不会落进配置文件：</p>
+        <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
+# Project-level config cannot select a custom model provider.
+model = &quot;gemini-2.5-flash&quot;
+model_provider = &quot;gemini&quot;
+
+[model_providers.gemini]
+name = &quot;Google Gemini API OpenAI-compatible gateway&quot;
+base_url = &quot;https://generativelanguage.googleapis.com/v1beta/openai&quot;
+env_key = &quot;GEMINI_API_KEY&quot;
+wire_api = &quot;responses&quot;
+</code></pre>
+
+        <h2>关于 Google Gemini API 免费额度的常见问题</h2>
+        <h3>Google Gemini API 需要绑信用卡吗？</h3>
+        <p>不需要。本站有 23 家不用绑卡就能拿到免费访问，Google Gemini API 是其中之一，所以试一下的成本只有注册本身。</p>
+        <h3>Google Gemini API 免费额度的限流是多少？</h3>
+        <p>Google Gemini API 没有公布单一的免费额度数字：它的限额形式是「按项目层级设定」。本清单在这里留空，而不是猜一个数。</p>
+        <h3>Google Gemini API 的 key 撞到限额会怎样？</h3>
+        <p>端点返回 <code>429</code>。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。</p>
+        <h3>Google Gemini API 的免费额度会取消吗？</h3>
+        <p>截至 2026-07-25，Google Gemini API 自己的文档里没有这样的说法。新项目默认处于 Free 层级。只有部分模型带免费用量，按模型的具体限额在 AI Studio 里可以看到。</p>
+        <h3>Google Gemini API 能配合 Codex、Cline 或 Continue 使用吗？</h3>
+        <p>可以。Google Gemini API 在 <code>https://generativelanguage.googleapis.com/v1beta/openai/</code> 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。</p>
+
+        <h2>官方来源</h2>
+        <ul class="source-list">
+          <li><a href="https://ai.google.dev/gemini-api/docs/rate-limits" rel="noreferrer">Gemini API rate limits</a><span class="source-url">https://ai.google.dev/gemini-api/docs/rate-limits</span></li>
+          <li><a href="https://ai.google.dev/gemini-api/docs/billing" rel="noreferrer">Gemini API billing</a><span class="source-url">https://ai.google.dev/gemini-api/docs/billing</span></li>
+          <li><a href="https://ai.google.dev/gemini-api/docs/openai" rel="noreferrer">Gemini OpenAI compatibility</a><span class="source-url">https://ai.google.dev/gemini-api/docs/openai</span></li>
+        </ul>
+        <p>以上每个数字都是 2026-07-25 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
+      </article>
+      <aside class="related" aria-label="相关页面">
+        <div>
+          <h2>横向对比</h2>
+          <ul><li><a href="../provider/groq.html">GroqCloud</a></li><li><a href="../provider/sambanova.html">SambaNova Cloud</a></li><li><a href="../provider/cohere.html">Cohere</a></li></ul>
+        </div>
+        <div>
+          <h2>热门模型系列</h2>
+          <ul><li><a href="../model/gpt-oss.html">gpt-oss 免费 API</a></li><li><a href="../model/llama.html">Llama 免费 API</a></li></ul>
+        </div>
+        <div>
+          <h2>搭配使用</h2>
+          <ul><li><a href="../client/codex.html">Codex CLI 接入</a></li><li><a href="../client/cline.html">Cline 接入</a></li><li><a href="../client/continue.html">Continue 接入</a></li></ul>
+        </div>
+        <div>
+          <h2>本清单</h2>
+          <ul><li><a href="../index.html">全部服务商</a></li><li><a href="../verify.html">浏览器 key 检测</a></li><li><a href="../methodology.html">这份数据是怎么来的</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>本页每个数字都来自服务商自己的文档，核验日期记录在清单里。</span><a href="../index.html">免费 LLM API 清单</a><a lang="en" hreflang="en" href="../../provider/gemini.html">English</a></div></footer>
+</body>
+</html>

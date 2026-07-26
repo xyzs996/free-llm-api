@@ -2,34 +2,23 @@
 
 [English](README.md) · 简体中文
 
-一份有官方来源可查的免费 LLM API 与免费额度清单，附可解释的采样探活、可筛选的状态页，以及面向编码 agent 的一条命令配置。
+一份有官方来源可查的免费 LLM API 目录：每家去哪里自己领 key、官方公布的限额到底是多少，以及怎么把编码 agent 指过去。
 
-> 来源核验日期：2026-07-25。一次探活只描述那一次采样请求，不代表服务商整体可用性。
+> 来源核验日期：2026-07-25。本仓库不分发任何 key，每条记录都指向服务商自己的注册页。一次探活只描述那一次采样请求，不代表服务商整体可用性。
 
-## 本周变化
+**[状态页](https://xyzs996.github.io/free-llm-api/zh/) · [浏览器 key 检测](https://xyzs996.github.io/free-llm-api/zh/verify.html) · [服务商清单](#服务商清单) · [核验方法](https://xyzs996.github.io/free-llm-api/zh/methodology.html)**
 
-2026-07-25 当周。首次发布清单：26 家服务商，每个公布的数字都能追溯到本周核验过的官方页面。
+[![可筛选的 LLM 免费额度状态页](docs/assets/status-page.png)](https://xyzs996.github.io/free-llm-api/zh/)
 
-- **新增（26）：** Google Gemini API、GroqCloud、SambaNova Cloud、Cohere、Cloudflare Workers AI、Hugging Face Inference Providers、SiliconFlow、Fireworks AI、Z.AI Open Platform、Novita AI、Mistral La Plateforme、Alibaba Cloud Model Studio、Moonshot AI (Kimi)、Pollinations.AI、Ollama Cloud、Cerebras Inference、Vercel AI Gateway、IBM watsonx.ai、OpenRouter、GitHub Models、Together AI、Nebius Token Factory、Perplexity API、DeepInfra、Chutes、Scaleway Generative APIs
-- **生命周期 — GitHub Models：** 免费档 2026-07-30 下线，因此清单不提供它的注册链接。
-- **更正 — Cerebras Inference：** 通过验证的支付方式是调用 API 的前提，所以这不算免信用卡的免费额度。
-- **更正 — Fireworks AI：** 未绑定支付方式时的 10 RPM 上限作用于整个账号，不是按模型计算。
-
-上面每一条都能在下方清单里找到对应的核验日期与官方来源。完整历史见 [`data/changelog.json`](data/changelog.json)。
+Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任何服务商的 key、额度或限流，本项目也不会因为 Star 给出任何回报。
 
 ## 验证你手上已有的 key
 
-打开[浏览器 key 检测页](https://xyzs996.github.io/free-llm-api/verify.html)。不用安装、不留存任何内容：请求从你的浏览器直连服务商，因为该页面的 Content Security Policy 只允许连接本清单里的 26 个服务商源，除此之外一处都不允许——既没有统计服务，也没有本站自己。
+打开[浏览器 key 检测页](https://xyzs996.github.io/free-llm-api/zh/verify.html)。不用安装、不留存任何内容：请求从你的浏览器直连服务商，因为该页面的 Content Security Policy 只允许连接本清单里的 26 个服务商源，除此之外一处都不允许——既没有统计服务，也没有本站自己。
 
 26 家里有 21 家会响应跨域浏览器请求，其余 5 家会拒绝；对这些服务商，页面直接给出等价的 `curl` 命令，而不是猜一个结论。
 
-## 本地运行
-
-```bash
-npm run render && npm run serve
-```
-
-打开 `http://127.0.0.1:4173`。需要 Node.js 20+，无运行时依赖，也不需要任何 API key。
+## 配置编码 agent
 
 把编码 agent 指向你已经拿到访问权限的任意端点：
 
@@ -41,9 +30,24 @@ npx free-llm-api setup claude-code
 
 在八家服务商之间轮换 key、每天都撞 429？一个 OpenAI 兼容端点即可覆盖全部模型。[创建 PekPik API 账号](https://aiapiv2.pekpik.com/register?utm_source=github&utm_medium=repo&utm_campaign=free-llm-api)。
 
-Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任何服务商的 key、额度或限流，本项目也不会因为 Star 给出任何回报。
+## 本地运行
 
-![可筛选的 LLM 免费额度状态页](docs/assets/status-page.png)
+```bash
+npm run render && npm run serve
+```
+
+打开 `http://127.0.0.1:4173`。需要 Node.js 20+，无运行时依赖，也不需要任何 API key。
+
+## 本周变化
+
+2026-07-25 当周。首次发布清单：26 家服务商，每个公布的数字都能追溯到本周核验过的官方页面。
+
+- **新增（26）：** Google Gemini API、GroqCloud、SambaNova Cloud、Cohere、Cloudflare Workers AI、Hugging Face Inference Providers、SiliconFlow、Fireworks AI、Z.AI Open Platform、Novita AI、Mistral La Plateforme、Alibaba Cloud Model Studio、Moonshot AI (Kimi)、Pollinations.AI、Ollama Cloud、Cerebras Inference、Vercel AI Gateway、IBM watsonx.ai、OpenRouter、GitHub Models、Together AI、Nebius Token Factory、Perplexity API、DeepInfra、Chutes、Scaleway Generative APIs
+- **生命周期 — GitHub Models：** 免费档 2026-07-30 下线，因此清单不提供它的注册链接。
+- **更正 — Cerebras Inference：** 通过验证的支付方式是调用 API 的前提，所以这不算免信用卡的免费额度。
+- **更正 — Fireworks AI：** 未绑定支付方式时的 10 RPM 上限作用于整个账号，不是按模型计算。
+
+上面每一条都能在下方清单里找到对应的核验日期与官方来源。完整历史见 [`data/changelog.json`](data/changelog.json)。
 
 ## 服务商清单
 
