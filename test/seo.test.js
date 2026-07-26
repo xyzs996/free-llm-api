@@ -62,6 +62,14 @@ test('every page declares one address for itself and shares it consistently', ()
   }
 });
 
+test('home metadata carries the primary acquisition promise', () => {
+  const home = pages.get('');
+  assert.match(attribute(home, /<title>([^<]*)<\/title>/, 'title'), /Free LLM APIs/);
+  assert.match(metaName(home, 'description'), /no-card/i);
+  assert.match(metaName(home, 'description'), /verified rate limits/i);
+  assert.match(home, /<h1>Free LLM APIs with direct API key links<\/h1>/);
+});
+
 test('every page ships a large-image social card backed by an image in the repository', async () => {
   const image = `${SITE_URL}${SOCIAL_IMAGE_PATH}`;
   const onDisk = await readFile(new URL(`../docs/${SOCIAL_IMAGE_PATH}`, import.meta.url))
@@ -138,16 +146,26 @@ test('each kind of page carries the structured data its content justifies', () =
     }
     if (path.startsWith('model/')) assert.deepEqual(typesOn(path), ['BreadcrumbList', 'ItemList'], path);
     if (path.startsWith('client/')) assert.deepEqual(typesOn(path), ['BreadcrumbList', 'HowTo'], path);
+    if (path.startsWith('compare/')) {
+      assert.deepEqual(typesOn(path), ['BreadcrumbList', 'ItemList', 'FAQPage'], path);
+    }
+  }
+});
+
+test('pages use visible content instead of obsolete meta keywords', () => {
+  for (const [path, html] of pages) {
+    assert.doesNotMatch(html, /<meta\s+name="keywords"/i, path);
   }
 });
 
 test('structured answers repeat the page instead of inventing a second one', () => {
   for (const [path, html] of pages) {
-    if (!path.startsWith('provider/')) continue;
+    if (!path.startsWith('provider/') && !path.startsWith('compare/')) continue;
     const body = plainText(html.match(/<article class="page-body" id="page-body">([\s\S]*?)<\/article>/)[1]);
     const [faq] = structuredData(html).filter((node) => node['@type'] === 'FAQPage');
 
-    assert.ok(faq.mainEntity.length >= 4, `${path} answers ${faq.mainEntity.length} questions`);
+    const minimum = path.startsWith('provider/') ? 4 : 2;
+    assert.ok(faq.mainEntity.length >= minimum, `${path} answers ${faq.mainEntity.length} questions`);
     for (const { name, acceptedAnswer } of faq.mainEntity) {
       assert.ok(body.includes(name), `${path} answers "${name}" only in its markup`);
       assert.ok(

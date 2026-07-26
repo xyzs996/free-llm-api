@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { renderBadgeEndpoints, renderBadges, starHistory } from './badges.js';
 import { HOSTED_CTA_URL, renderClientPages } from './client-pages.js';
 import { renderExamples } from './examples.js';
+import { accessGroups, catalogSummary, quickPicks } from './growth.js';
 import { embedJson, escapeHtml, externalLink, joinInline } from './html.js';
 import { dataSentence, localized, translator } from './i18n.js';
 import { escapeMarkdown } from './markdown.js';
@@ -13,6 +14,7 @@ import {
   MODEL_FAMILIES,
   categoryTitle as titleForCategory,
   clientPageIds,
+  comparisonPageIds,
   renderMatrixPages,
 } from './pages.js';
 import { renderReadmeZh } from './readme-zh.js';
@@ -110,25 +112,68 @@ Every entry above is dated and sourced in the catalog below. Full history: [\`da
 `;
 }
 
-function renderReadme(providers, changelog) {
-  const latestSourceCheck = providers
-    .map(({ source_checked_at: checkedAt }) => checkedAt)
-    .sort()
-    .at(-1);
-  const browserCheckable = providers.filter(({ browser_check: check }) => check === 'supported').length;
-  const rows = providers.map((provider) => {
-    const primarySource = provider.official_sources[0];
+function readmeLimits(provider, separator = ', ') {
+  const values = [
+    provider.limits.requests_per_minute === null
+      ? null
+      : `${provider.limits.requests_per_minute.toLocaleString('en-US')} RPM`,
+    provider.limits.requests_per_day === null
+      ? null
+      : `${provider.limits.requests_per_day.toLocaleString('en-US')} requests/day`,
+  ].filter(Boolean);
+
+  return values.join(separator) || 'Dynamic / model-dependent';
+}
+
+function readmeModels(provider) {
+  return provider.models
+    .slice(0, 3)
+    .map((model) => escapeMarkdown(model))
+    .join('<br>');
+}
+
+function renderReadmeRows(providers, { includeType = false } = {}) {
+  return providers.map((provider) => {
+    const source = provider.official_sources[0];
+    const detail = isLandingPageEligible(provider)
+      ? `${SITE_URL}provider/${provider.id}.html`
+      : source.url;
     const access = provider.signup_url ? `[Open](${provider.signup_url})` : 'Closed to new users';
-    const limits = provider.limits.requests_per_day === null
-      ? 'Dynamic / model-dependent'
-      : `${provider.limits.requests_per_minute} RPM, ${provider.limits.requests_per_day} requests/day`;
-    const lifecycle = provider.availability.retires_at
-      ? `Retires ${provider.availability.retires_at}`
-      : provider.availability.status;
-
-    return `| [${escapeMarkdown(provider.name)}](${primarySource.url}) | ${escapeMarkdown(titleForCategory(provider.category))} | ${provider.credit_card_required ? 'Yes' : 'No'} | ${provider.openai_compatible ? 'Yes' : 'No'} | ${escapeMarkdown(limits)} | ${escapeMarkdown(lifecycle)} | ${access} |`;
+    const type = provider.availability.retires_at
+      ? `${titleForCategory(provider.category)}<br>Retires ${provider.availability.retires_at}`
+      : titleForCategory(provider.category);
+    const cells = [
+      `[${escapeMarkdown(provider.name)}](${detail})`,
+      readmeModels(provider),
+      `[${escapeMarkdown(readmeLimits(provider))}](${source.url})`,
+      provider.credit_card_required ? 'Required' : 'Not required',
+      provider.openai_compatible ? 'Yes' : 'No',
+      access,
+    ];
+    if (includeType) cells.splice(1, 0, type);
+    return `| ${cells.join(' | ')} |`;
   }).join('\n');
+}
 
+const QUICK_PICK_LABELS = Object.freeze({
+  'highest-daily-limit': 'Highest published daily request limit',
+  'highest-rpm': 'Highest published requests per minute',
+  'browser-ready': 'Works with the browser key checker',
+  'coding-agents': 'Fast path for coding agents',
+});
+
+function renderReadmeQuickPicks(providers) {
+  return quickPicks(providers).map(({ id, provider, reason }) => {
+    const detail = `${SITE_URL}provider/${provider.id}.html`;
+    const signup = provider.signup_url ? `[Get API key](${provider.signup_url})` : 'Closed';
+    return `| ${QUICK_PICK_LABELS[id]} | [${escapeMarkdown(provider.name)}](${detail}) | ${escapeMarkdown(reason)} | ${signup} |`;
+  }).join('\n');
+}
+
+function renderReadme(providers, changelog) {
+  const summary = catalogSummary(providers);
+  const groups = accessGroups(providers);
+  const browserCheckable = providers.filter(({ browser_check: check }) => check === 'supported').length;
   const badges = renderBadges(
     {
       ci: 'CI',
@@ -140,31 +185,69 @@ function renderReadme(providers, changelog) {
   );
   const stars = starHistory();
 
-  return `# Free LLM API
+  return `# Free LLM APIs
 
 English · [简体中文](README_zh.md)
 
 ${badges}
 
-A source-backed directory of free LLM API tiers: where to get your own API key from each provider, what the published limits actually are, and how to point a coding agent at one.
+Permanent free tiers, no-card options, direct API key links, models, and verified limits — every claim points to an official source.
 
-> Sources last reviewed: ${latestSourceCheck}. No keys are distributed here — every entry links to the provider's own signup. A probe describes one sampled request, not provider-wide uptime.
+> ${summary.permanentFree} permanent provider free tiers · ${summary.noCardPermanentFree} require no credit card · ${summary.openAiCompatiblePermanentFree} are OpenAI compatible · sources reviewed ${summary.latestReview}. No keys are distributed here. A probe describes one sampled request, not provider-wide uptime.
 
-**[Status page](${SITE_URL}) · [Browser key checker](${SITE_URL}verify.html) · [Provider catalog](#provider-catalog) · [How this is checked](${SITE_URL}methodology.html)**
+**[Browse the live directory](${SITE_URL}) · [Pick by model](${SITE_URL}#browse) · [Set up a coding agent](docs/clients.md) · [Check your own key](${SITE_URL}verify.html)**
 
 [![Filterable LLM free-tier status page](docs/assets/status-page.png)](${SITE_URL})
 
 Star this repository to bookmark the dataset and follow releases. A star changes nothing about any provider's keys, credits, or limits, and this project gives nothing in return for one.
 
-## Check a key you already have
+## Pick a free API by goal
 
-Open the [browser key checker](${SITE_URL}verify.html). Nothing is installed and nothing is stored: the request goes from your browser straight to the provider, because the page's Content Security Policy allows connections to the ${connectSrcOrigins(providers).length} provider origins in this catalog and to nothing else — not to an analytics host, and not to this site.
+| Goal | Pick | Why it appears here | Start |
+| --- | --- | --- | --- |
+${renderReadmeQuickPicks(providers)}
 
-${browserCheckable} of ${providers.length} providers answer a cross-origin browser request. The other ${providers.length - browserCheckable} refuse one, so the page prints the equivalent \`curl\` command instead of guessing.
+These are rule-based shortcuts, not paid placements. Open the [filterable directory](${SITE_URL}) for all ${providers.length} providers.
 
-## Point a coding agent at one
+## Permanent free tiers
 
-Point a coding agent at any endpoint you already have access to:
+These Provider Free Tiers are the main list: they do not expire like trial credits, and none currently require a credit card.
+
+| Provider | Models | Published limits | Card | OpenAI compatible | Get API key |
+| --- | --- | --- | --- | --- | --- |
+${renderReadmeRows(groups.permanent)}
+
+## Other access options
+
+These entries can still be useful, but they are aggregators, trial credits, retiring tiers, or metered services — not permanent Provider Free Tiers.
+
+| Provider | Access type | Models | Published limits | Card | OpenAI compatible | Get API key |
+| --- | --- | --- | --- | --- | --- | --- |
+${renderReadmeRows(groups.other, { includeType: true })}
+
+Limits marked dynamic or model-dependent are intentionally not replaced with guessed numbers. Follow the linked official source for the current quota.
+
+## Quick start
+
+After creating your own Groq API key, the OpenAI SDK needs only a different Base URL and model id:
+
+\`\`\`python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ["GROQ_API_KEY"],
+    base_url="https://api.groq.com/openai/v1",
+)
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{"role": "user", "content": "Say hello in one sentence."}],
+)
+print(response.choices[0].message.content)
+\`\`\`
+
+For coding agents, generate a client-specific configuration that reads the key from your environment:
 
 \`\`\`bash
 npx free-llm-api setup claude-code
@@ -172,30 +255,16 @@ npx free-llm-api setup claude-code
 
 Client guides: [Claude Code](docs/claude-code.md) · [Codex CLI](docs/codex.md) · [Cline](docs/cline.md) · [all clients](docs/clients.md).
 
-Rotating keys across eight providers and hitting 429 every day? One OpenAI-compatible endpoint covers every model. [Create a PekPik API account](${hostedCta}).
+## Check a key you already have
 
-## Run locally
+Open the [browser key checker](${SITE_URL}verify.html). Nothing is installed or stored: the request goes from your browser straight to the chosen provider. Its Content Security Policy allows the ${connectSrcOrigins(providers).length} catalog origins and no analytics or project server. ${browserCheckable} providers answer cross-origin browser requests; blocked providers get an equivalent \`curl\` command.
 
-\`\`\`bash
-npm run render && npm run serve
-\`\`\`
+## Why trust this list
 
-Open \`http://127.0.0.1:4173\`. Node.js 20+ is required; there are no runtime dependencies and no API keys are needed.
-
-${renderChangelogSection(providers, changelog)}## Provider catalog
-
-| Provider | Free access type | Credit card | OpenAI compatible | Published limits | Lifecycle | Signup |
-| --- | --- | --- | --- | --- | --- | --- |
-${rows}
-
-Limits marked dynamic or model-dependent are intentionally not replaced with guessed numbers. Follow each provider link for the current official quota.
-
-## Probe semantics
-
-- \`200\`: the sampled request succeeded.
-- \`401/403\`: only the sample credential was rejected.
-- \`429\`: only the sample was rate-limited; the cause and remaining quota are unknown.
-- \`5xx\` or a network error: the sampled endpoint had a reachability problem; this is not proof of a provider-wide outage.
+- Every limit and lifecycle claim links to an official source and carries a review date.
+- Trial credit, metered access, aggregators, and retiring tiers are separated from permanent free tiers.
+- No working API keys are stored or distributed. Use environment variables for your own credentials.
+- A probe describes one sampled request, not provider-wide uptime. A \`429\` does not reveal the key's remaining quota.
 
 Run probes explicitly outside CI. Keys are read only from the provider environment variable:
 
@@ -203,21 +272,26 @@ Run probes explicitly outside CI. Keys are read only from the provider environme
 GROQ_API_KEY=YOUR_API_KEY npm run probe -- --provider groq
 \`\`\`
 
-The default and only supported output is the ignored \`data/probe-output.json\`. It contains the classification, status, latency, and timestamp, never the key, response body, or raw exception. CI validates static data and never runs authenticated probes.
+The ignored \`data/probe-output.json\` contains only a bounded classification, status, latency, and timestamp — never the key, response body, or raw exception. Read the full [methodology](${SITE_URL}methodology.html).
 
-## Data
+${renderChangelogSection(providers, changelog)}## Contributing
+
+Corrections are the contribution this project runs on: a limit that moved, a provider that closed signups, or a link that died. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](${REPO_URL}/issues/new/choose).
+
+## Data and local development
 
 - \`data/providers.json\` is the reviewed source dataset.
-- \`data/changelog.json\` records what changed each week; the newest week is rendered above.
-- \`docs/providers.json\`, \`docs/index.html\`, and this README are generated deterministically by \`npm run render\`.
-- Every provider entry includes official sources and a \`source_checked_at\` date. \`npm run validate\` fails when a quota is stated without one.
+- \`data/changelog.json\` records weekly changes.
+- \`README.md\`, \`docs/providers.json\`, and the static pages are generated deterministically.
+- \`npm run validate\` rejects stated quotas without an official source.
 
-## Contributing
+Run the generated site locally:
 
-Corrections are the contribution this project runs on: a limit that moved, a
-provider that closed signups, a link that died. Every claim in the catalog cites
-an official page, so a fix is a data edit with a source next to it — see
-[CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](${REPO_URL}/issues/new/choose).
+\`\`\`bash
+npm run render && npm run serve
+\`\`\`
+
+Open \`http://127.0.0.1:4173\`. Node.js 20+ is required; there are no runtime dependencies and no API keys are needed.
 
 ## Security
 
@@ -230,11 +304,39 @@ This repository contains no working credentials. Keep probe keys in environment 
 ## Related projects
 
 - [Free Tier LLM Router](https://github.com/xyzs996/free-tier-llm-router) combines your own provider keys behind one local endpoint with controlled failover.
+
+## Need one stable endpoint?
+
+If rotating free-tier keys and handling different limits becomes the work, [create a PekPik API account](${hostedCta}) for one OpenAI-compatible hosted endpoint. The free directory above remains usable without it.
 `;
+}
+
+function renderHomePickCards(providers, t) {
+  return quickPicks(providers).map(({ id, provider }) => {
+    const count = id === 'highest-daily-limit'
+      ? provider.limits.requests_per_day.toLocaleString('en-US')
+      : id === 'highest-rpm'
+        ? provider.limits.requests_per_minute.toLocaleString('en-US')
+        : '';
+    const signup = provider.signup_url
+      ? `<a class="pick-card__signup" href="${escapeHtml(provider.signup_url)}" rel="noreferrer">${escapeHtml(t('home.pickSignup'))}</a>`
+      : '';
+
+    return `          <article class="pick-card">
+            <p class="pick-card__label">${escapeHtml(t(`home.pick.${id}.label`))}</p>
+            <h3>${escapeHtml(provider.name)}</h3>
+            <p>${escapeHtml(t(`home.pick.${id}.reason`, { count }))}</p>
+            <div class="pick-card__actions">
+              <a href="./provider/${escapeHtml(provider.id)}.html">${escapeHtml(t('home.pickDetails'))}</a>
+              ${signup}
+            </div>
+          </article>`;
+  }).join('\n');
 }
 
 function renderPage(providers, families, locale = DEFAULT_LOCALE) {
   const t = translator(locale);
+  const summary = catalogSummary(providers);
   const categories = [...new Set(providers.map(({ category }) => category))];
   const categoryOptions = categories
     .map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(t(`category.${category}`))}</option>`)
@@ -244,12 +346,22 @@ function renderPage(providers, families, locale = DEFAULT_LOCALE) {
     .join('');
   const rows = providers.map((provider) => renderProviderRow(provider, t, locale)).join('\n');
   const embeddedData = embedJson(providers);
-  const sourceDate = providers
-    .map(({ source_checked_at: checkedAt }) => checkedAt)
-    .sort()
-    .at(-1);
+  const sourceDate = summary.latestReview;
   const title = t('home.title');
   const description = t('home.description');
+  const quickStartCode = `import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ["GROQ_API_KEY"],
+    base_url="https://api.groq.com/openai/v1",
+)
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{"role": "user", "content": "Hello"}],
+)
+print(response.choices[0].message.content)`;
   // The catalog is the one page that lives at a directory root rather than in a
   // section, so its own links stay flat while the shared assets it loads move up
   // by however deep the locale sits.
@@ -280,28 +392,75 @@ function renderPage(providers, families, locale = DEFAULT_LOCALE) {
 </head>
 <body>
   <header class="masthead">
+    <nav class="site-nav" aria-label="${escapeHtml(t('home.brand'))}">
+      <a class="site-nav__brand" href="./index.html">${escapeHtml(t('home.brand'))}</a>
+      <div class="site-nav__links">
+        <a href="#directory">${escapeHtml(t('home.navDirectory'))}</a>
+        <a href="#browse">${escapeHtml(t('home.navModels'))}</a>
+        <a href="./client/claude-code.html">${escapeHtml(t('home.navClients'))}</a>
+        <a href="./verify.html">${escapeHtml(t('home.navVerify'))}</a>
+        <a href="${escapeHtml(REPO_URL)}">${escapeHtml(t('home.navGithub'))}</a>
+      </div>
+    </nav>
     <div class="shell masthead__inner">
       <div>
         <p class="eyebrow">${escapeHtml(t('home.eyebrow', { date: sourceDate }))}</p>
         <h1>${escapeHtml(t('home.h1'))}</h1>
         <p class="lede">${escapeHtml(t('home.lede'))}</p>
-        <p class="masthead__actions"><a href="./verify.html">${escapeHtml(t('home.verifyCta'))}</a></p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="#directory">${escapeHtml(t('home.primaryCta'))}</a>
+          <a class="button button--secondary" href="#pick-by-goal">${escapeHtml(t('home.secondaryCta'))}</a>
+          <a class="hero-actions__link" href="./verify.html">${escapeHtml(t('home.verifyCta'))}</a>
+        </div>
       </div>
       <div class="masthead__stats" aria-label="${escapeHtml(t('home.statsLabel'))}">
-        <div><strong>${providers.length}</strong><span>${escapeHtml(t('home.statProviders'))}</span></div>
-        <div><strong>${providers.filter(({ openai_compatible: compatible }) => compatible).length}</strong><span>${escapeHtml(t('home.statCompatible'))}</span></div>
-        <div><strong>${providers.filter(({ availability }) => availability.status === 'retiring').length}</strong><span>${escapeHtml(t('home.statRetiring'))}</span></div>
+        <div><strong>${summary.permanentFree}</strong><span>${escapeHtml(t('home.statPermanent'))}</span></div>
+        <div><strong>${summary.noCardPermanentFree}</strong><span>${escapeHtml(t('home.statNoCard'))}</span></div>
+        <div><strong>${summary.openAiCompatiblePermanentFree}</strong><span>${escapeHtml(t('home.statCompatible'))}</span></div>
+        <div><strong>${summary.latestReview}</strong><span>${escapeHtml(t('home.statReviewed'))}</span></div>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="filter-band" aria-labelledby="filter-heading">
+    <section class="goal-band" id="pick-by-goal" aria-labelledby="goal-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">${escapeHtml(t('home.goalEyebrow'))}</p>
+          <h2 id="goal-heading">${escapeHtml(t('home.goalHeading'))}</h2>
+          <p>${escapeHtml(t('home.goalLede'))}</p>
+        </div>
+        <div class="goal-grid">
+          <a class="goal-card" href="./index.html?creditCard=not-required#directory"><strong>${escapeHtml(t('home.goalNoCard'))}</strong><span>${escapeHtml(t('home.goalNoCardBody'))}</span></a>
+          <a class="goal-card" href="./index.html?openaiCompatible=yes#directory"><strong>${escapeHtml(t('home.goalOpenAi'))}</strong><span>${escapeHtml(t('home.goalOpenAiBody'))}</span></a>
+          <a class="goal-card" href="#best-free-picks"><strong>${escapeHtml(t('home.goalLimits'))}</strong><span>${escapeHtml(t('home.goalLimitsBody'))}</span></a>
+          <a class="goal-card" href="./client/claude-code.html"><strong>${escapeHtml(t('home.goalCoding'))}</strong><span>${escapeHtml(t('home.goalCodingBody'))}</span></a>
+          <a class="goal-card" href="#browse"><strong>${escapeHtml(t('home.goalModels'))}</strong><span>${escapeHtml(t('home.goalModelsBody'))}</span></a>
+          <a class="goal-card" href="./verify.html"><strong>${escapeHtml(t('home.goalBrowser'))}</strong><span>${escapeHtml(t('home.goalBrowserBody'))}</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pick-band" id="best-free-picks" aria-labelledby="pick-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">${escapeHtml(t('home.pickEyebrow'))}</p>
+          <h2 id="pick-heading">${escapeHtml(t('home.pickHeading'))}</h2>
+          <p>${escapeHtml(t('home.pickLede'))}</p>
+        </div>
+        <div class="pick-grid">
+${renderHomePickCards(providers, t)}
+        </div>
+      </div>
+    </section>
+
+    <section class="filter-band" id="directory" aria-labelledby="filter-heading">
       <div class="shell">
         <div class="section-heading">
           <div>
             <p class="eyebrow">${escapeHtml(t('home.filterEyebrow'))}</p>
             <h2 id="filter-heading">${escapeHtml(t('home.filterHeading'))}</h2>
+            <p class="section-lede">${escapeHtml(t('home.filterLede'))}</p>
           </div>
           <p><strong id="provider-count">${providers.length}</strong> ${escapeHtml(t('home.matches'))}</p>
         </div>
@@ -344,7 +503,7 @@ ${rows}
       </div>
     </section>
 
-    <section class="browse-band" aria-labelledby="browse-heading">
+    <section class="browse-band" id="browse" aria-labelledby="browse-heading">
       <div class="shell">
         <div class="section-heading">
           <div>
@@ -373,6 +532,38 @@ ${clientPageIds.map((id) => `              <li><a href="./client/${escapeHtml(id
               <li><a href="${rootPrefix}providers.json">${escapeHtml(t('home.rawJson'))}</a></li>
             </ul>
           </div>
+          <div>
+            <h3>${escapeHtml(t('home.browseComparisons'))}</h3>
+            <ul>
+${comparisonPageIds.map((id) => `              <li><a href="./compare/${escapeHtml(id)}.html">${escapeHtml(t(`comparison.${id}.link`))}</a></li>`).join('\n')}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-start-band" id="quick-start" aria-labelledby="quick-start-heading">
+      <div class="shell quick-start-grid">
+        <div>
+          <p class="eyebrow">${escapeHtml(t('home.quickEyebrow'))}</p>
+          <h2 id="quick-start-heading">${escapeHtml(t('home.quickHeading'))}</h2>
+          <p>${escapeHtml(t('home.quickBody'))}</p>
+          <a class="button button--secondary-dark" href="./client/claude-code.html">${escapeHtml(t('home.quickClient'))}</a>
+        </div>
+        <pre class="quick-start-code"><code>${escapeHtml(quickStartCode)}</code></pre>
+      </div>
+    </section>
+
+    <section class="trust-band" id="trust" aria-labelledby="trust-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">${escapeHtml(t('home.trustEyebrow'))}</p>
+          <h2 id="trust-heading">${escapeHtml(t('home.trustHeading'))}</h2>
+        </div>
+        <div class="trust-grid">
+          <article><h3>${escapeHtml(t('home.trustSources'))}</h3><p>${escapeHtml(t('home.trustSourcesBody'))}</p></article>
+          <article><h3>${escapeHtml(t('home.trustDates'))}</h3><p>${escapeHtml(t('home.trustDatesBody'))}</p></article>
+          <article><h3>${escapeHtml(t('home.trustBoundaries'))}</h3><p>${escapeHtml(t('home.trustBoundariesBody'))}</p></article>
         </div>
       </div>
     </section>
@@ -383,7 +574,7 @@ ${clientPageIds.map((id) => `              <li><a href="./client/${escapeHtml(id
           <p class="eyebrow">${escapeHtml(t('home.methodEyebrow'))}</p>
           <h2>${escapeHtml(t('home.methodHeading'))}</h2>
         </div>
-        <p>${t('home.methodBody')} <a href="./methodology.html">${escapeHtml(t('home.methodLink'))}</a>.</p>
+        <p>${escapeHtml(t('home.methodBody'))} <a href="${escapeHtml(REPO_URL)}/blob/main/CONTRIBUTING.md">${escapeHtml(t('home.methodLink'))}</a>.</p>
         <a class="hosted-cta" href="${escapeHtml(hostedCta)}">${escapeHtml(t('home.hostedCta'))}</a>
       </div>
     </section>

@@ -37,6 +37,16 @@ test('the two READMEs link to each other and carry the same catalog', () => {
   }
 });
 
+test('Chinese README mirrors the growth-first information architecture', () => {
+  const readme = renderArtifacts(providers, changelog)['README_zh.md'];
+
+  assert.match(readme, /^# 免费大模型 API 清单/m);
+  assert.ok(readme.indexOf('## 按需求选择免费 API') < readme.indexOf('## 永久免费额度'));
+  assert.ok(readme.indexOf('## 永久免费额度') < readme.indexOf('## 其他访问方式'));
+  assert.match(readme, /## 快速开始/);
+  assert.match(readme, /## 为什么可以信任这份清单/);
+});
+
 test('every catalog category, status, and change type has a Chinese label', () => {
   for (const category of new Set(providers.map(({ category }) => category))) {
     assert.ok(Object.hasOwn(CATEGORY_TITLES_ZH, category), `category "${category}" has no Chinese title`);
@@ -49,7 +59,8 @@ test('every catalog category, status, and change type has a Chinese label', () =
   }
 
   const table = renderReadmeZh(providers, changelog);
-  assert.match(table, /^\| 服务商 \| 免费形式 \| 需信用卡 \| OpenAI 兼容 \| 官方公布限额 \| 状态 \| 注册 \|$/m);
+  assert.match(table, /^\| 服务商 \| 模型 \| 官方公布限额 \| 信用卡 \| OpenAI 兼容 \| 获取 API Key \|$/m);
+  assert.match(table, /^\| 服务商 \| 访问形式 \| 模型 \| 官方公布限额 \| 信用卡 \| OpenAI 兼容 \| 获取 API Key \|$/m);
   assert.doesNotMatch(table, /\| (provider-free-tier|trial-credit|metered-access) \|/);
   assert.doesNotMatch(table, /\| (active|retiring) \|/);
 });

@@ -71,6 +71,24 @@ test('the page matrix covers every model family and every documented client', ()
   assert.ok(Object.hasOwn(pages, 'docs/methodology.html'));
 });
 
+test('the page matrix includes bilingual high-intent comparison pages', () => {
+  const home = pages['docs/index.html'];
+
+  for (const slug of ['no-credit-card', 'openai-compatible', 'coding-agents']) {
+    const englishPath = `docs/compare/${slug}.html`;
+    const chinesePath = `docs/zh/compare/${slug}.html`;
+    assert.ok(Object.hasOwn(pages, englishPath), `${slug} has no comparison page`);
+    assert.ok(Object.hasOwn(pages, chinesePath), `${slug} has no Chinese page`);
+    assert.match(home, new RegExp(`href="\\./compare/${slug}\\.html"`));
+
+    const providerLinks = new Set(
+      [...pages[englishPath].matchAll(/href="\.\.\/provider\/([a-z0-9-]+)\.html"/g)]
+        .map(([, id]) => id),
+    );
+    assert.ok(providerLinks.size >= 3, `${slug} links to only ${providerLinks.size} providers`);
+  }
+});
+
 test('no two pages compete on the same title or the same description', () => {
   const titles = new Map();
   const descriptions = new Map();

@@ -69,6 +69,22 @@ const CLIENT_NOTES = Object.freeze({
   },
 });
 
+const COMPARISONS = Object.freeze([
+  {
+    id: 'no-credit-card',
+    predicate: (provider) => !provider.credit_card_required,
+  },
+  {
+    id: 'openai-compatible',
+    predicate: (provider) => provider.openai_compatible,
+  },
+  {
+    id: 'coding-agents',
+    predicate: (provider) => provider.openai_compatible
+      && provider.models.some((model) => /coder|code|gpt-oss|llama|qwen/i.test(model)),
+  },
+]);
+
 function clientNote(clientId, locale) {
   return { ...CLIENT_NOTES[clientId], ...clientNoteCopy(clientId, locale) };
 }
@@ -638,6 +654,115 @@ function clientPage(clientId, context) {
   });
 }
 
+/* --------------------------------------------------------------- comparison */
+
+function comparisonBody(comparison, members, context) {
+  const { t } = context;
+  const rows = members.map((provider) => `            <tr>
+              <td data-label="${t('table.provider')}"><a href="../provider/${escapeHtml(provider.id)}.html">${escapeHtml(provider.name)}</a></td>
+              <td data-label="${t('table.access')}">${escapeHtml(t(`category.${provider.category}`))}</td>
+              <td data-label="${t('table.limits')}">${escapeHtml(limitsPhrase(provider, context))}</td>
+              <td data-label="${t('table.card')}">${provider.credit_card_required ? t('word.required') : t('word.notRequired')}</td>
+              <td data-label="${t('table.baseUrl')}"><code>${escapeHtml(provider.base_url)}</code></td>
+            </tr>`).join('\n');
+  const key = `comparison.${comparison.id}`;
+
+  return `        <h2>${escapeHtml(t(`${key}.scopeHeading`))}</h2>
+        <p>${escapeHtml(t(`${key}.scopeBody`, { count: members.length, total: context.total }))}</p>
+
+        <h2>${escapeHtml(t(`${key}.tableHeading`))}</h2>
+        <p>${escapeHtml(t(`${key}.tableBody`, { count: members.length }))}</p>
+        <div class="table-wrap comparison-table">
+          <table>
+            <thead><tr><th>${t('table.provider')}</th><th>${t('table.access')}</th><th>${t('table.limits')}</th><th>${t('table.card')}</th><th>${t('table.baseUrl')}</th></tr></thead>
+            <tbody>
+${rows}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>${escapeHtml(t(`${key}.chooseHeading`))}</h2>
+        <p>${escapeHtml(t(`${key}.chooseBody`))}</p>
+
+        <h2>${escapeHtml(t(`${key}.tradeoffsHeading`))}</h2>
+        <p>${escapeHtml(t(`${key}.tradeoffsBody`))}</p>
+
+        <h2>${escapeHtml(t(`${key}.workflowHeading`))}</h2>
+        <p>${escapeHtml(t(`${key}.workflowBody`))}</p>
+
+        <h2>${escapeHtml(t(`${key}.verifyHeading`))}</h2>
+        <p>${t(`${key}.verifyBody`, { date: escapeHtml(context.checkedAt) })}</p>`;
+}
+
+function comparisonPage(comparison, context) {
+  const { t, locale } = context;
+  const key = `comparison.${comparison.id}`;
+  const members = context.pages.filter(comparison.predicate);
+  const others = COMPARISONS.filter(({ id }) => id !== comparison.id);
+  const faqEntries = [
+    {
+      question: t(`${key}.chooseHeading`),
+      answer: t(`${key}.chooseBody`),
+    },
+    {
+      question: t(`${key}.verifyHeading`),
+      answer: t(`${key}.verifyBody`, { date: context.checkedAt }),
+    },
+  ];
+
+  return renderDocument({
+    depth: 1,
+    locale,
+    title: t(`${key}.title`, { count: members.length }).slice(0, 60),
+    description: t(`${key}.description`, { count: members.length, date: context.checkedAt }).slice(0, 160),
+    canonicalPath: `compare/${comparison.id}.html`,
+    jsonLd: [
+      itemListNode({
+        name: t(`${key}.listName`),
+        description: t(`${key}.listDescription`),
+        items: members.map((provider) => ({
+          name: provider.name,
+          url: pageUrl(`provider/${provider.id}.html`, locale),
+        })),
+      }),
+      faqPageNode(faqEntries),
+    ],
+    breadcrumb: [
+      { href: 'index.html', text: t('layout.brand') },
+      { href: 'index.html', text: t('comparison.crumb') },
+      { text: t(`${key}.crumb`) },
+    ],
+    eyebrow: t('comparison.eyebrow', { count: members.length, date: context.checkedAt }),
+    h1: t(`${key}.h1`),
+    lede: t(`${key}.lede`, { count: members.length }),
+    body: comparisonBody(comparison, members, context),
+    related: [
+      {
+        heading: t('comparison.relatedProviders'),
+        links: members.slice(0, 6).map((provider) => ({
+          href: `provider/${provider.id}.html`,
+          text: provider.name,
+        })),
+      },
+      {
+        heading: t('comparison.relatedComparisons'),
+        links: others.map(({ id }) => ({
+          href: `compare/${id}.html`,
+          text: t(`comparison.${id}.link`),
+        })),
+      },
+      {
+        heading: t('layout.thisCatalog'),
+        links: [
+          { href: 'index.html', text: t('layout.allProviders') },
+          { href: 'verify.html', text: t('layout.browserChecker') },
+          { href: 'methodology.html', text: t('layout.methodologyLink') },
+        ],
+      },
+    ],
+  });
+}
+
 /* --------------------------------------------------------------- methodology */
 
 function methodologyBody(context) {
@@ -730,6 +855,7 @@ function methodologyPage(context) {
 /* ---------------------------------------------------------------- entrypoint */
 
 export const clientPageIds = Object.freeze(Object.keys(CLIENT_NOTES));
+export const comparisonPageIds = Object.freeze(COMPARISONS.map(({ id }) => id));
 
 export const CLIENT_PAGE_TITLES = Object.freeze(Object.fromEntries(
   Object.entries(CLIENT_NOTES).map(([id, note]) => [id, note.title]),
@@ -791,6 +917,9 @@ export function renderMatrixPages(providers, families = MODEL_FAMILIES, locale =
   }
   for (const clientId of clientPageIds) {
     artifacts[`${directory}client/${clientId}.html`] = clientPage(clientId, context);
+  }
+  for (const comparison of COMPARISONS) {
+    artifacts[`${directory}compare/${comparison.id}.html`] = comparisonPage(comparison, context);
   }
   artifacts[`${directory}methodology.html`] = methodologyPage(context);
 

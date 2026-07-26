@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="有官方来源可查的免费 LLM API 额度、协议兼容性、生命周期，以及可解释的采样探活状态。">
-  <title>免费 LLM API 目录</title>
+  <meta name="description" content="比较长期免费的 LLM API、无需信用卡的选择、官方 Key 申请入口、模型和经过来源核验的限额。">
+  <title>免费大模型 API 清单：无需信用卡、模型与限额对比</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/">
   <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/">
@@ -13,44 +13,126 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
-  <meta property="og:title" content="免费 LLM API 目录">
-  <meta property="og:description" content="有官方来源可查的免费 LLM API 额度、协议兼容性、生命周期，以及可解释的采样探活状态。">
+  <meta property="og:title" content="免费大模型 API 清单：无需信用卡、模型与限额对比">
+  <meta property="og:description" content="比较长期免费的 LLM API、无需信用卡的选择、官方 Key 申请入口、模型和经过来源核验的限额。">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="免费 LLM API 目录">
-  <meta name="twitter:description" content="有官方来源可查的免费 LLM API 额度、协议兼容性、生命周期，以及可解释的采样探活状态。">
+  <meta name="twitter:title" content="免费大模型 API 清单：无需信用卡、模型与限额对比">
+  <meta name="twitter:description" content="比较长期免费的 LLM API、无需信用卡的选择、官方 Key 申请入口、模型和经过来源核验的限额。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Free LLM API","url":"https://xyzs996.github.io/free-llm-api/","description":"有官方来源可查的免费 LLM API 额度、协议兼容性、生命周期，以及可解释的采样探活状态。","inLanguage":["en","zh-Hans"],"publisher":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Free LLM API","url":"https://xyzs996.github.io/free-llm-api/","description":"比较长期免费的 LLM API、无需信用卡的选择、官方 Key 申请入口、模型和经过来源核验的限额。","inLanguage":["en","zh-Hans"],"publisher":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Free LLM API provider catalog","description":"26 家 LLM API 服务商的免费额度条款：官方公布的限流数值、是否需要信用卡、是否兼容 OpenAI 协议、生命周期，以及每个数字背后的官方来源。","url":"https://xyzs996.github.io/free-llm-api/zh/","inLanguage":"zh-Hans","identifier":"https://github.com/xyzs996/free-llm-api/blob/main/data/providers.json","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"keywords":["free LLM API","free API tier","LLM rate limits","OpenAI-compatible endpoint"],"variableMeasured":["requests per minute","requests per day","credit card requirement","OpenAI protocol compatibility","browser reachability"],"size":"26 providers","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://xyzs996.github.io/free-llm-api/providers.json"}]}</script>
 </head>
 <body>
   <header class="masthead">
+    <nav class="site-nav" aria-label="免费大模型 API">
+      <a class="site-nav__brand" href="./index.html">免费大模型 API</a>
+      <div class="site-nav__links">
+        <a href="#directory">完整目录</a>
+        <a href="#browse">模型</a>
+        <a href="./client/claude-code.html">编码客户端</a>
+        <a href="./verify.html">检测 Key</a>
+        <a href="https://github.com/xyzs996/free-llm-api">GitHub</a>
+      </div>
+    </nav>
     <div class="shell masthead__inner">
       <div>
         <p class="eyebrow">逐条核验的服务商事实 · 核验于 2026-07-25</p>
-        <h1>免费 LLM API 目录</h1>
-        <p class="lede">按官方公布的条款横向比较免费额度，而不是把一次采样请求当成可用性监控。</p>
-        <p class="masthead__actions"><a href="./verify.html">已经有 key 了？在浏览器里验一下 →</a></p>
+        <h1>免费大模型 API：直达官方 Key 申请入口</h1>
+        <p class="lede">比较长期免费额度、无需信用卡的选择、模型与官方公布限额；每项结论都能追溯到官方来源。</p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="#directory">浏览免费 API</a>
+          <a class="button button--secondary" href="#pick-by-goal">按需求选择</a>
+          <a class="hero-actions__link" href="./verify.html">已经有 key 了？在浏览器里验一下 →</a>
+        </div>
       </div>
       <div class="masthead__stats" aria-label="清单概览">
-        <div><strong>26</strong><span>家服务商在跟踪</span></div>
-        <div><strong>25</strong><span>家兼容 OpenAI 协议</span></div>
-        <div><strong>1</strong><span>家即将下线</span></div>
+        <div><strong>15</strong><span>家长期免费额度</span></div>
+        <div><strong>15</strong><span>家无需信用卡</span></div>
+        <div><strong>15</strong><span>家免费额度兼容 OpenAI</span></div>
+        <div><strong>2026-07-25</strong><span>最近来源核验</span></div>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="filter-band" aria-labelledby="filter-heading">
+    <section class="goal-band" id="pick-by-goal" aria-labelledby="goal-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">先选你的核心条件</p>
+          <h2 id="goal-heading">按需求选择免费 API</h2>
+          <p>直接进入符合使用方式的短名单，不用先读完整张大表。</p>
+        </div>
+        <div class="goal-grid">
+          <a class="goal-card" href="./index.html?creditCard=not-required#directory"><strong>无需信用卡</strong><span>筛选不绑定支付方式也能开始使用的服务商。</span></a>
+          <a class="goal-card" href="./index.html?openaiCompatible=yes#directory"><strong>兼容 OpenAI</strong><span>只更换 Base URL 和模型 ID，继续使用 OpenAI SDK。</span></a>
+          <a class="goal-card" href="#best-free-picks"><strong>已公布限额最高</strong><span>优先查看公开了 RPM 或每日请求数、能够直接比较的服务商。</span></a>
+          <a class="goal-card" href="./client/claude-code.html"><strong>编码 Agent</strong><span>配置 Claude Code、Codex、Cline 等开发工具。</span></a>
+          <a class="goal-card" href="#browse"><strong>按模型系列浏览</strong><span>寻找 Llama、DeepSeek、Qwen、GLM、Kimi 和 gpt-oss 的免费托管。</span></a>
+          <a class="goal-card" href="./verify.html"><strong>安全检测 Key</strong><span>在浏览器中检测自己的 Key，或获取等价的 curl 命令。</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pick-band" id="best-free-picks" aria-labelledby="pick-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">由数据生成的捷径</p>
+          <h2 id="pick-heading">值得优先查看的起点</h2>
+          <p>完全依据清单中的公开事实选出，不接受赞助排名。</p>
+        </div>
+        <div class="pick-grid">
+          <article class="pick-card">
+            <p class="pick-card__label">每日请求上限最高</p>
+            <h3>GroqCloud</h3>
+            <p>已公布 1,000 次/天</p>
+            <div class="pick-card__actions">
+              <a href="./provider/groq.html">查看详情</a>
+              <a class="pick-card__signup" href="https://console.groq.com/keys" rel="noreferrer">申请 API Key</a>
+            </div>
+          </article>
+          <article class="pick-card">
+            <p class="pick-card__label">每分钟请求上限最高</p>
+            <h3>SiliconFlow</h3>
+            <p>已公布 1,000 RPM</p>
+            <div class="pick-card__actions">
+              <a href="./provider/siliconflow.html">查看详情</a>
+              <a class="pick-card__signup" href="https://cloud.siliconflow.com/account/ak" rel="noreferrer">申请 API Key</a>
+            </div>
+          </article>
+          <article class="pick-card">
+            <p class="pick-card__label">可在浏览器检测</p>
+            <h3>Google Gemini API</h3>
+            <p>已验证 Key 检测所需的跨域支持</p>
+            <div class="pick-card__actions">
+              <a href="./provider/gemini.html">查看详情</a>
+              <a class="pick-card__signup" href="https://aistudio.google.com/apikey" rel="noreferrer">申请 API Key</a>
+            </div>
+          </article>
+          <article class="pick-card">
+            <p class="pick-card__label">编码 Agent 配置</p>
+            <h3>GroqCloud</h3>
+            <p>包含 OpenAI 兼容配置指南</p>
+            <div class="pick-card__actions">
+              <a href="./provider/groq.html">查看详情</a>
+              <a class="pick-card__signup" href="https://console.groq.com/keys" rel="noreferrer">申请 API Key</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="filter-band" id="directory" aria-labelledby="filter-heading">
       <div class="shell">
         <div class="section-heading">
           <div>
             <p class="eyebrow">清单</p>
-            <h2 id="filter-heading">筛出一个真能用的免费额度</h2>
+            <h2 id="filter-heading">比较完整目录</h2>
+            <p class="section-lede">长期免费、聚合器、注册赠送和按量计费保持清晰分层。</p>
           </div>
           <p><strong id="provider-count">26</strong> 条匹配</p>
         </div>
@@ -665,12 +747,12 @@
       </div>
     </section>
 
-    <section class="browse-band" aria-labelledby="browse-heading">
+    <section class="browse-band" id="browse" aria-labelledby="browse-heading">
       <div class="shell">
         <div class="section-heading">
           <div>
             <p class="eyebrow">浏览</p>
-            <h2 id="browse-heading">按模型系列或按客户端查看</h2>
+            <h2 id="browse-heading">按模型系列或编码客户端浏览</h2>
           </div>
         </div>
         <div class="browse-grid">
@@ -704,6 +786,52 @@
               <li><a href="../providers.json">原始清单 JSON</a></li>
             </ul>
           </div>
+          <div>
+            <h3>高意图对比</h3>
+            <ul>
+              <li><a href="./compare/no-credit-card.html">无需信用卡的免费 API</a></li>
+              <li><a href="./compare/openai-compatible.html">兼容 OpenAI 的免费 API</a></li>
+              <li><a href="./compare/coding-agents.html">编码 Agent 可用的免费 API</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-start-band" id="quick-start" aria-labelledby="quick-start-heading">
+      <div class="shell quick-start-grid">
+        <div>
+          <p class="eyebrow">复制、配置、运行</p>
+          <h2 id="quick-start-heading">同一个 SDK，只换 Base URL</h2>
+          <p>从环境变量读取你自己的 Groq API Key；目录中其他 OpenAI 兼容服务也遵循同一模式。</p>
+          <a class="button button--secondary-dark" href="./client/claude-code.html">生成编码 Agent 配置</a>
+        </div>
+        <pre class="quick-start-code"><code>import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ[&quot;GROQ_API_KEY&quot;],
+    base_url=&quot;https://api.groq.com/openai/v1&quot;,
+)
+
+response = client.chat.completions.create(
+    model=&quot;llama-3.3-70b-versatile&quot;,
+    messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello&quot;}],
+)
+print(response.choices[0].message.content)</code></pre>
+      </div>
+    </section>
+
+    <section class="trust-band" id="trust" aria-labelledby="trust-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">为什么可以信任这份目录</p>
+          <h2 id="trust-heading">事实只有在可追溯时才有用</h2>
+        </div>
+        <div class="trust-grid">
+          <article><h3>官方来源</h3><p>每条限额和生命周期信息都链接到对应的服务商官方页面。</p></article>
+          <article><h3>核验日期</h3><p>每条记录都保留最后核验官方来源的日期。</p></article>
+          <article><h3>诚实边界</h3><p>赠送额度和按量计费单独展示；一次采样从不冒充整体可用性。</p></article>
         </div>
       </div>
     </section>
@@ -711,11 +839,11 @@
     <section class="method-band">
       <div class="shell method-grid">
         <div>
-          <p class="eyebrow">怎么读这张表</p>
-          <h2>采样事实，不是状态表演</h2>
+          <p class="eyebrow">一起保持清单新鲜</p>
+          <h2>发现限额过期或漏掉服务商？</h2>
         </div>
-        <p><strong>401/403</strong> 说明采样用的凭据没通过。<strong>429</strong> 说明那次采样被限流。只有网络错误和 5xx 才说明采样端点这次连不通，而且也绝不等于服务商整体故障。 <a href="./methodology.html">读完整的数据方法说明</a>.</p>
-        <a class="hosted-cta" href="https://aiapiv2.pekpik.com/register?utm_source=github&amp;utm_medium=repo&amp;utm_campaign=free-llm-api">需要稳定的托管访问？</a>
+        <p>带上官方来源和核验日期提交更正；欢迎使用中文或英文。 <a href="https://github.com/xyzs996/free-llm-api/blob/main/CONTRIBUTING.md">阅读贡献指南</a>.</p>
+        <a class="hosted-cta" href="https://aiapiv2.pekpik.com/register?utm_source=github&amp;utm_medium=repo&amp;utm_campaign=free-llm-api">需要一个稳定的托管端点？</a>
       </div>
     </section>
   </main>

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { localized } from '../src/i18n.js';
-import { MODEL_FAMILIES, clientPageIds } from '../src/pages.js';
+import { MODEL_FAMILIES, clientPageIds, comparisonPageIds } from '../src/pages.js';
 import { renderArtifacts } from '../src/render.js';
 import { LOCALES, neutralPath } from '../src/site.js';
 import { isLandingPageEligible, providersInFamily } from '../src/validate.js';
@@ -92,7 +92,7 @@ function jaccard(left, right) {
 
 const bodies = new Map(
   Object.entries(artifacts)
-    .filter(([path]) => /^docs\/([a-z-]+\/)?(provider|model|client)\/[a-z0-9-]+\.html$/.test(path)
+    .filter(([path]) => /^docs\/([a-z-]+\/)?(provider|model|client|compare)\/[a-z0-9-]+\.html$/.test(path)
       || /^docs\/([a-z-]+\/)?methodology\.html$/.test(path))
     .map(([path, html]) => [path, bodyOf(html)]),
 );
@@ -101,7 +101,7 @@ const bodies = new Map(
 // Chinese page and its English original share no vocabulary, so scoring them
 // against each other would measure nothing and hide the pairs that matter.
 const GROUPS = Object.fromEntries(
-  LOCALES.flatMap(({ code, path_prefix: prefix }) => ['provider', 'model', 'client'].map((kind) => [
+  LOCALES.flatMap(({ code, path_prefix: prefix }) => ['provider', 'model', 'client', 'compare'].map((kind) => [
     `${code}/${kind}`,
     [...bodies.keys()].filter((path) => path.startsWith(`docs/${prefix}${kind}/`)),
   ])),
@@ -264,6 +264,11 @@ test('every model family page names its members and every client page names its 
     for (const clientId of clientPageIds) {
       const path = `docs/${locale.path_prefix}client/${clientId}.html`;
       assert.ok(texts.get(path).includes(CLIENT_PAGE_TITLES[clientId]), `${path} never names the client`);
+    }
+
+    for (const comparisonId of comparisonPageIds) {
+      const path = `docs/${locale.path_prefix}compare/${comparisonId}.html`;
+      assert.ok(texts.get(path), `${path} has no measurable comparison body`);
     }
   }
 });

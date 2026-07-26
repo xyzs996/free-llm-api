@@ -128,7 +128,7 @@ test('weeks are ordered newest first so the README block is unambiguous', async 
   );
 });
 
-test('README opens with the latest changelog week and links the full history', async () => {
+test('README keeps the latest changelog below the acquisition and trust sections', async () => {
   const renderer = await loadRenderer();
   assert.ok(renderer, 'src/render.js should export renderArtifacts');
 
@@ -137,8 +137,8 @@ test('README opens with the latest changelog week and links the full history', a
 
   assert.match(readme, /## Changed this week/);
   assert.ok(
-    readme.indexOf('## Changed this week') < readme.indexOf('## Provider catalog'),
-    'the weekly block belongs above the catalog table',
+    readme.indexOf('## Why trust this list') < readme.indexOf('## Changed this week'),
+    'the weekly block should not interrupt the acquisition path',
   );
   assert.ok(readme.includes(`Week of ${week.week_of}`));
   assert.ok(readme.includes(week.summary));
@@ -170,5 +170,5 @@ test('README omits the weekly block when no changelog is supplied', async () => 
 
   const readme = renderer.renderArtifacts(providers)['README.md'];
   assert.doesNotMatch(readme, /## Changed this week/);
-  assert.match(readme, /## Provider catalog/);
+  assert.match(readme, /## Permanent free tiers/);
 });

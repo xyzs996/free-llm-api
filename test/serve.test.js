@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
@@ -19,6 +19,8 @@ test('static server serves index assets and returns 404 for missing files', asyn
   const root = await mkdtemp(join(tmpdir(), 'llm-status-'));
   await writeFile(join(root, 'index.html'), '<h1>Status</h1>', 'utf8');
   await writeFile(join(root, 'app.js'), 'export default true;', 'utf8');
+  await mkdir(join(root, 'zh'));
+  await writeFile(join(root, 'zh', 'index.html'), '<h1>状态</h1>', 'utf8');
 
   const server = await serve.startStaticServer({ root, host: '127.0.0.1', port: 0 });
   t.after(async () => {
@@ -31,6 +33,11 @@ test('static server serves index assets and returns 404 for missing files', asyn
   assert.equal(page.status, 200);
   assert.match(page.headers.get('content-type'), /text\/html/);
   assert.equal(await page.text(), '<h1>Status</h1>');
+
+  const translated = await fetch(`http://127.0.0.1:${port}/zh/`);
+  assert.equal(translated.status, 200);
+  assert.match(translated.headers.get('content-type'), /text\/html/);
+  assert.equal(await translated.text(), '<h1>状态</h1>');
 
   const missing = await fetch(`http://127.0.0.1:${port}/missing.txt`);
   assert.equal(missing.status, 404);

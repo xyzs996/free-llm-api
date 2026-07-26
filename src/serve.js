@@ -17,7 +17,9 @@ const contentTypes = {
 
 function resolveRequestPath(root, requestUrl) {
   const pathname = decodeURIComponent(new URL(requestUrl, 'http://localhost').pathname);
-  const relativePath = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
+  const relativePath = pathname.endsWith('/')
+    ? `${pathname.replace(/^\/+/, '')}index.html`
+    : pathname.replace(/^\/+/, '');
   const filePath = resolve(root, relativePath);
   if (filePath !== root && !filePath.startsWith(`${root}${sep}`)) return null;
   return filePath;

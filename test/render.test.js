@@ -23,13 +23,13 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
   const second = renderer.renderArtifacts(structuredClone(providers));
 
   assert.deepEqual(first, second);
-  // The per-provider, per-family and per-client matrix is counted in
+  // The per-provider, per-family, per-client and per-comparison matrix is counted in
   // test/pages.test.js; everything outside it is enumerated here so a new
   // top-level artifact cannot appear unnoticed. Every locale publishes that
   // same matrix under its own prefix, so the prefixes come from the locale
   // list rather than from a pattern loose enough to swallow a stray folder.
   const prefixes = LOCALES.map(({ path_prefix: prefix }) => prefix).join('|');
-  const matrix = new RegExp(`^docs/(${prefixes})(provider|model|client)/[a-z0-9-]+\\.html$`);
+  const matrix = new RegExp(`^docs/(${prefixes})(provider|model|client|compare)/[a-z0-9-]+\\.html$`);
   assert.deepEqual(Object.keys(first).filter((path) => !matrix.test(path)).sort(), [
     'README.md',
     'README_zh.md',
@@ -65,12 +65,28 @@ test('generated text artifacts contain no trailing whitespace', async () => {
   }
 });
 
-test('README leads with a runnable command, limitations, sources, and a measured CTA', async () => {
+test('README leads with GitHub acquisition paths and keeps its safety contract', async () => {
   const renderer = await loadRenderer();
   assert.ok(renderer, 'src/render.js should export renderArtifacts');
 
   const readme = renderer.renderArtifacts(providers)['README.md'];
-  assert.match(readme, /^# Free LLM API/m);
+  assert.match(readme, /^# Free LLM APIs/m);
+  assert.match(readme, /Permanent free tiers, no-card options, direct API key links/);
+  assert.ok(
+    readme.indexOf('## Pick a free API by goal') < readme.indexOf('## Permanent free tiers'),
+    'quick picks should appear before the main catalog',
+  );
+  assert.ok(
+    readme.indexOf('## Permanent free tiers') < readme.indexOf('## Other access options'),
+    'permanent free tiers should not be mixed with trials or metered access',
+  );
+  assert.match(
+    readme,
+    /\| Provider \| Models \| Published limits \| Card \| OpenAI compatible \| Get API key \|/,
+  );
+  assert.match(readme, /## Quick start/);
+  assert.match(readme, /from openai import OpenAI/);
+  assert.match(readme, /## Why trust this list/);
   assert.match(readme, /npm run render && npm run serve/);
   assert.match(readme, /A probe describes one sampled request, not provider-wide uptime\./);
   assert.match(readme, /GitHub Models.*2026-07-30/);
@@ -84,8 +100,8 @@ test('README leads with a runnable command, limitations, sources, and a measured
   assert.match(readme, /data\/probe-output\.json/);
   assert.doesNotMatch(readme, /429.*exhausted its quota/);
   assert.ok(
-    readme.indexOf('utm_campaign=free-llm-api') < readme.indexOf('## Provider catalog'),
-    'hosted fallback should be visible before the catalog',
+    readme.indexOf('## Why trust this list') < readme.indexOf('utm_campaign=free-llm-api'),
+    'hosted fallback should follow the free catalog and trust explanation',
   );
   assert.match(readme, /docs\/assets\/status-page\.png/);
   assert.match(readme, /npx free-llm-api setup claude-code/);
@@ -130,6 +146,23 @@ test('Pages HTML includes accessible filters and source-backed provider rows bef
   ]) {
     assert.match(html, new RegExp(`<option value="${classification}">`));
   }
+});
+
+test('home page leads with acquisition paths before the full directory', async () => {
+  const renderer = await loadRenderer();
+  assert.ok(renderer, 'src/render.js should export renderArtifacts');
+
+  const html = renderer.renderArtifacts(providers)['docs/index.html'];
+  assert.match(html, /<nav class="site-nav"/);
+  assert.match(html, /<h1>Free LLM APIs with direct API key links<\/h1>/);
+  assert.match(html, /class="hero-actions"/);
+  assert.match(html, /id="pick-by-goal"/);
+  assert.match(html, /id="best-free-picks"/);
+  assert.match(html, /id="directory"/);
+  assert.match(html, /id="quick-start"/);
+  assert.match(html, /id="trust"/);
+  assert.ok(html.indexOf('id="pick-by-goal"') < html.indexOf('id="directory"'));
+  assert.ok(html.indexOf('id="best-free-picks"') < html.indexOf('id="directory"'));
 });
 
 test('renderer escapes provider-controlled HTML text', async () => {

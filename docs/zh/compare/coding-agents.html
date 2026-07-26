@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="按模型 ID、OpenAI 兼容性、限额、Base URL 与来源对比 16 家适合测试编码 Agent 的免费 LLM API。核验于 2026-07-25。">
+  <title>编码 Agent 可用的免费 LLM API：16 家对比</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/compare/coding-agents.html">
+  <link rel="alternate" hreflang="en" href="https://xyzs996.github.io/free-llm-api/compare/coding-agents.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://xyzs996.github.io/free-llm-api/zh/compare/coding-agents.html">
+  <link rel="alternate" hreflang="x-default" href="https://xyzs996.github.io/free-llm-api/compare/coding-agents.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free LLM API">
+  <meta property="og:title" content="编码 Agent 可用的免费 LLM API：16 家对比">
+  <meta property="og:description" content="按模型 ID、OpenAI 兼容性、限额、Base URL 与来源对比 16 家适合测试编码 Agent 的免费 LLM API。核验于 2026-07-25。">
+  <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/compare/coding-agents.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="编码 Agent 可用的免费 LLM API：16 家对比">
+  <meta name="twitter:description" content="按模型 ID、OpenAI 兼容性、限额、Base URL 与来源对比 16 家适合测试编码 Agent 的免费 LLM API。核验于 2026-07-25。">
+  <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"编码 Agent","item":"https://xyzs996.github.io/free-llm-api/zh/compare/coding-agents.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"编码 Agent 工作流可用的免费 LLM API","description":"兼容 OpenAI，且目录里包含代码、Llama、Qwen 或 gpt-oss 模型 ID 的服务商。","numberOfItems":16,"itemListElement":[{"@type":"ListItem","position":1,"name":"GroqCloud","url":"https://xyzs996.github.io/free-llm-api/zh/provider/groq.html"},{"@type":"ListItem","position":2,"name":"SambaNova Cloud","url":"https://xyzs996.github.io/free-llm-api/zh/provider/sambanova.html"},{"@type":"ListItem","position":3,"name":"Cloudflare Workers AI","url":"https://xyzs996.github.io/free-llm-api/zh/provider/cloudflare-workers-ai.html"},{"@type":"ListItem","position":4,"name":"Hugging Face Inference Providers","url":"https://xyzs996.github.io/free-llm-api/zh/provider/huggingface.html"},{"@type":"ListItem","position":5,"name":"SiliconFlow","url":"https://xyzs996.github.io/free-llm-api/zh/provider/siliconflow.html"},{"@type":"ListItem","position":6,"name":"Fireworks AI","url":"https://xyzs996.github.io/free-llm-api/zh/provider/fireworks.html"},{"@type":"ListItem","position":7,"name":"Mistral La Plateforme","url":"https://xyzs996.github.io/free-llm-api/zh/provider/mistral.html"},{"@type":"ListItem","position":8,"name":"Alibaba Cloud Model Studio","url":"https://xyzs996.github.io/free-llm-api/zh/provider/dashscope.html"},{"@type":"ListItem","position":9,"name":"Ollama Cloud","url":"https://xyzs996.github.io/free-llm-api/zh/provider/ollama-cloud.html"},{"@type":"ListItem","position":10,"name":"Cerebras Inference","url":"https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html"},{"@type":"ListItem","position":11,"name":"Vercel AI Gateway","url":"https://xyzs996.github.io/free-llm-api/zh/provider/vercel-ai-gateway.html"},{"@type":"ListItem","position":12,"name":"Together AI","url":"https://xyzs996.github.io/free-llm-api/zh/provider/together.html"},{"@type":"ListItem","position":13,"name":"Nebius Token Factory","url":"https://xyzs996.github.io/free-llm-api/zh/provider/nebius.html"},{"@type":"ListItem","position":14,"name":"DeepInfra","url":"https://xyzs996.github.io/free-llm-api/zh/provider/deepinfra.html"},{"@type":"ListItem","position":15,"name":"Chutes","url":"https://xyzs996.github.io/free-llm-api/zh/provider/chutes.html"},{"@type":"ListItem","position":16,"name":"Scaleway Generative APIs","url":"https://xyzs996.github.io/free-llm-api/zh/provider/scaleway.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"按 Agent 循环的特点选择","acceptedAnswer":{"@type":"Answer","text":"自动补全更依赖低延迟和足够的每分钟吞吐，仓库 Agent 则需要更长上下文和可靠的工具调用。命令行助手可能只用标准 chat completions，自主编辑器却会依赖流式、结构化参数和多次重试。选两家优势不同的候选，用相同的小任务实测，同时检查最终补丁和整个循环消耗的请求数，再做决定。"}},{"@type":"Question","name":"本页实际核验了什么","acceptedAnswer":{"@type":"Answer","text":"服务商协议、模型 ID、免费条款与官方限额核验于 2026-07-25；本页没有暗示任何虚构的编码跑分。数据方法记录这些事实如何取得资格，key 检测页则帮助你在客户端把状态吞成通用连接错误之前先诊断自己的凭据。工具里某个模型消失时，请重新查看服务商页面。"}}]}</script>
+</head>
+<body>
+  <header class="page-head">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">对比页</a></li><li><span aria-current="page">编码 Agent</span></li></ol></nav>
+      <p class="eyebrow">16 家符合条件 · 来源核验于 2026-07-25</p>
+      <h1>编码 Agent 可用的免费 LLM API</h1>
+      <p class="lede">16 家兼容 OpenAI、并提供代码模型或通用能力模型系列的服务商，可用于测试开发者工具。</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell page-grid">
+      <article class="page-body" id="page-body">
+        <h2>服务商如何进入编码短名单</h2>
+        <p>本页从有详细资料的 25 家中选出 16 家。服务商必须公开 OpenAI 兼容端点，并列出代码模型，或被编码工具广泛使用的 Llama、Qwen、gpt-oss 系列。这是能够由清单重复计算的规则，不是跑分结论。入选不代表模型最擅长写代码、支持所有 Agent 能力，或免费容量足以处理大型仓库。</p>
+
+        <h2>编码客户端可以尝试的端点</h2>
+        <p>这 16 家会展示官方免费形式、公布限额与 Base URL。页面刻意不做唯一「最佳」评分，因为 Agent 效果取决于编辑格式、工具调用、上下文长度、延迟和具体代码库。打开服务商详情页复制精确模型 ID；把市场宣传中的系列名当成 API ID，是最常见的配置失败之一。</p>
+        <div class="table-wrap comparison-table">
+          <table>
+            <thead><tr><th>服务商</th><th>免费形式</th><th>官方公布限额</th><th>信用卡</th><th>Base URL</th></tr></thead>
+            <tbody>
+            <tr>
+              <td data-label="服务商"><a href="../provider/groq.html">GroqCloud</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">每分钟 30 次请求，每天 1000 次请求</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.groq.com/openai/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/sambanova.html">SambaNova Cloud</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">每分钟 20 次请求，每天 20 次请求</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.sambanova.ai/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">以计算单位公布</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/huggingface.html">Hugging Face Inference Providers</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">以额度余额公布</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://router.huggingface.co/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/siliconflow.html">SiliconFlow</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">每分钟 1000 次请求</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.siliconflow.com/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/fireworks.html">Fireworks AI</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">每分钟 10 次请求</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.fireworks.ai/inference/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/mistral.html">Mistral La Plateforme</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">有限流但未公布数值</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.mistral.ai/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">按模型公布</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://dashscope-intl.aliyuncs.com/compatible-mode/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/ollama-cloud.html">Ollama Cloud</a></td>
+              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="官方公布限额">有限流但未公布数值</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://ollama.com/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/cerebras.html">Cerebras Inference</a></td>
+              <td data-label="免费形式">注册赠送额度</td>
+              <td data-label="官方公布限额">每分钟 5 次请求</td>
+              <td data-label="信用卡">需要</td>
+              <td data-label="Base URL"><code>https://api.cerebras.ai/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a></td>
+              <td data-label="免费形式">注册赠送额度</td>
+              <td data-label="官方公布限额">以额度余额公布</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://ai-gateway.vercel.sh/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/together.html">Together AI</a></td>
+              <td data-label="免费形式">按量计费</td>
+              <td data-label="官方公布限额">动态，无固定数值</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.together.xyz/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
+              <td data-label="免费形式">按量计费</td>
+              <td data-label="官方公布限额">每分钟 60 次请求</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.tokenfactory.nebius.com/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/deepinfra.html">DeepInfra</a></td>
+              <td data-label="免费形式">按量计费</td>
+              <td data-label="官方公布限额">有限流但未公布数值</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://api.deepinfra.com/v1/openai</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/chutes.html">Chutes</a></td>
+              <td data-label="免费形式">按量计费</td>
+              <td data-label="官方公布限额">按付费计划公布</td>
+              <td data-label="信用卡">不需要</td>
+              <td data-label="Base URL"><code>https://llm.chutes.ai/v1</code></td>
+            </tr>
+            <tr>
+              <td data-label="服务商"><a href="../provider/scaleway.html">Scaleway Generative APIs</a></td>
+              <td data-label="免费形式">按量计费</td>
+              <td data-label="官方公布限额">有限流但未公布数值</td>
+              <td data-label="信用卡">需要</td>
+              <td data-label="Base URL"><code>https://api.scaleway.ai/v1</code></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>按 Agent 循环的特点选择</h2>
+        <p>自动补全更依赖低延迟和足够的每分钟吞吐，仓库 Agent 则需要更长上下文和可靠的工具调用。命令行助手可能只用标准 chat completions，自主编辑器却会依赖流式、结构化参数和多次重试。选两家优势不同的候选，用相同的小任务实测，同时检查最终补丁和整个循环消耗的请求数，再做决定。</p>
+
+        <h2>Agent 会放大免费限额的影响</h2>
+        <p>一个 Agent 会把一条指令拆成几十次模型调用：读文件、提出修改、运行测试，再修复失败。聊天时显得宽松的额度，跑仓库任务可能很快撞到每日请求上限；大上下文还会更快消耗 Token，重试循环则同时放大延迟和用量。设置最大轮数，让命令保持可审阅；如果客户端允许，把探索阶段交给更小的模型。</p>
+
+        <h2>配置时不要让 key 进入仓库</h2>
+        <p>使用本站的客户端页面，为 Codex、Cline、Continue、Cursor 或 Claude Code 生成或核对 Base URL 与模型配置。凭据只放在环境变量或客户端自己的安全存储中。先在一次性分支上执行边界很小的任务，审阅每一条 Shell 命令，并要求正常测试套件通过后再接受修改。免费只改变成本，不会降低 Agent 在本机能够行使的权限。</p>
+
+        <h2>本页实际核验了什么</h2>
+        <p>服务商协议、模型 ID、免费条款与官方限额核验于 2026-07-25；本页没有暗示任何虚构的编码跑分。<a href="../methodology.html">数据方法</a>记录这些事实如何取得资格，<a href="../verify.html">key 检测页</a>则帮助你在客户端把状态吞成通用连接错误之前先诊断自己的凭据。工具里某个模型消失时，请重新查看服务商页面。</p>
+      </article>
+      <aside class="related" aria-label="相关页面">
+        <div>
+          <h2>本页收录的服务商</h2>
+          <ul><li><a href="../provider/groq.html">GroqCloud</a></li><li><a href="../provider/sambanova.html">SambaNova Cloud</a></li><li><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a></li><li><a href="../provider/huggingface.html">Hugging Face Inference Providers</a></li><li><a href="../provider/siliconflow.html">SiliconFlow</a></li><li><a href="../provider/fireworks.html">Fireworks AI</a></li></ul>
+        </div>
+        <div>
+          <h2>其他对比</h2>
+          <ul><li><a href="../compare/no-credit-card.html">无需信用卡的免费 API</a></li><li><a href="../compare/openai-compatible.html">兼容 OpenAI 的免费 API</a></li></ul>
+        </div>
+        <div>
+          <h2>本清单</h2>
+          <ul><li><a href="../index.html">全部服务商</a></li><li><a href="../verify.html">浏览器 key 检测</a></li><li><a href="../methodology.html">这份数据是怎么来的</a></li></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>本页每个数字都来自服务商自己的文档，核验日期记录在清单里。</span><a href="../index.html">免费 LLM API 清单</a><a lang="en" hreflang="en" href="../../compare/coding-agents.html">English</a></div></footer>
+</body>
+</html>
