@@ -158,6 +158,7 @@ This repository contains no working credentials. Keep probe keys in environment 
 ## Related projects
 
 - [Free Tier LLM Router](https://github.com/xyzs996/free-tier-llm-router) combines your own provider keys behind one local endpoint with controlled failover.
+- [AI Coding Field Notes](https://github.com/xyzs996/ai-coding-field-notes) is a write-up collection on what coding agents actually cost, where they break, and what shipped.
 
 ## Need one stable endpoint?
 

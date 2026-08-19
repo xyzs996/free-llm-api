@@ -156,6 +156,7 @@ npm run render && npm run serve
 ## 相关项目
 
 - [Free Tier LLM Router](https://github.com/xyzs996/free-tier-llm-router) 把你自己的多家 Key 收敛到一个本地端点，并做受控故障转移。
+- [AI Coding Field Notes](https://github.com/xyzs996/ai-coding-field-notes) 记录编程 Agent 实际花了多少钱、在哪儿出问题、最后交付了什么。
 
 ## 需要一个稳定端点？
 
