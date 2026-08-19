@@ -28,7 +28,7 @@ Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任�
 
 这些推荐完全由公开数据规则生成，不是付费展示。完整比较请打开包含 26 家服务商的[可筛选目录](https://xyzs996.github.io/free-llm-api/zh/)。
 
-免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表：26 篇长文里抽出的 270 个数](https://github.com/xyzs996/ai-coding-field-notes/blob/main/figures.md)——价格、百分比、token 数——每一行都带着**它出处的那整句话**，所以 `$1.43` 不会含糊在「每百万 token」「每月」「每席位」之间。要在代码里读，取 [JSON 或 CSV](https://github.com/xyzs996/ai-coding-field-notes/releases/latest/download/figures.json)；想读文字，从[token 账单到底花在哪](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html)开始。
+免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表](https://github.com/xyzs996/ai-coding-field-notes/blob/main/figures.md)：引用过的每一个带单位的数字都在里面，**每一行都带着它出处的整句话**，所以一个 `$1.43` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](https://github.com/xyzs996/ai-coding-field-notes/releases/latest/download/figures.json)，读文章的话看这篇：[token 账单到底花在哪](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html)。
 
 ## 永久免费额度
 

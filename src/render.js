@@ -209,7 +209,7 @@ ${renderReadmeQuickPicks(providers)}
 
 These are rule-based shortcuts, not paid placements. Open the [filterable directory](${SITE_URL}) for all ${providers.length} providers.
 
-Free is not the same as cheap enough to keep running. Two write-ups from the same maintainer on that trade-off: [cost vs efficiency when picking a coding model](https://xyzs996.github.io/ai-coding-field-notes/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html) and [where the token bill actually goes](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html).
+Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, one table: [every figure they have cited](https://github.com/xyzs996/ai-coding-field-notes/blob/main/figures.md) — anything carrying a unit — with **the full sentence it came from** on every row, so a \`$1.43\` is never left ambiguous between per million tokens, per month and per seat. Readable in code as [JSON or CSV](https://github.com/xyzs996/ai-coding-field-notes/releases/latest/download/figures.json), or as prose: [where the token bill actually goes](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html).
 
 ## Permanent free tiers
 

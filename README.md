@@ -28,7 +28,7 @@ Star this repository to bookmark the dataset and follow releases. A star changes
 
 These are rule-based shortcuts, not paid placements. Open the [filterable directory](https://xyzs996.github.io/free-llm-api/) for all 26 providers.
 
-Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, one table: [270 figures pulled out of 26 write-ups](https://github.com/xyzs996/ai-coding-field-notes/blob/main/figures.md) — prices, percentages, token counts — each row carrying **the full sentence it came from**, so a `$1.43` is never left ambiguous between per million tokens, per month and per seat. Readable in code as [JSON or CSV](https://github.com/xyzs996/ai-coding-field-notes/releases/latest/download/figures.json), or as prose: [where the token bill actually goes](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html).
+Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, one table: [every figure they have cited](https://github.com/xyzs996/ai-coding-field-notes/blob/main/figures.md) — anything carrying a unit — with **the full sentence it came from** on every row, so a `$1.43` is never left ambiguous between per million tokens, per month and per seat. Readable in code as [JSON or CSV](https://github.com/xyzs996/ai-coding-field-notes/releases/latest/download/figures.json), or as prose: [where the token bill actually goes](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html).
 
 ## Permanent free tiers
 
