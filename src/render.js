@@ -306,7 +306,7 @@ This repository contains no working credentials. Keep probe keys in environment 
 ## Related projects
 
 - [Free Tier LLM Router](https://github.com/xyzs996/free-tier-llm-router) combines your own provider keys behind one local endpoint with controlled failover.
-- [AI Coding Field Notes](https://github.com/xyzs996/ai-coding-field-notes) publishes every AI coding tool price, percentage and multiple it has cited as [JSON and CSV](https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json) — each row carries the sentence it came from — plus the write-ups behind them.
+- [AI Coding Field Notes](https://github.com/xyzs996/ai-coding-field-notes) publishes every figure it has cited — anything carrying a unit — as [JSON and CSV](https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json), each row paired with the sentence it came from, plus the write-ups behind them.
 
 ## Need one stable endpoint?
 
