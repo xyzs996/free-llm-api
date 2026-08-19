@@ -209,6 +209,8 @@ ${renderReadmeQuickPicks(providers)}
 
 These are rule-based shortcuts, not paid placements. Open the [filterable directory](${SITE_URL}) for all ${providers.length} providers.
 
+Free is not the same as cheap enough to keep running. Two write-ups from the same maintainer on that trade-off: [cost vs efficiency when picking a coding model](https://xyzs996.github.io/ai-coding-field-notes/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html) and [where the token bill actually goes](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html).
+
 ## Permanent free tiers
 
 These Provider Free Tiers are the main list: they do not expire like trial credits, and none currently require a credit card.
