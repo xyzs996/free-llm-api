@@ -576,6 +576,7 @@ ${comparisonPageIds.map((id) => `              <li><a href="./compare/${escapeHt
           <h2>${escapeHtml(t('home.methodHeading'))}</h2>
         </div>
         <p>${escapeHtml(t('home.methodBody'))} <a href="${escapeHtml(REPO_URL)}/blob/main/CONTRIBUTING.md">${escapeHtml(t('home.methodLink'))}</a>.</p>
+        <p>${escapeHtml(t('home.relatedLead'))} <a href="https://github.com/xyzs996/ai-coding-field-notes">${escapeHtml(t('home.relatedLink'))}</a>.</p>
         <a class="hosted-cta" href="${escapeHtml(hostedCta)}">${escapeHtml(t('home.hostedCta'))}</a>
       </div>
     </section>
