@@ -71,22 +71,6 @@ test('each row states a unit, so a bare number cannot be misread', () => {
   }
 });
 
-test('the table link goes to the rendered page, not a GitHub blob', async () => {
-  // A blob URL renders the markdown inside GitHub's own chrome, so a reader
-  // lands in a file viewer and a crawler attributes the numbers to github.com.
-  // The rendered page carries its own title, description and sitemap entry.
-  const { FIELD_NOTES_TABLE } = await import('../src/field-notes.js');
-  assert.match(FIELD_NOTES_TABLE, /^https:\/\/xyzs996\.github\.io\//);
-  assert.ok(!FIELD_NOTES_TABLE.includes('/blob/'), FIELD_NOTES_TABLE);
-
-  // And it has to actually reach both rendered READMEs — the previous version
-  // of this link was correct in the source and stale in the file for a day.
-  for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
-    assert.ok(readme.includes(FIELD_NOTES_TABLE), `${name} is missing the table link`);
-    assert.ok(!readme.includes('ai-coding-field-notes/blob/main/figures.md'), `${name} still links the blob`);
-  }
-});
-
 /* ------------------------------------------------- the block on the pages */
 
 // Two of the 86 generated pages linked the write-ups at all, and both were
@@ -106,6 +90,73 @@ const pageChangelog = JSON.parse(
   await readFile(new URL('../data/changelog.json', import.meta.url), 'utf8'),
 );
 const pages = renderArtifacts(pageProviders, pageChangelog);
+
+test('the machine index still points at the rendered page', async () => {
+  // Unchanged and deliberately so: `llms.txt` is read by crawlers, and there
+  // the rendered page wins — own title, own description, a sitemap entry, and
+  // the numbers attributed to the site rather than to github.com.
+  const { FIELD_NOTES_TABLE } = await import('../src/field-notes.js');
+  assert.match(FIELD_NOTES_TABLE, /^https:\/\/xyzs996\.github\.io\//);
+  assert.ok(!FIELD_NOTES_TABLE.includes('/blob/'), FIELD_NOTES_TABLE);
+  // `pages` is built at the bottom of this file; test bodies run after the
+  // module finishes evaluating, so it is populated by the time this reads it.
+  assert.ok(pages['docs/llms.txt'].includes(FIELD_NOTES_TABLE), 'llms.txt lost the table link');
+});
+
+test('a reader is sent to the repository, in the language they are reading', async () => {
+  // ⚠ The opposite of the test above, and on purpose. Measured 2026-08-21:
+  // the field-notes repository has 5 views, 3 uniques, 0 stars, and its
+  // `traffic/popular/referrers` is an **empty list** — while every reader-
+  // facing link here pointed at Pages, which cannot produce a referral to a
+  // repository. The same API shows `xyzs996.github.io` referring 7 uniques to
+  // the proxy repository, which does link back. A star and an issue thread
+  // live on the repository and nowhere else.
+  const { fieldNotesUrl, FIELD_NOTES_REPO } = await import('../src/field-notes.js');
+  assert.equal(fieldNotesUrl('en'), FIELD_NOTES_REPO);
+  assert.equal(fieldNotesUrl('zh'), `${FIELD_NOTES_REPO}/blob/main/README_CN.md`);
+  // An unknown locale falls back to the repository, never to Pages.
+  assert.equal(fieldNotesUrl('pt'), FIELD_NOTES_REPO);
+
+  // ⚠ Assert on the **block**, not on the README. Reverting this one link to
+  // the Pages table reddened nothing when the assertion was `readme.includes`:
+  // both READMEs name the repository elsewhere — a badge, the related-projects
+  // list — so the whole-file check passed while the lede pointed at Pages.
+  const { FIELD_NOTES_TABLE } = await import('../src/field-notes.js');
+  for (const [name, block, code] of [['en', renderFieldNotes(), 'en'], ['zh', renderFieldNotesZh(), 'zh']]) {
+    assert.ok(block.includes(`](${fieldNotesUrl(code)})`), `${name} block is missing the repository link`);
+    assert.ok(!block.includes(FIELD_NOTES_TABLE), `${name} block still links the Pages table`);
+  }
+
+  // And it has to actually reach both rendered READMEs — the previous version
+  // of this link was correct in the source and stale in the file for a day.
+  for (const [name, readme, code] of [['README.md', readmeEn, 'en'], ['README_zh.md', readmeZh, 'zh']]) {
+    assert.ok(readme.includes(fieldNotesUrl(code)), `${name} is missing the repository link`);
+    assert.ok(!readme.includes('ai-coding-field-notes/blob/main/figures.md'), `${name} still links the blob`);
+  }
+  // The Chinese README must not hand its reader the English root: that is the
+  // exact defect this replaced, and `includes` alone would pass either way,
+  // because the root URL is a prefix of the Chinese one.
+  assert.ok(
+    !readmeZh.includes(`(${FIELD_NOTES_REPO})`),
+    'README_zh.md still opens the English README',
+  );
+});
+
+test('the pages send a reader to the repository too, per locale', async () => {
+  // The home page of this site is where 72 of 73 unique visitors land, so the
+  // one link on it that leaves for the field notes is the whole channel.
+  const { fieldNotesUrl } = await import('../src/field-notes.js');
+  const artifacts = pages;
+  for (const [path, code] of [['docs/index.html', 'en'], ['docs/zh/index.html', 'zh']]) {
+    const html = artifacts[path];
+    assert.ok(html, `${path} was not rendered`);
+    assert.ok(html.includes(fieldNotesUrl(code)), `${path} is missing the repository link`);
+    assert.ok(
+      !html.includes('href="https://xyzs996.github.io/ai-coding-field-notes/"'),
+      `${path} still sends its reader to Pages`,
+    );
+  }
+});
 
 // The subject of each page that is allowed to carry a block, by path.
 function subjectsByPath() {

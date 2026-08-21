@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { renderBadgeEndpoints, renderBadges, starHistory } from './badges.js';
 import { HOSTED_CTA_URL, renderClientPages } from './client-pages.js';
 import { renderExamples } from './examples.js';
-import { renderFieldNotes } from './field-notes.js';
+import { renderFieldNotes, fieldNotesUrl } from './field-notes.js';
 import {
   NO_CARD_OPENAI_JQ,
   accessGroups,
@@ -622,9 +622,15 @@ ${comparisonPageIds.map((id) => `              <li><a href="./compare/${escapeHt
         </div>
         <p>${escapeHtml(t('home.methodBody'))} <a href="${escapeHtml(REPO_URL)}/blob/main/CONTRIBUTING.md">${escapeHtml(t('home.methodLink'))}</a>.</p>
         <p>${escapeHtml(t('home.threadBody'))} <a href="${escapeHtml(THREAD_URL)}">${escapeHtml(t('home.threadLink'))}</a>.</p>
-        <!-- 指站点、不指仓库:这一页和文集都在 xyzs996.github.io 底下,同域
-             链接爬虫走得通;而且点过去落在读得下去的正文上,不是一屏文件列表。 -->
-        <p>${escapeHtml(t('home.relatedLead'))} <a href="https://xyzs996.github.io/ai-coding-field-notes/">${escapeHtml(t('home.relatedLink'))}</a>.</p>
+        <!-- ⚠ **8-21 量出来是反的,改成指仓库。** 原先指站点,理由是同域好爬、
+             落地是正文不是文件列表。前半句仍然成立(llms.txt 那条还指站点),
+             后半句 8-20 就过期了 —— 那个仓库的自述现在开头就是数表和十二行
+             原句。而代价这一天摊开了:文集仓库 5 次访问、3 个人、0 颗星,
+             来路接口返回**空列表**;同一个接口里,代理仓库把 xyzs996.github.io
+             列成来路、7 个人 —— 那边站上有一条指回仓库的链接。星和 issue 只长
+             在仓库上,站点上一个都没有。
+             (注:这段注释里不能出现反引号 —— 它整个在模板字符串里。) -->
+        <p>${escapeHtml(t('home.relatedLead'))} <a href="${escapeHtml(fieldNotesUrl(locale.code))}">${escapeHtml(t('home.relatedLink'))}</a>.</p>
         <a class="hosted-cta" href="${escapeHtml(hostedCta)}">${escapeHtml(t('home.hostedCta'))}</a>
       </div>
     </section>

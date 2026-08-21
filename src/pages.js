@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { FIELD_NOTES_TABLE, figuresForFamilies } from './field-notes.js';
+import { fieldNotesUrl, figuresForFamilies } from './field-notes.js';
 import { escapeHtml, externalLink, link } from './html.js';
 import { clientNoteCopy, dataSentence, localized, translator } from './i18n.js';
 import { renderDocument } from './page-layout.js';
@@ -504,7 +504,7 @@ ${differences}
     cardFree: cardFree.length,
     browserOk: browserOk.length,
   })}</p>
-        <p>${t('model.pickCaveat', { name: familyName })}</p>${figuresSection([family], t('figures.ledeFamily', { name: familyName, table: FIELD_NOTES_TABLE }), context)}`;
+        <p>${t('model.pickCaveat', { name: familyName })}</p>${figuresSection([family], t('figures.ledeFamily', { name: familyName, table: fieldNotesUrl(locale.code) }), context)}`;
 }
 
 function modelPage(family, context) {
@@ -563,7 +563,7 @@ function modelPage(family, context) {
 /* -------------------------------------------------------------------- client */
 
 function clientBody(clientId, note, context) {
-  const { t } = context;
+  const { t, locale } = context;
   const client = SNIPPET_CLIENTS.find(({ id }) => id === clientId);
   const sample = context.sampleProvider;
   const model = snippetModelFor(sample);
@@ -620,7 +620,7 @@ ${codeBlock(snippet.content)}
         <p>${t('client.expectCheck')}</p>${figuresSection([{ name: note.title, vendor: CLIENT_NOTES[clientId].vendor }], t('figures.ledeClient', {
     name: title,
     vendor: escapeHtml(CLIENT_NOTES[clientId].vendor ?? ''),
-    table: FIELD_NOTES_TABLE,
+    table: fieldNotesUrl(locale.code),
   }), context)}
 
         <h2>${t('client.sourcesHeading')}</h2>

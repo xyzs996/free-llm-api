@@ -28,7 +28,7 @@ Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任�
 
 这些推荐完全由公开数据规则生成，不是付费展示。完整比较请打开包含 26 家服务商的[可筛选目录](https://xyzs996.github.io/free-llm-api/zh/)。
 
-免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表](https://xyzs996.github.io/ai-coding-field-notes/figures.html)：引用过的每一个带单位的数字都在里面，**每一行都带着它出处的整句话**。其中每百万 token 的价钱是这几条：
+免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表](https://github.com/xyzs996/ai-coding-field-notes/blob/main/README_CN.md)：引用过的每一个带单位的数字都在里面，**每一行都带着它出处的整句话**。其中每百万 token 的价钱是这几条：
 
 | 价格 | 单位 | 它出自的那句原话 |
 | --- | --- | --- |
@@ -195,7 +195,7 @@ npm run render && npm run serve
 ## 相关项目
 
 - [Free Tier LLM Router](https://github.com/xyzs996/free-tier-llm-router) 把你自己的多家 Key 收敛到一个本地端点，并做受控故障转移。
-- [AI Coding Field Notes](https://github.com/xyzs996/ai-coding-field-notes) 把引用过的每一个带单位的数字都发成了 [JSON 和 CSV](https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json)，每一行都带着它出处的那句话，后面是对应的长文。
+- [AI Coding Field Notes](https://github.com/xyzs996/ai-coding-field-notes/blob/main/README_CN.md) 把引用过的每一个带单位的数字都发成了 [JSON 和 CSV](https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json)，每一行都带着它出处的那句话，后面是对应的长文。
 
 ## 需要一个稳定端点？
 

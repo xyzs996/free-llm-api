@@ -30,6 +30,36 @@ export const FIELD_NOTES_REPO = 'https://github.com/xyzs996/ai-coding-field-note
 // equally well.
 export const FIELD_NOTES_TABLE =
   'https://xyzs996.github.io/ai-coding-field-notes/figures.html';
+
+// Where a *reader* is sent, as opposed to where a machine index points.
+//
+// The comment above is still right about crawlers and about quoting, and
+// `llms.txt` still points at the rendered page for exactly those reasons. It
+// is wrong about readers, and 2026-08-21 says so out loud: the sibling
+// repository has 5 views, 3 unique visitors, 0 stars, and
+// `traffic/popular/referrers` comes back an **empty list** — while every
+// human-facing link in this catalog points at Pages, which produces no
+// referral to a repository at all. The proof that the other direction works
+// is in the same API: the proxy repository lists `xyzs996.github.io` as a
+// referrer with 7 uniques, because there the site links back to the repo.
+//
+// A star and an issue thread — the two things this account has never once got
+// on the field notes — exist on the repository and nowhere else. The old
+// argument that the repo root is "a screen of file names" expired on
+// 2026-08-20: that README now opens with the figures table and twelve rows
+// quoted whole, so a reader landing there lands on the same numbers.
+//
+// Language matters because that repository grew nine non-English READMEs the
+// same day, and the root file is the English one. The identical defect was
+// measured and fixed on the proxy side this week, where 88 of 191 visitors
+// were reading a Russian README while the link handed to them opened English.
+const FIELD_NOTES_README = Object.freeze({ zh: 'README_CN.md' });
+
+export function fieldNotesUrl(localeCode) {
+  const name = FIELD_NOTES_README[localeCode];
+  return name ? `${FIELD_NOTES_REPO}/blob/main/${name}` : FIELD_NOTES_REPO;
+}
+
 export const FIELD_NOTES_JSON =
   'https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json';
 export const FIELD_NOTES_ARTICLE =
@@ -169,7 +199,7 @@ function tableRows() {
 }
 
 export function renderFieldNotes() {
-  return `Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](${FIELD_NOTES_TABLE}) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
+  return `Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](${fieldNotesUrl('en')}) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
 
 | Price | Unit | The sentence it was published in |
 | --- | --- | --- |
@@ -179,7 +209,7 @@ A \`$1.43\` is never left ambiguous between per million tokens, per month and pe
 }
 
 export function renderFieldNotesZh() {
-  return `免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表](${FIELD_NOTES_TABLE})：引用过的每一个带单位的数字都在里面，**每一行都带着它出处的整句话**。其中每百万 token 的价钱是这几条：
+  return `免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表](${fieldNotesUrl('zh')})：引用过的每一个带单位的数字都在里面，**每一行都带着它出处的整句话**。其中每百万 token 的价钱是这几条：
 
 | 价格 | 单位 | 它出自的那句原话 |
 | --- | --- | --- |

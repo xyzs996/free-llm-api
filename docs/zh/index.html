@@ -844,9 +844,15 @@ print(response.choices[0].message.content)</code></pre>
         </div>
         <p>带上官方来源和核验日期提交更正；欢迎使用中文或英文。 <a href="https://github.com/xyzs996/free-llm-api/blob/main/CONTRIBUTING.md">阅读贡献指南</a>.</p>
         <p>手边没有出处？说一句是哪家变了就行，那页留给别人去找： <a href="https://github.com/xyzs996/free-llm-api/discussions/1">开放讨论帖收一行回复</a>.</p>
-        <!-- 指站点、不指仓库:这一页和文集都在 xyzs996.github.io 底下,同域
-             链接爬虫走得通;而且点过去落在读得下去的正文上,不是一屏文件列表。 -->
-        <p>延伸阅读： <a href="https://xyzs996.github.io/ai-coding-field-notes/">编程 Agent 实际花了多少钱、在哪儿出问题的实地记录</a>.</p>
+        <!-- ⚠ **8-21 量出来是反的,改成指仓库。** 原先指站点,理由是同域好爬、
+             落地是正文不是文件列表。前半句仍然成立(llms.txt 那条还指站点),
+             后半句 8-20 就过期了 —— 那个仓库的自述现在开头就是数表和十二行
+             原句。而代价这一天摊开了:文集仓库 5 次访问、3 个人、0 颗星,
+             来路接口返回**空列表**;同一个接口里,代理仓库把 xyzs996.github.io
+             列成来路、7 个人 —— 那边站上有一条指回仓库的链接。星和 issue 只长
+             在仓库上,站点上一个都没有。
+             (注:这段注释里不能出现反引号 —— 它整个在模板字符串里。) -->
+        <p>延伸阅读： <a href="https://github.com/xyzs996/ai-coding-field-notes/blob/main/README_CN.md">编程 Agent 实际花了多少钱、在哪儿出问题的实地记录</a>.</p>
         <a class="hosted-cta" href="https://aiapiv2.pekpik.com/register?utm_source=github&amp;utm_medium=repo&amp;utm_campaign=free-llm-api">需要一个稳定的托管端点？</a>
       </div>
     </section>
