@@ -70,3 +70,19 @@ test('each row states a unit, so a bare number cannot be misread', () => {
     assert.ok(row.value.includes('$'), `unexpected value: ${row.value}`);
   }
 });
+
+test('the table link goes to the rendered page, not a GitHub blob', async () => {
+  // A blob URL renders the markdown inside GitHub's own chrome, so a reader
+  // lands in a file viewer and a crawler attributes the numbers to github.com.
+  // The rendered page carries its own title, description and sitemap entry.
+  const { FIELD_NOTES_TABLE } = await import('../src/field-notes.js');
+  assert.match(FIELD_NOTES_TABLE, /^https:\/\/xyzs996\.github\.io\//);
+  assert.ok(!FIELD_NOTES_TABLE.includes('/blob/'), FIELD_NOTES_TABLE);
+
+  // And it has to actually reach both rendered READMEs — the previous version
+  // of this link was correct in the source and stale in the file for a day.
+  for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
+    assert.ok(readme.includes(FIELD_NOTES_TABLE), `${name} is missing the table link`);
+    assert.ok(!readme.includes('ai-coding-field-notes/blob/main/figures.md'), `${name} still links the blob`);
+  }
+});

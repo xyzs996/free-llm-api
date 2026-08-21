@@ -22,7 +22,14 @@ const rootDirectory = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_PATH = 'data/field-notes-figures.json';
 
 export const FIELD_NOTES_REPO = 'https://github.com/xyzs996/ai-coding-field-notes';
-export const FIELD_NOTES_TABLE = `${FIELD_NOTES_REPO}/blob/main/figures.md`;
+// Point at the rendered page, not the repo's figures.md blob. Same 348 rows,
+// but the blob is GitHub chrome around a markdown file: a reader lands in a
+// diff-flavoured viewer, and anything quoting it quotes github.com rather than
+// the source. The rendered page has its own title and description and is in
+// the site's sitemap, so it is the one URL that serves a reader and a crawler
+// equally well.
+export const FIELD_NOTES_TABLE =
+  'https://xyzs996.github.io/ai-coding-field-notes/figures.html';
 export const FIELD_NOTES_JSON =
   'https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json';
 export const FIELD_NOTES_ARTICLE =

@@ -28,7 +28,7 @@ Star this repository to bookmark the dataset and follow releases. A star changes
 
 These are rule-based shortcuts, not paid placements. Open the [filterable directory](https://xyzs996.github.io/free-llm-api/) for all 26 providers.
 
-Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](https://github.com/xyzs996/ai-coding-field-notes/blob/main/figures.md) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
+Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](https://xyzs996.github.io/ai-coding-field-notes/figures.html) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
 
 | Price | Unit | The sentence it was published in |
 | --- | --- | --- |
