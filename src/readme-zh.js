@@ -247,6 +247,7 @@ ${renderChangelogSectionZh(providers, changelog)}## 参与贡献
 ## 数据与本地运行
 
 - \`data/providers.json\` 是经过核验的源数据集。
+- [\`llms.txt\`](${SITE_URL}llms.txt) 把整份清单压成一个纯文本文件：每家一行，带上它的额度、base URL，以及那条额度是哪天读到的。
 - \`data/changelog.json\` 记录每周变化。
 - \`README.md\`、\`docs/providers.json\` 和静态页面全部确定性生成。
 - 写了额度却没有官方来源时，\`npm run validate\` 会失败。

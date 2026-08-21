@@ -1,0 +1,79 @@
+# Free LLM API
+
+> 26 API providers that publish a free tier for large language models, 24 of them without a credit card, plus setup instructions for 5 coding agents. https://xyzs996.github.io/free-llm-api/
+
+Every limit below is the number the provider prints on its own page, with the date that page was read — not a benchmark and not an estimate. A provider that publishes no number is recorded as publishing none; the field is never filled in with a guess. Newest source read: 2026-07-25.
+
+## Providers
+
+- [Google Gemini API](https://xyzs996.github.io/free-llm-api/provider/gemini.html): free tier · limits depend on the account tier · no credit card · OpenAI-compatible at https://generativelanguage.googleapis.com/v1beta/openai/ · sources read 2026-07-25.
+- [GroqCloud](https://xyzs996.github.io/free-llm-api/provider/groq.html): free tier · 30 requests/minute, 1000 requests/day · no credit card · OpenAI-compatible at https://api.groq.com/openai/v1 · sources read 2026-07-25.
+- [SambaNova Cloud](https://xyzs996.github.io/free-llm-api/provider/sambanova.html): free tier · 20 requests/minute, 20 requests/day · no credit card · OpenAI-compatible at https://api.sambanova.ai/v1 · sources read 2026-07-25.
+- [Cohere](https://xyzs996.github.io/free-llm-api/provider/cohere.html): free tier · 20 requests/minute · no credit card · OpenAI-compatible at https://api.cohere.ai/compatibility/v1 · sources read 2026-07-25.
+- [Cloudflare Workers AI](https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html): free tier · limits documented in compute units · no credit card · OpenAI-compatible at https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/v1 · sources read 2026-07-25.
+- [Hugging Face Inference Providers](https://xyzs996.github.io/free-llm-api/provider/huggingface.html): free tier · limits documented as a credit balance · no credit card · OpenAI-compatible at https://router.huggingface.co/v1 · sources read 2026-07-25.
+- [SiliconFlow](https://xyzs996.github.io/free-llm-api/provider/siliconflow.html): free tier · 1000 requests/minute · no credit card · OpenAI-compatible at https://api.siliconflow.com/v1 · sources read 2026-07-25.
+- [Fireworks AI](https://xyzs996.github.io/free-llm-api/provider/fireworks.html): free tier · 10 requests/minute · no credit card · OpenAI-compatible at https://api.fireworks.ai/inference/v1 · sources read 2026-07-25.
+- [Z.AI Open Platform](https://xyzs996.github.io/free-llm-api/provider/zai.html): free tier · free models listed rather than rate-limited · no credit card · OpenAI-compatible at https://api.z.ai/api/paas/v4 · sources read 2026-07-25.
+- [Novita AI](https://xyzs996.github.io/free-llm-api/provider/novita.html): free tier · free models listed rather than rate-limited · no credit card · OpenAI-compatible at https://api.novita.ai/openai · sources read 2026-07-25.
+- [Mistral La Plateforme](https://xyzs996.github.io/free-llm-api/provider/mistral.html): free tier · no limits published · no credit card · OpenAI-compatible at https://api.mistral.ai/v1 · sources read 2026-07-25.
+- [Alibaba Cloud Model Studio](https://xyzs996.github.io/free-llm-api/provider/dashscope.html): free tier · limits documented per model · no credit card · OpenAI-compatible at https://dashscope-intl.aliyuncs.com/compatible-mode/v1 · sources read 2026-07-25.
+- [Moonshot AI (Kimi)](https://xyzs996.github.io/free-llm-api/provider/moonshot.html): free tier · limits documented per tier · no credit card · OpenAI-compatible at https://api.moonshot.ai/v1 · sources read 2026-07-25.
+- [Pollinations.AI](https://xyzs996.github.io/free-llm-api/provider/pollinations.html): free tier · no limits published · no credit card · OpenAI-compatible at https://text.pollinations.ai/openai · sources read 2026-07-25.
+- [Ollama Cloud](https://xyzs996.github.io/free-llm-api/provider/ollama-cloud.html): free tier · no limits published · no credit card · OpenAI-compatible at https://ollama.com/v1 · sources read 2026-07-25.
+- [Cerebras Inference](https://xyzs996.github.io/free-llm-api/provider/cerebras.html): trial credit · 5 requests/minute · credit card required · OpenAI-compatible at https://api.cerebras.ai/v1 · sources read 2026-07-25.
+- [Vercel AI Gateway](https://xyzs996.github.io/free-llm-api/provider/vercel-ai-gateway.html): trial credit · limits documented as a credit balance · no credit card · OpenAI-compatible at https://ai-gateway.vercel.sh/v1 · sources read 2026-07-25.
+- [IBM watsonx.ai](https://xyzs996.github.io/free-llm-api/provider/watsonx.html): trial credit · no limits published · no credit card · not OpenAI-compatible · sources read 2026-07-25.
+- [OpenRouter](https://xyzs996.github.io/free-llm-api/provider/openrouter.html): free model aggregator · 20 requests/minute, 50 requests/day · no credit card · OpenAI-compatible at https://openrouter.ai/api/v1 · sources read 2026-07-25.
+- [GitHub Models](https://xyzs996.github.io/free-llm-api/): free tier retiring · limits vary by model and plan · no credit card · OpenAI-compatible at https://models.github.ai/inference · sources read 2026-07-15 · retires 2026-07-30 · in the catalog table, no page of its own.
+- [Together AI](https://xyzs996.github.io/free-llm-api/provider/together.html): metered access · no fixed numbers published · no credit card · OpenAI-compatible at https://api.together.xyz/v1 · sources read 2026-07-25.
+- [Nebius Token Factory](https://xyzs996.github.io/free-llm-api/provider/nebius.html): metered access · 60 requests/minute · no credit card · OpenAI-compatible at https://api.tokenfactory.nebius.com/v1 · sources read 2026-07-25.
+- [Perplexity API](https://xyzs996.github.io/free-llm-api/provider/perplexity.html): metered access · 50 requests/minute · no credit card · OpenAI-compatible at https://api.perplexity.ai · sources read 2026-07-25.
+- [DeepInfra](https://xyzs996.github.io/free-llm-api/provider/deepinfra.html): metered access · no limits published · no credit card · OpenAI-compatible at https://api.deepinfra.com/v1/openai · sources read 2026-07-25.
+- [Chutes](https://xyzs996.github.io/free-llm-api/provider/chutes.html): metered access · limits documented per plan · no credit card · OpenAI-compatible at https://llm.chutes.ai/v1 · sources read 2026-07-25.
+- [Scaleway Generative APIs](https://xyzs996.github.io/free-llm-api/provider/scaleway.html): metered access · no limits published · credit card required · OpenAI-compatible at https://api.scaleway.ai/v1 · sources read 2026-07-25.
+
+## Model families
+
+Which providers in the catalog serve a given family, and what each one limits it to.
+
+- [gpt-oss](https://xyzs996.github.io/free-llm-api/model/gpt-oss.html): OpenAI. Offered by 10 of the 26 providers here.
+- [Llama](https://xyzs996.github.io/free-llm-api/model/llama.html): Meta. Offered by 9 of the 26 providers here.
+- [Qwen](https://xyzs996.github.io/free-llm-api/model/qwen.html): Alibaba. Offered by 9 of the 26 providers here.
+- [DeepSeek](https://xyzs996.github.io/free-llm-api/model/deepseek.html): DeepSeek. Offered by 5 of the 26 providers here.
+- [Mistral](https://xyzs996.github.io/free-llm-api/model/mistral.html): Mistral AI. Offered by 4 of the 26 providers here.
+- [GLM](https://xyzs996.github.io/free-llm-api/model/glm.html): Z.ai. Offered by 4 of the 26 providers here.
+- [Kimi](https://xyzs996.github.io/free-llm-api/model/kimi.html): Moonshot AI. Offered by 2 of the 26 providers here.
+
+## Coding agents
+
+Which of these providers a given tool can be pointed at, and the exact configuration.
+
+- [Codex CLI](https://xyzs996.github.io/free-llm-api/client/codex.html)
+- [Claude Code](https://xyzs996.github.io/free-llm-api/client/claude-code.html)
+- [Continue](https://xyzs996.github.io/free-llm-api/client/continue.html)
+- [Cursor](https://xyzs996.github.io/free-llm-api/client/cursor.html)
+- [Cline](https://xyzs996.github.io/free-llm-api/client/cline.html)
+
+## Machine-readable
+
+- [providers.json](https://xyzs996.github.io/free-llm-api/providers.json): every field above, including the model lists and the official source URLs each limit was read from.
+- [sitemap.xml](https://xyzs996.github.io/free-llm-api/sitemap.xml): every page, with the date its own sources were last read.
+- [Key checker](https://xyzs996.github.io/free-llm-api/verify.html): checks a key against a provider from the browser; the key goes to that provider and nowhere else.
+
+## What it costs once a free tier ends
+
+Out of scope for this catalog, which stops where the free tier does. These prices come from a sibling project that keeps every figure it has cited with the sentence it appeared in, and the model and coding-agent pages here quote the ones that name their own subject:
+
+- `$0.06 / $0.2` per million — "At the low end, MiniMax M3 runs $0.06 to $0.2 per million and draws 60% to 70% of its revenue from outside its home market." ([1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy](https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html))
+- `$0.19 / $5` per million tokens — "Chinese AI models provide a cost-effective alternative to their American counterparts, with input costs as low as $0.19 per million tokens, compared to OpenAI's $5-12." ([How Chinese AI Agent Tools Leverage 1.6 Billion Free Tokens](https://xyzs996.github.io/ai-coding-field-notes/articles/how-chinese-ai-agent-tools-leverage-1-6-billion-free-tokens.html))
+- `$1` per million tokens — "Top-tier Chinese models such as GLM5.2 and DeepSeek V4 Pro sit near $1 per million tokens at inference gross margins of 10% to 20%." ([1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy](https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html))
+- `$1.25 / $4.25` per million — "Meta priced Muse Spark 1.1 at $1.25 per million input and $4.25 per million output, roughly 75% and 83% below Anthropic's Opus, and the tradeoff is visible in the benchmarks, since it leads on MCP Atlas and JobBench while trailing on SWE-Bench Pro and DeepSWE 1.1." ([1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy](https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html))
+- `$3` per million input tokens — "The $3 per million input tokens price point means developers should carefully evaluate whether the premium model's capabilities justify the increased costs for their specific use cases." ([Choosing the Right AI Model for Coding: Cost vs. Efficiency](https://xyzs996.github.io/ai-coding-field-notes/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html))
+- [The whole table](https://xyzs996.github.io/ai-coding-field-notes/figures.html): all figures, not only prices.
+
+## Corrections
+
+A limit here is only as good as the day it was read. If one has moved, or a provider is missing, [the open thread](https://github.com/xyzs996/free-llm-api/discussions/1) takes a plain sentence and no evidence; the issue forms ask for the provider's page and the date you read it.
+
+This catalog is also published in [简体中文](https://xyzs996.github.io/free-llm-api/zh/), page for page.

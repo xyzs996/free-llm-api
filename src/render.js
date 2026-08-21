@@ -8,6 +8,7 @@ import { renderFieldNotes } from './field-notes.js';
 import { accessGroups, catalogSummary, quickPicks } from './growth.js';
 import { embedJson, escapeHtml, externalLink, joinInline } from './html.js';
 import { dataSentence, localized, translator } from './i18n.js';
+import { renderLlms } from './llms.js';
 import { escapeMarkdown } from './markdown.js';
 import { relativePrefix, renderLanguageSwitch } from './page-layout.js';
 import {
@@ -294,6 +295,7 @@ Not sure enough to file one? [Which free tier changed on you this week?](${THREA
 ## Data and local development
 
 - \`data/providers.json\` is the reviewed source dataset.
+- [\`llms.txt\`](${SITE_URL}llms.txt) is the whole catalog as one text file: every provider on one line with its limit, its base URL and the date that limit was read.
 - \`data/changelog.json\` records weekly changes.
 - \`README.md\`, \`docs/providers.json\`, and the static pages are generated deterministically.
 - \`npm run validate\` rejects stated quotas without an official source.
@@ -628,9 +630,13 @@ export function renderArtifacts(providers, changelog = null, families = MODEL_FA
     Object.assign(artifacts, renderMatrixPages(providers, families, locale));
   }
 
-  // Derived last and from the artifacts themselves, so the sitemap lists every
-  // page that exists and no page that does not.
-  return { ...artifacts, ...renderSiteFiles(providers, artifacts) };
+  // Derived last and from the artifacts themselves, so the sitemap and the
+  // text index list every page that exists and no page that does not.
+  return {
+    ...artifacts,
+    ...renderSiteFiles(providers, artifacts),
+    'docs/llms.txt': renderLlms(providers, artifacts, families),
+  };
 }
 
 export async function writeArtifacts(providers, changelog = null, destination = rootDirectory) {

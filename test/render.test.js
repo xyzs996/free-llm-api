@@ -40,6 +40,7 @@ test('renderer produces deterministic README, Pages data, and pre-rendered HTML'
     'docs/cline.md',
     'docs/codex.md',
     'docs/index.html',
+    'docs/llms.txt',
     'docs/methodology.html',
     'docs/providers.json',
     'docs/robots.txt',

@@ -149,6 +149,7 @@ Not sure enough to file one? [Which free tier changed on you this week?](https:/
 ## Data and local development
 
 - `data/providers.json` is the reviewed source dataset.
+- [`llms.txt`](https://xyzs996.github.io/free-llm-api/llms.txt) is the whole catalog as one text file: every provider on one line with its limit, its base URL and the date that limit was read.
 - `data/changelog.json` records weekly changes.
 - `README.md`, `docs/providers.json`, and the static pages are generated deterministically.
 - `npm run validate` rejects stated quotas without an official source.
