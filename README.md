@@ -130,6 +130,14 @@ For a build that should not reach a Pages host, [the same bytes are on a CDN](ht
 
 Open the [browser key checker](https://xyzs996.github.io/free-llm-api/verify.html). Nothing is installed or stored: the request goes from your browser straight to the chosen provider. Its Content Security Policy allows the 26 catalog origins and no analytics or project server. 21 providers answer cross-origin browser requests; blocked providers get an equivalent `curl` command.
 
+## Answered in full, with the sources
+
+These three answer a question this page only gets to in passing. Each opens with a direct answer, then shows the reviewed figures behind it and the date each was read:
+
+- [Which free LLM APIs work without a credit card — and what are the published limits?](https://github.com/xyzs996/free-llm-api/discussions/2) — every permanent free tier that asks for no card, with the limit each one publishes and the ones that publish none.
+- [What are the Gemini, Groq and OpenRouter free tier rate limits right now?](https://github.com/xyzs996/free-llm-api/discussions/3) — the per-minute and per-day figures each one documents, why one of the three publishes no single number, and what that means for quoting it.
+- [Which free LLM APIs are OpenAI compatible, and what base URL do I point my coding agent at?](https://github.com/xyzs996/free-llm-api/discussions/4) — the base URL for every compatible provider, the one that is not a drop-in, and what the compatible flag does not promise.
+
 ## Why trust this list
 
 - Every limit and lifecycle claim links to an official source and carries a review date.

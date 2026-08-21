@@ -130,6 +130,14 @@ curl -s https://xyzs996.github.io/free-llm-api/providers.json | jq -r '.[] | sel
 
 打开[浏览器 key 检测页](https://xyzs996.github.io/free-llm-api/zh/verify.html)。不用安装，也不会留存内容：请求从浏览器直达所选服务商。Content Security Policy 只允许连接清单中的 26 个服务商源，不允许统计服务或本站服务器。21 家支持跨域浏览器请求；被拦截的服务商会得到等价的 `curl` 命令。
 
+## 三个问题答全了，出处都在
+
+这一页只顺带提到的三件事，那三条帖子是从头答的：每条先给一句直接的回答，再把背后核过的数、以及那条数是哪天读到的，一并摆出来。帖子是英文的，标题不翻译——翻了，点进去看到的还是英文。
+
+- [Which free LLM APIs work without a credit card — and what are the published limits?](https://github.com/xyzs996/free-llm-api/discussions/2)
+- [What are the Gemini, Groq and OpenRouter free tier rate limits right now?](https://github.com/xyzs996/free-llm-api/discussions/3)
+- [Which free LLM APIs are OpenAI compatible, and what base URL do I point my coding agent at?](https://github.com/xyzs996/free-llm-api/discussions/4)
+
 ## 为什么可以信任这份清单
 
 - 每条限额和生命周期信息都链接官方来源，并记录核验日期。

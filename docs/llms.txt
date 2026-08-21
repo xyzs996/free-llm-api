@@ -72,6 +72,12 @@ Out of scope for this catalog, which stops where the free tier does. These price
 - `$3` per million input tokens — "The $3 per million input tokens price point means developers should carefully evaluate whether the premium model's capabilities justify the increased costs for their specific use cases." ([Choosing the Right AI Model for Coding: Cost vs. Efficiency](https://xyzs996.github.io/ai-coding-field-notes/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html))
 - [The whole table](https://xyzs996.github.io/ai-coding-field-notes/figures.html): all figures, not only prices.
 
+## Questions answered in full, with the figures behind them
+
+- **Which free LLM APIs work without a credit card — and what are the published limits?** — every permanent free tier that asks for no card, with the limit each one publishes and the ones that publish none. https://github.com/xyzs996/free-llm-api/discussions/2
+- **What are the Gemini, Groq and OpenRouter free tier rate limits right now?** — the per-minute and per-day figures each one documents, why one of the three publishes no single number, and what that means for quoting it. https://github.com/xyzs996/free-llm-api/discussions/3
+- **Which free LLM APIs are OpenAI compatible, and what base URL do I point my coding agent at?** — the base URL for every compatible provider, the one that is not a drop-in, and what the compatible flag does not promise. https://github.com/xyzs996/free-llm-api/discussions/4
+
 ## Elsewhere
 
 Three sibling sites publish their own `llms.txt` in this same shape — one request, every address, each one dated:

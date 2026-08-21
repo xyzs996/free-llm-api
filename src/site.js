@@ -23,6 +23,47 @@ export const REPO_SLUG = REPO_URL.replace(/^https:\/\/github\.com\//, '');
 // for none of that, so it is named next to the form everywhere the form is.
 export const THREAD_URL = `${REPO_URL}/discussions/1`;
 
+// The threads that answer instead of asking.
+//
+// `THREAD_URL` above asks the reader which free tier moved on them. Open a
+// fortnight, zero replies — and the low bar was never the obstacle. That
+// question presumes a reader who already picked a provider, signed up, and ran
+// into a wall. Almost nobody arriving here has done all three yet; they are
+// still on the question that brought them, and they have nothing to report.
+//
+// These three arrive from the other side. Each title is a query people
+// measurably type — checked against Google's own completions, where
+// `free tier rate limits` and `openai compatible api` both come back full and
+// `free llm coding agent` comes back with two, which is why the phrasing is
+// theirs. Each body answers with this dataset's own reviewed figures and the
+// date they were read, then asks for one thing at the end.
+//
+// They live on github.com rather than on the Pages site on purpose: for these
+// queries a repository discussion outranks a zero-star Pages domain, and the
+// reader who lands on one is already signed in and one click from replying.
+//
+// WARNING: no digit may be copied into the notes below. Every figure lives in
+// the thread beside the source page it was read from and the date it was read.
+// A copy here has neither, and it goes stale silently the next time a provider
+// moves a limit — which is the exact failure this whole dataset exists to stop.
+export const THREAD_QA = Object.freeze([
+  Object.freeze({
+    number: 2,
+    question: 'Which free LLM APIs work without a credit card — and what are the published limits?',
+    note: 'every permanent free tier that asks for no card, with the limit each one publishes and the ones that publish none',
+  }),
+  Object.freeze({
+    number: 3,
+    question: 'What are the Gemini, Groq and OpenRouter free tier rate limits right now?',
+    note: 'the per-minute and per-day figures each one documents, why one of the three publishes no single number, and what that means for quoting it',
+  }),
+  Object.freeze({
+    number: 4,
+    question: 'Which free LLM APIs are OpenAI compatible, and what base URL do I point my coding agent at?',
+    note: 'the base URL for every compatible provider, the one that is not a drop-in, and what the compatible flag does not promise',
+  }),
+]);
+
 // The locales this renderer actually emits pages for. An hreflang alternate
 // pointing at a page nobody generated is worse than no alternate at all, so
 // this list is held equal to the artifacts on disk by test/seo.test.js rather

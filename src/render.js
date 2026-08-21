@@ -34,6 +34,7 @@ import {
   REPO_SLUG,
   REPO_URL,
   SITE_URL,
+  THREAD_QA,
   THREAD_URL,
   localeDepth,
   localePath,
@@ -293,6 +294,12 @@ For a build that should not reach a Pages host, [the same bytes are on a CDN](ht
 ## Check a key you already have
 
 Open the [browser key checker](${SITE_URL}verify.html). Nothing is installed or stored: the request goes from your browser straight to the chosen provider. Its Content Security Policy allows the ${connectSrcOrigins(providers).length} catalog origins and no analytics or project server. ${browserCheckable} providers answer cross-origin browser requests; blocked providers get an equivalent \`curl\` command.
+
+## Answered in full, with the sources
+
+These three answer a question this page only gets to in passing. Each opens with a direct answer, then shows the reviewed figures behind it and the date each was read:
+
+${THREAD_QA.map(({ number, question, note }) => `- [${question}](${REPO_URL}/discussions/${number}) — ${note}.`).join('\n')}
 
 ## Why trust this list
 

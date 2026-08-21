@@ -25,7 +25,7 @@
 // wrong within a week, and wrong in the one place nobody looks.
 import { FIELD_NOTES_ROWS, FIELD_NOTES_TABLE, SIBLING_INDEXES } from './field-notes.js';
 import { CLIENT_PAGE_TITLES, MODEL_FAMILIES, clientPageIds } from './pages.js';
-import { DEFAULT_LOCALE, LOCALES, SITE_URL, THREAD_URL, pageUrl } from './site.js';
+import { DEFAULT_LOCALE, LOCALES, REPO_URL, SITE_URL, THREAD_QA, THREAD_URL, pageUrl } from './site.js';
 import { providersInFamily } from './validate.js';
 
 // The units the catalog itself publishes. `limits.status` carries the shape of
@@ -156,6 +156,10 @@ Out of scope for this catalog, which stops where the free tier does. These price
 
 ${FIELD_NOTES_ROWS.map(figureLine).join('\n')}
 - [The whole table](${FIELD_NOTES_TABLE}): all figures, not only prices.`,
+
+    `## Questions answered in full, with the figures behind them
+
+${THREAD_QA.map(({ number, question, note }) => `- **${question}** — ${note}. ${REPO_URL}/discussions/${number}`).join('\n')}`,
 
     `## Elsewhere
 

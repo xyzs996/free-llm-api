@@ -14,6 +14,7 @@ import {
   REPO_SLUG,
   REPO_URL,
   SITE_URL,
+  THREAD_QA,
   THREAD_URL,
   localePath,
 } from './site.js';
@@ -251,6 +252,12 @@ curl -s ${SITE_URL}providers.json | jq -r '${NO_CARD_OPENAI_JQ}'
 ## 检测你已有的 Key
 
 打开[浏览器 key 检测页](${zhUrl('verify.html')})。不用安装，也不会留存内容：请求从浏览器直达所选服务商。Content Security Policy 只允许连接清单中的 ${connectSrcOrigins(providers).length} 个服务商源，不允许统计服务或本站服务器。${browserCheckable} 家支持跨域浏览器请求；被拦截的服务商会得到等价的 \`curl\` 命令。
+
+## 三个问题答全了，出处都在
+
+这一页只顺带提到的三件事，那三条帖子是从头答的：每条先给一句直接的回答，再把背后核过的数、以及那条数是哪天读到的，一并摆出来。帖子是英文的，标题不翻译——翻了，点进去看到的还是英文。
+
+${THREAD_QA.map(({ number, question, note }) => `- [${question}](${REPO_URL}/discussions/${number})`).join('\n')}
 
 ## 为什么可以信任这份清单
 

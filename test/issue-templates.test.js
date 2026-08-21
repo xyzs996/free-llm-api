@@ -10,7 +10,15 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 
-import { THREAD_URL } from '../src/site.js';
+import { renderArtifacts } from '../src/render.js';
+import { REPO_URL, THREAD_QA, THREAD_URL } from '../src/site.js';
+
+const providers = JSON.parse(
+  await readFile(new URL('../data/providers.json', import.meta.url), 'utf8'),
+);
+const changelog = JSON.parse(
+  await readFile(new URL('../data/changelog.json', import.meta.url), 'utf8'),
+);
 
 const templateDir = new URL('../.github/ISSUE_TEMPLATE/', import.meta.url);
 const readmeEn = await readFile(new URL('../README.md', import.meta.url), 'utf8');
@@ -136,6 +144,65 @@ test('the correction form asks for the source and the date it was read', async (
       nextField === -1 ? field : field.slice(0, nextField),
       /required: true/,
       `${id} is optional`,
+    );
+  }
+});
+
+test('the three answering threads are reachable from both READMEs and the machine index', () => {
+  // The threads existed, answered 200 and were linked from nothing. That is
+  // this project's recurring failure and it is invisible from the inside:
+  // every part works and no path leads to it.
+  //
+  // Three surfaces, three different readers. README.md and README_zh.md have
+  // the human audience already on github.com; llms.txt has the one arriving
+  // through an assistant, and on the sibling site that is exactly the traffic
+  // the index earns by answering in place instead of listing titles.
+  const artifacts = renderArtifacts(providers, changelog);
+  const en = artifacts['README.md'];
+  const zh = artifacts['README_zh.md'];
+  const llms = artifacts['docs/llms.txt'];
+
+  for (const { number, question, note } of THREAD_QA) {
+    const url = `${REPO_URL}/discussions/${number}`;
+    for (const [name, text] of [['README.md', en], ['README_zh.md', zh], ['llms.txt', llms]]) {
+      assert.ok(text.includes(url), `${name} does not link ${url}`);
+      assert.ok(
+        text.includes(question),
+        `${name} links discussion ${number} without naming the question it answers`,
+      );
+    }
+    // The note only in the machine index: a file that lists titles hands a
+    // program a menu, and the reader behind it asked a question.
+    assert.ok(
+      llms.includes(note),
+      `llms.txt lists discussion ${number} by title alone, with no line on what it holds`,
+    );
+  }
+
+  // Ahead of the trust-and-plumbing half of the page in both languages. A
+  // reader deciding whether to believe the tables has already been given
+  // somewhere to ask; one who scrolls past has not.
+  for (const [name, text, trust] of [
+    ['README.md', en, '## Why trust this list'],
+    ['README_zh.md', zh, '## 为什么可以信任这份清单'],
+  ]) {
+    assert.ok(
+      text.indexOf(`${REPO_URL}/discussions/2`) < text.indexOf(trust),
+      `${name} buries the answering threads below "${trust}"`,
+    );
+  }
+});
+
+test('no reviewed figure is copied into the thread notes', () => {
+  // Every figure in those threads sits beside the provider page it was read
+  // from and the date it was read. A copy in this table has neither, and a
+  // provider moving a limit is the one event this whole dataset exists to
+  // catch — a stale digit here would be caught by nothing.
+  for (const { number, note } of THREAD_QA) {
+    assert.equal(
+      [...note].filter((c) => /[0-9]/.test(c)).join(''),
+      '',
+      `a figure was copied into the note for discussion ${number}`,
     );
   }
 });
