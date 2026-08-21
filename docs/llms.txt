@@ -78,6 +78,12 @@ Out of scope for this catalog, which stops where the free tier does. These price
 - **What are the Gemini, Groq and OpenRouter free tier rate limits right now?** — the per-minute and per-day figures each one documents, why one of the three publishes no single number, and what that means for quoting it. https://github.com/xyzs996/free-llm-api/discussions/3
 - **Which free LLM APIs are OpenAI compatible, and what base URL do I point my coding agent at?** — the base URL for every compatible provider, the one that is not a drop-in, and what the compatible flag does not promise. https://github.com/xyzs996/free-llm-api/discussions/4
 
+Three more this catalog is asked and does not answer, because they start where its free tiers end. Each is answered by a figure quoted above, in the sentence it was published in:
+
+- **Are Chinese models actually cheaper than OpenAI per million tokens, and by how much?** — "Chinese AI models provide a cost-effective alternative to their American counterparts, with input costs as low as $0.19 per million tokens, compared to OpenAI's $5-12." ([How Chinese AI Agent Tools Leverage 1.6 Billion Free Tokens](https://xyzs996.github.io/ai-coding-field-notes/articles/how-chinese-ai-agent-tools-leverage-1-6-billion-free-tokens.html))
+- **What gross margin sits behind a $1-per-million-token price?** — "Top-tier Chinese models such as GLM5.2 and DeepSeek V4 Pro sit near $1 per million tokens at inference gross margins of 10% to 20%." ([1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy](https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html))
+- **Is a premium coding model worth $3 per million input tokens?** — "The $3 per million input tokens price point means developers should carefully evaluate whether the premium model's capabilities justify the increased costs for their specific use cases." ([Choosing the Right AI Model for Coding: Cost vs. Efficiency](https://xyzs996.github.io/ai-coding-field-notes/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html))
+
 ## Elsewhere
 
 Three sibling sites publish their own `llms.txt` in this same shape — one request, every address, each one dated:

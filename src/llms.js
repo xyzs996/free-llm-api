@@ -103,6 +103,43 @@ function figureLine(row) {
   return `- \`${row.value}\` ${row.unit} — "${row.context}" ([${row.article}](${row.url}))`;
 }
 
+// Questions this catalog is asked, deliberately does not answer, and can point
+// at an answer for.
+//
+// The section these join is the one shape in this file an answer engine quotes
+// whole: a question, and one address that answers it. Every entry in it named a
+// discussion in this repository, so every citation it has ever earned came back
+// here — while the sibling that supplies the prices above has, over the same
+// fourteen days, three unique visitors and an empty referrer list.
+//
+// ⚠ **The address is taken from the row, never written here.** An entry names
+// the figure that answers it, by value; the sentence and the write-up URL are
+// read off `FIELD_NOTES_ROWS`. So a question can only ever link where the
+// corpus already supports, and an entry whose figure the export drops prints
+// nothing rather than a link to a page that no longer argues it.
+const SIBLING_QA = Object.freeze([
+  {
+    value: '$0.19 / $5',
+    question: 'Are Chinese models actually cheaper than OpenAI per million tokens, and by how much?',
+  },
+  {
+    value: '$1',
+    question: 'What gross margin sits behind a $1-per-million-token price?',
+  },
+  {
+    value: '$3',
+    question: 'Is a premium coding model worth $3 per million input tokens?',
+  },
+]);
+
+function siblingQaLines() {
+  return SIBLING_QA.map(({ value, question }) => {
+    const row = FIELD_NOTES_ROWS.find((candidate) => candidate.value === value);
+    if (!row) return null;
+    return `- **${question}** — "${row.context}" ([${row.article}](${row.url}))`;
+  }).filter(Boolean);
+}
+
 /**
  * The site as one text file.
  *
@@ -159,7 +196,11 @@ ${FIELD_NOTES_ROWS.map(figureLine).join('\n')}
 
     `## Questions answered in full, with the figures behind them
 
-${THREAD_QA.map(({ number, question, note }) => `- **${question}** — ${note}. ${REPO_URL}/discussions/${number}`).join('\n')}`,
+${THREAD_QA.map(({ number, question, note }) => `- **${question}** — ${note}. ${REPO_URL}/discussions/${number}`).join('\n')}
+
+Three more this catalog is asked and does not answer, because they start where its free tiers end. Each is answered by a figure quoted above, in the sentence it was published in:
+
+${siblingQaLines().join('\n')}`,
 
     `## Elsewhere
 

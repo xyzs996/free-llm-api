@@ -146,3 +146,52 @@ test('the machine index names the sibling indexes, and only ones this family pub
   // nothing from a line telling it to fetch this file.
   assert.ok(!SIBLING_INDEXES.some(({ url }) => url.includes('/free-llm-api/')));
 });
+
+// The one shape in this file an answer engine quotes whole is a question next
+// to one address. Every entry in it pointed back into this repository, which is
+// where every citation it earned landed — while the sibling supplying the
+// prices above sat at three unique visitors and an empty referrer list.
+test('the questions that start where the free tiers end link the sibling, not this repo', () => {
+  const section = llms.split('## Questions answered in full')[1].split('\n## ')[0];
+  const sibling = section
+    .split('\n')
+    .filter((line) => line.startsWith('- **') && line.includes('ai-coding-field-notes'));
+  assert.ok(sibling.length >= 3, `only ${sibling.length} questions reach the sibling`);
+
+  for (const line of sibling) {
+    // A question and an address is the whole shape; a line that lost either one
+    // is not quotable as an answer.
+    assert.match(line, /^- \*\*[^*]+\?\*\* —/, `not phrased as a question: ${line.slice(0, 60)}…`);
+    // ⚠ The sentence has to be there too. Without it the line asserts a claim
+    // in this file's own voice, and this file has no business making claims
+    // about somebody else's prices.
+    const quoted = line.match(/"([^"]+)"/);
+    assert.ok(quoted, `no quoted sentence: ${line.slice(0, 60)}…`);
+    const row = FIELD_NOTES_ROWS.find(({ context }) => context === quoted[1]);
+    assert.ok(row, `quotes a sentence no exported figure carries: ${quoted[1].slice(0, 50)}…`);
+    // And the address is the row's own, not one typed next to the question.
+    assert.ok(line.includes(row.url), `${row.value} is quoted under someone else's link`);
+  }
+});
+
+test('a question whose figure the export drops prints nothing, rather than a stale link', async () => {
+  // The questions are written by hand and the answers are not. When the sibling
+  // stops publishing the figure one of them rests on, the honest outcome is a
+  // missing line — not a question still pointing at a write-up that no longer
+  // argues it.
+  const { renderLlms } = await import('../src/llms.js');
+  const full = renderLlms(providers, artifacts);
+  assert.ok(full.includes('gross margin sits behind'));
+
+  const dropped = FIELD_NOTES_ROWS.filter(({ value }) => value !== '$1');
+  const before = FIELD_NOTES_ROWS.splice(0, FIELD_NOTES_ROWS.length, ...dropped);
+  try {
+    const thinner = renderLlms(providers, artifacts);
+    assert.ok(!thinner.includes('gross margin sits behind'), 'the question outlived its figure');
+    // The other two are untouched, so this is a dropped line and not a dropped
+    // section.
+    assert.ok(thinner.includes('Are Chinese models actually cheaper'));
+  } finally {
+    FIELD_NOTES_ROWS.splice(0, FIELD_NOTES_ROWS.length, ...before);
+  }
+});
