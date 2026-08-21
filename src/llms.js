@@ -23,7 +23,7 @@
 // page list from the artifacts that were actually generated, and the prices
 // from the sibling project's export. A file that restated any of them would be
 // wrong within a week, and wrong in the one place nobody looks.
-import { FIELD_NOTES_ROWS, FIELD_NOTES_TABLE } from './field-notes.js';
+import { FIELD_NOTES_ROWS, FIELD_NOTES_TABLE, SIBLING_INDEXES } from './field-notes.js';
 import { CLIENT_PAGE_TITLES, MODEL_FAMILIES, clientPageIds } from './pages.js';
 import { DEFAULT_LOCALE, LOCALES, SITE_URL, THREAD_URL, pageUrl } from './site.js';
 import { providersInFamily } from './validate.js';
@@ -156,6 +156,12 @@ Out of scope for this catalog, which stops where the free tier does. These price
 
 ${FIELD_NOTES_ROWS.map(figureLine).join('\n')}
 - [The whole table](${FIELD_NOTES_TABLE}): all figures, not only prices.`,
+
+    `## Elsewhere
+
+Three sibling sites publish their own \`llms.txt\` in this same shape — one request, every address, each one dated:
+
+${SIBLING_INDEXES.map(({ url, note }) => `- [${url}](${url}): ${note}`).join('\n')}`,
 
     `## Corrections
 

@@ -123,3 +123,26 @@ test('the catalog counts in the summary are the ones the catalog holds', () => {
   assert.ok(summary.includes(`${providers.length} API providers`), `summary miscounts providers: ${summary}`);
   assert.ok(summary.includes(`${cardFree} of them without a credit card`), `summary miscounts card-free providers: ${summary}`);
 });
+
+// This file is read by the one visitor the family gets for free: an answer
+// engine that found the catalog on its own. Until the section below existed it
+// named no other address in the family, so that visitor left with the free
+// tiers and nothing else — including no way to reach the prices that replace a
+// free tier once it ends, which is the next question anybody asks.
+test('the machine index names the sibling indexes, and only ones this family publishes', async () => {
+  const { SIBLING_INDEXES } = await import('../src/field-notes.js');
+  assert.ok(SIBLING_INDEXES.length >= 3);
+
+  for (const { url, note } of SIBLING_INDEXES) {
+    assert.match(url, /^https:\/\/xyzs996\.github\.io\/[a-z0-9-]+\/llms\.txt$/);
+    assert.ok(llms.includes(url), `llms.txt drops the sibling index ${url}`);
+    // A bare list of addresses makes the reader fetch all three to find out
+    // which one it wanted. Each line says what is behind it.
+    assert.ok(llms.includes(note), `llms.txt lists ${url} with no description`);
+    assert.ok(note.length > 40, `${url} is described in too few words to choose by`);
+  }
+
+  // And it does not point at itself: a reader already holding this file gains
+  // nothing from a line telling it to fetch this file.
+  assert.ok(!SIBLING_INDEXES.some(({ url }) => url.includes('/free-llm-api/')));
+});

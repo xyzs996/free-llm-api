@@ -35,6 +35,27 @@ export const FIELD_NOTES_JSON =
 export const FIELD_NOTES_ARTICLE =
   'https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html';
 
+// The sibling sites' own machine indexes. This catalog is the only property in
+// the family that an assistant already arrives at on its own — chatgpt.com is
+// its second-largest referrer — and until this list existed its `llms.txt`
+// named no other address in the family at all. A reader crawling this file for
+// free-tier limits had no way to learn that the prices after the free tier,
+// and the two datasets next door, are published in the same shape.
+export const SIBLING_INDEXES = Object.freeze([
+  {
+    url: 'https://xyzs996.github.io/ai-coding-field-notes/llms.txt',
+    note: 'what an AI coding agent costs once a free tier ends: every figure with the sentence it came from, and the write-ups behind them.',
+  },
+  {
+    url: 'https://xyzs996.github.io/free-proxy-health-list/llms.txt',
+    note: 'free HTTP/SOCKS proxies, re-checked and re-published on a schedule, as TXT, JSON and CSV.',
+  },
+  {
+    url: 'https://xyzs996.github.io/iptv-doctor/llms.txt',
+    note: 'which public IPTV channels answer right now, per country and per channel. No stream URL is published.',
+  },
+]);
+
 function loadRows() {
   const raw = readFileSync(resolve(rootDirectory, DATA_PATH), 'utf8');
   const rows = JSON.parse(raw).rows;
