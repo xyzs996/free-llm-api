@@ -21,7 +21,15 @@ import {
 import { renderReadmeZh } from './readme-zh.js';
 import { PROBE_CLASSIFICATIONS } from './probe-contract.js';
 import { catalogDatasetNode, renderHead, renderSiteFiles, webSiteNode } from './seo.js';
-import { DEFAULT_LOCALE, LOCALES, REPO_URL, SITE_URL, localeDepth, localePath } from './site.js';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  REPO_URL,
+  SITE_URL,
+  THREAD_URL,
+  localeDepth,
+  localePath,
+} from './site.js';
 import { CHANGELOG_CHANGE_LABELS, isLandingPageEligible } from './validate.js';
 import { connectSrcOrigins, renderVerifyPage } from './verify-page.js';
 
@@ -280,6 +288,8 @@ The ignored \`data/probe-output.json\` contains only a bounded classification, s
 ${renderChangelogSection(providers, changelog)}## Contributing
 
 Corrections are the contribution this project runs on: a limit that moved, a provider that closed signups, or a link that died. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](${REPO_URL}/issues/new/choose).
+
+Not sure enough to file one? [Which free tier changed on you this week?](${THREAD_URL}) takes a one-line reply with no link, no screenshot, and no source. Somebody else can go find the page.
 
 ## Data and local development
 
@@ -579,6 +589,7 @@ ${comparisonPageIds.map((id) => `              <li><a href="./compare/${escapeHt
           <h2>${escapeHtml(t('home.methodHeading'))}</h2>
         </div>
         <p>${escapeHtml(t('home.methodBody'))} <a href="${escapeHtml(REPO_URL)}/blob/main/CONTRIBUTING.md">${escapeHtml(t('home.methodLink'))}</a>.</p>
+        <p>${escapeHtml(t('home.threadBody'))} <a href="${escapeHtml(THREAD_URL)}">${escapeHtml(t('home.threadLink'))}</a>.</p>
         <!-- 指站点、不指仓库:这一页和文集都在 xyzs996.github.io 底下,同域
              链接爬虫走得通;而且点过去落在读得下去的正文上,不是一屏文件列表。 -->
         <p>${escapeHtml(t('home.relatedLead'))} <a href="https://xyzs996.github.io/ai-coding-field-notes/">${escapeHtml(t('home.relatedLink'))}</a>.</p>

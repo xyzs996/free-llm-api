@@ -10,6 +10,8 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 
+import { THREAD_URL } from '../src/site.js';
+
 const templateDir = new URL('../.github/ISSUE_TEMPLATE/', import.meta.url);
 const readmeEn = await readFile(new URL('../README.md', import.meta.url), 'utf8');
 const readmeZh = await readFile(new URL('../README_zh.md', import.meta.url), 'utf8');
@@ -73,6 +75,50 @@ test('no string field is written so YAML turns it into a date, number, or boolea
         `${name}:${i + 1} — ${m[1]}: ${value} is not a string to YAML; quote it`,
       );
     }
+  }
+});
+
+// The forms above are the strict path: a correction needs the provider's own
+// page and the date you read it, or it cannot be applied. That leaves everyone
+// who only *noticed* something with nothing to file, and this repository has
+// the readers. The open thread is the path with no such bar — and a thread
+// nothing links to is not a path at all, which is why this is asserted against
+// the generated READMEs rather than trusted to the fact that it exists.
+test('both READMEs point at the report path that needs no source', () => {
+  for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
+    assert.ok(
+      readme.includes(THREAD_URL),
+      `${name} does not link ${THREAD_URL}; the only report path it offers demands a source`,
+    );
+    // Next to the form, not in some other section — the reader who just bounced
+    // off the form's requirements is the one this line is for.
+    const contributing = readme.slice(readme.indexOf('/issues/new/choose'));
+    const nextHeading = contributing.indexOf('\n## ');
+    assert.ok(
+      (nextHeading === -1 ? contributing : contributing.slice(0, nextHeading)).includes(THREAD_URL),
+      `${name} links the thread somewhere other than beside the issue templates`,
+    );
+  }
+});
+
+test('the chooser itself offers the path that asks for nothing', async () => {
+  // A reader who opens the chooser has already decided to report something.
+  // If every option there demands a source, that decision is spent on nothing.
+  const config = await readFile(new URL('config.yml', templateDir), 'utf8');
+  assert.ok(config.includes(THREAD_URL), `config.yml does not list ${THREAD_URL}`);
+});
+
+test('the catalog page offers it too, beside the ask that needs a source', async () => {
+  // The site, not the repository, is where the search and answer-engine traffic
+  // lands, and its one contribution ask was the strict one.
+  for (const path of ['../docs/index.html', '../docs/zh/index.html']) {
+    const html = await readFile(new URL(path, import.meta.url), 'utf8');
+    const band = html.slice(html.indexOf('method-band'));
+    const end = band.indexOf('</section>');
+    assert.ok(
+      (end === -1 ? band : band.slice(0, end)).includes(THREAD_URL),
+      `${path} does not offer the thread where it asks for corrections`,
+    );
   }
 });
 

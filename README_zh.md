@@ -144,6 +144,8 @@ GROQ_API_KEY=YOUR_API_KEY npm run probe -- --provider groq
 
 这个项目最需要的贡献是纠错：某家限额变化、停止注册或链接失效。见 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [Issue 模板](https://github.com/xyzs996/free-llm-api/issues/new/choose)。
 
+没把握到能填表？[这周哪家的免费额度变了？](https://github.com/xyzs996/free-llm-api/discussions/1) 回一行就行，不用链接、不用截图、不用出处，那页由别人去找。
+
 ## 数据与本地运行
 
 - `data/providers.json` 是经过核验的源数据集。

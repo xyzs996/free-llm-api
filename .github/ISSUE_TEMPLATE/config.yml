@@ -3,6 +3,12 @@
 # way you did not anticipate" into no report at all.
 blank_issues_enabled: true
 contact_links:
+  # First, because it is the only option on this page that asks for nothing the
+  # reader may not have. Both forms above require the provider's own page and
+  # the date it was read; someone who just watched a limit move has neither.
+  - name: Just noticed something changed? Say so in the open thread
+    url: https://github.com/xyzs996/free-llm-api/discussions/1
+    about: One line is enough. No link, no screenshot, no source — the forms above are where those are needed.
   - name: How a correction is applied
     url: https://github.com/xyzs996/free-llm-api/blob/main/CONTRIBUTING.md
     about: Which file holds the number, what has to change alongside it, and which files are generated.

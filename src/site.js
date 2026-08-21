@@ -10,6 +10,14 @@ export const SITE_URL = SITE.site_url;
 export const REPO_URL = SITE.repo_url;
 export const SITE_NAME = 'Free LLM API';
 
+// The open thread. Until it was linked, the only way to say "this number moved"
+// was the correction form, which requires the provider's own page and the date
+// you read it. Those requirements are right — a number here changes on evidence
+// — but they also mean a reader who merely noticed something has nowhere to put
+// it, and the repository hears nothing at all. The thread is the path that asks
+// for none of that, so it is named next to the form everywhere the form is.
+export const THREAD_URL = `${REPO_URL}/discussions/1`;
+
 // The locales this renderer actually emits pages for. An hreflang alternate
 // pointing at a page nobody generated is worse than no alternate at all, so
 // this list is held equal to the artifacts on disk by test/seo.test.js rather
