@@ -87,6 +87,26 @@ export function figureAskUrl(cameFrom) {
   return `${FIELD_NOTES_REPO}/issues/new?${query}`;
 }
 
+// Where a row's write-up is sent to a *reader*.
+//
+// Every row carries `url` — the copy on the sibling's GitHub Pages site — and
+// some also carry `medium`, the page the piece was published on first. Two of
+// the sibling's thirty-two write-ups have one.
+//
+// Those two are the only pages anywhere in this family where a reader can clap
+// or reply. The Pages copy has neither control; it is a copy, and reading it
+// ends there. The sibling already says so to machines and not to people: the
+// article page it generates for those two carries `rel=canonical` pointing at
+// Medium, so a crawler is told "the original is over there" while every human
+// link in this README pointed at the reproduction.
+//
+// So `medium` wins where it exists. `url` is the fallback and stays the only
+// address for the other thirty, which were never on Medium — an empty cell
+// means "not published there", not "unknown".
+export function readerUrl(row) {
+  return row.medium || row.url;
+}
+
 export const FIELD_NOTES_JSON =
   'https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json';
 export const FIELD_NOTES_ARTICLE =
@@ -221,7 +241,7 @@ function cell(text) {
 
 function tableRows() {
   return FIELD_NOTES_ROWS.map(
-    (row) => `| \`${cell(row.value)}\` | ${cell(row.unit)} | ${cell(row.context)} [→](${row.url}) |`,
+    (row) => `| \`${cell(row.value)}\` | ${cell(row.unit)} | ${cell(row.context)} [→](${readerUrl(row)}) |`,
   ).join('\n');
 }
 

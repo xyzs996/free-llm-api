@@ -7,6 +7,7 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import {
   FIELD_NOTES_ROWS,
+  readerUrl,
   renderFieldNotes,
   renderFieldNotesZh,
 } from '../src/field-notes.js';
@@ -35,9 +36,41 @@ test('every row reaches both rendered READMEs with its sentence intact', () => {
     // a sentence, which is exactly how a mangled quote survives review.
     for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
       assert.ok(readme.includes(row.context), `${name} is missing: ${row.context.slice(0, 40)}…`);
-      assert.ok(readme.includes(row.url), `${name} is missing the link for that row`);
+      assert.ok(readme.includes(readerUrl(row)), `${name} is missing the link for that row`);
     }
   }
+});
+
+// Two of the sibling's thirty-two write-ups were published on Medium first.
+// Those two pages are the only ones in this whole family carrying a clap
+// button and a reply box; the copy on the sibling's Pages site has neither,
+// and the sibling already tells crawlers as much with a `rel=canonical`
+// pointing at Medium. Until this test existed, every human link in both
+// READMEs went to the copy anyway.
+test('a write-up published on Medium first is linked at the original, not the copy', () => {
+  const originals = FIELD_NOTES_ROWS.filter((row) => row.medium);
+  // Non-vacuous guard. With no such row the loop below would pass by being
+  // empty, which is exactly the state this test is here to notice.
+  assert.ok(originals.length > 0, 'no exported row carries a Medium original');
+
+  for (const row of originals) {
+    assert.equal(readerUrl(row), row.medium, `${row.value} is sent to the copy`);
+    for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
+      assert.ok(readme.includes(row.medium), `${name} does not link the original for ${row.value}`);
+      // And the copy is not what that row's arrow opens. Asserting only that
+      // the original appears somewhere would pass with both links present.
+      assert.ok(
+        !readme.includes(`[\u2192](${row.url})`),
+        `${name} still sends ${row.value} to the copy`,
+      );
+    }
+  }
+
+  // The other rows are unaffected: an empty cell means "never on Medium", and
+  // those write-ups have no address other than the one on the sibling's site.
+  const copies = FIELD_NOTES_ROWS.filter((row) => !row.medium);
+  assert.ok(copies.length > 0, 'every row has a Medium original — check the fixture');
+  for (const row of copies) assert.equal(readerUrl(row), row.url);
 });
 
 test('the quoted sentences are not translated in the Chinese README', () => {
@@ -189,11 +222,11 @@ test('a figure reaches every page whose own subject its sentence names', () => {
         html.includes(row.context.replaceAll("'", '&#39;')),
         `${path} is missing the sentence for ${row.value}`,
       );
-      assert.ok(html.includes(row.url), `${path} quotes ${row.value} without linking the write-up`);
+      assert.ok(html.includes(readerUrl(row)), `${path} quotes ${row.value} without linking the write-up`);
       // No `rel="noreferrer"` on this one: it is the link whose clicks have to
       // be countable on the other end.
       assert.ok(
-        html.includes(`<a href="${row.url}">`),
+        html.includes(`<a href="${readerUrl(row)}">`),
         `${path} strips the referrer from the write-up link`,
       );
     }

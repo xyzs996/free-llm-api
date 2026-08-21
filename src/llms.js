@@ -23,7 +23,7 @@
 // page list from the artifacts that were actually generated, and the prices
 // from the sibling project's export. A file that restated any of them would be
 // wrong within a week, and wrong in the one place nobody looks.
-import { FIELD_NOTES_ROWS, FIELD_NOTES_TABLE, SIBLING_INDEXES } from './field-notes.js';
+import { FIELD_NOTES_ROWS, FIELD_NOTES_TABLE, SIBLING_INDEXES, readerUrl } from './field-notes.js';
 import { CLIENT_PAGE_TITLES, MODEL_FAMILIES, clientPageIds } from './pages.js';
 import { DEFAULT_LOCALE, LOCALES, REPO_URL, SITE_URL, THREAD_QA, heardUrl, pageUrl } from './site.js';
 import { providersInFamily } from './validate.js';
@@ -100,7 +100,7 @@ function familyLine(family, providers) {
 // million tokens, per month and per seat; splitting the number from its
 // sentence to fit a list would reintroduce exactly that.
 function figureLine(row) {
-  return `- \`${row.value}\` ${row.unit} — "${row.context}" ([${row.article}](${row.url}))`;
+  return `- \`${row.value}\` ${row.unit} — "${row.context}" ([${row.article}](${readerUrl(row)}))`;
 }
 
 // Questions this catalog is asked, deliberately does not answer, and can point
@@ -136,7 +136,7 @@ function siblingQaLines() {
   return SIBLING_QA.map(({ value, question }) => {
     const row = FIELD_NOTES_ROWS.find((candidate) => candidate.value === value);
     if (!row) return null;
-    return `- **${question}** — "${row.context}" ([${row.article}](${row.url}))`;
+    return `- **${question}** — "${row.context}" ([${row.article}](${readerUrl(row)}))`;
   }).filter(Boolean);
 }
 

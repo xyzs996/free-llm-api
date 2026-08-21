@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { fieldNotesUrl, figureAskUrl, figuresForFamilies } from './field-notes.js';
+import { fieldNotesUrl, figureAskUrl, figuresForFamilies, readerUrl } from './field-notes.js';
 import { escapeHtml, externalLink, link } from './html.js';
 import { clientNoteCopy, dataSentence, localized, translator } from './i18n.js';
 import { renderDocument } from './page-layout.js';
@@ -248,7 +248,7 @@ function figuresSection(families, lede, context, ask) {
 ${rows.map((row) => `              <tr>
                 <td data-label="${t('table.figure')}"><code>${escapeHtml(row.value)}</code> ${escapeHtml(row.unit)}</td>
                 <td data-label="${t('table.figureSentence')}">${escapeHtml(row.context)}</td>
-                <td data-label="${t('table.figureWriteUp')}">${link(row.url, row.article)}</td>
+                <td data-label="${t('table.figureWriteUp')}">${link(readerUrl(row), row.article)}</td>
               </tr>`).join('\n')}
             </tbody>
           </table>

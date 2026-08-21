@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { FIELD_NOTES_ROWS } from '../src/field-notes.js';
+import { FIELD_NOTES_ROWS, readerUrl } from '../src/field-notes.js';
 import { renderLlms } from '../src/llms.js';
 import { renderArtifacts } from '../src/render.js';
 import { SITE_URL } from '../src/site.js';
@@ -96,7 +96,7 @@ test('every price arrives with the sentence it was published in and the write-up
   for (const row of FIELD_NOTES_ROWS) {
     assert.ok(llms.includes(row.value), `llms.txt drops the figure ${row.value}`);
     assert.ok(llms.includes(row.context), `llms.txt quotes ${row.value} without its sentence`);
-    assert.ok(llms.includes(row.url), `llms.txt quotes ${row.value} without linking the write-up`);
+    assert.ok(llms.includes(readerUrl(row)), `llms.txt quotes ${row.value} without linking the write-up`);
   }
 });
 
@@ -153,9 +153,15 @@ test('the machine index names the sibling indexes, and only ones this family pub
 // prices above sat at three unique visitors and an empty referrer list.
 test('the questions that start where the free tiers end link the sibling, not this repo', () => {
   const section = llms.split('## Questions answered in full')[1].split('\n## ')[0];
+  // ⚠ Selected by "does not point back here", not by the sibling's repo name.
+  // The name is no longer in every one of these lines: a write-up published on
+  // Medium first is linked at its original, which carries neither repo's name.
+  // Filtering on the name silently dropped that entry and the count fell to
+  // two, which is the same defect this test exists to catch, wearing a
+  // different hat.
   const sibling = section
     .split('\n')
-    .filter((line) => line.startsWith('- **') && line.includes('ai-coding-field-notes'));
+    .filter((line) => line.startsWith('- **') && !line.includes('free-llm-api'));
   assert.ok(sibling.length >= 3, `only ${sibling.length} questions reach the sibling`);
 
   for (const line of sibling) {
@@ -170,7 +176,7 @@ test('the questions that start where the free tiers end link the sibling, not th
     const row = FIELD_NOTES_ROWS.find(({ context }) => context === quoted[1]);
     assert.ok(row, `quotes a sentence no exported figure carries: ${quoted[1].slice(0, 50)}…`);
     // And the address is the row's own, not one typed next to the question.
-    assert.ok(line.includes(row.url), `${row.value} is quoted under someone else's link`);
+    assert.ok(line.includes(readerUrl(row)), `${row.value} is quoted under someone else's link`);
   }
 });
 
