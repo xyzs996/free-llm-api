@@ -1,9 +1,22 @@
 import { renderBadges, starHistory } from './badges.js';
 import { HOSTED_CTA_URL } from './client-pages.js';
-import { accessGroups, catalogSummary, quickPicks } from './growth.js';
+import {
+  NO_CARD_OPENAI_JQ,
+  accessGroups,
+  catalogSummary,
+  noCardOpenAiCompatible,
+  quickPicks,
+} from './growth.js';
 import { renderFieldNotesZh } from './field-notes.js';
 import { escapeMarkdown } from './markdown.js';
-import { LOCALES, REPO_URL, SITE_URL, THREAD_URL, localePath } from './site.js';
+import {
+  LOCALES,
+  REPO_SLUG,
+  REPO_URL,
+  SITE_URL,
+  THREAD_URL,
+  localePath,
+} from './site.js';
 import { connectSrcOrigins } from './verify-page.js';
 
 // This README sends readers to the Chinese edition of the site, not to the
@@ -218,6 +231,22 @@ npx free-llm-api setup claude-code
 \`\`\`
 
 客户端指南：[Claude Code](docs/claude-code.md) · [Codex CLI](docs/codex.md) · [Cline](docs/cline.md) · [全部客户端](docs/clients.md)。
+
+## 把这份清单拉进你自己的代码
+
+上面这张表就是一个文件，不需要 key，带 \`Access-Control-Allow-Origin: *\`：
+
+\`\`\`bash
+curl -s ${SITE_URL}providers.json
+\`\`\`
+
+每一行都带着 \`base_url\`、\`openai_compatible\`、\`credit_card_required\`、\`browser_check\`、公开的 \`limits\`，以及每条额度是从哪个 \`official_sources\` 读来的 —— 全都带日期。这足够让程序自己挑服务商，而不是让人再读一遍上面那张表。其中既兼容 OpenAI、又不要信用卡的有 ${noCardOpenAiCompatible(providers).length} 家：
+
+\`\`\`bash
+curl -s ${SITE_URL}providers.json | jq -r '${NO_CARD_OPENAI_JQ}'
+\`\`\`
+
+构建流程不想访问 Pages 的话，[同样的字节在 CDN 上有一份](https://cdn.jsdelivr.net/gh/${REPO_SLUG}@main/data/providers.json)。\`@main\` 跟着分支走；换成 tag 就固定住了。
 
 ## 检测你已有的 Key
 

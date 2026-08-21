@@ -110,6 +110,22 @@ npx free-llm-api setup claude-code
 
 客户端指南：[Claude Code](docs/claude-code.md) · [Codex CLI](docs/codex.md) · [Cline](docs/cline.md) · [全部客户端](docs/clients.md)。
 
+## 把这份清单拉进你自己的代码
+
+上面这张表就是一个文件，不需要 key，带 `Access-Control-Allow-Origin: *`：
+
+```bash
+curl -s https://xyzs996.github.io/free-llm-api/providers.json
+```
+
+每一行都带着 `base_url`、`openai_compatible`、`credit_card_required`、`browser_check`、公开的 `limits`，以及每条额度是从哪个 `official_sources` 读来的 —— 全都带日期。这足够让程序自己挑服务商，而不是让人再读一遍上面那张表。其中既兼容 OpenAI、又不要信用卡的有 23 家：
+
+```bash
+curl -s https://xyzs996.github.io/free-llm-api/providers.json | jq -r '.[] | select(.openai_compatible and .credit_card_required == false) | "\(.id)\t\(.base_url)"'
+```
+
+构建流程不想访问 Pages 的话，[同样的字节在 CDN 上有一份](https://cdn.jsdelivr.net/gh/xyzs996/free-llm-api@main/data/providers.json)。`@main` 跟着分支走；换成 tag 就固定住了。
+
 ## 检测你已有的 Key
 
 打开[浏览器 key 检测页](https://xyzs996.github.io/free-llm-api/zh/verify.html)。不用安装，也不会留存内容：请求从浏览器直达所选服务商。Content Security Policy 只允许连接清单中的 26 个服务商源，不允许统计服务或本站服务器。21 家支持跨域浏览器请求；被拦截的服务商会得到等价的 `curl` 命令。

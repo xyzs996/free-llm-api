@@ -10,6 +10,11 @@ export const SITE_URL = SITE.site_url;
 export const REPO_URL = SITE.repo_url;
 export const SITE_NAME = 'Free LLM API';
 
+// `owner/name`, derived from the repository URL rather than written out again.
+// The CDN mirror address in both READMEs is built from it, and a second copy of
+// the slug is a 404 waiting to happen the first time anything is renamed.
+export const REPO_SLUG = REPO_URL.replace(/^https:\/\/github\.com\//, '');
+
 // The open thread. Until it was linked, the only way to say "this number moved"
 // was the correction form, which requires the provider's own page and the date
 // you read it. Those requirements are right — a number here changes on evidence

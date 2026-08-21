@@ -177,3 +177,61 @@ test('renderer escapes provider-controlled HTML text', async () => {
   assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
   assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
 });
+
+// The catalog was fetchable long before anything said so: `providers.json` has
+// been published, CORS-open, on both the Pages host and the CDN the whole time,
+// and it took 0 fetches a month while the README described it only as "the
+// reviewed source dataset" in the local-development notes. The proxy list next
+// door does the opposite — it puts the URL you copy in the table itself — and
+// takes about 39,000 a month. So these assertions are about the address being
+// on the page a reader actually reads, in both languages.
+test('both READMEs hand the reader a URL that fetches the catalog', async () => {
+  const renderer = await loadRenderer();
+  assert.ok(renderer, 'src/render.js should export renderArtifacts');
+
+  const artifacts = renderer.renderArtifacts(providers);
+  for (const path of ['README.md', 'README_zh.md']) {
+    const readme = artifacts[path];
+    // The bare fetch on its own line, not just the one buried in the `jq`
+    // pipeline below it: a reader who wants to look at the file first has to
+    // be able to copy a line that does only that.
+    assert.match(
+      readme,
+      /```bash\ncurl -s https:\/\/xyzs996\.github\.io\/free-llm-api\/providers\.json\n```/,
+    );
+    assert.match(readme, /cdn\.jsdelivr\.net\/gh\/xyzs996\/free-llm-api@main\/data\/providers\.json/);
+    // Ahead of the local-development notes, which is where the file used to be
+    // mentioned and where nobody looking for data goes.
+    assert.ok(
+      readme.indexOf('providers.json') < readme.indexOf('npm run validate'),
+      `${path} still names the catalog first in the build notes`,
+    );
+  }
+});
+
+// The number in the sentence and the filter the reader copies are one rule.
+// Written twice, they part company the first time a provider starts asking for
+// a card, and nothing about the page looks wrong afterwards.
+test('the count printed beside the jq is the count that jq returns', async () => {
+  const renderer = await loadRenderer();
+  assert.ok(renderer, 'src/render.js should export renderArtifacts');
+
+  const { NO_CARD_OPENAI_JQ, noCardOpenAiCompatible } = await import('../src/growth.js');
+  const expected = noCardOpenAiCompatible(providers);
+  assert.ok(expected.length > 0 && expected.length < providers.length);
+
+  const artifacts = renderer.renderArtifacts(providers);
+  assert.match(artifacts['README.md'], new RegExp(`The ${expected.length} that speak OpenAI`));
+  assert.match(artifacts['README_zh.md'], new RegExp(`有 ${expected.length} 家`));
+  for (const path of ['README.md', 'README_zh.md']) {
+    assert.ok(artifacts[path].includes(NO_CARD_OPENAI_JQ));
+  }
+
+  // And it moves with the data rather than being a constant that happens to fit.
+  const carded = structuredClone(providers);
+  for (const provider of carded) {
+    if (provider.openai_compatible) provider.credit_card_required = true;
+  }
+  assert.equal(noCardOpenAiCompatible(carded).length, 0);
+  assert.match(renderer.renderArtifacts(carded)['README.md'], /The 0 that speak OpenAI/);
+});

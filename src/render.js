@@ -5,7 +5,13 @@ import { renderBadgeEndpoints, renderBadges, starHistory } from './badges.js';
 import { HOSTED_CTA_URL, renderClientPages } from './client-pages.js';
 import { renderExamples } from './examples.js';
 import { renderFieldNotes } from './field-notes.js';
-import { accessGroups, catalogSummary, quickPicks } from './growth.js';
+import {
+  NO_CARD_OPENAI_JQ,
+  accessGroups,
+  catalogSummary,
+  noCardOpenAiCompatible,
+  quickPicks,
+} from './growth.js';
 import { embedJson, escapeHtml, externalLink, joinInline } from './html.js';
 import { dataSentence, localized, translator } from './i18n.js';
 import { renderLlms } from './llms.js';
@@ -25,6 +31,7 @@ import { catalogDatasetNode, renderHead, renderSiteFiles, webSiteNode } from './
 import {
   DEFAULT_LOCALE,
   LOCALES,
+  REPO_SLUG,
   REPO_URL,
   SITE_URL,
   THREAD_URL,
@@ -266,6 +273,22 @@ npx free-llm-api setup claude-code
 \`\`\`
 
 Client guides: [Claude Code](docs/claude-code.md) · [Codex CLI](docs/codex.md) · [Cline](docs/cline.md) · [all clients](docs/clients.md).
+
+## Pull the catalog into your own code
+
+Every row on this page is one file, published with no key and \`Access-Control-Allow-Origin: *\`:
+
+\`\`\`bash
+curl -s ${SITE_URL}providers.json
+\`\`\`
+
+A row carries \`base_url\`, \`openai_compatible\`, \`credit_card_required\`, \`browser_check\`, the published \`limits\`, and the \`official_sources\` each limit was read from — every one of them dated. That is enough for a program to pick a provider instead of a person re-reading the table above. The ${noCardOpenAiCompatible(providers).length} that speak OpenAI and ask for no card:
+
+\`\`\`bash
+curl -s ${SITE_URL}providers.json | jq -r '${NO_CARD_OPENAI_JQ}'
+\`\`\`
+
+For a build that should not reach a Pages host, [the same bytes are on a CDN](https://cdn.jsdelivr.net/gh/${REPO_SLUG}@main/data/providers.json). \`@main\` follows the branch; put a tag there to freeze it.
 
 ## Check a key you already have
 

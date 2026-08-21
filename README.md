@@ -110,6 +110,22 @@ npx free-llm-api setup claude-code
 
 Client guides: [Claude Code](docs/claude-code.md) · [Codex CLI](docs/codex.md) · [Cline](docs/cline.md) · [all clients](docs/clients.md).
 
+## Pull the catalog into your own code
+
+Every row on this page is one file, published with no key and `Access-Control-Allow-Origin: *`:
+
+```bash
+curl -s https://xyzs996.github.io/free-llm-api/providers.json
+```
+
+A row carries `base_url`, `openai_compatible`, `credit_card_required`, `browser_check`, the published `limits`, and the `official_sources` each limit was read from — every one of them dated. That is enough for a program to pick a provider instead of a person re-reading the table above. The 23 that speak OpenAI and ask for no card:
+
+```bash
+curl -s https://xyzs996.github.io/free-llm-api/providers.json | jq -r '.[] | select(.openai_compatible and .credit_card_required == false) | "\(.id)\t\(.base_url)"'
+```
+
+For a build that should not reach a Pages host, [the same bytes are on a CDN](https://cdn.jsdelivr.net/gh/xyzs996/free-llm-api@main/data/providers.json). `@main` follows the branch; put a tag there to freeze it.
+
 ## Check a key you already have
 
 Open the [browser key checker](https://xyzs996.github.io/free-llm-api/verify.html). Nothing is installed or stored: the request goes from your browser straight to the chosen provider. Its Content Security Policy allows the 26 catalog origins and no analytics or project server. 21 providers answer cross-origin browser requests; blocked providers get an equivalent `curl` command.

@@ -20,6 +20,20 @@ export function catalogSummary(providers) {
   };
 }
 
+// The one rule behind the "pull the catalog" section: OpenAI compatible and no
+// card. The `jq` a reader copies and the number printed next to it are the same
+// rule written twice, so they are written once here instead. Two copies drift
+// the first time a provider flips `credit_card_required`, and the drift is
+// invisible — the sentence still reads fine with the wrong number in it.
+export const NO_CARD_OPENAI_JQ =
+  '.[] | select(.openai_compatible and .credit_card_required == false) | "\\(.id)\\t\\(.base_url)"';
+
+export function noCardOpenAiCompatible(providers) {
+  return providers.filter(({ openai_compatible: compatible, credit_card_required: required }) => (
+    compatible && required === false
+  ));
+}
+
 function maxBy(providers, valueFor) {
   return providers.reduce((best, provider) => (
     valueFor(provider) > valueFor(best) ? provider : best
