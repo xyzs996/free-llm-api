@@ -53,6 +53,29 @@ test('no form invites a credential into a public issue', async () => {
   }
 });
 
+// A bare 2026-08-21 is a YAML date, not a string, and GitHub rejects the whole
+// form for it — which drops that form from the chooser and leaves the reader
+// back in the blank box with nothing on this side looking wrong. The date
+// placeholder in correction.yml shipped unquoted and did exactly that.
+const COERCED = /^(\d{4}-\d{1,2}-\d{1,2}|-?\d[\d_]*(\.\d+)?([eE][-+]?\d+)?|0x[0-9a-fA-F]+|true|false|yes|no|on|off|null|~)$/i;
+
+test('no string field is written so YAML turns it into a date, number, or boolean', async () => {
+  const files = await forms();
+  files.push(['config.yml', await readFile(new URL('config.yml', templateDir), 'utf8')]);
+  for (const [name, body] of files) {
+    for (const [i, line] of body.split('\n').entries()) {
+      const m = /^\s*(label|description|placeholder|title|about|name|value):[ \t]+(\S.*?)\s*$/.exec(line);
+      if (!m) continue;
+      const value = m[2];
+      if (/^["'|>]/.test(value)) continue; // quoted or a block scalar
+      assert.ok(
+        !COERCED.test(value),
+        `${name}:${i + 1} — ${m[1]}: ${value} is not a string to YAML; quote it`,
+      );
+    }
+  }
+});
+
 test('the correction form asks for the source and the date it was read', async () => {
   // Without these two, a report cannot be applied: CONTRIBUTING requires the
   // provider's own page and a source_checked_at that is the reporter's own

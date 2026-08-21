@@ -48,7 +48,7 @@ body:
       description: >-
         This becomes `source_checked_at`, which is a claim about your own
         reading rather than a copy of the previous editor's date.
-      placeholder: 2026-08-21
+      placeholder: "2026-08-21"
     validations:
       required: true
   - type: textarea
