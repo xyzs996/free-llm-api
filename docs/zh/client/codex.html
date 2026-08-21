@@ -118,6 +118,21 @@ wire_api = &quot;responses&quot;
         <p>Codex 处理仓库时会发很长的上下文，所以一家「每天请求数」看着很宽松的服务商，仍可能先卡在每天的 token 上限。定下一家之前，两列都要看。</p>
         <p>在怪客户端之前，先验 key 本身：<a href="../verify.html">浏览器检测页</a>能把「凭据被拒」「被限流」和「端点根本没起来」这三种情况分开，而它们的解法各不相同。</p>
 
+        <h2>免费额度用完之后是什么价</h2>
+        <p>拿一把免费 key 是跑 Codex CLI 的一条路，另一条是直接付钱给 OpenAI 用它自己的模型——那要多少钱不在本清单的追踪范围内。下面是公开报道过的 OpenAI 价钱，连着它出处的整句原话一起引——出自<a href="https://xyzs996.github.io/ai-coding-field-notes/figures.html">同一维护者整理的那张表</a>，那里每个数都带着自己那句话：</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>价格</th><th>它出自的那句原话</th><th>对应长文</th></tr></thead>
+            <tbody>
+              <tr>
+                <td data-label="价格"><code>$0.19 / $5</code> per million tokens</td>
+                <td data-label="它出自的那句原话">Chinese AI models provide a cost-effective alternative to their American counterparts, with input costs as low as $0.19 per million tokens, compared to OpenAI&#39;s $5-12.</td>
+                <td data-label="对应长文"><a href="https://xyzs996.github.io/ai-coding-field-notes/articles/how-chinese-ai-agent-tools-leverage-1-6-billion-free-tokens.html">How Chinese AI Agent Tools Leverage 1.6 Billion Free Tokens</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2>来源</h2>
         <ul class="source-list">
           <li><a href="https://developers.openai.com/codex/config-advanced#custom-model-providers" rel="noreferrer">Codex advanced configuration and custom model providers</a></li>

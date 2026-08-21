@@ -68,6 +68,21 @@ exec claude &quot;$@&quot;
         <p>Agentic sessions burn a daily quota far faster than chat does, because every tool call is another long prompt. A 429 tells you that one request was limited and nothing about the quota left, unless the provider returns a reset header.</p>
         <p>Before blaming the client, check the key itself: the <a href="../verify.html">browser checker</a> separates a rejected credential from a rate limit from an endpoint that is simply down, and each of those has a different fix.</p>
 
+        <h2>What it costs once the free tier ends</h2>
+        <p>A free key is one way to run Claude Code; paying Anthropic for its own models is the other, and what that costs is not something this catalog tracks. Reported Anthropic pricing, quoted whole from the sentence it was published in — out of <a href="https://xyzs996.github.io/ai-coding-field-notes/figures.html">the figures a sibling project keeps</a>, where every number travels with its own sentence:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Price</th><th>The sentence it was published in</th><th>Write-up</th></tr></thead>
+            <tbody>
+              <tr>
+                <td data-label="Price"><code>$1.25 / $4.25</code> per million</td>
+                <td data-label="The sentence it was published in">Meta priced Muse Spark 1.1 at $1.25 per million input and $4.25 per million output, roughly 75% and 83% below Anthropic&#39;s Opus, and the tradeoff is visible in the benchmarks, since it leads on MCP Atlas and JobBench while trailing on SWE-Bench Pro and DeepSWE 1.1.</td>
+                <td data-label="Write-up"><a href="https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html">1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2>Sources</h2>
         <ul class="source-list">
           <li><a href="https://docs.anthropic.com/en/docs/claude-code/llm-gateway" rel="noreferrer">Claude Code LLM gateway configuration</a></li>

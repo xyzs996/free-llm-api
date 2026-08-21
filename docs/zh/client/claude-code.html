@@ -68,6 +68,21 @@ exec claude &quot;$@&quot;
         <p>Agent 会话消耗每日额度的速度远快于聊天，因为每一次工具调用都是又一段长 prompt。429 只告诉你那一次请求被限流，除非服务商返回了 reset 头，否则它不说明还剩多少额度。</p>
         <p>在怪客户端之前，先验 key 本身：<a href="../verify.html">浏览器检测页</a>能把「凭据被拒」「被限流」和「端点根本没起来」这三种情况分开，而它们的解法各不相同。</p>
 
+        <h2>免费额度用完之后是什么价</h2>
+        <p>拿一把免费 key 是跑 Claude Code 的一条路，另一条是直接付钱给 Anthropic 用它自己的模型——那要多少钱不在本清单的追踪范围内。下面是公开报道过的 Anthropic 价钱，连着它出处的整句原话一起引——出自<a href="https://xyzs996.github.io/ai-coding-field-notes/figures.html">同一维护者整理的那张表</a>，那里每个数都带着自己那句话：</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>价格</th><th>它出自的那句原话</th><th>对应长文</th></tr></thead>
+            <tbody>
+              <tr>
+                <td data-label="价格"><code>$1.25 / $4.25</code> per million</td>
+                <td data-label="它出自的那句原话">Meta priced Muse Spark 1.1 at $1.25 per million input and $4.25 per million output, roughly 75% and 83% below Anthropic&#39;s Opus, and the tradeoff is visible in the benchmarks, since it leads on MCP Atlas and JobBench while trailing on SWE-Bench Pro and DeepSWE 1.1.</td>
+                <td data-label="对应长文"><a href="https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html">1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2>来源</h2>
         <ul class="source-list">
           <li><a href="https://docs.anthropic.com/en/docs/claude-code/llm-gateway" rel="noreferrer">Claude Code LLM gateway configuration</a></li>

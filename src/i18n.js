@@ -89,6 +89,20 @@ const en = {
   'table.endpoint': 'Endpoint',
   'table.comparedWith': 'Compared with',
   'table.baseUrl': 'Base URL',
+  'table.figure': 'Price',
+  'table.figureSentence': 'The sentence it was published in',
+  'table.figureWriteUp': 'Write-up',
+
+  /* what the paid rate looks like, on the pages where a free tier is the topic */
+  'figures.heading': 'What it costs once the free tier ends',
+  // Each lede names the page's own subject, and there is one paragraph rather
+  // than a paragraph on each side of the table. Both are deliberate: these
+  // pages are measured against each other for near-duplication, the quoted
+  // sentence is already shared by every page whose family it names, and a
+  // second helping of shared framing around it is what turns a useful block
+  // into the boilerplate that measurement exists to catch.
+  'figures.ledeFamily': 'Every free tier above ends somewhere, and what {name} costs once it does is not something this catalog tracks. Reported pricing, quoted whole from the sentence it was published in — out of <a href="{table}">the figures a sibling project keeps</a>, where every number travels with its own sentence:',
+  'figures.ledeClient': 'A free key is one way to run {name}; paying {vendor} for its own models is the other, and what that costs is not something this catalog tracks. Reported {vendor} pricing, quoted whole from the sentence it was published in — out of <a href="{table}">the figures a sibling project keeps</a>, where every number travels with its own sentence:',
 
   /* layout chrome */
   'layout.brand': 'Free LLM API',
@@ -559,6 +573,14 @@ const zh = {
   'table.endpoint': '端点',
   'table.comparedWith': '对比对象',
   'table.baseUrl': 'Base URL',
+  'table.figure': '价格',
+  'table.figureSentence': '它出自的那句原话',
+  'table.figureWriteUp': '对应长文',
+
+  /* what the paid rate looks like, on the pages where a free tier is the topic */
+  'figures.heading': '免费额度用完之后是什么价',
+  'figures.ledeFamily': '上面这些免费额度都有到头的一天，而 {name} 到那时候是什么价，不在本清单的追踪范围内。下面是公开报道过的价钱，连着它出处的整句原话一起引——出自<a href="{table}">同一维护者整理的那张表</a>，那里每个数都带着自己那句话：',
+  'figures.ledeClient': '拿一把免费 key 是跑 {name} 的一条路，另一条是直接付钱给 {vendor} 用它自己的模型——那要多少钱不在本清单的追踪范围内。下面是公开报道过的 {vendor} 价钱，连着它出处的整句原话一起引——出自<a href="{table}">同一维护者整理的那张表</a>，那里每个数都带着自己那句话：',
 
   /* layout chrome */
   'layout.brand': '免费 LLM API',

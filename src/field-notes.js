@@ -49,6 +49,82 @@ function loadRows() {
 
 export const FIELD_NOTES_ROWS = loadRows();
 
+// How many rows one generated page prints. Two, not five: the README is a
+// document a reader came to read, while a generated page is answering "can I
+// use this for free", and a five-row quotation block would answer a question
+// nobody on that page asked. Two is enough to carry an order of magnitude and
+// a link out.
+//
+// No subject matches more than one row today, so this caps nothing yet. It is
+// here for the next export, and the near-duplicate check in the suite is what
+// says whether two rows still fit when one does.
+export const FIGURES_PER_PAGE = 2;
+
+function escapeRegExp(text) {
+  return text.replaceAll(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// `\bNAME(?![A-Za-z])` rather than `\bNAME\b`. The published sentences write
+// "GLM5.2", where a trailing word boundary fails on the digit and the row
+// would silently stop matching the GLM family; and "Meta" must not match
+// "metadata". A digit may follow the name, a letter may not.
+function namesIt(sentence, label) {
+  return new RegExp(`\\b${escapeRegExp(label)}(?![A-Za-z])`, 'i').test(sentence);
+}
+
+/**
+ * The figures that belong on a page about these subjects.
+ *
+ * ## Why this is matched rather than pasted
+ *
+ * These pages are the ones search traffic lands on — 84 of the 86 generated
+ * here carried no link to the write-ups at all, while the two that did are the
+ * home pages. The fix is not the same block stamped onto 84 pages: this repo
+ * measures its own pages for near-duplication precisely because a directory
+ * site degrades into doorway pages that way, and a Groq page quoting a MiniMax
+ * price is padding whichever test happens to allow it.
+ *
+ * So a row is printed only where it is about what the page is about: the
+ * sentence has to name the page's own subject, or the vendor behind it. A
+ * `subject` is any record with a `name` and a `vendor` — a model family from
+ * `data/model-families.json` on a family page, the tool and the company that
+ * publishes it on a client page — so a family added to that file starts
+ * matching without a second edit here.
+ *
+ * ## Pages that match nothing print nothing
+ *
+ * Three of the five rows name a family in this catalog, and two name a company
+ * behind a coding agent it sets up. The rest — a MiniMax price, a "$3 per
+ * million input tokens" that names no model at all, and the Qwen, Mistral and
+ * Kimi families, which have no figure yet — belong to no page here. Those
+ * pages get no block, which is the same rule the sibling repo applies to its
+ * own README: an empty table is worse than no table.
+ *
+ * Only the English `name` and `vendor` are compared, because the quoted
+ * sentences are English in both editions of this site.
+ *
+ * ## Where this is deliberately not called
+ *
+ * Not on the 25 provider pages, which is where the reach would have been.
+ * Measured: the closest pair of Chinese provider pages already scores 0.553
+ * against the suite's 0.60 near-duplicate limit, because two providers serving
+ * the same model families differ only in their own limits wording. Every
+ * version of this block — two rows, one row, one lede instead of two — put
+ * that pair between 0.594 and 0.612. The measurement is right and the block is
+ * the wrong thing to put there.
+ */
+export function figuresForFamilies(subjects, limit = FIGURES_PER_PAGE) {
+  const matched = FIELD_NOTES_ROWS.filter((row) => (subjects ?? []).some(
+    (subject) => [subject.name, subject.vendor]
+      .filter(Boolean)
+      .some((label) => namesIt(row.context, label)),
+  ));
+  // Row order, not match order: two pages sharing a subject must print its
+  // figure in the same place, and `renderArtifacts` is asserted to be
+  // deterministic across reruns.
+  return matched.slice(0, limit);
+}
+
 // Cells are pipe-separated, so a pipe inside a quoted sentence would split the
 // row. None of the current sentences contain one; escaping is what keeps that
 // true after the next export.

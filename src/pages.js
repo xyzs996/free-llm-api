@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
-import { escapeHtml, externalLink } from './html.js';
+import { FIELD_NOTES_TABLE, figuresForFamilies } from './field-notes.js';
+import { escapeHtml, externalLink, link } from './html.js';
 import { clientNoteCopy, dataSentence, localized, translator } from './i18n.js';
 import { renderDocument } from './page-layout.js';
 import {
@@ -44,11 +45,17 @@ export function categoryTitle(category) {
 const CLIENT_NOTES = Object.freeze({
   codex: {
     title: 'Codex CLI',
+    // The company that publishes the tool, which is how a page about it gets
+    // matched against a quoted sentence in `figuresForFamilies`. Left off the
+    // three whose publisher no cited sentence names; a name written here only
+    // to make a link appear would be the thing that check exists to stop.
+    vendor: 'OpenAI',
     query: 'free api for codex cli',
     source: { title: 'Codex advanced configuration and custom model providers', url: 'https://developers.openai.com/codex/config-advanced#custom-model-providers' },
   },
   'claude-code': {
     title: 'Claude Code',
+    vendor: 'Anthropic',
     query: 'free api for claude code',
     source: { title: 'Claude Code LLM gateway configuration', url: 'https://docs.anthropic.com/en/docs/claude-code/llm-gateway' },
   },
@@ -188,6 +195,58 @@ function providerFaq(provider, context) {
     });
   }
   return entries;
+}
+
+// What the paid rate looks like, on pages whose own model families have a
+// figure behind them.
+//
+// ## Why this is here at all
+//
+// Two of the 86 pages this file generates linked the sibling write-ups: the
+// two home pages. The other 84 are the ones search and answer engines actually
+// land on, and every one of them ended at "here is a free tier" without ever
+// naming the number that replaces it — which is the question a reader of a
+// free-tier page asks next, and the one thing the sibling project has 300-odd
+// sourced rows of.
+//
+// ## Why it is not the same block on all 84
+//
+// `figuresForFamilies` prints a row only where the quoted sentence names what
+// the page is about, so a page is never decorated with somebody else's price,
+// and pages that match nothing print nothing. Which pages it is called from,
+// and which it is deliberately not called from, is argued out there.
+//
+// ## Why `link` and not `externalLink`
+//
+// `externalLink` adds `rel="noreferrer"`, which is right for a provider's own
+// documentation and wrong here: this is the one destination whose referrals we
+// have to be able to count, and stripping the header makes the click invisible
+// on both ends.
+function figuresSection(families, lede, context) {
+  const { t } = context;
+  const rows = figuresForFamilies(families);
+  // The blank line above the heading belongs to the block, not to the page.
+  // Left in the call site instead, a page that matches nothing comes out with
+  // a stray empty line, and `git status` reports twelve files changed by a
+  // feature that put nothing on any of them.
+  if (rows.length === 0) return '';
+
+  return `
+
+        <h2>${t('figures.heading')}</h2>
+        <p>${lede}</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>${t('table.figure')}</th><th>${t('table.figureSentence')}</th><th>${t('table.figureWriteUp')}</th></tr></thead>
+            <tbody>
+${rows.map((row) => `              <tr>
+                <td data-label="${t('table.figure')}"><code>${escapeHtml(row.value)}</code> ${escapeHtml(row.unit)}</td>
+                <td data-label="${t('table.figureSentence')}">${escapeHtml(row.context)}</td>
+                <td data-label="${t('table.figureWriteUp')}">${link(row.url, row.article)}</td>
+              </tr>`).join('\n')}
+            </tbody>
+          </table>
+        </div>`;
 }
 
 function providerBody(provider, context) {
@@ -445,7 +504,7 @@ ${differences}
     cardFree: cardFree.length,
     browserOk: browserOk.length,
   })}</p>
-        <p>${t('model.pickCaveat', { name: familyName })}</p>`;
+        <p>${t('model.pickCaveat', { name: familyName })}</p>${figuresSection([family], t('figures.ledeFamily', { name: familyName, table: FIELD_NOTES_TABLE }), context)}`;
 }
 
 function modelPage(family, context) {
@@ -558,7 +617,11 @@ ${codeBlock(snippet.content)}
 
         <h2>${t('client.expectHeading')}</h2>
         <p>${escapeHtml(note.expectation)}</p>
-        <p>${t('client.expectCheck')}</p>
+        <p>${t('client.expectCheck')}</p>${figuresSection([{ name: note.title, vendor: CLIENT_NOTES[clientId].vendor }], t('figures.ledeClient', {
+    name: title,
+    vendor: escapeHtml(CLIENT_NOTES[clientId].vendor ?? ''),
+    table: FIELD_NOTES_TABLE,
+  }), context)}
 
         <h2>${t('client.sourcesHeading')}</h2>
         <ul class="source-list">
@@ -855,6 +918,15 @@ function methodologyPage(context) {
 /* ---------------------------------------------------------------- entrypoint */
 
 export const clientPageIds = Object.freeze(Object.keys(CLIENT_NOTES));
+
+// The company behind each client that has one named in a cited sentence. Only
+// these client pages can carry a figures block, so the test that checks which
+// pages do needs the same list the renderer uses rather than its own copy.
+export const clientVendors = Object.freeze(Object.fromEntries(
+  Object.entries(CLIENT_NOTES)
+    .filter(([, note]) => note.vendor)
+    .map(([id, note]) => [id, note.vendor]),
+));
 export const comparisonPageIds = Object.freeze(COMPARISONS.map(({ id }) => id));
 
 export const CLIENT_PAGE_TITLES = Object.freeze(Object.fromEntries(
