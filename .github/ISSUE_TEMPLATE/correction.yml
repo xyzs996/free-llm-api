@@ -1,0 +1,62 @@
+name: Correction — a number, a link, or a signup changed
+description: A rate limit moved, a provider closed signups, a model was withdrawn, or a link died.
+title: "[correction] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is the contribution the project runs on. The catalog goes stale the
+        moment a provider edits a docs page, and nobody here watches every page.
+
+        **Do not paste an API key, token, or `Authorization` header.** This
+        repository distributes no credentials, and an issue containing one gets
+        deleted rather than edited.
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      description: The name as it appears in the catalog, or the `id` from `data/providers.json`.
+      placeholder: Groq
+    validations:
+      required: true
+  - type: textarea
+    id: what-changed
+    attributes:
+      label: What the catalog says now, and what it should say
+      description: One line each is enough.
+      placeholder: |
+        Catalog: 30 requests per minute on the free tier.
+        Actual: 15 requests per minute since the tier was restructured.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: The provider's own page that says so
+      description: >-
+        A link on the provider's own site. A screenshot, a forum post, or a
+        third-party blog is not enough to change a number here, because the
+        next reader has to be able to check it.
+      placeholder: https://console.groq.com/docs/rate-limits
+    validations:
+      required: true
+  - type: input
+    id: read-on
+    attributes:
+      label: The date you read that page
+      description: >-
+        This becomes `source_checked_at`, which is a claim about your own
+        reading rather than a copy of the previous editor's date.
+      placeholder: 2026-08-21
+    validations:
+      required: true
+  - type: textarea
+    id: anything-else
+    attributes:
+      label: Anything else worth knowing
+      description: >-
+        Optional. Region differences, a grandfathered older tier, or a limit
+        the page states in a footnote all belong here.
+    validations:
+      required: false

@@ -1,0 +1,73 @@
+name: Add a provider
+description: A provider that documents, on its own site, what you can call without paying.
+title: "[provider] "
+labels: ["new-provider"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Out of scope regardless of whether it currently works: endpoints pulled
+        out of a consumer app, keys scraped from someone else's page, and
+        unofficial proxies. **Do not paste an API key or a shared account.**
+  - type: input
+    id: name
+    attributes:
+      label: Provider name
+    validations:
+      required: true
+  - type: input
+    id: free-tier-page
+    attributes:
+      label: The page where the provider documents the free tier
+      description: >-
+        The provider's own pricing, limits, or docs page. If the free tier is
+        only mentioned in a blog post or a changelog entry, link that and say so.
+      placeholder: https://example.com/pricing
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: What kind of free access is it
+      options:
+        - An official free tier that does not expire
+        - Trial credit that expires or runs out
+        - An aggregator that resells or routes other providers' free models
+        - A free tier that has been announced as retiring
+        - Metered access with no free tier
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: card
+    attributes:
+      label: Does API access require a verified payment method
+      description: >-
+        A tier can be free and still demand a card up front. That is the single
+        thing readers arrive here to find out, so a guess is worse than "not sure".
+      options:
+        - "No — a key is issued without any card"
+        - "Yes — a verified payment method is a precondition"
+        - Not sure
+      default: 2
+    validations:
+      required: true
+  - type: input
+    id: endpoint
+    attributes:
+      label: OpenAI-compatible endpoint, if the provider documents one
+      description: >-
+        Only a base URL the provider itself documents. A wrapper somebody else
+        maintains does not count.
+      placeholder: https://api.example.com/v1
+    validations:
+      required: false
+  - type: textarea
+    id: limits
+    attributes:
+      label: The limits, in the provider's own words
+      description: >-
+        Condensed is fine. If the provider publishes no fixed number, say that
+        instead of estimating one — an honest gap beats a guessed number.
+    validations:
+      required: false
