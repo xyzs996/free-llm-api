@@ -88,6 +88,6 @@ Three sibling sites publish their own `llms.txt` in this same shape — one requ
 
 ## Corrections
 
-A limit here is only as good as the day it was read. If one has moved, or a provider is missing, [the open thread](https://github.com/xyzs996/free-llm-api/discussions/1) takes a plain sentence and no evidence; the issue forms ask for the provider's page and the date you read it.
+A limit here is only as good as the day it was read. If one has moved, or a provider is missing, [one line in this form](https://github.com/xyzs996/free-llm-api/issues/new?template=heard.yml&came_from=llms.txt) takes a plain sentence and no evidence — a single field; the correction form asks for the provider's page and the date you read it.
 
 This catalog is also published in [简体中文](https://xyzs996.github.io/free-llm-api/zh/), page for page.

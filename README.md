@@ -166,9 +166,9 @@ Every entry above is dated and sourced in the catalog below. Full history: [`dat
 
 ## Contributing
 
-Corrections are the contribution this project runs on: a limit that moved, a provider that closed signups, or a link that died. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](https://github.com/xyzs996/free-llm-api/issues/new/choose).
+Corrections are the contribution this project runs on: a limit that moved, a provider that closed signups, or a link that died. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [correction form](https://github.com/xyzs996/free-llm-api/issues/new?template=correction.yml).
 
-Not sure enough to file one? [Which free tier changed on you this week?](https://github.com/xyzs996/free-llm-api/discussions/1) takes a one-line reply with no link, no screenshot, and no source. Somebody else can go find the page.
+Not sure enough to file one? [Say it in one line](https://github.com/xyzs996/free-llm-api/issues/new?template=heard.yml&came_from=README.md) — one field, no link, no screenshot, no source. Somebody else can go find the page.
 
 ## Data and local development
 

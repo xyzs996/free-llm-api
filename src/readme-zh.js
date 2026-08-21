@@ -15,7 +15,8 @@ import {
   REPO_URL,
   SITE_URL,
   THREAD_QA,
-  THREAD_URL,
+  correctionUrl,
+  heardUrl,
   localePath,
 } from './site.js';
 import { connectSrcOrigins } from './verify-page.js';
@@ -276,9 +277,9 @@ GROQ_API_KEY=YOUR_API_KEY npm run probe -- --provider groq
 
 ${renderChangelogSectionZh(providers, changelog)}## 参与贡献
 
-这个项目最需要的贡献是纠错：某家限额变化、停止注册或链接失效。见 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [Issue 模板](${REPO_URL}/issues/new/choose)。
+这个项目最需要的贡献是纠错：某家限额变化、停止注册或链接失效。见 [CONTRIBUTING.md](CONTRIBUTING.md) 与[纠错表单](${correctionUrl()})。
 
-没把握到能填表？[这周哪家的免费额度变了？](${THREAD_URL}) 回一行就行，不用链接、不用截图、不用出处，那页由别人去找。
+没把握到能填表？[一行就够](${heardUrl('README_zh.md')})——表单只有一格，不用链接、不用截图、不用出处，那页由别人去找。
 
 ## 数据与本地运行
 

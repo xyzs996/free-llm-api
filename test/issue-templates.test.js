@@ -11,7 +11,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 
 import { renderArtifacts } from '../src/render.js';
-import { REPO_URL, THREAD_QA, THREAD_URL } from '../src/site.js';
+import { REPO_URL, THREAD_QA, THREAD_URL, heardUrl } from '../src/site.js';
 
 const providers = JSON.parse(
   await readFile(new URL('../data/providers.json', import.meta.url), 'utf8'),
@@ -33,15 +33,70 @@ async function forms() {
   );
 }
 
-test('the chooser both READMEs link to has forms behind it', async () => {
+test('no reader-facing ask still goes through the chooser', async () => {
+  // WHY THIS FLIPPED. The chooser was linked here on the grounds that it lists
+  // the forms. It does — and it **swallows every query parameter on the way**.
+  // The link returns 200, the form opens, and every field the page could have
+  // filled in is blank, including "Provider", which is the name of the page
+  // the reader just left. Nothing downstream can see that. So the asks now
+  // link `?template=<file>.yml` directly, with what the page knows filled in.
   const chooser = '/issues/new/choose';
   for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
-    assert.ok(readme.includes(chooser), `${name} no longer links the chooser`);
+    assert.ok(!readme.includes(chooser), `${name} still sends a reader through the chooser`);
+    assert.ok(
+      readme.includes('issues/new?template=correction.yml'),
+      `${name} has no direct link to the correction form`,
+    );
   }
-  // Two, because the plural in "the issue templates" is part of the promise,
-  // and because one form would make the chooser page skip itself entirely.
+  // Two, because one form makes GitHub skip the chooser page entirely, and
+  // because the strict path and the one-line path are two different asks.
   const list = await forms();
   assert.ok(list.length >= 2, `only ${list.length} form(s) in .github/ISSUE_TEMPLATE/`);
+});
+
+// The correction form is the strict path: it needs the provider's own page and
+// the date you read it, or the number cannot be changed. That leaves everyone
+// who merely *noticed* something with nothing to file. Until 2026-08-21 the
+// low-bar path was the open thread — and that day it was counted: four
+// discussions, **zero replies, one upvote each, and that upvote is mine**,
+// against 73 unique visitors in the same fortnight, 15 of them from
+// chatgpt.com. The low bar was never the obstacle. Going somewhere and
+// composing a post is. One field, prefilled with what the page knows.
+test('both READMEs point at the report path that needs no source', () => {
+  for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
+    assert.ok(
+      readme.includes('issues/new?template=heard.yml'),
+      `${name} offers no path that does not demand a source`,
+    );
+    // Next to the form, not in some other section — the reader who just bounced
+    // off the form's requirements is the one this line is for.
+    const contributing = readme.slice(readme.indexOf('issues/new?template=correction.yml'));
+    const nextHeading = contributing.indexOf('\n## ');
+    assert.ok(
+      (nextHeading === -1 ? contributing : contributing.slice(0, nextHeading))
+        .includes('issues/new?template=heard.yml'),
+      `${name} puts the one-line path somewhere other than beside the form`,
+    );
+    // And it must not have quietly reverted to the empty room.
+    assert.ok(
+      !contributing.slice(0, nextHeading === -1 ? undefined : nextHeading).includes(THREAD_URL),
+      `${name} still sends that reader to the open thread`,
+    );
+  }
+});
+
+test('the one-line form has exactly one empty field, and the rest prefilled', async () => {
+  const body = await readFile(new URL('heard.yml', templateDir), 'utf8');
+  const required = [...body.matchAll(/^  - type:[\s\S]*?(?=^  - type:|\Z)/gm)]
+    .filter((block) => /required: true/.test(block[0]))
+    .map((block) => (block[0].match(/^    id: (\S+)/m) ?? [])[1]);
+  assert.deepEqual(required, ['what'], 'the one-line form no longer has exactly one required field');
+  // WARNING: a parameter whose id is absent from the YAML is dropped in
+  // silence — link still 200, form still opens, that field simply blank.
+  assert.match(body, /^    id: came_from$/m, 'heard.yml has no came_from field to prefill');
+  assert.ok(heardUrl('x').includes('came_from=x'), 'heardUrl stopped sending came_from');
+  assert.ok(!heardUrl().includes('came_from'), 'heardUrl invents a came_from when it has none');
+  assert.ok(!heardUrl('x').includes('/choose'), 'heardUrl went back through the chooser');
 });
 
 test('every form carries the two fields GitHub renders the chooser from', async () => {
@@ -86,29 +141,6 @@ test('no string field is written so YAML turns it into a date, number, or boolea
   }
 });
 
-// The forms above are the strict path: a correction needs the provider's own
-// page and the date you read it, or it cannot be applied. That leaves everyone
-// who only *noticed* something with nothing to file, and this repository has
-// the readers. The open thread is the path with no such bar — and a thread
-// nothing links to is not a path at all, which is why this is asserted against
-// the generated READMEs rather than trusted to the fact that it exists.
-test('both READMEs point at the report path that needs no source', () => {
-  for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
-    assert.ok(
-      readme.includes(THREAD_URL),
-      `${name} does not link ${THREAD_URL}; the only report path it offers demands a source`,
-    );
-    // Next to the form, not in some other section — the reader who just bounced
-    // off the form's requirements is the one this line is for.
-    const contributing = readme.slice(readme.indexOf('/issues/new/choose'));
-    const nextHeading = contributing.indexOf('\n## ');
-    assert.ok(
-      (nextHeading === -1 ? contributing : contributing.slice(0, nextHeading)).includes(THREAD_URL),
-      `${name} links the thread somewhere other than beside the issue templates`,
-    );
-  }
-});
-
 test('the chooser itself offers the path that asks for nothing', async () => {
   // A reader who opens the chooser has already decided to report something.
   // If every option there demands a source, that decision is spent on nothing.
@@ -123,10 +155,20 @@ test('the catalog page offers it too, beside the ask that needs a source', async
     const html = await readFile(new URL(path, import.meta.url), 'utf8');
     const band = html.slice(html.indexOf('method-band'));
     const end = band.indexOf('</section>');
+    const block = end === -1 ? band : band.slice(0, end);
     assert.ok(
-      (end === -1 ? band : band.slice(0, end)).includes(THREAD_URL),
-      `${path} does not offer the thread where it asks for corrections`,
+      block.includes('issues/new?template=heard.yml'),
+      `${path} does not offer the one-line path where it asks for corrections`,
     );
+    // The page knows which page it is; the reader should not have to say so.
+    assert.match(
+      block,
+      /came_from=(amp;)?[^"&]*index\.html/,
+      `${path} does not prefill where the reader clicked from`,
+    );
+    // And it must not have reverted to the empty room: four discussions, zero
+    // replies, one self-upvote each, measured 2026-08-21 against 73 readers.
+    assert.ok(!block.includes(THREAD_URL), `${path} still sends its reader to the open thread`);
   }
 });
 

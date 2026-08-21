@@ -166,9 +166,9 @@ GROQ_API_KEY=YOUR_API_KEY npm run probe -- --provider groq
 
 ## 参与贡献
 
-这个项目最需要的贡献是纠错：某家限额变化、停止注册或链接失效。见 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [Issue 模板](https://github.com/xyzs996/free-llm-api/issues/new/choose)。
+这个项目最需要的贡献是纠错：某家限额变化、停止注册或链接失效。见 [CONTRIBUTING.md](CONTRIBUTING.md) 与[纠错表单](https://github.com/xyzs996/free-llm-api/issues/new?template=correction.yml)。
 
-没把握到能填表？[这周哪家的免费额度变了？](https://github.com/xyzs996/free-llm-api/discussions/1) 回一行就行，不用链接、不用截图、不用出处，那页由别人去找。
+没把握到能填表？[一行就够](https://github.com/xyzs996/free-llm-api/issues/new?template=heard.yml&came_from=README_zh.md)——表单只有一格，不用链接、不用截图、不用出处，那页由别人去找。
 
 ## 数据与本地运行
 

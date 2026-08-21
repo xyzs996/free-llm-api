@@ -15,13 +15,53 @@ export const SITE_NAME = 'Free LLM API';
 // the slug is a 404 waiting to happen the first time anything is renamed.
 export const REPO_SLUG = REPO_URL.replace(/^https:\/\/github\.com\//, '');
 
-// The open thread. Until it was linked, the only way to say "this number moved"
-// was the correction form, which requires the provider's own page and the date
-// you read it. Those requirements are right — a number here changes on evidence
-// — but they also mean a reader who merely noticed something has nowhere to put
-// it, and the repository hears nothing at all. The thread is the path that asks
-// for none of that, so it is named next to the form everywhere the form is.
+// The open thread.
+//
+// WARNING: as of 2026-08-21 nothing a reader can see points here any more, and
+// the paragraph that used to argue for it is kept below only so nobody
+// reinstates it on those grounds. It said the thread "asks for none of that",
+// and that was true and beside the point: see `heardUrl` for what was measured.
+// The thread itself is untouched and still listed as *content* — it is the ask
+// that moved.
 export const THREAD_URL = `${REPO_URL}/discussions/1`;
+
+// Where that ask actually goes now, and why it is no longer the thread.
+//
+// Measured 2026-08-21, on this repository: four discussions, **zero replies,
+// one upvote each — and that upvote is mine**. Zero issues. In the same
+// fortnight this catalog drew 73 unique visitors, 15 of them arriving from
+// chatgpt.com, and 72 of the 73 landed on the front page carrying that ask.
+// So the readers are real and the willingness is untested: what the thread
+// asks for is not a sentence, it is *going somewhere and composing one* —
+// sign in, land in an empty room, invent a title, restate the situation from
+// scratch. The sibling repository measured the identical shape on the same
+// day (nine threads, zero replies, one self-upvote each) and the fix there
+// was not a better question. It was a smaller first step.
+//
+// So: a form with exactly one empty field, and that field asks the only thing
+// the page cannot already know. Everything the page does know — which
+// provider, which page they were reading — is filled in before they arrive.
+//
+// WARNING: `?template=<file>.yml`, never `/issues/new/choose`. The chooser
+// page **swallows query parameters**: the link still returns 200, the form
+// still opens, and every prefilled field is empty. Nothing downstream can see
+// it. A parameter whose `id` is absent from the YAML is dropped just as
+// silently, so the ids below must match `.github/ISSUE_TEMPLATE/heard.yml`.
+export function heardUrl(cameFrom = '') {
+  const q = new URLSearchParams({ template: 'heard.yml' });
+  if (cameFrom) q.set('came_from', cameFrom);
+  return `${REPO_URL}/issues/new?${q}`;
+}
+
+// The correction form, with the one field the page already knows filled in.
+// Same rule as above: this replaces `/issues/new/choose`, which opened a
+// four-required-field form with every field blank — including "Provider",
+// which is the name of the page the reader just clicked away from.
+export function correctionUrl(provider = '') {
+  const q = new URLSearchParams({ template: 'correction.yml' });
+  if (provider) q.set('provider', provider);
+  return `${REPO_URL}/issues/new?${q}`;
+}
 
 // The threads that answer instead of asking.
 //

@@ -35,7 +35,8 @@ import {
   REPO_URL,
   SITE_URL,
   THREAD_QA,
-  THREAD_URL,
+  correctionUrl,
+  heardUrl,
   localeDepth,
   localePath,
 } from './site.js';
@@ -318,9 +319,9 @@ The ignored \`data/probe-output.json\` contains only a bounded classification, s
 
 ${renderChangelogSection(providers, changelog)}## Contributing
 
-Corrections are the contribution this project runs on: a limit that moved, a provider that closed signups, or a link that died. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](${REPO_URL}/issues/new/choose).
+Corrections are the contribution this project runs on: a limit that moved, a provider that closed signups, or a link that died. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [correction form](${correctionUrl()}).
 
-Not sure enough to file one? [Which free tier changed on you this week?](${THREAD_URL}) takes a one-line reply with no link, no screenshot, and no source. Somebody else can go find the page.
+Not sure enough to file one? [Say it in one line](${heardUrl('README.md')}) — one field, no link, no screenshot, no source. Somebody else can go find the page.
 
 ## Data and local development
 
@@ -621,7 +622,11 @@ ${comparisonPageIds.map((id) => `              <li><a href="./compare/${escapeHt
           <h2>${escapeHtml(t('home.methodHeading'))}</h2>
         </div>
         <p>${escapeHtml(t('home.methodBody'))} <a href="${escapeHtml(REPO_URL)}/blob/main/CONTRIBUTING.md">${escapeHtml(t('home.methodLink'))}</a>.</p>
-        <p>${escapeHtml(t('home.threadBody'))} <a href="${escapeHtml(THREAD_URL)}">${escapeHtml(t('home.threadLink'))}</a>.</p>
+        <!-- ⚠ 8-21 起这一条指表单,不指开放帖。四帖回帖 0、赞各 1 而那一票
+             是我自己点的;同一天这一面 73 个人来过、72 个落在这一页。人是真
+             来了,坏的是第一步的形状 —— 帖子要他自己起标题、把事从头说一遍,
+             表单只有一格是空的。理由整段写在 site.js 的 heardUrl 上面。 -->
+        <p>${escapeHtml(t('home.threadBody'))} <a href="${escapeHtml(heardUrl(`${locale.path_prefix}index.html`))}">${escapeHtml(t('home.threadLink'))}</a>.</p>
         <!-- ⚠ **8-21 量出来是反的,改成指仓库。** 原先指站点,理由是同域好爬、
              落地是正文不是文件列表。前半句仍然成立(llms.txt 那条还指站点),
              后半句 8-20 就过期了 —— 那个仓库的自述现在开头就是数表和十二行

@@ -1,0 +1,38 @@
+name: Something moved — no evidence needed
+description: You noticed a limit, a signup, or a link that is not what this catalog says. One line is enough.
+title: "[heard] "
+labels: ["heard"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Answer in any language. One line is a complete answer — no link, no
+        screenshot, no date. Somebody else can go and find the page.
+
+        **Do not paste an API key, token, or `Authorization` header.** This
+        repository distributes no credentials, and an issue containing one gets
+        deleted rather than edited.
+  - type: input
+    id: what
+    attributes:
+      label: What did you run into?
+      description: Whatever you can say. A half-remembered number is still worth more than silence.
+      placeholder: Groq cut me off well before the limit this page states
+    validations:
+      required: true
+  - type: input
+    id: came_from
+    attributes:
+      label: Where you clicked from
+      description: Filled in for you. Leave it as it is.
+    validations:
+      required: false
+  - type: textarea
+    id: anything_else
+    attributes:
+      label: Anything else (optional)
+      description: >-
+        Only if you feel like it. Region, plan, and roughly when it happened
+        all help, and none of them are required.
+    validations:
+      required: false

@@ -25,7 +25,7 @@
 // wrong within a week, and wrong in the one place nobody looks.
 import { FIELD_NOTES_ROWS, FIELD_NOTES_TABLE, SIBLING_INDEXES } from './field-notes.js';
 import { CLIENT_PAGE_TITLES, MODEL_FAMILIES, clientPageIds } from './pages.js';
-import { DEFAULT_LOCALE, LOCALES, REPO_URL, SITE_URL, THREAD_QA, THREAD_URL, pageUrl } from './site.js';
+import { DEFAULT_LOCALE, LOCALES, REPO_URL, SITE_URL, THREAD_QA, heardUrl, pageUrl } from './site.js';
 import { providersInFamily } from './validate.js';
 
 // The units the catalog itself publishes. `limits.status` carries the shape of
@@ -169,7 +169,7 @@ ${SIBLING_INDEXES.map(({ url, note }) => `- [${url}](${url}): ${note}`).join('\n
 
     `## Corrections
 
-A limit here is only as good as the day it was read. If one has moved, or a provider is missing, [the open thread](${THREAD_URL}) takes a plain sentence and no evidence; the issue forms ask for the provider's page and the date you read it.${otherLocales.length === 0 ? '' : `\n\nThis catalog is also published in ${otherLocales.map(({ label, path_prefix: prefix }) => `[${label}](${SITE_URL}${prefix})`).join(', ')}, page for page.`}`,
+A limit here is only as good as the day it was read. If one has moved, or a provider is missing, [one line in this form](${heardUrl('llms.txt')}) takes a plain sentence and no evidence — a single field; the correction form asks for the provider's page and the date you read it.${otherLocales.length === 0 ? '' : `\n\nThis catalog is also published in ${otherLocales.map(({ label, path_prefix: prefix }) => `[${label}](${SITE_URL}${prefix})`).join(', ')}, page for page.`}`,
   ];
 
   return `${sections.join('\n\n')}\n`;

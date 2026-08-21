@@ -208,7 +208,7 @@ const en = {
   // for, so a reader who noticed a limit change and has no link in hand was
   // told, in effect, to go away. This is the other half of the invitation.
   'home.threadBody': 'No source at hand? Name the provider that changed on you and leave the page for somebody else to find:',
-  'home.threadLink': 'the open thread takes a one-line reply',
+  'home.threadLink': 'one line, in a form with one field',
   'home.relatedLead': 'Related reading:',
   'home.relatedLink': 'field notes on what AI coding agents cost and where they break',
   'home.hostedCta': 'Need one stable hosted endpoint?',
@@ -682,7 +682,7 @@ const zh = {
   'home.methodBody': '带上官方来源和核验日期提交更正；欢迎使用中文或英文。',
   'home.methodLink': '阅读贡献指南',
   'home.threadBody': '手边没有出处？说一句是哪家变了就行，那页留给别人去找：',
-  'home.threadLink': '开放讨论帖收一行回复',
+  'home.threadLink': '一行就够，表单只有一格',
   'home.relatedLead': '延伸阅读：',
   'home.relatedLink': '编程 Agent 实际花了多少钱、在哪儿出问题的实地记录',
   'home.hostedCta': '需要一个稳定的托管端点？',
