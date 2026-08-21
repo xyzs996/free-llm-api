@@ -1,0 +1,79 @@
+// The per-million-token prices cited by the sibling repo, rendered as a table.
+//
+// Why a table and not a sentence. The block that used to sit here described a
+// table instead of being one: "same maintainer, one table, every row carries
+// the sentence it came from" — and not a single digit in it. Readers scan this
+// README table by table and skip a paragraph between two of them; an answer
+// engine quoting this page quotes rows, and a paragraph offers no row to quote.
+//
+// The rows come from data/field-notes-figures.json, exported by the sibling
+// repo's scripts/export_cost_table.py. Only price figures whose unit starts
+// with "per million" are in there — that is the one number a reader of this
+// page needs once a free tier runs out.
+//
+// The sentence in each row is reproduced unedited, in the language it was
+// published in. It is a quotation, so the Chinese README quotes it in English
+// too: translating it would make it our paraphrase rather than their sentence.
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const rootDirectory = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const DATA_PATH = 'data/field-notes-figures.json';
+
+export const FIELD_NOTES_REPO = 'https://github.com/xyzs996/ai-coding-field-notes';
+export const FIELD_NOTES_TABLE = `${FIELD_NOTES_REPO}/blob/main/figures.md`;
+export const FIELD_NOTES_JSON =
+  'https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json';
+export const FIELD_NOTES_ARTICLE =
+  'https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html';
+
+function loadRows() {
+  const raw = readFileSync(resolve(rootDirectory, DATA_PATH), 'utf8');
+  const rows = JSON.parse(raw).rows;
+  // Refuse to render rather than quietly drop the block. A README missing one
+  // table looks exactly like a README that never had it, and render:check
+  // would then happily bless the shorter file.
+  if (!Array.isArray(rows) || rows.length === 0) {
+    throw new Error(`${DATA_PATH} has no rows; re-run export_cost_table.py in the sibling repo.`);
+  }
+  return rows;
+}
+
+export const FIELD_NOTES_ROWS = loadRows();
+
+// Cells are pipe-separated, so a pipe inside a quoted sentence would split the
+// row. None of the current sentences contain one; escaping is what keeps that
+// true after the next export.
+function cell(text) {
+  return String(text ?? '')
+    .replace(/\|/g, '\\|')
+    .replace(/\s*\n\s*/g, ' ')
+    .trim();
+}
+
+function tableRows() {
+  return FIELD_NOTES_ROWS.map(
+    (row) => `| \`${cell(row.value)}\` | ${cell(row.unit)} | ${cell(row.context)} [→](${row.url}) |`,
+  ).join('\n');
+}
+
+export function renderFieldNotes() {
+  return `Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](${FIELD_NOTES_TABLE}) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
+
+| Price | Unit | The sentence it was published in |
+| --- | --- | --- |
+${tableRows()}
+
+A \`$1.43\` is never left ambiguous between per million tokens, per month and per seat, because the sentence travels with it. Readable in code as [JSON or CSV](${FIELD_NOTES_JSON}), or as prose: [where the token bill actually goes](${FIELD_NOTES_ARTICLE}).`;
+}
+
+export function renderFieldNotesZh() {
+  return `免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表](${FIELD_NOTES_TABLE})：引用过的每一个带单位的数字都在里面，**每一行都带着它出处的整句话**。其中每百万 token 的价钱是这几条：
+
+| 价格 | 单位 | 它出自的那句原话 |
+| --- | --- | --- |
+${tableRows()}
+
+原话原样引用、不翻译——翻过来就成了我们的转述，而不是他们写的那句。所以一个 \`$1.43\` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](${FIELD_NOTES_JSON})，读文章的话看这篇：[token 账单到底花在哪](${FIELD_NOTES_ARTICLE})。`;
+}

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { renderBadgeEndpoints, renderBadges, starHistory } from './badges.js';
 import { HOSTED_CTA_URL, renderClientPages } from './client-pages.js';
 import { renderExamples } from './examples.js';
+import { renderFieldNotes } from './field-notes.js';
 import { accessGroups, catalogSummary, quickPicks } from './growth.js';
 import { embedJson, escapeHtml, externalLink, joinInline } from './html.js';
 import { dataSentence, localized, translator } from './i18n.js';
@@ -209,7 +210,7 @@ ${renderReadmeQuickPicks(providers)}
 
 These are rule-based shortcuts, not paid placements. Open the [filterable directory](${SITE_URL}) for all ${providers.length} providers.
 
-Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, one table: [every figure they have cited](https://github.com/xyzs996/ai-coding-field-notes/blob/main/figures.md) — anything carrying a unit — with **the full sentence it came from** on every row, so a \`$1.43\` is never left ambiguous between per million tokens, per month and per seat. Readable in code as [JSON or CSV](https://github.com/xyzs996/ai-coding-field-notes/releases/latest/download/figures.json), or as prose: [where the token bill actually goes](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html).
+${renderFieldNotes()}
 
 ## Permanent free tiers
 

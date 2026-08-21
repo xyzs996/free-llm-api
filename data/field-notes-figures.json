@@ -1,0 +1,47 @@
+{
+  "source": "ai-coding-field-notes / data/figures.json",
+  "source_url": "https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json",
+  "note": "Price figures whose unit starts with \"per million\". Each row carries the full sentence it came from, unedited.",
+  "rows": [
+    {
+      "value": "$0.06 / $0.2",
+      "unit": "per million",
+      "context": "At the low end, MiniMax M3 runs $0.06 to $0.2 per million and draws 60% to 70% of its revenue from outside its home market.",
+      "article": "1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy",
+      "url": "https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html",
+      "published": "2026-08-19"
+    },
+    {
+      "value": "$0.19",
+      "unit": "per million tokens",
+      "context": "Chinese AI models provide a cost-effective alternative to their American counterparts, with input costs as low as $0.19 per million tokens, compared to OpenAI's $5-12.",
+      "article": "How Chinese AI Agent Tools Leverage 1.6 Billion Free Tokens",
+      "url": "https://xyzs996.github.io/ai-coding-field-notes/articles/how-chinese-ai-agent-tools-leverage-1-6-billion-free-tokens.html",
+      "published": "2026-08-07"
+    },
+    {
+      "value": "$1",
+      "unit": "per million tokens",
+      "context": "Top-tier Chinese models such as GLM5.2 and DeepSeek V4 Pro sit near $1 per million tokens at inference gross margins of 10% to 20%.",
+      "article": "1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy",
+      "url": "https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html",
+      "published": "2026-08-19"
+    },
+    {
+      "value": "$1.25 / $4.25",
+      "unit": "per million",
+      "context": "Meta priced Muse Spark 1.1 at $1.25 per million input and $4.25 per million output, roughly 75% and 83% below Anthropic's Opus, and the tradeoff is visible in the benchmarks, since it leads on MCP Atlas and JobBench while trailing on SWE-Bench Pro and DeepSWE 1.1.",
+      "article": "1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy",
+      "url": "https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html",
+      "published": "2026-08-19"
+    },
+    {
+      "value": "$3",
+      "unit": "per million input tokens",
+      "context": "The $3 per million input tokens price point means developers should carefully evaluate whether the premium model's capabilities justify the increased costs for their specific use cases.",
+      "article": "Choosing the Right AI Model for Coding: Cost vs. Efficiency",
+      "url": "https://xyzs996.github.io/ai-coding-field-notes/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html",
+      "published": "2026-08-12"
+    }
+  ]
+}
