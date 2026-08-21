@@ -44,7 +44,13 @@ export const FIELD_NOTES_ARTICLE =
 export const SIBLING_INDEXES = Object.freeze([
   {
     url: 'https://xyzs996.github.io/ai-coding-field-notes/llms.txt',
-    note: 'what an AI coding agent costs once a free tier ends: every figure with the sentence it came from, and the write-ups behind them.',
+    // Says what is *in* the file, not what the site is about. As of
+    // 2026-08-21 that index carries every price figure it has published
+    // inline — value, unit, the sentence it was published in, the date — so
+    // a reader that fetches it once has numbers rather than a list of
+    // titles. A line that promised only "write-ups about cost" would not be
+    // worth the request.
+    note: 'every price figure it has published, quoted inline with the sentence and the date it was published in, plus the write-ups behind them.',
   },
   {
     url: 'https://xyzs996.github.io/free-proxy-health-list/llms.txt',

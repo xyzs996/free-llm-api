@@ -76,7 +76,7 @@ Out of scope for this catalog, which stops where the free tier does. These price
 
 Three sibling sites publish their own `llms.txt` in this same shape — one request, every address, each one dated:
 
-- [https://xyzs996.github.io/ai-coding-field-notes/llms.txt](https://xyzs996.github.io/ai-coding-field-notes/llms.txt): what an AI coding agent costs once a free tier ends: every figure with the sentence it came from, and the write-ups behind them.
+- [https://xyzs996.github.io/ai-coding-field-notes/llms.txt](https://xyzs996.github.io/ai-coding-field-notes/llms.txt): every price figure it has published, quoted inline with the sentence and the date it was published in, plus the write-ups behind them.
 - [https://xyzs996.github.io/free-proxy-health-list/llms.txt](https://xyzs996.github.io/free-proxy-health-list/llms.txt): free HTTP/SOCKS proxies, re-checked and re-published on a schedule, as TXT, JSON and CSV.
 - [https://xyzs996.github.io/iptv-doctor/llms.txt](https://xyzs996.github.io/iptv-doctor/llms.txt): which public IPTV channels answer right now, per country and per channel. No stream URL is published.
 
