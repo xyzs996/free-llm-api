@@ -103,6 +103,14 @@ const en = {
   // into the boilerplate that measurement exists to catch.
   'figures.ledeFamily': 'Every free tier above ends somewhere, and what {name} costs once it does is not something this catalog tracks. Reported pricing, quoted whole from the sentence it was published in — out of <a href="{table}">the figures a sibling project keeps</a>, where every number travels with its own sentence:',
   'figures.ledeClient': 'A free key is one way to run {name}; paying {vendor} for its own models is the other, and what that costs is not something this catalog tracks. Reported {vendor} pricing, quoted whole from the sentence it was published in — out of <a href="{table}">the figures a sibling project keeps</a>, where every number travels with its own sentence:',
+  // The line after the table, and the first thing on any of these pages that a
+  // reader can *act* on. The table answers what was published about this page's
+  // own subject, so the commonest thought it leaves behind is "the one I am
+  // moving to is not in here" — which is why the ask names the subject and
+  // asks for the other one. One field, on the sibling repo where the answer
+  // can land; the discussion threads next to it measured 0 replies.
+  'figures.askFamily': 'Priced a move to something that is not {name}? <a href="{url}">Name it in one line</a> — one field, and what gets asked for is what gets chased next.',
+  'figures.askClient': 'Paying {vendor} is one option and the model behind it is another. <a href="{url}">Say which price you came for</a> — one field, and what gets asked for is what gets chased next.',
 
   /* layout chrome */
   'layout.brand': 'Free LLM API',
@@ -581,6 +589,8 @@ const zh = {
   'figures.heading': '免费额度用完之后是什么价',
   'figures.ledeFamily': '上面这些免费额度都有到头的一天，而 {name} 到那时候是什么价，不在本清单的追踪范围内。下面是公开报道过的价钱，连着它出处的整句原话一起引——出自<a href="{table}">同一维护者整理的那张表</a>，那里每个数都带着自己那句话：',
   'figures.ledeClient': '拿一把免费 key 是跑 {name} 的一条路，另一条是直接付钱给 {vendor} 用它自己的模型——那要多少钱不在本清单的追踪范围内。下面是公开报道过的 {vendor} 价钱，连着它出处的整句原话一起引——出自<a href="{table}">同一维护者整理的那张表</a>，那里每个数都带着自己那句话：',
+  'figures.askFamily': '要算的那笔账不是 {name}、是别的？<a href="{url}">一句话说出它的名字</a>——只有一格要填，下一个去查的价钱按谁问了排。',
+  'figures.askClient': '付钱给 {vendor} 是一条路，它背后那个模型是另一条。<a href="{url}">说一句你来找的是哪个价</a>——只有一格要填，下一个去查的价钱按谁问了排。',
 
   /* layout chrome */
   'layout.brand': '免费 LLM API',

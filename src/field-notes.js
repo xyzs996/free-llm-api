@@ -60,6 +60,33 @@ export function fieldNotesUrl(localeCode) {
   return name ? `${FIELD_NOTES_REPO}/blob/main/${name}` : FIELD_NOTES_REPO;
 }
 
+// The one thing a reader can *do* after reading the table, and until now the
+// only thing every version of this block was missing.
+//
+// The block ends where the reader's question starts. It prints the prices whose
+// published sentence happens to name the model this page is about — five rows
+// on the home page, often one or two on a model page, and on the pages that
+// match nothing, no block at all. So the commonest outcome of reading it is
+// "the model I am moving to is not in here", and the block's last line has
+// always been a link to an article, which cannot answer that.
+//
+// The sibling repo built the form for exactly this and measured why it beats a
+// discussion thread: nine open threads there got 0 replies while the same
+// pages were read 169 times, because the first step asked for was "go write a
+// paragraph in an empty room". The form has **one** empty field, and it asks
+// the one thing this page cannot know — which number they came for.
+//
+// `?template=figure.yml`, never `/choose`: the chooser page swallows query
+// parameters, so the link still returns 200 and the form still opens, with
+// every field blank. `came_from` is the part this page *does* know, prefilled
+// so the answer arrives labelled with the surface that produced it — which is
+// also the only way a click from here is countable on the other end.
+export function figureAskUrl(cameFrom) {
+  const query = new URLSearchParams({ template: 'figure.yml' });
+  if (cameFrom) query.set('came_from', cameFrom);
+  return `${FIELD_NOTES_REPO}/issues/new?${query}`;
+}
+
 export const FIELD_NOTES_JSON =
   'https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json';
 export const FIELD_NOTES_ARTICLE =
@@ -205,7 +232,9 @@ export function renderFieldNotes() {
 | --- | --- | --- |
 ${tableRows()}
 
-A \`$1.43\` is never left ambiguous between per million tokens, per month and per seat, because the sentence travels with it. Readable in code as [JSON or CSV](${FIELD_NOTES_JSON}), or as prose: [where the token bill actually goes](${FIELD_NOTES_ARTICLE}).`;
+A \`$1.43\` is never left ambiguous between per million tokens, per month and per seat, because the sentence travels with it. Readable in code as [JSON or CSV](${FIELD_NOTES_JSON}), or as prose: [where the token bill actually goes](${FIELD_NOTES_ARTICLE}).
+
+Moving to a model that is not in those rows? [Name it in one line](${figureAskUrl('free-llm-api/README.md')}) — one field, and it decides which price gets chased next.`;
 }
 
 export function renderFieldNotesZh() {
@@ -215,5 +244,7 @@ export function renderFieldNotesZh() {
 | --- | --- | --- |
 ${tableRows()}
 
-原话原样引用、不翻译——翻过来就成了我们的转述，而不是他们写的那句。所以一个 \`$1.43\` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](${FIELD_NOTES_JSON})，读文章的话看这篇：[token 账单到底花在哪](${FIELD_NOTES_ARTICLE})。`;
+原话原样引用、不翻译——翻过来就成了我们的转述，而不是他们写的那句。所以一个 \`$1.43\` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](${FIELD_NOTES_JSON})，读文章的话看这篇：[token 账单到底花在哪](${FIELD_NOTES_ARTICLE})。
+
+要换的那个模型不在上面几行里？[一句话说出它的名字](${figureAskUrl('free-llm-api/README_zh.md')})——只有一格要填，下一个去查的价钱按这个排。`;
 }

@@ -245,6 +245,92 @@ test('the 25 provider pages are left alone, because they measured as having no r
   }
 });
 
+/* -------------------------------------------- the one thing a reader can do */
+
+// Every earlier version of this block ended on a link to an article. The table
+// prints only the prices whose published sentence names this page's own
+// subject, so the commonest thought it leaves a reader with is "the one I am
+// moving to is not in here" — and an article cannot answer that. These check
+// the line that can: one field, on the repository, labelled with where the
+// click came from.
+
+test('the form link opens the form, not the chooser, and says where it came from', async () => {
+  const { figureAskUrl, FIELD_NOTES_REPO } = await import('../src/field-notes.js');
+  const url = figureAskUrl('free-llm-api/model/glm');
+
+  assert.ok(url.startsWith(`${FIELD_NOTES_REPO}/issues/new?`), url);
+  // `/choose` returns 200 and opens the form with every field blank, which is
+  // why this asserts the template parameter rather than that the link works.
+  assert.ok(!url.includes('/choose'), url);
+  assert.match(url, /[?&]template=figure\.yml(&|$)/);
+  assert.match(url, /[?&]came_from=free-llm-api%2Fmodel%2Fglm(&|$)/);
+  // No origin means no `came_from` at all rather than an invented one.
+  assert.ok(!figureAskUrl('').includes('came_from'), figureAskUrl(''));
+});
+
+test('both READMEs end the block on something a reader can do', async () => {
+  const { figureAskUrl } = await import('../src/field-notes.js');
+  for (const [name, block, readme] of [
+    ['en', renderFieldNotes(), readmeEn],
+    ['zh', renderFieldNotesZh(), readmeZh],
+  ]) {
+    const asks = [...block.matchAll(/\]\((https:\/\/github\.com\/[^)]*issues\/new[^)]*)\)/g)];
+    assert.equal(asks.length, 1, `${name} block has ${asks.length} form links`);
+    const url = asks[0][1];
+    assert.match(url, /[?&]template=figure\.yml(&|$)/);
+    // The two READMEs must not report the same origin, or the answers arrive
+    // unable to say which of them produced them.
+    assert.match(url, /came_from=free-llm-api%2FREADME/);
+    // And it has to survive the trip into the rendered file. The previous link
+    // in this block was right in the source and a day stale in README.md.
+    assert.ok(readme.includes(url), `${name} README never got the form link`);
+  }
+  assert.notEqual(
+    renderFieldNotes().includes(figureAskUrl('free-llm-api/README.md')),
+    renderFieldNotesZh().includes(figureAskUrl('free-llm-api/README.md')),
+    'both READMEs report the same origin',
+  );
+});
+
+test('every page that prints the table also prints the ask, labelled with itself', () => {
+  const subjects = subjectsByPath();
+  let carried = 0;
+
+  for (const [path, expected] of subjects) {
+    if (figuresForFamilies(expected).length === 0) continue;
+    const html = pages[path];
+    // `docs/zh/model/glm.html` → `free-llm-api/zh/model/glm`, so an answer
+    // arrives naming the page and the language that produced it.
+    const origin = `free-llm-api/${path.replace(/^docs\//, '').replace(/\.html$/, '')}`;
+    const wanted = `template=figure.yml&amp;came_from=${encodeURIComponent(origin).replaceAll('%2F', '%2F')}`;
+    assert.ok(html.includes(wanted), `${path} is missing its own form link`);
+    // Countable on the other end: `externalLink` would add `rel="noreferrer"`
+    // and the click would be invisible to the repository it lands on.
+    assert.ok(!/noreferrer[^<]*issues\/new/.test(html), `${path} strips the referrer from the ask`);
+    carried += 1;
+  }
+
+  assert.ok(carried >= 12, `only ${carried} pages carry the ask`);
+});
+
+test('the closing line names its own page, because an identical one is boilerplate', () => {
+  // These pages are measured against each other at a 0.60 near-duplicate limit
+  // and already sit around 0.55 before this block. A line repeated verbatim on
+  // all twelve is exactly the shared framing that measurement exists to catch.
+  const lines = [];
+  for (const [path, expected] of subjectsByPath()) {
+    if (figuresForFamilies(expected).length === 0) continue;
+    const html = pages[path];
+    const line = html.split('\n').find((row) => row.includes('issues/new'));
+    assert.ok(line, `${path} has no closing line`);
+    lines.push(line.replace(/came_from=[^"&]*/, ''));
+  }
+  assert.ok(lines.length >= 12);
+  // Distinct once the URL's own page-specific part is removed: what is left is
+  // the sentence, and the sentence has to differ too.
+  assert.ok(new Set(lines).size >= 6, `${new Set(lines).size} distinct closing lines across ${lines.length} pages`);
+});
+
 test('a digit may follow the name in a quoted sentence, a letter may not', () => {
   // The published sentences write "GLM5.2", where a trailing word boundary
   // fails on the digit and the GLM family would silently stop matching. The

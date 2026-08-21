@@ -40,6 +40,8 @@ Free is not the same as cheap enough to keep running, and the number you need is
 
 A `$1.43` is never left ambiguous between per million tokens, per month and per seat, because the sentence travels with it. Readable in code as [JSON or CSV](https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json), or as prose: [where the token bill actually goes](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html).
 
+Moving to a model that is not in those rows? [Name it in one line](https://github.com/xyzs996/ai-coding-field-notes/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME.md) — one field, and it decides which price gets chased next.
+
 ## Permanent free tiers
 
 These Provider Free Tiers are the main list: they do not expire like trial credits, and none currently require a credit card.

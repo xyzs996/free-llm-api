@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { fieldNotesUrl, figuresForFamilies } from './field-notes.js';
+import { fieldNotesUrl, figureAskUrl, figuresForFamilies } from './field-notes.js';
 import { escapeHtml, externalLink, link } from './html.js';
 import { clientNoteCopy, dataSentence, localized, translator } from './i18n.js';
 import { renderDocument } from './page-layout.js';
@@ -222,7 +222,13 @@ function providerFaq(provider, context) {
 // documentation and wrong here: this is the one destination whose referrals we
 // have to be able to count, and stripping the header makes the click invisible
 // on both ends.
-function figuresSection(families, lede, context) {
+// `ask` is passed in already rendered, the same way `lede` is, and for the same
+// reason: it names the page's own subject. A closing line identical on every
+// page carrying this block is the shared framing that `pages-uniqueness` exists
+// to catch — these pages already sit at 0.55 against a 0.60 limit before the
+// block, and the quoted sentences inside it are shared by every page whose
+// family they name.
+function figuresSection(families, lede, context, ask) {
   const { t } = context;
   const rows = figuresForFamilies(families);
   // The blank line above the heading belongs to the block, not to the page.
@@ -246,7 +252,8 @@ ${rows.map((row) => `              <tr>
               </tr>`).join('\n')}
             </tbody>
           </table>
-        </div>`;
+        </div>
+        <p>${ask}</p>`;
 }
 
 function providerBody(provider, context) {
@@ -504,7 +511,10 @@ ${differences}
     cardFree: cardFree.length,
     browserOk: browserOk.length,
   })}</p>
-        <p>${t('model.pickCaveat', { name: familyName })}</p>${figuresSection([family], t('figures.ledeFamily', { name: familyName, table: fieldNotesUrl(locale.code) }), context)}`;
+        <p>${t('model.pickCaveat', { name: familyName })}</p>${figuresSection([family], t('figures.ledeFamily', { name: familyName, table: fieldNotesUrl(locale.code) }), context, t('figures.askFamily', {
+    name: familyName,
+    url: escapeHtml(figureAskUrl(`free-llm-api/${locale.path_prefix}model/${family.id}`)),
+  }))}`;
 }
 
 function modelPage(family, context) {
@@ -621,7 +631,11 @@ ${codeBlock(snippet.content)}
     name: title,
     vendor: escapeHtml(CLIENT_NOTES[clientId].vendor ?? ''),
     table: fieldNotesUrl(locale.code),
-  }), context)}
+  }), context, t('figures.askClient', {
+    name: title,
+    vendor: escapeHtml(CLIENT_NOTES[clientId].vendor ?? ''),
+    url: escapeHtml(figureAskUrl(`free-llm-api/${locale.path_prefix}client/${clientId}`)),
+  }))}
 
         <h2>${t('client.sourcesHeading')}</h2>
         <ul class="source-list">

@@ -40,6 +40,8 @@ Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任�
 
 原话原样引用、不翻译——翻过来就成了我们的转述，而不是他们写的那句。所以一个 `$1.43` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json)，读文章的话看这篇：[token 账单到底花在哪](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html)。
 
+要换的那个模型不在上面几行里？[一句话说出它的名字](https://github.com/xyzs996/ai-coding-field-notes/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME_zh.md)——只有一格要填，下一个去查的价钱按这个排。
+
 ## 永久免费额度
 
 这里是主清单：均为 Provider 自己长期提供的免费额度，不是会过期的注册赠送额度，并且目前都不要求绑定信用卡。
