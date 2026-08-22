@@ -121,17 +121,40 @@ export function figureAskUrl(cameFrom) {
 // Medium, so a crawler is told "the original is over there" while every human
 // link in this README pointed at the reproduction.
 //
-// So `medium` wins where it exists. `url` is the fallback and stays the only
-// address for the other thirty, which were never on Medium — an empty cell
-// means "not published there", not "unknown".
+// So `medium` wins where it exists.
+//
+// The sentence above used to end "…and `url` is the fallback for the other
+// thirty". That was true for one day. On 2026-08-22 the sibling posted all
+// thirty-two write-ups as GitHub discussions — one thread each, the thread
+// body *is* the whole piece — and now carries the address in a third column,
+// `thread`. So the other thirty have a repliable page too, and sending a
+// reader to the Pages copy is now a choice to send them somewhere they cannot
+// answer, not the only address there is.
+//
+// Order is medium → thread → url, and the first two are not interchangeable:
+// where a piece has a Medium original, that is where its claps and responses
+// already live and where the canonical tag points; splitting the same piece's
+// readers across two repliable pages splits the counts that measure it.
+//
+// `url` stays as the last fallback rather than being dropped. An empty
+// `thread` means "no thread for this one" — a new write-up published before
+// the next discussion is opened lands here, and a link to the copy beats no
+// link at all.
 export function readerUrl(row) {
-  return row.medium || row.url;
+  return row.medium || row.thread || row.url;
 }
 
 export const FIELD_NOTES_JSON =
   'https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/figures.json';
+// The one write-up named in prose, in both READMEs, as "where the token bill
+// actually goes". It pointed at the Pages copy until 2026-08-22; it now points
+// at that piece's discussion thread for the same reason `readerUrl` prefers
+// one — the thread body is the whole piece and it has a reply box, while the
+// copy is a page a reader can only close. This is the single most-linked
+// write-up in this repository, so it is the one where that difference costs
+// the most.
 export const FIELD_NOTES_ARTICLE =
-  'https://xyzs996.github.io/llm-api-pricing/articles/token-optimization-for-indie-developers-ai-api-bills.html';
+  'https://github.com/xyzs996/llm-api-pricing/discussions/37';
 
 // The sibling sites' own machine indexes. This catalog is the only property in
 // the family that an assistant already arrives at on its own — chatgpt.com is

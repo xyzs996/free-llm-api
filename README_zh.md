@@ -44,13 +44,13 @@ Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任�
 
 | 价格 | 单位 | 它出自的那句原话 |
 | --- | --- | --- |
-| `$0.06 / $0.2` | per million | At the low end, MiniMax M3 runs $0.06 to $0.2 per million and draws 60% to 70% of its revenue from outside its home market. [→](https://xyzs996.github.io/llm-api-pricing/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
+| `$0.06 / $0.2` | per million | At the low end, MiniMax M3 runs $0.06 to $0.2 per million and draws 60% to 70% of its revenue from outside its home market. [→](https://github.com/xyzs996/llm-api-pricing/discussions/12) |
 | `$0.19 / $5` | per million tokens | Chinese AI models provide a cost-effective alternative to their American counterparts, with input costs as low as $0.19 per million tokens, compared to OpenAI's $5-12. [→](https://markyanai.medium.com/how-chinese-ai-agent-tools-leverage-1-6-billion-free-tokens-69b483c4eb6a) |
-| `$1` | per million tokens | Top-tier Chinese models such as GLM5.2 and DeepSeek V4 Pro sit near $1 per million tokens at inference gross margins of 10% to 20%. [→](https://xyzs996.github.io/llm-api-pricing/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
-| `$1.25 / $4.25` | per million | Meta priced Muse Spark 1.1 at $1.25 per million input and $4.25 per million output, roughly 75% and 83% below Anthropic's Opus, and the tradeoff is visible in the benchmarks, since it leads on MCP Atlas and JobBench while trailing on SWE-Bench Pro and DeepSWE 1.1. [→](https://xyzs996.github.io/llm-api-pricing/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
-| `$3` | per million input tokens | The $3 per million input tokens price point means developers should carefully evaluate whether the premium model's capabilities justify the increased costs for their specific use cases. [→](https://xyzs996.github.io/llm-api-pricing/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html) |
+| `$1` | per million tokens | Top-tier Chinese models such as GLM5.2 and DeepSeek V4 Pro sit near $1 per million tokens at inference gross margins of 10% to 20%. [→](https://github.com/xyzs996/llm-api-pricing/discussions/12) |
+| `$1.25 / $4.25` | per million | Meta priced Muse Spark 1.1 at $1.25 per million input and $4.25 per million output, roughly 75% and 83% below Anthropic's Opus, and the tradeoff is visible in the benchmarks, since it leads on MCP Atlas and JobBench while trailing on SWE-Bench Pro and DeepSWE 1.1. [→](https://github.com/xyzs996/llm-api-pricing/discussions/12) |
+| `$3` | per million input tokens | The $3 per million input tokens price point means developers should carefully evaluate whether the premium model's capabilities justify the increased costs for their specific use cases. [→](https://github.com/xyzs996/llm-api-pricing/discussions/22) |
 
-原话原样引用、不翻译——翻过来就成了我们的转述，而不是他们写的那句。所以一个 `$1.43` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/figures.json)，读文章的话看这篇：[token 账单到底花在哪](https://xyzs996.github.io/llm-api-pricing/articles/token-optimization-for-indie-developers-ai-api-bills.html)。
+原话原样引用、不翻译——翻过来就成了我们的转述，而不是他们写的那句。所以一个 `$1.43` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/figures.json)，读文章的话看这篇：[token 账单到底花在哪](https://github.com/xyzs996/llm-api-pricing/discussions/37)。
 
 哪个模型的账单让你吃过一惊？[一句话说出它的名字](https://github.com/xyzs996/llm-api-pricing/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME_zh.md)——只有一格要填，下一个去查的价钱按这个排。
 

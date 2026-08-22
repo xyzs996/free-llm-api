@@ -71,11 +71,38 @@ test('a write-up published on Medium first is linked at the original, not the co
     }
   }
 
-  // The other rows are unaffected: an empty cell means "never on Medium", and
-  // those write-ups have no address other than the one on the sibling's site.
-  const copies = FIELD_NOTES_ROWS.filter((row) => !row.medium);
-  assert.ok(copies.length > 0, 'every row has a Medium original — check the fixture');
-  for (const row of copies) assert.equal(readerUrl(row), row.url);
+  // The other rows used to have no address but the copy. Since 2026-08-22 the
+  // sibling posts every write-up as a discussion thread whose body is the whole
+  // piece, so those rows carry a `thread` — a page that does have a reply box.
+  // A row with a thread must not be sent to the copy.
+  const threaded = FIELD_NOTES_ROWS.filter((row) => !row.medium && row.thread);
+  assert.ok(threaded.length > 0, 'no exported row carries a discussion thread');
+  for (const row of threaded) {
+    assert.equal(readerUrl(row), row.thread, `${row.value} is sent to the copy`);
+    for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
+      assert.ok(readme.includes(row.thread), `${name} does not link the thread for ${row.value}`);
+      assert.ok(
+        !readme.includes(`[\u2192](${row.url})`),
+        `${name} still sends ${row.value} to the copy`,
+      );
+    }
+  }
+
+  // Order matters and the two repliable pages are not interchangeable: where a
+  // piece has a Medium original its claps and responses already live there and
+  // the canonical tag points there, so sending its readers to a thread instead
+  // would split the counts that measure it. Asserting this on a synthetic row
+  // rather than the export, because a row carrying both is not guaranteed to
+  // exist on any given day and a vacuous check is worse than none.
+  assert.equal(
+    readerUrl({ medium: 'https://m.example/a', thread: 'https://t.example/b', url: 'https://c.example/d' }),
+    'https://m.example/a',
+  );
+
+  // An empty `thread` still falls back to the copy rather than to nothing: a
+  // write-up published before its discussion is opened lands here, and a link
+  // to the copy beats no link at all.
+  assert.equal(readerUrl({ medium: '', thread: '', url: 'https://c.example/d' }), 'https://c.example/d');
 });
 
 test('the quoted sentences are not translated in the Chinese README', () => {
