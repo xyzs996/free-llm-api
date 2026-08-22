@@ -34,6 +34,7 @@
       <div class="site-nav__links">
         <a href="#directory">完整目录</a>
         <a href="#browse">模型</a>
+        <a href="#changed">最近变化</a>
         <a href="./client/claude-code.html">编码客户端</a>
         <a href="./verify.html">检测 Key</a>
         <a href="https://github.com/xyzs996/free-llm-api">GitHub</a>
@@ -123,6 +124,76 @@
             </div>
           </article>
         </div>
+      </div>
+    </section>
+
+
+    <section class="changed-band" id="changed" aria-labelledby="changed-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">2026-08-22 重新核对</p>
+          <h2 id="changed-heading">上次核对之后有什么变化</h2>
+          <p>发布以来的第一次复核。逐家重读了官方源：GitHub Models 已经关停，Novita 的免费行一条不剩，Groq 把两个 Llama 模型移出了免费表。有两家这次读不到源，核验日期保持原样。</p>
+        </div>
+        <ul class="changed-list">
+          <li>
+            <span class="changed-type">生命周期</span>
+            <strong>GitHub Models</strong>
+            <span class="changed-detail">按预告于 2026-07-30 关停：playground、模型目录、推理 API 和 BYOK 端点全部下线。作为墓碑条目保留。</span>
+          </li>
+          <li>
+            <span class="changed-type">生命周期</span>
+            <strong>Novita AI</strong>
+            <span class="changed-detail">inclusionai/Ling-3.0-flash 与 Mind Lab Macaron V1 Venti 不再标价为零；定价表上已无任何免费模型。移入按量计费。</span>
+          </li>
+          <li>
+            <span class="changed-type">限额变化</span>
+            <strong>GroqCloud</strong>
+            <span class="changed-detail">llama-3.3-70b-versatile 与 llama-3.1-8b-instant 已离开免费计划表；openai/gpt-oss-safeguard-20b、qwen/qwen3.6-27b、groq/compound-mini 在表内。RPM/RPD 两列改取 openai/gpt-oss-120b 的 30 RPM / 1K RPD。</span>
+          </li>
+          <li>
+            <span class="changed-type">限额变化</span>
+            <strong>Cerebras Inference</strong>
+            <span class="changed-detail">zai-glm-4.7 已离开免费试用表；只剩 gpt-oss-120b 与 gemma-4-31b，仍为 5 RPM / 30K TPM / 1M TPH / 1M TPD。</span>
+          </li>
+          <li>
+            <span class="changed-type">新增</span>
+            <strong>Z.AI Open Platform</strong>
+            <span class="changed-detail">视觉模型 GLM-4.6V-Flash 现在与 GLM-4.7-Flash、GLM-4.5-Flash 一样，定价各列均为 $0。</span>
+          </li>
+          <li>
+            <span class="changed-type">新增</span>
+            <strong>SambaNova Cloud</strong>
+            <span class="changed-detail">DeepSeek-V3.2 与 gemma-4-31B-it 以预览身份进入免费表，数字同为 20 RPM / 20 RPD / 200K TPD。</span>
+          </li>
+          <li>
+            <span class="changed-type">更正</span>
+            <strong>Pollinations.AI</strong>
+            <span class="changed-detail">API 文档其实是公布了限额的，形式是每档的最小请求间隔：Anonymous 每 15 秒 1 次、Seed 5 秒、Flower 3 秒、Nectar 不限。此前本条写的是「没有公布数字」。</span>
+          </li>
+          <li>
+            <span class="changed-type">更正</span>
+            <strong>Nebius Token Factory</strong>
+            <span class="changed-detail">本条原先当作基准值的 60 RPM / 400,000 TPM，在源页面上只出现在标着「示意」的表内。官方未公布账号默认值，本条不再引用数字。</span>
+          </li>
+          <li>
+            <span class="changed-type">更正</span>
+            <strong>Vercel AI Gateway</strong>
+            <span class="changed-detail">每月 $5 的免费额度已不在定价页上。免费档仍在，但页面不再给出金额，本条因此也不再引用。</span>
+          </li>
+          <li>
+            <span class="changed-type">更正</span>
+            <strong>Cloudflare Workers AI</strong>
+            <span class="changed-detail">有几个模型不在每天 10,000 Neurons 的额度内，无论如何都要付费方式：@cf/moonshotai/kimi-k2.6、@cf/zai-org/glm-5.2、@cf/deepseek-ai/deepseek-v4-pro-0813。</span>
+          </li>
+          <li>
+            <span class="changed-type">生命周期</span>
+            <strong>Moonshot AI (Kimi)</strong>
+            <span class="changed-detail">文档迁至 platform.kimi.ai。最低一档仍需先充值 $1 才调得通，因此本条从「永久免费额度」移入按量计费。</span>
+          </li>
+        </ul>
+        <p class="changed-after">一条免费通道关掉,就变成一笔账单。付费的那几家每百万 token 实际多少钱、每个数字出自哪一句话： <a href="https://github.com/xyzs996/ai-coding-field-notes/blob/main/README_CN.md">实地记录里的成本表</a>.</p>
+        <p class="changed-history"><a href="https://github.com/xyzs996/free-llm-api/blob/main/data/changelog.json">记录在案的每一周,JSON 格式</a></p>
       </div>
     </section>
 

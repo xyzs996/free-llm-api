@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+// 用产物里那一套转义,而不是在判据里另写一份 —— 判据量的是「这段内容在不在页上」,
+// 不是「转义对不对」;转义有它自己的判据。
+import { escapeHtml } from '../src/html.js';
 
 const providers = JSON.parse(
   await readFile(new URL('../data/providers.json', import.meta.url), 'utf8'),
@@ -177,4 +180,64 @@ test('README omits the weekly block when no changelog is supplied', async () => 
   const readme = renderer.renderArtifacts(providers)['README.md'];
   assert.doesNotMatch(readme, /## Changed this week/);
   assert.match(readme, /## Permanent free tiers/);
+});
+
+// ⚠ 变更记录原先只活在两份 README 和 data/changelog.json 里,**站上一个字都没有**
+// —— 而站是这一家里唯一有人来的那一面。把这一页存下来的人回来的理由正好是这一段:
+// 他上次拿的那个免费额度还在不在。少了它没有任何一处会红:首页照样 200,
+// 目录照样是最新数据,只是不再告诉任何人有什么东西塌了。
+test('the catalog page itself says what changed, not only the README', async () => {
+  const renderer = await loadRenderer();
+  assert.ok(renderer, 'src/render.js should export renderArtifacts');
+
+  const artifacts = renderer.renderArtifacts(providers, changelog);
+  const week = changelog.weeks[0];
+
+  for (const [path, field] of [['docs/index.html', 'detail'], ['docs/zh/index.html', 'detail_zh']]) {
+    const html = artifacts[path];
+    assert.ok(html.includes(week.week_of), `${path} should date the block it prints`);
+    for (const change of week.changes) {
+      const { name } = providers.find((provider) => provider.id === change.provider_id);
+      assert.ok(html.includes(name), `${path} drops ${change.provider_id} from the change list`);
+      assert.ok(
+        html.includes(escapeHtml(change[field])),
+        `${path} should print the ${field} of the ${change.provider_id} change`,
+      );
+    }
+  }
+});
+
+// 中文页拿英文详情照样是一份「完整」的变更段:条数对得上,名字对得上,读着却是
+// 另一种语言。所以这一条量的是两份**不一样**,而不是两份都在。
+test('the Chinese change list is the Chinese one', async () => {
+  const renderer = await loadRenderer();
+  assert.ok(renderer, 'src/render.js should export renderArtifacts');
+
+  const artifacts = renderer.renderArtifacts(providers, changelog);
+  const translated = changelog.weeks[0].changes.filter(({ detail, detail_zh: zh }) => zh && zh !== detail);
+  assert.ok(translated.length > 0, 'this criterion needs at least one translated change to guard');
+
+  for (const change of translated) {
+    assert.ok(artifacts['docs/zh/index.html'].includes(escapeHtml(change.detail_zh)));
+    assert.ok(!artifacts['docs/zh/index.html'].includes(escapeHtml(change.detail)));
+  }
+});
+
+// 一条免费通道关掉,读者的下一个问题是「那要花多少钱」—— 而这一页答不了,
+// 价格在姊妹仓库那 348 行里。这一段结尾那句话是这家里唯一一条**接着读者
+// 问题**的出口;之前只有页脚一句「延伸阅读」,谁也不会在那儿停下。
+test('the change block hands the reader somewhere that answers the next question', async () => {
+  const renderer = await loadRenderer();
+  assert.ok(renderer, 'src/render.js should export renderArtifacts');
+
+  const { FIELD_NOTES_REPO } = await import('../src/field-notes.js');
+  const artifacts = renderer.renderArtifacts(providers, changelog);
+
+  for (const path of ['docs/index.html', 'docs/zh/index.html']) {
+    const block = artifacts[path].split('changed-band')[1] ?? '';
+    const end = block.indexOf('</section>');
+    const inside = end === -1 ? block : block.slice(0, end);
+    assert.ok(inside.includes(FIELD_NOTES_REPO), `${path} ends the change block without an exit`);
+    assert.ok(inside.includes('changelog.json'), `${path} should link the full history`);
+  }
 });

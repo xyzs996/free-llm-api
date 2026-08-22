@@ -382,7 +382,44 @@ function renderHomePickCards(providers, t) {
   }).join('\n');
 }
 
-function renderPage(providers, families, locale = DEFAULT_LOCALE) {
+// 变更记录原先只活在两份 README 和 data/changelog.json 里。**站上一个字都没有**
+// —— 而站是这一家里唯一有人来的那一面(14 天 73 个人,19 次来自 chatgpt.com)。
+// 一个把这页存下来的人回来的理由,正好是这一段:他上次拿的那个免费额度还在不在。
+//
+// 三条免费通道今天同时塌了(github-models 整个关停、novita 的免费行归零、
+// groq 撤掉两个 Llama)。对读者来说这不是变更日志,是「我原来那条路没了,
+// 现在得花钱了 —— 花多少」。那一句正是文集那 348 行价格数据回答的问题,
+// 所以这一段的最后一句把他交到那边去,而不是又一条挂在页脚的「相关阅读」。
+function renderChangedBand(providers, changelog, t, locale) {
+  const week = changelog?.weeks?.[0];
+  if (!week) return '';
+
+  const nameFor = (id) => providers.find((provider) => provider.id === id)?.name ?? id;
+  const items = week.changes.map((change) => `
+          <li>
+            <span class="changed-type">${escapeHtml(t(`change.${change.type}`))}</span>
+            <strong>${escapeHtml(nameFor(change.provider_id))}</strong>
+            <span class="changed-detail">${escapeHtml(localized(change, 'detail', locale))}</span>
+          </li>`).join('');
+
+  return `
+    <section class="changed-band" id="changed" aria-labelledby="changed-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">${escapeHtml(t('home.changedEyebrow', { date: week.week_of }))}</p>
+          <h2 id="changed-heading">${escapeHtml(t('home.changedHeading'))}</h2>
+          <p>${escapeHtml(localized(week, 'summary', locale))}</p>
+        </div>
+        <ul class="changed-list">${items}
+        </ul>
+        <p class="changed-after">${escapeHtml(t('home.changedAfter'))} <a href="${escapeHtml(fieldNotesUrl(locale.code))}">${escapeHtml(t('home.changedAfterLink'))}</a>.</p>
+        <p class="changed-history"><a href="${escapeHtml(`${REPO_URL}/blob/main/data/changelog.json`)}">${escapeHtml(t('home.changedHistory'))}</a></p>
+      </div>
+    </section>
+`;
+}
+
+function renderPage(providers, families, locale = DEFAULT_LOCALE, changelog = null) {
   const t = translator(locale);
   const summary = catalogSummary(providers);
   const categories = [...new Set(providers.map(({ category }) => category))];
@@ -445,6 +482,7 @@ print(response.choices[0].message.content)`;
       <div class="site-nav__links">
         <a href="#directory">${escapeHtml(t('home.navDirectory'))}</a>
         <a href="#browse">${escapeHtml(t('home.navModels'))}</a>
+        <a href="#changed">${escapeHtml(t('home.navChanged'))}</a>
         <a href="./client/claude-code.html">${escapeHtml(t('home.navClients'))}</a>
         <a href="./verify.html">${escapeHtml(t('home.navVerify'))}</a>
         <a href="${escapeHtml(REPO_URL)}">${escapeHtml(t('home.navGithub'))}</a>
@@ -502,6 +540,7 @@ ${renderHomePickCards(providers, t)}
       </div>
     </section>
 
+${renderChangedBand(providers, changelog, t, locale)}
     <section class="filter-band" id="directory" aria-labelledby="filter-heading">
       <div class="shell">
         <div class="section-heading">
@@ -667,7 +706,7 @@ export function renderArtifacts(providers, changelog = null, families = MODEL_FA
   // Missing a page here would advertise an address that returns a 404.
   for (const locale of LOCALES) {
     const directory = `docs/${locale.path_prefix}`;
-    artifacts[`${directory}index.html`] = renderPage(providers, families, locale);
+    artifacts[`${directory}index.html`] = renderPage(providers, families, locale, changelog);
     artifacts[`${directory}verify.html`] = renderVerifyPage(providers, locale);
     Object.assign(artifacts, renderMatrixPages(providers, families, locale));
   }
@@ -677,7 +716,7 @@ export function renderArtifacts(providers, changelog = null, families = MODEL_FA
   return {
     ...artifacts,
     ...renderSiteFiles(providers, artifacts),
-    'docs/llms.txt': renderLlms(providers, artifacts, families),
+    'docs/llms.txt': renderLlms(providers, artifacts, families, changelog),
   };
 }
 

@@ -33,6 +33,26 @@ Every limit below is the number the provider prints on its own page, with the da
 - [Chutes](https://xyzs996.github.io/free-llm-api/provider/chutes.html): metered access · limits documented per plan · no credit card · OpenAI-compatible at https://llm.chutes.ai/v1 · sources read 2026-08-22.
 - [Scaleway Generative APIs](https://xyzs996.github.io/free-llm-api/provider/scaleway.html): metered access · no limits published · credit card required · OpenAI-compatible at https://api.scaleway.ai/v1 · sources read 2026-07-25.
 
+## What changed, as of 2026-08-22
+
+Every source above was read again on this date. What moved since the previous read:
+
+- **GitHub Models** (lifecycle): Retired on 2026-07-30 as announced: playground, model catalog, inference API and BYOK endpoints are all gone. Kept as a tombstone entry.
+- **Novita AI** (lifecycle): inclusionai/Ling-3.0-flash and Mind Lab Macaron V1 Venti are no longer priced at zero; no model on the pricing table is free any more. Moved to metered access.
+- **GroqCloud** (limit-changed): llama-3.3-70b-versatile and llama-3.1-8b-instant left the free plan table. openai/gpt-oss-safeguard-20b, qwen/qwen3.6-27b and groq/compound-mini are in it. The RPM/RPD columns now quote openai/gpt-oss-120b at 30 RPM / 1K RPD.
+- **Cerebras Inference** (limit-changed): zai-glm-4.7 left the Free Trial table; only gpt-oss-120b and gemma-4-31b remain at 5 RPM / 30K TPM / 1M TPH / 1M TPD.
+- **Z.AI Open Platform** (added): GLM-4.6V-Flash, a vision model, is now listed at $0 across every pricing column alongside GLM-4.7-Flash and GLM-4.5-Flash.
+- **SambaNova Cloud** (added): DeepSeek-V3.2 and gemma-4-31B-it appear in the free table as preview models, on the same 20 RPM / 20 RPD / 200K TPD numbers.
+- **Pollinations.AI** (correction): The API docs do publish limits after all, as a minimum interval per tier: Anonymous one request every 15s, Seed 5s, Flower 3s, Nectar none. The entry previously said no figures were published.
+- **Nebius Token Factory** (correction): The 60 RPM / 400,000 TPM pair carried here as a baseline appears on the source page only inside a table labelled a visual example. No account default is published; the entry no longer quotes a number.
+- **Vercel AI Gateway** (correction): The $5 monthly free credit is no longer published on the pricing page. The free tier still exists but no amount is stated, so none is quoted here.
+- **Cloudflare Workers AI** (correction): Some models sit outside the 10,000 Neuron allowance and need a paid billing method regardless: @cf/moonshotai/kimi-k2.6, @cf/zai-org/glm-5.2 and @cf/deepseek-ai/deepseek-v4-pro-0813.
+- **Moonshot AI (Kimi)** (lifecycle): Docs moved to platform.kimi.ai. The lowest tier still requires a $1 recharge before any call goes through, so the entry moved out of the permanent free tier list into metered access.
+
+First re-check since publication. Every source was read again: GitHub Models is gone, Novita has no free rows left, and Groq dropped both Llama models from the free table. Two entries could not be re-read and keep their old check date.
+
+- [changelog.json](https://github.com/xyzs996/free-llm-api/blob/main/data/changelog.json): every week on record, same fields.
+
 ## Model families
 
 Which providers in the catalog serve a given family, and what each one limits it to.

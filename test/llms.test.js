@@ -201,3 +201,33 @@ test('a question whose figure the export drops prints nothing, rather than a sta
     FIELD_NOTES_ROWS.splice(0, FIELD_NOTES_ROWS.length, ...before);
   }
 });
+
+// 这份文件的读者是程序。它拿走的每一行都是「现在是这样」,没有一行说得出哪一条
+// 刚刚变过 —— 而「Groq 免费表里曾经有 Llama,这次核对已经没了」正好是提问的人
+// 昨天调不通的原因。少了这一段不会有任何一处红:文件照样生成,每一行照样是真的,
+// 只是永远停在现在时。
+test('the text index carries the dated record of what moved, not only the current state', () => {
+  const week = changelog.weeks[0];
+
+  assert.ok(llms.includes(`## What changed, as of ${week.week_of}`));
+  assert.ok(llms.includes(week.summary));
+  for (const change of week.changes) {
+    const { name } = providers.find((provider) => provider.id === change.provider_id);
+    assert.ok(llms.includes(change.detail), `${change.provider_id} change is not in llms.txt`);
+    assert.ok(llms.includes(`**${name}** (${change.type})`), `${change.provider_id} loses its name or type`);
+  }
+  assert.ok(llms.includes('data/changelog.json'), 'the full history should be reachable');
+
+  // 只放最新一周。第二周的原话出现在这里,说明整段历史被倒了进来 —— 那就不再是
+  // 一次请求拿到全部现状,而是一份日志。
+  const older = changelog.weeks[1];
+  assert.ok(older, 'this criterion needs a second week to guard against');
+  assert.ok(!llms.includes(older.changes[0].detail), 'llms.txt should carry only the newest week');
+});
+
+test('with no changelog the text index drops the block instead of printing an empty heading', () => {
+  const withoutRecord = renderLlms(providers, artifacts);
+  assert.ok(!withoutRecord.includes('## What changed'));
+  assert.ok(withoutRecord.includes('## Providers'));
+  assert.ok(!withoutRecord.includes('\n\n\n'), 'a dropped section should not leave a gap behind');
+});

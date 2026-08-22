@@ -34,6 +34,7 @@
       <div class="site-nav__links">
         <a href="#directory">Directory</a>
         <a href="#browse">Models</a>
+        <a href="#changed">What changed</a>
         <a href="./client/claude-code.html">Coding clients</a>
         <a href="./verify.html">Verify a key</a>
         <a href="https://github.com/xyzs996/free-llm-api">GitHub</a>
@@ -123,6 +124,76 @@
             </div>
           </article>
         </div>
+      </div>
+    </section>
+
+
+    <section class="changed-band" id="changed" aria-labelledby="changed-heading">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked">
+          <p class="eyebrow">Re-checked 2026-08-22</p>
+          <h2 id="changed-heading">What changed since the last review</h2>
+          <p>First re-check since publication. Every source was read again: GitHub Models is gone, Novita has no free rows left, and Groq dropped both Llama models from the free table. Two entries could not be re-read and keep their old check date.</p>
+        </div>
+        <ul class="changed-list">
+          <li>
+            <span class="changed-type">Lifecycle</span>
+            <strong>GitHub Models</strong>
+            <span class="changed-detail">Retired on 2026-07-30 as announced: playground, model catalog, inference API and BYOK endpoints are all gone. Kept as a tombstone entry.</span>
+          </li>
+          <li>
+            <span class="changed-type">Lifecycle</span>
+            <strong>Novita AI</strong>
+            <span class="changed-detail">inclusionai/Ling-3.0-flash and Mind Lab Macaron V1 Venti are no longer priced at zero; no model on the pricing table is free any more. Moved to metered access.</span>
+          </li>
+          <li>
+            <span class="changed-type">Limit changed</span>
+            <strong>GroqCloud</strong>
+            <span class="changed-detail">llama-3.3-70b-versatile and llama-3.1-8b-instant left the free plan table. openai/gpt-oss-safeguard-20b, qwen/qwen3.6-27b and groq/compound-mini are in it. The RPM/RPD columns now quote openai/gpt-oss-120b at 30 RPM / 1K RPD.</span>
+          </li>
+          <li>
+            <span class="changed-type">Limit changed</span>
+            <strong>Cerebras Inference</strong>
+            <span class="changed-detail">zai-glm-4.7 left the Free Trial table; only gpt-oss-120b and gemma-4-31b remain at 5 RPM / 30K TPM / 1M TPH / 1M TPD.</span>
+          </li>
+          <li>
+            <span class="changed-type">Added</span>
+            <strong>Z.AI Open Platform</strong>
+            <span class="changed-detail">GLM-4.6V-Flash, a vision model, is now listed at $0 across every pricing column alongside GLM-4.7-Flash and GLM-4.5-Flash.</span>
+          </li>
+          <li>
+            <span class="changed-type">Added</span>
+            <strong>SambaNova Cloud</strong>
+            <span class="changed-detail">DeepSeek-V3.2 and gemma-4-31B-it appear in the free table as preview models, on the same 20 RPM / 20 RPD / 200K TPD numbers.</span>
+          </li>
+          <li>
+            <span class="changed-type">Correction</span>
+            <strong>Pollinations.AI</strong>
+            <span class="changed-detail">The API docs do publish limits after all, as a minimum interval per tier: Anonymous one request every 15s, Seed 5s, Flower 3s, Nectar none. The entry previously said no figures were published.</span>
+          </li>
+          <li>
+            <span class="changed-type">Correction</span>
+            <strong>Nebius Token Factory</strong>
+            <span class="changed-detail">The 60 RPM / 400,000 TPM pair carried here as a baseline appears on the source page only inside a table labelled a visual example. No account default is published; the entry no longer quotes a number.</span>
+          </li>
+          <li>
+            <span class="changed-type">Correction</span>
+            <strong>Vercel AI Gateway</strong>
+            <span class="changed-detail">The $5 monthly free credit is no longer published on the pricing page. The free tier still exists but no amount is stated, so none is quoted here.</span>
+          </li>
+          <li>
+            <span class="changed-type">Correction</span>
+            <strong>Cloudflare Workers AI</strong>
+            <span class="changed-detail">Some models sit outside the 10,000 Neuron allowance and need a paid billing method regardless: @cf/moonshotai/kimi-k2.6, @cf/zai-org/glm-5.2 and @cf/deepseek-ai/deepseek-v4-pro-0813.</span>
+          </li>
+          <li>
+            <span class="changed-type">Lifecycle</span>
+            <strong>Moonshot AI (Kimi)</strong>
+            <span class="changed-detail">Docs moved to platform.kimi.ai. The lowest tier still requires a $1 recharge before any call goes through, so the entry moved out of the permanent free tier list into metered access.</span>
+          </li>
+        </ul>
+        <p class="changed-after">A free tier closing turns into a bill. What the paid ones actually cost, per million tokens, with the sentence each figure came from: <a href="https://github.com/xyzs996/ai-coding-field-notes">the field notes cost table</a>.</p>
+        <p class="changed-history"><a href="https://github.com/xyzs996/free-llm-api/blob/main/data/changelog.json">Every week on record, as JSON</a></p>
       </div>
     </section>
 

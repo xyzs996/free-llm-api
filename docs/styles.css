@@ -309,6 +309,60 @@ h2 {
   background: #edf5f1;
 }
 
+/* 变更那一段。和 pick-band 一样是整幅底色的横条,但不用卡片网格:这里每一条
+   都是一句话,长短差得远,排成等高卡片会把最要紧的那条(某家整个关停了)压成
+   和一句更正一样大。 */
+.changed-band {
+  padding: 58px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.changed-list {
+  display: grid;
+  gap: 14px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.changed-list li {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 200px) minmax(0, 1fr);
+  gap: 4px 18px;
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.changed-type {
+  color: var(--green);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.changed-detail {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.changed-after {
+  max-width: 760px;
+  margin: 30px 0 0;
+  line-height: 1.65;
+}
+
+.changed-history {
+  margin: 10px 0 0;
+  font-size: 0.86rem;
+}
+
+.changed-history a {
+  color: var(--muted);
+}
+
 .pick-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1333,5 +1387,12 @@ footer .shell {
 @media (max-width: 620px) {
   .fact-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* 三栏在手机上会把那句详情压成一根面条。塌成一栏,顺序照旧:
+     类型、哪一家、发生了什么。 */
+  .changed-list li {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 }

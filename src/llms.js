@@ -147,6 +147,30 @@ function siblingQaLines() {
   }).filter(Boolean);
 }
 
+// 抓这份文件的程序拿走的是一行行事实,而它没法从事实本身看出哪一条**刚刚变过**。
+// 一个模型引用「Groq 免费表里有 Llama」,和引用「Groq 免费表里曾经有 Llama,
+// 2026-08-22 那次核对时已经没了」,对提问的人价值差一个量级 —— 后者能解释他昨天
+// 为什么调不通。这一段是这份文件里唯一带时间方向的内容。
+//
+// 只放最新一周。整段历史在 changelog.json,链接在末尾;把二十周堆进来,这份文件
+// 就从「一次请求拿到全部现状」变成了一份日志。
+function changedSection(week, providers) {
+  const nameFor = (id) => providers.find((provider) => provider.id === id)?.name ?? id;
+  const lines = week.changes
+    .map((change) => `- **${nameFor(change.provider_id)}** (${change.type}): ${change.detail}`)
+    .join('\n');
+
+  return `## What changed, as of ${week.week_of}
+
+Every source above was read again on this date. What moved since the previous read:
+
+${lines}
+
+${week.summary}
+
+- [changelog.json](${REPO_URL}/blob/main/data/changelog.json): every week on record, same fields.`;
+}
+
 /**
  * The site as one text file.
  *
@@ -155,7 +179,7 @@ function siblingQaLines() {
  * built under, and for the same reason: an address in a machine-read index
  * that answers 404 is worse than an address that was never offered.
  */
-export function renderLlms(providers, artifacts, families = MODEL_FAMILIES) {
+export function renderLlms(providers, artifacts, families = MODEL_FAMILIES, changelog = null) {
   const generated = new Set(Object.keys(artifacts));
   const has = (path) => generated.has(`docs/${path}`);
 
@@ -175,6 +199,8 @@ Every limit below is the number the provider prints on its own page, with the da
     `## Providers
 
 ${providers.map((provider) => providerLine(provider, has(`provider/${provider.id}.html`))).join('\n')}`,
+
+    changelog?.weeks?.[0] ? changedSection(changelog.weeks[0], providers) : null,
 
     `## Model families
 
@@ -220,5 +246,5 @@ ${SIBLING_INDEXES.map(({ url, note }) => `- [${url}](${url}): ${note}`).join('\n
 A limit here is only as good as the day it was read. If one has moved, or a provider is missing, [one line in this form](${heardUrl('llms.txt')}) takes a plain sentence and no evidence — a single field; the correction form asks for the provider's page and the date you read it.${otherLocales.length === 0 ? '' : `\n\nThis catalog is also published in ${otherLocales.map(({ label, path_prefix: prefix }) => `[${label}](${SITE_URL}${prefix})`).join(', ')}, page for page.`}`,
   ];
 
-  return `${sections.join('\n\n')}\n`;
+  return `${sections.filter(Boolean).join('\n\n')}\n`;
 }
