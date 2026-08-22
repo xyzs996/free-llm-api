@@ -129,6 +129,8 @@ ${bullets.join('\n')}
 
 Every entry above is dated and sourced in the catalog below. Full history: [\`data/changelog.json\`](data/changelog.json).
 
+A free tier closing turns into a bill, and this catalog stops where the free tier does. What the paid ones actually cost, per million tokens, each figure carrying the sentence it was published in: [the field notes cost table](${fieldNotesUrl()}).
+
 `;
 }
 

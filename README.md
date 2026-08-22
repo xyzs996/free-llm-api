@@ -170,6 +170,8 @@ Week of 2026-08-22. First re-check since publication. Every source was read agai
 
 Every entry above is dated and sourced in the catalog below. Full history: [`data/changelog.json`](data/changelog.json).
 
+A free tier closing turns into a bill, and this catalog stops where the free tier does. What the paid ones actually cost, per million tokens, each figure carrying the sentence it was published in: [the field notes cost table](https://github.com/xyzs996/ai-coding-field-notes).
+
 ## Contributing
 
 Corrections are the contribution this project runs on: a limit that moved, a provider that closed signups, or a link that died. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [correction form](https://github.com/xyzs996/free-llm-api/issues/new?template=correction.yml).

@@ -170,6 +170,8 @@ GROQ_API_KEY=YOUR_API_KEY npm run probe -- --provider groq
 
 上面每一条都能在下方清单里找到对应的核验日期与官方来源。完整历史见 [`data/changelog.json`](data/changelog.json)。
 
+一条免费通道关掉,就变成一笔账单 —— 而这份清单到免费额度为止。付费的那几家每百万 token 实际多少钱、每个数字出自哪一句话:[实地记录里的成本表](https://github.com/xyzs996/ai-coding-field-notes/blob/main/README_CN.md)。
+
 ## 参与贡献
 
 这个项目最需要的贡献是纠错：某家限额变化、停止注册或链接失效。见 [CONTRIBUTING.md](CONTRIBUTING.md) 与[纠错表单](https://github.com/xyzs996/free-llm-api/issues/new?template=correction.yml)。

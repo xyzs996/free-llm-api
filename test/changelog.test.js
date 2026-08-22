@@ -241,3 +241,25 @@ test('the change block hands the reader somewhere that answers the next question
     assert.ok(inside.includes('changelog.json'), `${path} should link the full history`);
   }
 });
+
+// 「本周变化」是回访读者停下来的地方 —— 他上次拿的那个额度关了,下一个问题是
+// 「那要花多少钱」,而这份清单到免费额度为止,答不了。README 上游一百多行确实
+// 有一张成本表,但读到变更段的人不会往回翻。
+//
+// 少了这一句不会有任何一处红:两份 README 照样生成,变更段照样完整,只是在读者
+// 最想知道价钱的那一刻什么都不说。
+test('both READMEs answer the bill question where the closure is announced', async () => {
+  const renderer = await loadRenderer();
+  assert.ok(renderer, 'src/render.js should export renderArtifacts');
+
+  const { FIELD_NOTES_REPO } = await import('../src/field-notes.js');
+  const artifacts = renderer.renderArtifacts(providers, changelog);
+
+  for (const [path, heading] of [['README.md', '## Changed this week'], ['README_zh.md', '## 本周变化']]) {
+    const text = artifacts[path];
+    const start = text.indexOf(heading);
+    assert.notEqual(start, -1, `${path} should still carry the weekly block`);
+    const block = text.slice(start, text.indexOf('\n## ', start + 1));
+    assert.ok(block.includes(FIELD_NOTES_REPO), `${path} announces the closure and never names the cost`);
+  }
+});
