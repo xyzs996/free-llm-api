@@ -1,3 +1,10 @@
+// ⚠ The site had one exit to the write-ups and it was on 14 of 86 pages.
+// Measured 2026-08-22 by fetching every URL in the sitemap: 72 of them — the
+// per-client, per-model, per-provider and comparison pages, which is where the
+// long-tail queries land — contained the string `ai-coding-field-notes` zero
+// times. Meanwhile that repository reports 0 referrers over a fortnight.
+// The footer is the one element every page shares, so the exit goes there.
+import { fieldNotesUrl } from './field-notes.js';
 import { escapeHtml } from './html.js';
 import { translator } from './i18n.js';
 import { breadcrumbNode, renderHead } from './seo.js';
@@ -130,7 +137,7 @@ ${renderRelated(related, linkPrefix, t('layout.relatedLabel'))}
     </div>
   </main>
 
-  <footer><div class="shell"><span>${escapeHtml(footerNote ?? t('layout.footerNote'))}</span><a href="${linkPrefix}index.html">${escapeHtml(t('layout.footerLink'))}</a>${renderLanguageSwitch(canonicalPath, locale, rootPrefix)}</div></footer>
+  <footer><div class="shell"><span>${escapeHtml(footerNote ?? t('layout.footerNote'))}</span><a href="${linkPrefix}index.html">${escapeHtml(t('layout.footerLink'))}</a><a href="${escapeHtml(fieldNotesUrl(locale.code))}">${escapeHtml(t('layout.footerCostLink'))}</a>${renderLanguageSwitch(canonicalPath, locale, rootPrefix)}</div></footer>
 </body>
 </html>
 `;

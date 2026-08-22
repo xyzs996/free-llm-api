@@ -1,3 +1,4 @@
+import { fieldNotesUrl } from './field-notes.js';
 import { embedJson, escapeHtml } from './html.js';
 import { dataSentence, rawString, translator } from './i18n.js';
 import { relativePrefix, renderLanguageSwitch } from './page-layout.js';
@@ -190,7 +191,7 @@ ${origins.map((origin) => `            <li><code>${escapeHtml(origin)}</code></l
     </section>
   </main>
 
-  <footer><div class="shell"><span>${escapeHtml(t('verify.footerNote'))}</span><a href="./index.html">${escapeHtml(t('verify.footerLink'))}</a>${renderLanguageSwitch('verify.html', locale, rootPrefix)}</div></footer>
+  <footer><div class="shell"><span>${escapeHtml(t('verify.footerNote'))}</span><a href="./index.html">${escapeHtml(t('verify.footerLink'))}</a><a href="${escapeHtml(fieldNotesUrl(locale.code))}">${escapeHtml(t('layout.footerCostLink'))}</a>${renderLanguageSwitch('verify.html', locale, rootPrefix)}</div></footer>
   <script id="verify-data" type="application/json">${embedded}</script>
   <script id="verify-strings" type="application/json">${embedJson(verifyStrings(locale))}</script>
   <script type="module" src="${rootPrefix}verify.js"></script>

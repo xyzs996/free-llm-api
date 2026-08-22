@@ -12,6 +12,11 @@ import {
   renderFieldNotesZh,
 } from '../src/field-notes.js';
 
+const loadProviders = async () =>
+  JSON.parse(await readFile(new URL('../data/providers.json', import.meta.url), 'utf8'));
+const loadChangelog = async () =>
+  JSON.parse(await readFile(new URL('../data/changelog.json', import.meta.url), 'utf8'));
+
 const readmeEn = await readFile(new URL('../README.md', import.meta.url), 'utf8');
 const readmeZh = await readFile(new URL('../README_zh.md', import.meta.url), 'utf8');
 
@@ -373,4 +378,49 @@ test('a digit may follow the name in a quoted sentence, a letter may not', () =>
 
   assert.equal(figuresForFamilies([{ name: 'Met', vendor: null }]).length, 0);
   assert.equal(figuresForFamilies([{ name: 'Anthropi', vendor: null }]).length, 0);
+});
+
+// ⚠ **The exit existed and reached 14 of 86 pages.** Measured 2026-08-22 by
+// fetching every URL in the live sitemap: 72 of them contained the string
+// `ai-coding-field-notes` zero times — every per-client, per-model,
+// per-provider and comparison page, which is exactly where the long-tail
+// queries land. The pages that did carry it were the ones whose *body* quotes
+// a cost figure, so every criterion that asked "does a page link the write-ups"
+// picked one of those and passed.
+//
+// This one counts instead of sampling: every rendered HTML artifact, and the
+// link has to be in the footer, which is the one element they all share.
+test('every rendered page, not a lucky sample, carries the way out to the write-ups', async () => {
+  const renderer = await import('../src/render.js');
+  const { fieldNotesUrl } = await import('../src/field-notes.js');
+  const artifacts = renderer.renderArtifacts(await loadProviders(), await loadChangelog());
+
+  const pages = Object.entries(artifacts).filter(([path]) => path.endsWith('.html'));
+  assert.ok(pages.length > 40, `only ${pages.length} pages to check`);
+
+  for (const [path, html] of pages) {
+    const footer = html.split('<footer>')[1] ?? '';
+    const want = fieldNotesUrl(path.startsWith('docs/zh/') ? 'zh' : 'en');
+    assert.ok(
+      footer.includes(`href="${want}"`),
+      `${path} ends without an exit to the write-ups`,
+    );
+  }
+});
+
+// A Chinese page handing its reader the English root is the same defect the
+// header link had until 2026-08-21, and `includes` alone passes either way:
+// the English URL is a prefix of the Chinese one.
+test('the Chinese pages send their readers to the Chinese README', async () => {
+  const renderer = await import('../src/render.js');
+  const { FIELD_NOTES_REPO } = await import('../src/field-notes.js');
+  const artifacts = renderer.renderArtifacts(await loadProviders(), await loadChangelog());
+
+  const zh = Object.entries(artifacts).filter(([path]) => path.startsWith('docs/zh/') && path.endsWith('.html'));
+  assert.ok(zh.length > 20, `only ${zh.length} Chinese pages to check`);
+
+  for (const [path, html] of zh) {
+    const footer = html.split('<footer>')[1] ?? '';
+    assert.ok(!footer.includes(`href="${FIELD_NOTES_REPO}"`), `${path} hands a Chinese reader the English root`);
+  }
 });

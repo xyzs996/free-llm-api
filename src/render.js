@@ -683,7 +683,7 @@ ${comparisonPageIds.map((id) => `              <li><a href="./compare/${escapeHt
     </section>
   </main>
 
-  <footer><div class="shell"><span>${escapeHtml(t('home.footerNote'))}</span><a href="${escapeHtml(t('home.footerHref'))}">${escapeHtml(t('home.footerLink'))}</a>${renderLanguageSwitch('index.html', locale, rootPrefix)}</div></footer>
+  <footer><div class="shell"><span>${escapeHtml(t('home.footerNote'))}</span><a href="${escapeHtml(t('home.footerHref'))}">${escapeHtml(t('home.footerLink'))}</a><a href="${escapeHtml(fieldNotesUrl(locale.code))}">${escapeHtml(t('layout.footerCostLink'))}</a>${renderLanguageSwitch('index.html', locale, rootPrefix)}</div></footer>
   <script id="provider-data" type="application/json">${embeddedData}</script>
   <script type="module" src="${rootPrefix}app.js"></script>
 </body>
