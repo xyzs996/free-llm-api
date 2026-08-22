@@ -1,0 +1,47 @@
+{
+  "source_name": "OpenRouter",
+  "checked": "2026-08-22",
+  "total": 60,
+  "rows": [
+    {
+      "model": "Gemini 3.7 Flash",
+      "batch": true,
+      "input_per_million": 0.1875,
+      "output_per_million": 0.9375,
+      "agent_rank": 3,
+      "agent_category": "androidnative"
+    },
+    {
+      "model": "Gemini 3 Flash Preview",
+      "batch": true,
+      "input_per_million": 0.25,
+      "output_per_million": 1.5,
+      "agent_rank": 9,
+      "agent_category": "agenticslides"
+    },
+    {
+      "model": "MiniMax M3",
+      "batch": false,
+      "input_per_million": 0.3,
+      "output_per_million": 1.2,
+      "agent_rank": 10,
+      "agent_category": "python-pptxslides"
+    },
+    {
+      "model": "Gemini 3.6 Flash",
+      "batch": true,
+      "input_per_million": 0.375,
+      "output_per_million": 1.875,
+      "agent_rank": 6,
+      "agent_category": "agenticgamedev"
+    },
+    {
+      "model": "GLM 4.7",
+      "batch": false,
+      "input_per_million": 0.4,
+      "output_per_million": 1.75,
+      "agent_rank": 27,
+      "agent_category": "androidnative"
+    }
+  ]
+}

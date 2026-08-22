@@ -28,7 +28,19 @@ Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任�
 
 这些推荐完全由公开数据规则生成，不是付费展示。完整比较请打开包含 26 家服务商的[可筛选目录](https://xyzs996.github.io/free-llm-api/zh/)。
 
-免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表](https://github.com/xyzs996/llm-api-pricing/blob/main/README_CN.md)：引用过的每一个带单位的数字都在里面，**每一行都带着它出处的整句话**。其中每百万 token 的价钱是这几条：
+免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者[每天把 OpenRouter 的整份目录重读一遍](https://github.com/xyzs996/llm-api-pricing/blob/main/README_CN.md)：**2026-08-22 这天是 60 个模型**，最便宜的五个是——
+
+| 模型 | 输入 / 百万 token | 输出 / 百万 token | Design Arena `agents` 榜 |
+| --- | --- | --- | --- |
+| Gemini 3.7 Flash *(batch)* | $0.1875 | $0.9375 | #3 androidnative |
+| Gemini 3 Flash Preview *(batch)* | $0.25 | $1.50 | #9 agenticslides |
+| MiniMax M3 | $0.30 | $1.20 | #10 python-pptxslides |
+| Gemini 3.6 Flash *(batch)* | $0.375 | $1.875 | #6 agenticgamedev |
+| GLM 4.7 | $0.40 | $1.75 | #27 androidnative |
+
+标了 `(batch)` 的是排队价，不是即时价——写代码的 agent 在那儿等回复，付的是另一个数。整份 60 行读作 [JSON](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.json) 或 [CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.csv)，明天再重读一遍。
+
+挂牌价是厂商今天贴出来的数；真跑一个月账单是多少，是另一个数，只有付过的人说得出。同一个仓库里另有一张表记的就是后者：写过的每一个带单位的数字，**每一行都带着它出处的整句话**——
 
 | 价格 | 单位 | 它出自的那句原话 |
 | --- | --- | --- |
@@ -40,7 +52,7 @@ Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任�
 
 原话原样引用、不翻译——翻过来就成了我们的转述，而不是他们写的那句。所以一个 `$1.43` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/figures.json)，读文章的话看这篇：[token 账单到底花在哪](https://xyzs996.github.io/llm-api-pricing/articles/token-optimization-for-indie-developers-ai-api-bills.html)。
 
-要换的那个模型不在上面几行里？[一句话说出它的名字](https://github.com/xyzs996/llm-api-pricing/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME_zh.md)——只有一格要填，下一个去查的价钱按这个排。
+哪个模型的账单让你吃过一惊？[一句话说出它的名字](https://github.com/xyzs996/llm-api-pricing/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME_zh.md)——只有一格要填，下一个去查的价钱按这个排。
 
 ## 永久免费额度
 

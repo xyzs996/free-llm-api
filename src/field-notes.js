@@ -21,6 +21,27 @@ import { fileURLToPath } from 'node:url';
 const rootDirectory = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_PATH = 'data/field-notes-figures.json';
 
+// The second export, added 2026-08-22, and the reason is a mismatch between
+// the question this page's reader has and the answer the block below gave.
+//
+// This catalog is read by someone whose free tier ran out or is about to. The
+// figures table answers with the prices the sibling's write-ups happened to
+// quote — four models, whichever four got written about. The comment on
+// `figureAskUrl` already concedes the consequence: "the commonest outcome of
+// reading it is 'the model I am moving to is not in here'". A form that asks
+// them to name the missing model is a fix for next month, not for the reader
+// who is here now.
+//
+// `data/field-notes-prices.json` does not depend on anyone having written
+// about a model. It is OpenRouter's whole catalog, re-read every day, cut to
+// the cheapest few. For "my free tier ran out, what do I move to", that is
+// the answer, and it is one table away instead of one issue thread away.
+//
+// Both are rendered, in that order. They are different claims: a list price
+// is what a vendor publishes today, and a quoted figure is what somebody's
+// bill actually came to. Neither substitutes for the other.
+const PRICES_PATH = 'data/field-notes-prices.json';
+
 export const FIELD_NOTES_REPO = 'https://github.com/xyzs996/llm-api-pricing';
 // Point at the rendered page, not the repo's figures.md blob. Same 348 rows,
 // but the blob is GitHub chrome around a markdown file: a reader lands in a
@@ -153,6 +174,48 @@ function loadRows() {
 
 export const FIELD_NOTES_ROWS = loadRows();
 
+// Same refuse-to-render rule as `loadRows`, for the same reason, plus one
+// that is specific to this file: it claims a date.
+//
+// The sibling's exporter writes this file only when the day's fetch came back
+// with rows — a failed read leaves yesterday's file in place rather than
+// overwriting it with an empty table. So a missing or empty file here is not
+// "the fetch failed today", it is "this file was deleted", and rendering a
+// README without the table would look identical to a README that never had
+// one. `checked` is required for the same reason the unit travels with a
+// price in the other table: "re-read daily" is a claim, and the date is what
+// makes it checkable instead of decorative.
+// Exported so the suite can reach both refusals. Reading a broken fixture off
+// disk would mean shipping one, and a validator nothing can fail is a comment
+// with parentheses.
+export function validatePrices(doc, path = PRICES_PATH) {
+  if (!Array.isArray(doc?.rows) || doc.rows.length === 0) {
+    throw new Error(`${path} has no rows; re-run export_cost_table.py in the sibling repo.`);
+  }
+  if (!doc.checked || !doc.source_name) {
+    throw new Error(`${path} is missing checked/source_name; the table would claim a date it does not have.`);
+  }
+  // The headline says "N models" while the table shows five of them. If the
+  // total were ever written by hand it could shrink below what is printed
+  // underneath it, and the table would contradict its own first line.
+  if (!(Number(doc.total) >= doc.rows.length)) {
+    throw new Error(`${path} claims ${doc.total} models but prints ${doc.rows.length}.`);
+  }
+  return doc;
+}
+
+function loadPrices() {
+  const raw = readFileSync(resolve(rootDirectory, PRICES_PATH), 'utf8');
+  return validatePrices(JSON.parse(raw));
+}
+
+export const FIELD_NOTES_PRICES = loadPrices();
+
+export const FIELD_NOTES_PRICES_JSON =
+  'https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.json';
+export const FIELD_NOTES_PRICES_CSV =
+  'https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.csv';
+
 // How many rows one generated page prints. Two, not five: the README is a
 // document a reader came to read, while a generated page is answering "can I
 // use this for free", and a five-row quotation block would answer a question
@@ -245,8 +308,53 @@ function tableRows() {
   ).join('\n');
 }
 
+// `$0.30`, not `$0.3`, and `$0.1875`, not `$0.19`.
+//
+// Two decimals is what a reader reads a price as, so a bare `$0.3` next to a
+// `$0.1875` reads as a typo in one of them. But rounding the other way is
+// worse than ugly: at these magnitudes `$0.1875` and `$0.19` are a 1.4%
+// difference in a bill, and this table's only job is to be the number someone
+// budgets against. So: never fewer than two decimals, never fewer than the
+// source has.
+function money(value) {
+  const amount = Number(value);
+  if (!Number.isFinite(amount)) return '';
+  const exact = amount.toFixed(6).replace(/0+$/, '').replace(/\.$/, '');
+  const decimals = (exact.split('.')[1] ?? '').length;
+  return `$${amount.toFixed(Math.max(2, decimals))}`;
+}
+
+// The rank column is the Design Arena `agents` leaderboard placing that the
+// sibling's catalog carries per model. It is here because "cheapest" on its
+// own is a trap: the cheapest row in any price list is the model nobody uses,
+// and a reader moving off a free tier is choosing what to *work* with. A
+// placing next to the price is the difference between "this is cheap" and
+// "this is cheap and somebody ships with it".
+//
+// A row with no placing prints an em dash rather than being dropped. It is
+// still one of the cheapest five, and hiding it would make the table's own
+// claim — the cheapest five of sixty — false.
+function priceRows() {
+  return FIELD_NOTES_PRICES.rows.map((row) => {
+    const name = row.batch ? `${cell(row.model)} *(batch)*` : cell(row.model);
+    const rank = row.agent_rank
+      ? `#${row.agent_rank} ${cell(row.agent_category)}`
+      : '—';
+    return `| ${name} | ${money(row.input_per_million)} | ${money(row.output_per_million)} | ${rank} |`;
+  }).join('\n');
+}
+
 export function renderFieldNotes() {
-  return `Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](${fieldNotesUrl('en')}) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
+  const prices = FIELD_NOTES_PRICES;
+  return `Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [re-reading ${prices.source_name}'s whole catalog every day](${fieldNotesUrl('en')}) — **${prices.total} models on ${prices.checked}**, cheapest five first:
+
+| Model | Input / M tokens | Output / M tokens | Design Arena \`agents\` |
+| --- | --- | --- | --- |
+${priceRows()}
+
+A \`(batch)\` row is the queued price, not the interactive one — an agent waiting on the reply pays the other number. All ${prices.total} rows as [JSON](${FIELD_NOTES_PRICES_JSON}) or [CSV](${FIELD_NOTES_PRICES_CSV}), re-read tomorrow.
+
+A list price is what a vendor publishes; what a month of it came to is a different number, and only somebody who paid it can tell you. The same repository keeps those too — every figure quoted in a write-up, with **the full sentence it came from** on every row:
 
 | Price | Unit | The sentence it was published in |
 | --- | --- | --- |
@@ -254,11 +362,20 @@ ${tableRows()}
 
 A \`$1.43\` is never left ambiguous between per million tokens, per month and per seat, because the sentence travels with it. Readable in code as [JSON or CSV](${FIELD_NOTES_JSON}), or as prose: [where the token bill actually goes](${FIELD_NOTES_ARTICLE}).
 
-Moving to a model that is not in those rows? [Name it in one line](${figureAskUrl('free-llm-api/README.md')}) — one field, and it decides which price gets chased next.`;
+Paying for a model whose bill surprised you? [Name it in one line](${figureAskUrl('free-llm-api/README.md')}) — one field, and it decides which price gets chased next.`;
 }
 
 export function renderFieldNotesZh() {
-  return `免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者整理了[一张表](${fieldNotesUrl('zh')})：引用过的每一个带单位的数字都在里面，**每一行都带着它出处的整句话**。其中每百万 token 的价钱是这几条：
+  const prices = FIELD_NOTES_PRICES;
+  return `免费不等于跑得起。真正要看的数是免费额度用完之后、替代它的那一档要多少钱。同一维护者[每天把 ${prices.source_name} 的整份目录重读一遍](${fieldNotesUrl('zh')})：**${prices.checked} 这天是 ${prices.total} 个模型**，最便宜的五个是——
+
+| 模型 | 输入 / 百万 token | 输出 / 百万 token | Design Arena \`agents\` 榜 |
+| --- | --- | --- | --- |
+${priceRows()}
+
+标了 \`(batch)\` 的是排队价，不是即时价——写代码的 agent 在那儿等回复，付的是另一个数。整份 ${prices.total} 行读作 [JSON](${FIELD_NOTES_PRICES_JSON}) 或 [CSV](${FIELD_NOTES_PRICES_CSV})，明天再重读一遍。
+
+挂牌价是厂商今天贴出来的数；真跑一个月账单是多少，是另一个数，只有付过的人说得出。同一个仓库里另有一张表记的就是后者：写过的每一个带单位的数字，**每一行都带着它出处的整句话**——
 
 | 价格 | 单位 | 它出自的那句原话 |
 | --- | --- | --- |
@@ -266,5 +383,5 @@ ${tableRows()}
 
 原话原样引用、不翻译——翻过来就成了我们的转述，而不是他们写的那句。所以一个 \`$1.43\` 不会在「每百万 token」「每月」「每席位」之间含混过去。机器读的话是 [JSON 和 CSV](${FIELD_NOTES_JSON})，读文章的话看这篇：[token 账单到底花在哪](${FIELD_NOTES_ARTICLE})。
 
-要换的那个模型不在上面几行里？[一句话说出它的名字](${figureAskUrl('free-llm-api/README_zh.md')})——只有一格要填，下一个去查的价钱按这个排。`;
+哪个模型的账单让你吃过一惊？[一句话说出它的名字](${figureAskUrl('free-llm-api/README_zh.md')})——只有一格要填，下一个去查的价钱按这个排。`;
 }

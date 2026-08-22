@@ -28,7 +28,19 @@ Star this repository to bookmark the dataset and follow releases. A star changes
 
 These are rule-based shortcuts, not paid placements. Open the [filterable directory](https://xyzs996.github.io/free-llm-api/) for all 26 providers.
 
-Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](https://github.com/xyzs996/llm-api-pricing) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
+Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [re-reading OpenRouter's whole catalog every day](https://github.com/xyzs996/llm-api-pricing) — **60 models on 2026-08-22**, cheapest five first:
+
+| Model | Input / M tokens | Output / M tokens | Design Arena `agents` |
+| --- | --- | --- | --- |
+| Gemini 3.7 Flash *(batch)* | $0.1875 | $0.9375 | #3 androidnative |
+| Gemini 3 Flash Preview *(batch)* | $0.25 | $1.50 | #9 agenticslides |
+| MiniMax M3 | $0.30 | $1.20 | #10 python-pptxslides |
+| Gemini 3.6 Flash *(batch)* | $0.375 | $1.875 | #6 agenticgamedev |
+| GLM 4.7 | $0.40 | $1.75 | #27 androidnative |
+
+A `(batch)` row is the queued price, not the interactive one — an agent waiting on the reply pays the other number. All 60 rows as [JSON](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.json) or [CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.csv), re-read tomorrow.
+
+A list price is what a vendor publishes; what a month of it came to is a different number, and only somebody who paid it can tell you. The same repository keeps those too — every figure quoted in a write-up, with **the full sentence it came from** on every row:
 
 | Price | Unit | The sentence it was published in |
 | --- | --- | --- |
@@ -40,7 +52,7 @@ Free is not the same as cheap enough to keep running, and the number you need is
 
 A `$1.43` is never left ambiguous between per million tokens, per month and per seat, because the sentence travels with it. Readable in code as [JSON or CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/figures.json), or as prose: [where the token bill actually goes](https://xyzs996.github.io/llm-api-pricing/articles/token-optimization-for-indie-developers-ai-api-bills.html).
 
-Moving to a model that is not in those rows? [Name it in one line](https://github.com/xyzs996/llm-api-pricing/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME.md) — one field, and it decides which price gets chased next.
+Paying for a model whose bill surprised you? [Name it in one line](https://github.com/xyzs996/llm-api-pricing/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME.md) — one field, and it decides which price gets chased next.
 
 ## Permanent free tiers
 

@@ -109,6 +109,115 @@ test('each row states a unit, so a bare number cannot be misread', () => {
   }
 });
 
+/* ------------------------------------------- the daily catalog, added today */
+
+// The block above answers "what did somebody's bill come to". The reader of
+// this catalog is asking "my free tier ran out, what do I move to", and until
+// 2026-08-22 the only answer here was the four models the sibling's write-ups
+// happened to name. These pin the table that answers it without waiting for
+// anybody to write anything: the sibling's daily re-read of the whole catalog.
+
+const { FIELD_NOTES_PRICES, validatePrices } = await import('../src/field-notes.js');
+
+const priceLines = (block) => block
+  .split('\n')
+  .filter((line) => line.startsWith('| ') && / \| \$/.test(line));
+
+test('the catalog table prints every exported row, one column set', () => {
+  for (const [name, block] of [['en', renderFieldNotes()], ['zh', renderFieldNotesZh()]]) {
+    const lines = priceLines(block);
+    assert.equal(lines.length, FIELD_NOTES_PRICES.rows.length, `${name}: wrong row count`);
+    for (const line of lines) {
+      // Four columns means five pipes. A model name carrying one would shift
+      // every cell after it, exactly as in the figures table.
+      const unescaped = (line.match(/(?<!\\)\|/g) ?? []).length;
+      assert.equal(unescaped, 5, `${name}: wrong column count: ${line.slice(0, 60)}…`);
+    }
+  }
+});
+
+test('a price is never rounded away and never printed short', () => {
+  const block = renderFieldNotes();
+  // `$0.1875` and `$0.19` differ by 1.4% of a bill, and this table's only job
+  // is to be the number somebody budgets against.
+  assert.ok(block.includes('$0.1875'), 'the exact sub-cent price was rounded');
+  // …while `$0.3` next to it reads as a typo rather than a price.
+  assert.ok(block.includes('$0.30'), '$0.30 was printed short');
+  // ⚠ The catalog rows only. The figures table below prints `$0.06 / $0.2`,
+  // and that one-decimal price is *inside a quotation* — it is how the author
+  // wrote it, and this repo's rule is that a quoted sentence travels unedited.
+  // Widening this to the whole block would demand we tidy someone's sentence.
+  for (const line of priceLines(block)) {
+    assert.ok(!/\$\d+\.\d(?!\d)/.test(line), `a price printed with one decimal: ${line}`);
+  }
+});
+
+test('the table says which day it was read, and both READMEs carry that day', () => {
+  const { checked, total } = FIELD_NOTES_PRICES;
+  // "Re-read daily" is a claim. The date is what makes it checkable, and a
+  // date nobody prints is a date nobody can catch going stale.
+  assert.match(checked, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(new Date(`${checked}T00:00:00Z`) <= new Date(), `${checked} is in the future`);
+  for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
+    assert.ok(readme.includes(checked), `${name} does not say when the catalog was read`);
+    assert.ok(readme.includes(String(total)), `${name} does not say how many models were read`);
+  }
+});
+
+test('a queued price is labelled as one', () => {
+  const batch = FIELD_NOTES_PRICES.rows.filter((row) => row.batch);
+  // Non-vacuous guard: with no batch row this test would pass by being empty,
+  // and an unlabelled batch price is the one way this table lies — an agent
+  // waiting on a reply cannot pay it.
+  assert.ok(batch.length > 0, 'no exported row is a batch price');
+  for (const [name, block] of [['en', renderFieldNotes()], ['zh', renderFieldNotesZh()]]) {
+    const lines = priceLines(block).filter((line) => line.includes('*(batch)*'));
+    assert.equal(lines.length, batch.length, `${name}: a batch price is unlabelled`);
+    assert.ok(block.includes('(batch)'), `${name}: nothing explains what batch means`);
+  }
+});
+
+test('one model occupies one row', () => {
+  // `MiniMax M3` and `MiniMax M3 batch` cost the same; five rows of two models
+  // would answer "what do I move to" with one option.
+  const names = FIELD_NOTES_PRICES.rows.map((row) => row.model);
+  assert.equal(new Set(names).size, names.length, `duplicated model: ${names.join(', ')}`);
+});
+
+test('every model in the catalog table reaches both rendered READMEs', () => {
+  for (const row of FIELD_NOTES_PRICES.rows) {
+    for (const [name, readme] of [['README.md', readmeEn], ['README_zh.md', readmeZh]]) {
+      assert.ok(readme.includes(row.model), `${name} is missing ${row.model}`);
+    }
+  }
+});
+
+test("today's prices come before the quoted sentences, in both editions", () => {
+  // Order is the whole change. The reader arrived because a free tier ran
+  // out; the first table they meet has to be the one that answers that, not
+  // the four models somebody happened to write about.
+  for (const [name, block] of [['en', renderFieldNotes()], ['zh', renderFieldNotesZh()]]) {
+    const catalog = block.indexOf(FIELD_NOTES_PRICES.rows[0].model);
+    const quoted = block.indexOf(FIELD_NOTES_ROWS[0].context);
+    assert.ok(catalog > -1 && quoted > -1, `${name}: a table is missing`);
+    assert.ok(catalog < quoted, `${name}: the quoted figures come first`);
+  }
+});
+
+test('a catalog that lost its rows, its date or its count refuses to render', () => {
+  const good = { source_name: 'OpenRouter', checked: '2026-08-22', total: 60, rows: [{ model: 'x' }] };
+  assert.deepEqual(validatePrices(good, 'fixture'), good);
+  // An empty table is not "today's fetch failed" — the exporter leaves
+  // yesterday's file alone when the fetch fails. It means the file was lost,
+  // and a README missing one table looks exactly like one that never had it.
+  assert.throws(() => validatePrices({ ...good, rows: [] }, 'fixture'), /has no rows/);
+  assert.throws(() => validatePrices({ ...good, checked: '' }, 'fixture'), /missing checked/);
+  assert.throws(() => validatePrices({ ...good, source_name: '' }, 'fixture'), /missing checked/);
+  // "60 models" printed above five rows is fine; "2 models" above five is the
+  // table contradicting its own first line.
+  assert.throws(() => validatePrices({ ...good, total: 0 }, 'fixture'), /claims 0 models/);
+});
+
 /* ------------------------------------------------- the block on the pages */
 
 // Two of the 86 generated pages linked the write-ups at all, and both were
