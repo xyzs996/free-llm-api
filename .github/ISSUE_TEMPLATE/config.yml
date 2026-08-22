@@ -16,5 +16,5 @@ contact_links:
     url: https://github.com/xyzs996/free-llm-api/blob/main/SECURITY.md
     about: Do not open a public issue for this one.
   - name: Where the price figures come from
-    url: https://xyzs996.github.io/ai-coding-field-notes/figures.html
+    url: https://xyzs996.github.io/llm-api-pricing/figures.html
     about: Every figure cited in the field notes, each row carrying the sentence it was published in.

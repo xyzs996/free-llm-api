@@ -21,7 +21,7 @@ import { fileURLToPath } from 'node:url';
 const rootDirectory = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_PATH = 'data/field-notes-figures.json';
 
-export const FIELD_NOTES_REPO = 'https://github.com/xyzs996/ai-coding-field-notes';
+export const FIELD_NOTES_REPO = 'https://github.com/xyzs996/llm-api-pricing';
 // Point at the rendered page, not the repo's figures.md blob. Same 348 rows,
 // but the blob is GitHub chrome around a markdown file: a reader lands in a
 // diff-flavoured viewer, and anything quoting it quotes github.com rather than
@@ -29,7 +29,7 @@ export const FIELD_NOTES_REPO = 'https://github.com/xyzs996/ai-coding-field-note
 // the site's sitemap, so it is the one URL that serves a reader and a crawler
 // equally well.
 export const FIELD_NOTES_TABLE =
-  'https://xyzs996.github.io/ai-coding-field-notes/figures.html';
+  'https://xyzs996.github.io/llm-api-pricing/figures.html';
 
 // Where a *reader* is sent, as opposed to where a machine index points.
 //
@@ -108,9 +108,9 @@ export function readerUrl(row) {
 }
 
 export const FIELD_NOTES_JSON =
-  'https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json';
+  'https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/figures.json';
 export const FIELD_NOTES_ARTICLE =
-  'https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html';
+  'https://xyzs996.github.io/llm-api-pricing/articles/token-optimization-for-indie-developers-ai-api-bills.html';
 
 // The sibling sites' own machine indexes. This catalog is the only property in
 // the family that an assistant already arrives at on its own — chatgpt.com is
@@ -120,7 +120,7 @@ export const FIELD_NOTES_ARTICLE =
 // and the two datasets next door, are published in the same shape.
 export const SIBLING_INDEXES = Object.freeze([
   {
-    url: 'https://xyzs996.github.io/ai-coding-field-notes/llms.txt',
+    url: 'https://xyzs996.github.io/llm-api-pricing/llms.txt',
     // Says what is *in* the file, not what the site is about. As of
     // 2026-08-21 that index carries every price figure it has published
     // inline — value, unit, the sentence it was published in, the date — so

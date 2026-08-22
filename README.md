@@ -28,19 +28,19 @@ Star this repository to bookmark the dataset and follow releases. A star changes
 
 These are rule-based shortcuts, not paid placements. Open the [filterable directory](https://xyzs996.github.io/free-llm-api/) for all 26 providers.
 
-Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](https://github.com/xyzs996/ai-coding-field-notes) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
+Free is not the same as cheap enough to keep running, and the number you need is what replaces the free tier once it runs out. Same maintainer, [one table of every figure they have cited](https://github.com/xyzs996/llm-api-pricing) — anything carrying a unit — with **the full sentence it came from** on every row. The per-million-token prices out of it:
 
 | Price | Unit | The sentence it was published in |
 | --- | --- | --- |
-| `$0.06 / $0.2` | per million | At the low end, MiniMax M3 runs $0.06 to $0.2 per million and draws 60% to 70% of its revenue from outside its home market. [→](https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
+| `$0.06 / $0.2` | per million | At the low end, MiniMax M3 runs $0.06 to $0.2 per million and draws 60% to 70% of its revenue from outside its home market. [→](https://xyzs996.github.io/llm-api-pricing/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
 | `$0.19 / $5` | per million tokens | Chinese AI models provide a cost-effective alternative to their American counterparts, with input costs as low as $0.19 per million tokens, compared to OpenAI's $5-12. [→](https://markyanai.medium.com/how-chinese-ai-agent-tools-leverage-1-6-billion-free-tokens-69b483c4eb6a) |
-| `$1` | per million tokens | Top-tier Chinese models such as GLM5.2 and DeepSeek V4 Pro sit near $1 per million tokens at inference gross margins of 10% to 20%. [→](https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
-| `$1.25 / $4.25` | per million | Meta priced Muse Spark 1.1 at $1.25 per million input and $4.25 per million output, roughly 75% and 83% below Anthropic's Opus, and the tradeoff is visible in the benchmarks, since it leads on MCP Atlas and JobBench while trailing on SWE-Bench Pro and DeepSWE 1.1. [→](https://xyzs996.github.io/ai-coding-field-notes/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
-| `$3` | per million input tokens | The $3 per million input tokens price point means developers should carefully evaluate whether the premium model's capabilities justify the increased costs for their specific use cases. [→](https://xyzs996.github.io/ai-coding-field-notes/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html) |
+| `$1` | per million tokens | Top-tier Chinese models such as GLM5.2 and DeepSeek V4 Pro sit near $1 per million tokens at inference gross margins of 10% to 20%. [→](https://xyzs996.github.io/llm-api-pricing/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
+| `$1.25 / $4.25` | per million | Meta priced Muse Spark 1.1 at $1.25 per million input and $4.25 per million output, roughly 75% and 83% below Anthropic's Opus, and the tradeoff is visible in the benchmarks, since it leads on MCP Atlas and JobBench while trailing on SWE-Bench Pro and DeepSWE 1.1. [→](https://xyzs996.github.io/llm-api-pricing/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html) |
+| `$3` | per million input tokens | The $3 per million input tokens price point means developers should carefully evaluate whether the premium model's capabilities justify the increased costs for their specific use cases. [→](https://xyzs996.github.io/llm-api-pricing/articles/choosing-the-right-ai-model-for-coding-cost-vs-efficiency.html) |
 
-A `$1.43` is never left ambiguous between per million tokens, per month and per seat, because the sentence travels with it. Readable in code as [JSON or CSV](https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json), or as prose: [where the token bill actually goes](https://xyzs996.github.io/ai-coding-field-notes/articles/token-optimization-for-indie-developers-ai-api-bills.html).
+A `$1.43` is never left ambiguous between per million tokens, per month and per seat, because the sentence travels with it. Readable in code as [JSON or CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/figures.json), or as prose: [where the token bill actually goes](https://xyzs996.github.io/llm-api-pricing/articles/token-optimization-for-indie-developers-ai-api-bills.html).
 
-Moving to a model that is not in those rows? [Name it in one line](https://github.com/xyzs996/ai-coding-field-notes/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME.md) — one field, and it decides which price gets chased next.
+Moving to a model that is not in those rows? [Name it in one line](https://github.com/xyzs996/llm-api-pricing/issues/new?template=figure.yml&came_from=free-llm-api%2FREADME.md) — one field, and it decides which price gets chased next.
 
 ## Permanent free tiers
 
@@ -170,7 +170,7 @@ Week of 2026-08-22. First re-check since publication. Every source was read agai
 
 Every entry above is dated and sourced in the catalog below. Full history: [`data/changelog.json`](data/changelog.json).
 
-A free tier closing turns into a bill, and this catalog stops where the free tier does. What the paid ones actually cost, per million tokens, each figure carrying the sentence it was published in: [the field notes cost table](https://github.com/xyzs996/ai-coding-field-notes).
+A free tier closing turns into a bill, and this catalog stops where the free tier does. What the paid ones actually cost, per million tokens, each figure carrying the sentence it was published in: [the field notes cost table](https://github.com/xyzs996/llm-api-pricing).
 
 ## Contributing
 
@@ -205,7 +205,7 @@ This repository contains no working credentials. Keep probe keys in environment 
 ## Related projects
 
 - [Free Tier LLM Router](https://github.com/xyzs996/free-tier-llm-router) combines your own provider keys behind one local endpoint with controlled failover.
-- [AI Coding Field Notes](https://github.com/xyzs996/ai-coding-field-notes) publishes every figure it has cited — anything carrying a unit — as [JSON and CSV](https://cdn.jsdelivr.net/gh/xyzs996/ai-coding-field-notes@main/data/figures.json), each row paired with the sentence it came from, plus the write-ups behind them.
+- [AI Coding Field Notes](https://github.com/xyzs996/llm-api-pricing) publishes every figure it has cited — anything carrying a unit — as [JSON and CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/figures.json), each row paired with the sentence it came from, plus the write-ups behind them.
 
 ## Need one stable endpoint?
 

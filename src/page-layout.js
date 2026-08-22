@@ -1,7 +1,7 @@
 // ⚠ The site had one exit to the write-ups and it was on 14 of 86 pages.
 // Measured 2026-08-22 by fetching every URL in the sitemap: 72 of them — the
 // per-client, per-model, per-provider and comparison pages, which is where the
-// long-tail queries land — contained the string `ai-coding-field-notes` zero
+// long-tail queries land — contained the string `llm-api-pricing` zero
 // times. Meanwhile that repository reports 0 referrers over a fortnight.
 // The footer is the one element every page shares, so the exit goes there.
 import { fieldNotesUrl } from './field-notes.js';

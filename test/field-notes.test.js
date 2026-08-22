@@ -169,7 +169,7 @@ test('a reader is sent to the repository, in the language they are reading', asy
   // of this link was correct in the source and stale in the file for a day.
   for (const [name, readme, code] of [['README.md', readmeEn, 'en'], ['README_zh.md', readmeZh, 'zh']]) {
     assert.ok(readme.includes(fieldNotesUrl(code)), `${name} is missing the repository link`);
-    assert.ok(!readme.includes('ai-coding-field-notes/blob/main/figures.md'), `${name} still links the blob`);
+    assert.ok(!readme.includes('llm-api-pricing/blob/main/figures.md'), `${name} still links the blob`);
   }
   // The Chinese README must not hand its reader the English root: that is the
   // exact defect this replaced, and `includes` alone would pass either way,
@@ -190,7 +190,7 @@ test('the pages send a reader to the repository too, per locale', async () => {
     assert.ok(html, `${path} was not rendered`);
     assert.ok(html.includes(fieldNotesUrl(code)), `${path} is missing the repository link`);
     assert.ok(
-      !html.includes('href="https://xyzs996.github.io/ai-coding-field-notes/"'),
+      !html.includes('href="https://xyzs996.github.io/llm-api-pricing/"'),
       `${path} still sends its reader to Pages`,
     );
   }
@@ -382,7 +382,7 @@ test('a digit may follow the name in a quoted sentence, a letter may not', () =>
 
 // ⚠ **The exit existed and reached 14 of 86 pages.** Measured 2026-08-22 by
 // fetching every URL in the live sitemap: 72 of them contained the string
-// `ai-coding-field-notes` zero times — every per-client, per-model,
+// `llm-api-pricing` zero times — every per-client, per-model,
 // per-provider and comparison page, which is exactly where the long-tail
 // queries land. The pages that did carry it were the ones whose *body* quotes
 // a cost figure, so every criterion that asked "does a page link the write-ups"
