@@ -10,6 +10,7 @@ import {
   providerDatasetNode,
   techArticleNode,
 } from './seo.js';
+import { hasRetired } from './lifecycle.js';
 import { DEFAULT_LOCALE, pageUrl } from './site.js';
 import {
   SNIPPET_CLIENTS,
@@ -33,6 +34,7 @@ export const CATEGORY_TITLES = Object.freeze({
   'trial-credit': 'Free trial credit',
   'metered-access': 'Metered access',
   'retiring-free-tier': 'Retiring free tier',
+  'retired-free-tier': 'Retired free tier',
 });
 
 export function categoryTitle(category) {
@@ -176,7 +178,7 @@ function providerFaq(provider, context) {
     {
       question: t('provider.faq.retireQ', { name }),
       answer: provider.availability.retires_at
-        ? t('provider.faq.retireYes', {
+        ? t(hasRetired(provider) ? 'provider.faq.retiredYes' : 'provider.faq.retireYes', {
           date: escapeHtml(provider.availability.retires_at),
           note: escapeHtml(localized(provider.availability, 'note', locale)),
         })
@@ -317,7 +319,7 @@ ${definition(t('provider.factLimits'), escapeHtml(limitsPhrase(provider, context
 ${definition(t('provider.factCategory'), escapeHtml(category))}
 ${definition(t('provider.factCard'), provider.credit_card_required ? t('word.required') : t('word.notRequired'))}
 ${definition(t('provider.factProtocol'), t(provider.openai_compatible ? 'provider.protocolOpenAi' : 'provider.protocolOwn', { url: escapeHtml(provider.base_url) }))}
-${definition(t('provider.factLifecycle'), provider.availability.retires_at ? t('provider.retires', { date: escapeHtml(provider.availability.retires_at) }) : escapeHtml(t(`availability.${provider.availability.status}`)))}
+${definition(t('provider.factLifecycle'), provider.availability.retires_at ? t(hasRetired(provider) ? 'provider.retired' : 'provider.retires', { date: escapeHtml(provider.availability.retires_at) }) : escapeHtml(t(`availability.${provider.availability.status}`)))}
 ${definition(t('provider.factChecked'), escapeHtml(provider.source_checked_at))}
         </dl>
         <p>${escapeHtml(localized(provider.availability, 'note', locale))}</p>

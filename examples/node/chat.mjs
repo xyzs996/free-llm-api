@@ -4,7 +4,7 @@
 // history, or in version control. Node 20+ only: no dependencies, no SDK.
 
 const BASE_URL = "https://api.groq.com/openai/v1";
-const MODEL = "llama-3.3-70b-versatile";
+const MODEL = "openai/gpt-oss-120b";
 const KEY_ENV = "GROQ_API_KEY";
 
 const key = process.env[KEY_ENV];

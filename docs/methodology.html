@@ -25,13 +25,13 @@
   <meta name="twitter:description" content="What counts as a free tier, where every rate limit comes from, what a probe proves, and why some providers get a page while others stay catalog rows.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Methodology","item":"https://xyzs996.github.io/free-llm-api/methodology.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How this free LLM API data is collected","description":"The rules behind every entry: what qualifies as a free tier, where each number comes from, what a probe proves, and which providers are deliberately left as catalog rows.","url":"https://xyzs996.github.io/free-llm-api/methodology.html","dateModified":"2026-07-25","inLanguage":"en","author":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"publisher":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"license":"https://opensource.org/licenses/MIT"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How this free LLM API data is collected","description":"The rules behind every entry: what qualifies as a free tier, where each number comes from, what a probe proves, and which providers are deliberately left as catalog rows.","url":"https://xyzs996.github.io/free-llm-api/methodology.html","dateModified":"2026-08-22","inLanguage":"en","author":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"publisher":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"license":"https://opensource.org/licenses/MIT"}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="./index.html">Free LLM API</a></li><li><span aria-current="page">Methodology</span></li></ol></nav>
-      <p class="eyebrow">Data contract · Reviewed 2026-07-25</p>
+      <p class="eyebrow">Data contract · Reviewed 2026-08-22</p>
       <h1>How this data is collected</h1>
       <p class="lede">Every rule this catalog follows, including the ones that keep numbers out of it.</p>
     </div>
@@ -42,7 +42,7 @@
       <article class="page-body" id="page-body">
         <h2>What counts as a free LLM API here</h2>
         <p>An entry qualifies when the provider itself documents access that costs nothing to start: a standing free tier, a pool of models priced at zero, or signup credit. Reverse-engineered endpoints, leaked keys, and gateways reselling someone else’s quota are out of scope, and no key of any kind is distributed by this project. Every entry links to the page you would use to create your own.</p>
-        <p>The catalog currently holds 26 providers across 5 access types and 7 model families that appear at more than one provider.</p>
+        <p>The catalog currently holds 26 providers across 6 access types and 7 model families that appear at more than one provider.</p>
 
         <h2>Where the numbers come from</h2>
         <p>Each provider record carries at least one official source URL and a <code>source_checked_at</code> date. A rate limit may only be recorded if a source states it; the validator fails the build otherwise. When a provider publishes limits only inside a logged-in console, or scales them by tier, the field stays empty and the status says so. That is why some rows read "set by project tier" instead of a number: inventing a plausible figure would make the table look more complete and be worth less.</p>

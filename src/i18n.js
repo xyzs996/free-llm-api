@@ -30,6 +30,9 @@ const en = {
   'category.trial-credit': 'Free trial credit',
   'category.metered-access': 'Metered access',
   'category.retiring-free-tier': 'Retiring free tier',
+  // 「即将下线」和「已经下线」得是两个词。合成一个的后果不是少一个标签,
+  // 是关停当天起,页面继续拿将来时说一件已经发生的事。
+  'category.retired-free-tier': 'Retired free tier',
 
   'limitStatus.tier-based': 'Set by project tier',
   'limitStatus.documented-per-model': 'Published per model',
@@ -45,9 +48,11 @@ const en = {
   'limitStatus.free-models-listed': 'Selected models priced at zero',
   'limitStatus.not_published': 'Enforced but not published',
   'limitStatus.retiring': 'Retiring',
+  'limitStatus.retired': 'Retired',
 
   'availability.active': 'Active',
   'availability.retiring': 'Retiring',
+  'availability.retired': 'Retired',
 
   'change.added': 'Added',
   'change.limit-changed': 'Limit changed',
@@ -236,6 +241,7 @@ const en = {
   'home.cellOpenAi': 'OpenAI compatible',
   'home.cellProbe': 'Probe',
   'home.rowRetires': 'Retires {date}',
+  'home.rowRetired': 'Retired {date}',
   'home.rowSignup': 'Get API access',
   'home.rowClosed': 'New access closed',
   'home.rowRpm': '{count} RPM',
@@ -259,6 +265,7 @@ const en = {
   'provider.protocolOpenAi': 'OpenAI-compatible at <code>{url}</code>',
   'provider.protocolOwn': 'Provider-specific at <code>{url}</code>',
   'provider.retires': 'Retires {date}',
+  'provider.retired': 'Retired {date}',
   'provider.rpm': '{count} requests per minute',
   'provider.rpd': '{count} requests per day',
   'provider.placeHeading': 'Where {name} sits in this catalog',
@@ -300,6 +307,9 @@ const en = {
   'provider.faq.throttleA': 'The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.',
   'provider.faq.retireQ': 'Is the {name} free tier going away?',
   'provider.faq.retireYes': 'Yes, on {date}. {note}',
+  // 问的是「会不会取消」,而它已经取消了。回「会,下线日期是 …」等于让读者
+  // 以为现在还能用。
+  'provider.faq.retiredYes': 'It is already gone — it shut down on {date}. {note}',
   'provider.faq.retireNo': 'Nothing in {name}\'s own documentation says so as of {date}. {note}',
   'provider.faq.clientsQ': 'Can {name} be used with Codex, Cline, or Continue?',
   'provider.faq.clientsA': 'Yes. {name} serves the OpenAI chat completions protocol at <code>{url}</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.',
@@ -525,6 +535,7 @@ const zh = {
   'category.trial-credit': '注册赠送额度',
   'category.metered-access': '按量计费',
   'category.retiring-free-tier': '即将下线的免费额度',
+  'category.retired-free-tier': '已下线的免费额度',
 
   'limitStatus.tier-based': '按项目层级设定',
   'limitStatus.documented-per-model': '按模型公布',
@@ -540,9 +551,11 @@ const zh = {
   'limitStatus.free-models-listed': '部分模型标价为零',
   'limitStatus.not_published': '有限流但未公布数值',
   'limitStatus.retiring': '即将下线',
+  'limitStatus.retired': '已下线',
 
   'availability.active': '正常开放',
   'availability.retiring': '即将下线',
+  'availability.retired': '已下线',
 
   'change.added': '新增',
   'change.limit-changed': '限额变化',
@@ -712,6 +725,7 @@ const zh = {
   'home.cellOpenAi': 'OpenAI 兼容',
   'home.cellProbe': '探活',
   'home.rowRetires': '{date} 下线',
+  'home.rowRetired': '{date} 已下线',
   'home.rowSignup': '去开通 API',
   'home.rowClosed': '已停止新用户注册',
   'home.rowRpm': '{count} RPM',
@@ -735,6 +749,7 @@ const zh = {
   'provider.protocolOpenAi': '兼容 OpenAI，端点 <code>{url}</code>',
   'provider.protocolOwn': '厂商自有协议，端点 <code>{url}</code>',
   'provider.retires': '{date} 下线',
+  'provider.retired': '{date} 已下线',
   'provider.rpm': '每分钟 {count} 次请求',
   'provider.rpd': '每天 {count} 次请求',
   'provider.placeHeading': '{name} 在这份清单里处于什么位置',
@@ -776,6 +791,7 @@ const zh = {
   'provider.faq.throttleA': '端点返回 <code>429</code>。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。',
   'provider.faq.retireQ': '{name} 的免费额度会取消吗？',
   'provider.faq.retireYes': '会，下线日期是 {date}。{note}',
+  'provider.faq.retiredYes': '已经没有了 —— {date} 就关停了。{note}',
   'provider.faq.retireNo': '截至 {date}，{name} 自己的文档里没有这样的说法。{note}',
   'provider.faq.clientsQ': '{name} 能配合 Codex、Cline 或 Continue 使用吗？',
   'provider.faq.clientsA': '可以。{name} 在 <code>{url}</code> 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。',

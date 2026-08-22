@@ -19,10 +19,12 @@ test('growth groups keep provider free tiers separate from other access types', 
 test('catalog summary reports actionable free-tier counts', () => {
   const summary = catalogSummary(providers);
 
-  assert.equal(summary.permanentFree, 15);
-  assert.equal(summary.noCardPermanentFree, 15);
-  assert.equal(summary.openAiCompatiblePermanentFree, 15);
-  assert.equal(summary.latestReview, '2026-07-25');
+  // 2026-08-22 重核 26 家后:github-models 关停,novita 和 moonshot 的免费行
+  // 没了,所以厂商免费额度从 15 家减到 13 家。
+  assert.equal(summary.permanentFree, 13);
+  assert.equal(summary.noCardPermanentFree, 13);
+  assert.equal(summary.openAiCompatiblePermanentFree, 13);
+  assert.equal(summary.latestReview, '2026-08-22');
 });
 
 test('quick picks are deterministic and explain their selection rule', () => {

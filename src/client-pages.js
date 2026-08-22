@@ -27,6 +27,7 @@ export const LIMIT_STATUS_LABELS = Object.freeze({
   'free-models-listed': 'Selected models priced at zero',
   not_published: 'Enforced but not published',
   retiring: 'Retiring',
+  retired: 'Retired',
 });
 
 export function limitStatusLabel(status) {

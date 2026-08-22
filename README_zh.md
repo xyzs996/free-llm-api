@@ -9,7 +9,7 @@
 
 永久免费的 Provider、无需信用卡的选择、直达官方 API Key 申请入口、模型与已核验限额，都集中在这一份清单里。
 
-> 15 家提供长期免费额度 · 15 家无需信用卡 · 15 家兼容 OpenAI · 来源核验于 2026-07-25。本仓库不分发任何 Key。一次探活只描述那一次采样请求，不代表服务商整体可用性。
+> 13 家提供长期免费额度 · 13 家无需信用卡 · 13 家兼容 OpenAI · 来源核验于 2026-08-22。本仓库不分发任何 Key。一次探活只描述那一次采样请求，不代表服务商整体可用性。
 
 **[浏览在线目录](https://xyzs996.github.io/free-llm-api/zh/) · [按模型选择](https://xyzs996.github.io/free-llm-api/zh/#browse) · [配置编码 Agent](docs/clients.md) · [检测自己的 Key](https://xyzs996.github.io/free-llm-api/zh/verify.html)**
 
@@ -49,19 +49,17 @@ Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任�
 | 服务商 | 模型 | 官方公布限额 | 信用卡 | OpenAI 兼容 | 获取 API Key |
 | --- | --- | --- | --- | --- | --- |
 | [Google Gemini API](https://xyzs996.github.io/free-llm-api/zh/provider/gemini.html) | Free-tier eligibility varies by model<br>gemini-2.5-flash<br>gemini-2.5-flash-lite | [动态 / 依模型而定](https://ai.google.dev/gemini-api/docs/rate-limits) | 不需要 | 是 | [申请](https://aistudio.google.com/apikey) |
-| [GroqCloud](https://xyzs996.github.io/free-llm-api/zh/provider/groq.html) | llama-3.3-70b-versatile<br>llama-3.1-8b-instant<br>openai/gpt-oss-120b | [30 RPM，1,000 次/天](https://console.groq.com/docs/rate-limits) | 不需要 | 是 | [申请](https://console.groq.com/keys) |
+| [GroqCloud](https://xyzs996.github.io/free-llm-api/zh/provider/groq.html) | openai/gpt-oss-120b<br>openai/gpt-oss-20b<br>openai/gpt-oss-safeguard-20b | [30 RPM，1,000 次/天](https://console.groq.com/docs/rate-limits) | 不需要 | 是 | [申请](https://console.groq.com/keys) |
 | [SambaNova Cloud](https://xyzs996.github.io/free-llm-api/zh/provider/sambanova.html) | DeepSeek-V3.1<br>Meta-Llama-3.3-70B-Instruct<br>gpt-oss-120b | [20 RPM，20 次/天](https://sambanova-systems.mintlify.dev/docs/en/models/rate-limits.md) | 不需要 | 是 | [申请](https://cloud.sambanova.ai/apis) |
 | [Cohere](https://xyzs996.github.io/free-llm-api/zh/provider/cohere.html) | command-a-03-2025<br>command-r-plus<br>embed-v4.0 | [20 RPM](https://docs.cohere.com/docs/rate-limits) | 不需要 | 是 | [申请](https://dashboard.cohere.com/api-keys) |
 | [Cloudflare Workers AI](https://xyzs996.github.io/free-llm-api/zh/provider/cloudflare-workers-ai.html) | @cf/meta/llama-3.3-70b-instruct-fp8-fast<br>@cf/openai/gpt-oss-120b<br>@cf/qwen/qwen2.5-coder-32b-instruct | [动态 / 依模型而定](https://developers.cloudflare.com/workers-ai/platform/pricing/) | 不需要 | 是 | [申请](https://dash.cloudflare.com/profile/api-tokens) |
 | [Hugging Face Inference Providers](https://xyzs996.github.io/free-llm-api/zh/provider/huggingface.html) | deepseek-ai/DeepSeek-V3-0324<br>openai/gpt-oss-120b<br>200+ models routed across partner providers | [动态 / 依模型而定](https://huggingface.co/docs/inference-providers/pricing) | 不需要 | 是 | [申请](https://huggingface.co/settings/tokens) |
 | [SiliconFlow](https://xyzs996.github.io/free-llm-api/zh/provider/siliconflow.html) | Qwen/Qwen3-8B<br>THUDM/GLM-4-9B-0414<br>deepseek-ai/DeepSeek-R1 | [1,000 RPM](https://docs.siliconflow.com/en/userguide/rate-limits/rate-limit-and-upgradation) | 不需要 | 是 | [申请](https://cloud.siliconflow.com/account/ak) |
 | [Fireworks AI](https://xyzs996.github.io/free-llm-api/zh/provider/fireworks.html) | accounts/fireworks/models/llama-v3p3-70b-instruct<br>accounts/fireworks/models/gpt-oss-120b | [10 RPM](https://docs.fireworks.ai/guides/quotas_usage/account-quotas) | 不需要 | 是 | [申请](https://app.fireworks.ai/settings/users/api-keys) |
-| [Z.AI Open Platform](https://xyzs996.github.io/free-llm-api/zh/provider/zai.html) | GLM-4.7-Flash<br>GLM-4.5-Flash | [动态 / 依模型而定](https://docs.z.ai/guides/overview/pricing) | 不需要 | 是 | [申请](https://z.ai/manage-apikey/apikey-list) |
-| [Novita AI](https://xyzs996.github.io/free-llm-api/zh/provider/novita.html) | inclusionai/Ling-3.0-flash<br>Mind Lab Macaron V1 Venti | [动态 / 依模型而定](https://novita.ai/pricing) | 不需要 | 是 | [申请](https://novita.ai/settings/key-management) |
+| [Z.AI Open Platform](https://xyzs996.github.io/free-llm-api/zh/provider/zai.html) | GLM-4.7-Flash<br>GLM-4.5-Flash<br>GLM-4.6V-Flash | [动态 / 依模型而定](https://docs.z.ai/guides/overview/pricing) | 不需要 | 是 | [申请](https://z.ai/manage-apikey/apikey-list) |
 | [Mistral La Plateforme](https://xyzs996.github.io/free-llm-api/zh/provider/mistral.html) | mistral-small-latest<br>open-mistral-nemo<br>codestral-latest | [动态 / 依模型而定](https://docs.mistral.ai/) | 不需要 | 是 | [申请](https://console.mistral.ai/api-keys) |
 | [Alibaba Cloud Model Studio](https://xyzs996.github.io/free-llm-api/zh/provider/dashscope.html) | qwen-plus<br>qwen-turbo<br>qwen3-coder-plus | [动态 / 依模型而定](https://www.alibabacloud.com/help/en/model-studio/rate-limit) | 不需要 | 是 | [申请](https://bailian.console.alibabacloud.com/) |
-| [Moonshot AI (Kimi)](https://xyzs996.github.io/free-llm-api/zh/provider/moonshot.html) | kimi-k2-0905-preview<br>moonshot-v1-8k<br>moonshot-v1-128k | [动态 / 依模型而定](https://platform.moonshot.ai/docs/pricing/limits) | 不需要 | 是 | [申请](https://platform.moonshot.ai/console/api-keys) |
-| [Pollinations.AI](https://xyzs996.github.io/free-llm-api/zh/provider/pollinations.html) | openai<br>mistral<br>Community-hosted open models | [动态 / 依模型而定](https://github.com/pollinations/pollinations/blob/master/APIDOCS.md) | 不需要 | 是 | [申请](https://pollinations.ai/) |
+| [Pollinations.AI](https://xyzs996.github.io/free-llm-api/zh/provider/pollinations.html) | openai<br>mistral<br>Community-hosted open models | [4 RPM](https://github.com/pollinations/pollinations/blob/master/APIDOCS.md) | 不需要 | 是 | [申请](https://pollinations.ai/) |
 | [Ollama Cloud](https://xyzs996.github.io/free-llm-api/zh/provider/ollama-cloud.html) | gpt-oss:120b-cloud<br>gpt-oss:20b-cloud<br>qwen3-coder:480b-cloud | [动态 / 依模型而定](https://docs.ollama.com/cloud) | 不需要 | 是 | [申请](https://ollama.com/settings/keys) |
 
 ## 其他访问方式
@@ -70,13 +68,15 @@ Star 本仓库可以收藏这份数据集并跟进更新。Star 不会改变任�
 
 | 服务商 | 访问形式 | 模型 | 官方公布限额 | 信用卡 | OpenAI 兼容 | 获取 API Key |
 | --- | --- | --- | --- | --- | --- | --- |
-| [Cerebras Inference](https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html) | 注册赠送额度 | gpt-oss-120b<br>zai-glm-4.7<br>gemma-4-31b | [5 RPM](https://inference-docs.cerebras.ai/support/rate-limits) | 需要 | 是 | [申请](https://cloud.cerebras.ai/) |
+| [Novita AI](https://xyzs996.github.io/free-llm-api/zh/provider/novita.html) | 按量计费 | Llama 3.1 8B Instruct<br>OpenAI: GPT OSS 20B<br>BAAI:BGE-M3 | [动态 / 依模型而定](https://novita.ai/pricing) | 不需要 | 是 | [申请](https://novita.ai/settings/key-management) |
+| [Moonshot AI (Kimi)](https://xyzs996.github.io/free-llm-api/zh/provider/moonshot.html) | 按量计费 | kimi-k2-0905-preview<br>moonshot-v1-8k<br>moonshot-v1-128k | [动态 / 依模型而定](https://platform.kimi.ai/docs/pricing/limits) | 不需要 | 是 | [申请](https://platform.moonshot.ai/console/api-keys) |
+| [Cerebras Inference](https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html) | 注册赠送额度 | gpt-oss-120b<br>gemma-4-31b | [5 RPM](https://inference-docs.cerebras.ai/support/rate-limits) | 需要 | 是 | [申请](https://cloud.cerebras.ai/) |
 | [Vercel AI Gateway](https://xyzs996.github.io/free-llm-api/zh/provider/vercel-ai-gateway.html) | 注册赠送额度 | Free Tier eligible model subset<br>openai/gpt-oss-120b<br>moonshotai/kimi-k2 | [动态 / 依模型而定](https://vercel.com/docs/ai-gateway/pricing) | 不需要 | 是 | [申请](https://vercel.com/dashboard/ai-gateway) |
 | [IBM watsonx.ai](https://xyzs996.github.io/free-llm-api/zh/provider/watsonx.html) | 注册赠送额度 | ibm/granite-3-8b-instruct<br>meta-llama/llama-3-3-70b-instruct<br>mistralai/mistral-large | [动态 / 依模型而定](https://www.ibm.com/products/watsonx-ai/pricing) | 不需要 | 否 | [申请](https://dataplatform.cloud.ibm.com/registration/stepone) |
 | [OpenRouter](https://xyzs996.github.io/free-llm-api/zh/provider/openrouter.html) | 免费模型聚合 | Model IDs ending in :free<br>openrouter/free | [20 RPM，50 次/天](https://openrouter.ai/docs/api-reference/limits) | 不需要 | 是 | [申请](https://openrouter.ai/settings/keys) |
-| [GitHub Models](https://xyzs996.github.io/free-llm-api/zh/provider/github-models.html) | 即将下线的免费额度<br>2026-07-30 下线 | Existing-customer catalog only until retirement | [动态 / 依模型而定](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/) | 不需要 | 是 | 已停止新用户注册 |
+| [GitHub Models](https://xyzs996.github.io/free-llm-api/zh/provider/github-models.html) | 已下线的免费额度<br>2026-07-30 已下线 | Retired — the model catalog is gone | [动态 / 依模型而定](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/) | 不需要 | 是 | 已停止新用户注册 |
 | [Together AI](https://xyzs996.github.io/free-llm-api/zh/provider/together.html) | 按量计费 | meta-llama/Llama-3.3-70B-Instruct-Turbo<br>openai/gpt-oss-120b<br>Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo | [动态 / 依模型而定](https://docs.together.ai/docs/serverless/rate-limits) | 不需要 | 是 | [申请](https://api.together.ai/settings/api-keys) |
-| [Nebius Token Factory](https://xyzs996.github.io/free-llm-api/zh/provider/nebius.html) | 按量计费 | deepseek-ai/DeepSeek-V3<br>meta-llama/Llama-3.3-70B-Instruct<br>Qwen/Qwen3-235B-A22B | [60 RPM](https://docs.tokenfactory.nebius.com/ai-models-inference/rate-limits) | 不需要 | 是 | [申请](https://tokenfactory.nebius.com/) |
+| [Nebius Token Factory](https://xyzs996.github.io/free-llm-api/zh/provider/nebius.html) | 按量计费 | deepseek-ai/DeepSeek-V3<br>meta-llama/Llama-3.3-70B-Instruct<br>Qwen/Qwen3-235B-A22B | [动态 / 依模型而定](https://docs.tokenfactory.nebius.com/ai-models-inference/rate-limits) | 不需要 | 是 | [申请](https://tokenfactory.nebius.com/) |
 | [Perplexity API](https://xyzs996.github.io/free-llm-api/zh/provider/perplexity.html) | 按量计费 | sonar<br>sonar-pro<br>sonar-reasoning | [50 RPM](https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers) | 不需要 | 是 | [申请](https://www.perplexity.ai/account/api/keys) |
 | [DeepInfra](https://xyzs996.github.io/free-llm-api/zh/provider/deepinfra.html) | 按量计费 | deepseek-ai/DeepSeek-V3<br>Qwen/Qwen3-Next-80B-A3B-Instruct<br>meta-llama/Llama-4-Scout-17B-16E | [动态 / 依模型而定](https://deepinfra.com/pricing) | 不需要 | 是 | [申请](https://deepinfra.com/dash/api_keys) |
 | [Chutes](https://xyzs996.github.io/free-llm-api/zh/provider/chutes.html) | 按量计费 | zai-org/GLM-5<br>Qwen/Qwen3-32B<br>unsloth/Mistral-Nemo-Instruct-2407 | [动态 / 依模型而定](https://chutes.ai/pricing) | 不需要 | 是 | [申请](https://chutes.ai/app/api) |
@@ -157,12 +157,16 @@ GROQ_API_KEY=YOUR_API_KEY npm run probe -- --provider groq
 
 ## 本周变化
 
-2026-07-25 当周。首次发布清单：26 家服务商，每个公布的数字都能追溯到本周核验过的官方页面。
+2026-08-22 当周。发布以来的第一次复核。逐家重读了官方源：GitHub Models 已经关停，Novita 的免费行一条不剩，Groq 把两个 Llama 模型移出了免费表。有两家这次读不到源，核验日期保持原样。
 
-- **新增（26）：** Google Gemini API、GroqCloud、SambaNova Cloud、Cohere、Cloudflare Workers AI、Hugging Face Inference Providers、SiliconFlow、Fireworks AI、Z.AI Open Platform、Novita AI、Mistral La Plateforme、Alibaba Cloud Model Studio、Moonshot AI (Kimi)、Pollinations.AI、Ollama Cloud、Cerebras Inference、Vercel AI Gateway、IBM watsonx.ai、OpenRouter、GitHub Models、Together AI、Nebius Token Factory、Perplexity API、DeepInfra、Chutes、Scaleway Generative APIs
-- **生命周期 — GitHub Models：** 免费档 2026-07-30 下线，因此清单不提供它的注册链接。
-- **更正 — Cerebras Inference：** 通过验证的支付方式是调用 API 的前提，所以这不算免信用卡的免费额度。
-- **更正 — Fireworks AI：** 未绑定支付方式时的 10 RPM 上限作用于整个账号，不是按模型计算。
+- **生命周期 — GitHub Models：** 按预告于 2026-07-30 关停：playground、模型目录、推理 API 和 BYOK 端点全部下线。作为墓碑条目保留。
+- **生命周期 — Novita AI：** inclusionai/Ling-3.0-flash 与 Mind Lab Macaron V1 Venti 不再标价为零；定价表上已无任何免费模型。移入按量计费。
+- **生命周期 — Moonshot AI (Kimi)：** 文档迁至 platform.kimi.ai。最低一档仍需先充值 $1 才调得通，因此本条从「永久免费额度」移入按量计费。
+- **限额变化 — GroqCloud：** llama-3.3-70b-versatile 与 llama-3.1-8b-instant 已离开免费计划表；openai/gpt-oss-safeguard-20b、qwen/qwen3.6-27b、groq/compound-mini 在表内。RPM/RPD 两列改取 openai/gpt-oss-120b 的 30 RPM / 1K RPD。
+- **限额变化 — Cerebras Inference：** zai-glm-4.7 已离开免费试用表；只剩 gpt-oss-120b 与 gemma-4-31b，仍为 5 RPM / 30K TPM / 1M TPH / 1M TPD。
+- **新增 — Z.AI Open Platform：** 视觉模型 GLM-4.6V-Flash 现在与 GLM-4.7-Flash、GLM-4.5-Flash 一样，定价各列均为 $0。
+- **新增 — SambaNova Cloud：** DeepSeek-V3.2 与 gemma-4-31B-it 以预览身份进入免费表，数字同为 20 RPM / 20 RPD / 200K TPD。
+- **更正（4）：** Pollinations.AI、Nebius Token Factory、Vercel AI Gateway、Cloudflare Workers AI
 
 上面每一条都能在下方清单里找到对应的核验日期与官方来源。完整历史见 [`data/changelog.json`](data/changelog.json)。
 

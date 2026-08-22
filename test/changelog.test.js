@@ -153,9 +153,15 @@ test('a bulk week is grouped by name instead of repeating one bullet per provide
   const renderer = await loadRenderer();
   assert.ok(renderer, 'src/render.js should export renderArtifacts');
 
-  const readme = renderer.renderArtifacts(providers, changelog)['README.md'];
-  const added = changelog.weeks[0].changes.filter(({ type }) => type === 'added');
-  assert.ok(added.length > 3, 'this fixture assumes the launch week added many providers');
+  // 发布那一周已经不是最新的一周了。这条量的是「一周里加了很多家时 README 怎么排」,
+  // 所以把那一周单独拎出来当最新周渲染,而不是赌它永远排在第一个。
+  const bulk = changelog.weeks.find(
+    (week) => week.changes.filter(({ type }) => type === 'added').length > 3,
+  );
+  assert.ok(bulk, 'the catalog should still contain the week that added many providers');
+
+  const readme = renderer.renderArtifacts(providers, { ...changelog, weeks: [bulk] })['README.md'];
+  const added = bulk.changes.filter(({ type }) => type === 'added');
 
   assert.match(readme, new RegExp(`\\*\\*Added \\(${added.length}\\):\\*\\*`));
   for (const { provider_id: id } of added) {

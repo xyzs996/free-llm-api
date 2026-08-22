@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Moonshot AI (Kimi) free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="description" content="Moonshot AI (Kimi) free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <title>Moonshot AI (Kimi) free tier: limits and models</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/moonshot.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Moonshot AI (Kimi) free tier: limits and models">
-  <meta property="og:description" content="Moonshot AI (Kimi) free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:description" content="Moonshot AI (Kimi) free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/moonshot.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Moonshot AI (Kimi) free tier: limits and models">
-  <meta name="twitter:description" content="Moonshot AI (Kimi) free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:description" content="Moonshot AI (Kimi) free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Moonshot AI (Kimi)","item":"https://xyzs996.github.io/free-llm-api/provider/moonshot.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Moonshot AI (Kimi) free tier terms","description":"Limits are expressed as concurrency, RPM, TPM and TPD, and the published tier table is keyed to cumulative recharge rather than to a standing free allowance; reaching $5 of cumulative recharge grants a $5 voucher. New accounts start at the lowest tier, so treat the console tier page as authoritative before planning volume.","url":"https://xyzs996.github.io/free-llm-api/provider/moonshot.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Kimi rate limits","url":"https://platform.moonshot.ai/docs/pricing/limits"},{"@type":"CreativeWork","name":"Kimi API overview","url":"https://platform.moonshot.ai/docs/introduction"},{"@type":"CreativeWork","name":"Kimi pricing","url":"https://platform.moonshot.ai/docs/pricing/chat"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Moonshot AI (Kimi) ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Moonshot AI (Kimi) is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Moonshot AI (Kimi)'s free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Moonshot AI (Kimi) publishes no single free-tier number: its limits are published per tier. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Moonshot AI (Kimi) key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Moonshot AI (Kimi) free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Moonshot AI (Kimi)'s own documentation says so as of 2026-07-25. Because the tiers key off recharge rather than a free grant, budget for at least a small top-up if you need more than trivial throughput."}},{"@type":"Question","name":"Can Moonshot AI (Kimi) be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Moonshot AI (Kimi) serves the OpenAI chat completions protocol at https://api.moonshot.ai/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Moonshot AI (Kimi) free tier terms","description":"The tier table is keyed to cumulative recharge rather than to a standing free allowance: the docs state you must recharge at least $1 before you can start using the platform, and Tier0 then gives 1 concurrent request, 3 RPM, 500K TPM and 1.5M TPD. Tier1 at $10 cumulative gives 50 concurrent, 200 RPM, 2M TPM and unlimited TPD, rising to Tier5 at $3,000. A $5 voucher arrives only once cumulative payments reach $5, and vouchers do not count toward that cumulative total. The docs moved to platform.kimi.ai and the old platform.moonshot.ai paths now 301 there; the page also carries a notice that the tier rules were slated for revision in August because of abusive traffic.","url":"https://xyzs996.github.io/free-llm-api/provider/moonshot.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Kimi rate limits","url":"https://platform.kimi.ai/docs/pricing/limits"},{"@type":"CreativeWork","name":"Kimi API overview","url":"https://platform.kimi.ai/docs/introduction"},{"@type":"CreativeWork","name":"Kimi pricing","url":"https://platform.kimi.ai/docs/pricing/chat"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Moonshot AI (Kimi) ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Moonshot AI (Kimi) is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Moonshot AI (Kimi)'s free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Moonshot AI (Kimi) publishes no single free-tier number: its limits are published per tier. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Moonshot AI (Kimi) key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Moonshot AI (Kimi) free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Moonshot AI (Kimi)'s own documentation says so as of 2026-08-22. Not a free tier in practice: the lowest bracket still requires a $1 payment before any call goes through. Kept in the catalog so the $1 floor is visible rather than discovered at signup."}},{"@type":"Question","name":"Can Moonshot AI (Kimi) be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Moonshot AI (Kimi) serves the OpenAI chat completions protocol at https://api.moonshot.ai/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Moonshot AI (Kimi)</span></li></ol></nav>
-      <p class="eyebrow">Provider free tier · Sources reviewed 2026-07-25</p>
+      <p class="eyebrow">Metered access · Sources reviewed 2026-08-22</p>
       <h1>Moonshot AI (Kimi) free tier</h1>
       <p class="lede">What Moonshot AI (Kimi) publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
     </div>
@@ -42,19 +42,19 @@
     <div class="shell page-grid">
       <article class="page-body" id="page-body">
         <h2>What Moonshot AI (Kimi)'s free tier allows</h2>
-        <p>Limits are expressed as concurrency, RPM, TPM and TPD, and the published tier table is keyed to cumulative recharge rather than to a standing free allowance; reaching $5 of cumulative recharge grants a $5 voucher. New accounts start at the lowest tier, so treat the console tier page as authoritative before planning volume.</p>
+        <p>The tier table is keyed to cumulative recharge rather than to a standing free allowance: the docs state you must recharge at least $1 before you can start using the platform, and Tier0 then gives 1 concurrent request, 3 RPM, 500K TPM and 1.5M TPD. Tier1 at $10 cumulative gives 50 concurrent, 200 RPM, 2M TPM and unlimited TPD, rising to Tier5 at $3,000. A $5 voucher arrives only once cumulative payments reach $5, and vouchers do not count toward that cumulative total. The docs moved to platform.kimi.ai and the old platform.moonshot.ai paths now 301 there; the page also carries a notice that the tier rules were slated for revision in August because of abusive traffic.</p>
         <dl class="fact-grid">
           <div><dt>Published limits</dt><dd>Published per tier</dd></div>
-          <div><dt>Free access type</dt><dd>Provider free tier</dd></div>
+          <div><dt>Free access type</dt><dd>Metered access</dd></div>
           <div><dt>Credit card</dt><dd>Not required</dd></div>
           <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://api.moonshot.ai/v1</code></dd></div>
           <div><dt>Lifecycle</dt><dd>Active</dd></div>
-          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-08-22</dd></div>
         </dl>
-        <p>Because the tiers key off recharge rather than a free grant, budget for at least a small top-up if you need more than trivial throughput.</p>
+        <p>Not a free tier in practice: the lowest bracket still requires a $1 payment before any call goes through. Kept in the catalog so the $1 floor is visible rather than discovered at signup.</p>
 
         <h2>Where Moonshot AI (Kimi) sits in this catalog</h2>
-        <p>Moonshot AI (Kimi) is one of 15 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <p>Moonshot AI (Kimi) is one of 8 metered access entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
@@ -66,22 +66,22 @@
                 <td data-label="Endpoint"><code>api.moonshot.ai</code></td>
               </tr>
               <tr>
-                <td data-label="Compared with"><a href="../provider/pollinations.html">Pollinations.AI</a></td>
-                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Compared with"><a href="../provider/together.html">Together AI</a></td>
+                <td data-label="Published limits">Dynamic, no fixed numbers</td>
                 <td data-label="Card">Not required</td>
-                <td data-label="Endpoint"><code>text.pollinations.ai</code></td>
+                <td data-label="Endpoint"><code>api.together.xyz</code></td>
               </tr>
               <tr>
-                <td data-label="Compared with"><a href="../provider/ollama-cloud.html">Ollama Cloud</a></td>
-                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Compared with"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
+                <td data-label="Published limits">Dynamic, no fixed numbers</td>
                 <td data-label="Card">Not required</td>
-                <td data-label="Endpoint"><code>ollama.com</code></td>
+                <td data-label="Endpoint"><code>api.tokenfactory.nebius.com</code></td>
               </tr>
               <tr>
-                <td data-label="Compared with"><a href="../provider/gemini.html">Google Gemini API</a></td>
-                <td data-label="Published limits">Set by project tier</td>
+                <td data-label="Compared with"><a href="../provider/perplexity.html">Perplexity API</a></td>
+                <td data-label="Published limits">50 requests per minute</td>
                 <td data-label="Card">Not required</td>
-                <td data-label="Endpoint"><code>generativelanguage.googleapis.com</code></td>
+                <td data-label="Endpoint"><code>api.perplexity.ai</code></td>
               </tr>
             </tbody>
           </table>
@@ -133,22 +133,22 @@ wire_api = &quot;responses&quot;
         <h3>What happens when a Moonshot AI (Kimi) key hits the limit?</h3>
         <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
         <h3>Is the Moonshot AI (Kimi) free tier going away?</h3>
-        <p>Nothing in Moonshot AI (Kimi)'s own documentation says so as of 2026-07-25. Because the tiers key off recharge rather than a free grant, budget for at least a small top-up if you need more than trivial throughput.</p>
+        <p>Nothing in Moonshot AI (Kimi)'s own documentation says so as of 2026-08-22. Not a free tier in practice: the lowest bracket still requires a $1 payment before any call goes through. Kept in the catalog so the $1 floor is visible rather than discovered at signup.</p>
         <h3>Can Moonshot AI (Kimi) be used with Codex, Cline, or Continue?</h3>
         <p>Yes. Moonshot AI (Kimi) serves the OpenAI chat completions protocol at <code>https://api.moonshot.ai/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
 
         <h2>Official sources</h2>
         <ul class="source-list">
-          <li><a href="https://platform.moonshot.ai/docs/pricing/limits" rel="noreferrer">Kimi rate limits</a><span class="source-url">https://platform.moonshot.ai/docs/pricing/limits</span></li>
-          <li><a href="https://platform.moonshot.ai/docs/introduction" rel="noreferrer">Kimi API overview</a><span class="source-url">https://platform.moonshot.ai/docs/introduction</span></li>
-          <li><a href="https://platform.moonshot.ai/docs/pricing/chat" rel="noreferrer">Kimi pricing</a><span class="source-url">https://platform.moonshot.ai/docs/pricing/chat</span></li>
+          <li><a href="https://platform.kimi.ai/docs/pricing/limits" rel="noreferrer">Kimi rate limits</a><span class="source-url">https://platform.kimi.ai/docs/pricing/limits</span></li>
+          <li><a href="https://platform.kimi.ai/docs/introduction" rel="noreferrer">Kimi API overview</a><span class="source-url">https://platform.kimi.ai/docs/introduction</span></li>
+          <li><a href="https://platform.kimi.ai/docs/pricing/chat" rel="noreferrer">Kimi pricing</a><span class="source-url">https://platform.kimi.ai/docs/pricing/chat</span></li>
         </ul>
-        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+        <p>Every figure above was read from those pages on 2026-08-22. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
       </article>
       <aside class="related" aria-label="Related pages">
         <div>
           <h2>Compare with</h2>
-          <ul><li><a href="../provider/pollinations.html">Pollinations.AI</a></li><li><a href="../provider/ollama-cloud.html">Ollama Cloud</a></li><li><a href="../provider/gemini.html">Google Gemini API</a></li></ul>
+          <ul><li><a href="../provider/together.html">Together AI</a></li><li><a href="../provider/nebius.html">Nebius Token Factory</a></li><li><a href="../provider/perplexity.html">Perplexity API</a></li></ul>
         </div>
         <div>
           <h2>Model families</h2>

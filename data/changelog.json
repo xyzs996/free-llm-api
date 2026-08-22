@@ -2,36 +2,239 @@
   "schema_version": 1,
   "weeks": [
     {
+      "week_of": "2026-08-22",
+      "summary": "First re-check since publication. Every source was read again: GitHub Models is gone, Novita has no free rows left, and Groq dropped both Llama models from the free table. Two entries could not be re-read and keep their old check date.",
+      "summary_zh": "发布以来的第一次复核。逐家重读了官方源：GitHub Models 已经关停，Novita 的免费行一条不剩，Groq 把两个 Llama 模型移出了免费表。有两家这次读不到源，核验日期保持原样。",
+      "changes": [
+        {
+          "type": "lifecycle",
+          "provider_id": "github-models",
+          "detail": "Retired on 2026-07-30 as announced: playground, model catalog, inference API and BYOK endpoints are all gone. Kept as a tombstone entry.",
+          "detail_zh": "按预告于 2026-07-30 关停：playground、模型目录、推理 API 和 BYOK 端点全部下线。作为墓碑条目保留。"
+        },
+        {
+          "type": "lifecycle",
+          "provider_id": "novita",
+          "detail": "inclusionai/Ling-3.0-flash and Mind Lab Macaron V1 Venti are no longer priced at zero; no model on the pricing table is free any more. Moved to metered access.",
+          "detail_zh": "inclusionai/Ling-3.0-flash 与 Mind Lab Macaron V1 Venti 不再标价为零；定价表上已无任何免费模型。移入按量计费。"
+        },
+        {
+          "type": "limit-changed",
+          "provider_id": "groq",
+          "detail": "llama-3.3-70b-versatile and llama-3.1-8b-instant left the free plan table. openai/gpt-oss-safeguard-20b, qwen/qwen3.6-27b and groq/compound-mini are in it. The RPM/RPD columns now quote openai/gpt-oss-120b at 30 RPM / 1K RPD.",
+          "detail_zh": "llama-3.3-70b-versatile 与 llama-3.1-8b-instant 已离开免费计划表；openai/gpt-oss-safeguard-20b、qwen/qwen3.6-27b、groq/compound-mini 在表内。RPM/RPD 两列改取 openai/gpt-oss-120b 的 30 RPM / 1K RPD。"
+        },
+        {
+          "type": "limit-changed",
+          "provider_id": "cerebras",
+          "detail": "zai-glm-4.7 left the Free Trial table; only gpt-oss-120b and gemma-4-31b remain at 5 RPM / 30K TPM / 1M TPH / 1M TPD.",
+          "detail_zh": "zai-glm-4.7 已离开免费试用表；只剩 gpt-oss-120b 与 gemma-4-31b，仍为 5 RPM / 30K TPM / 1M TPH / 1M TPD。"
+        },
+        {
+          "type": "added",
+          "provider_id": "zai",
+          "detail": "GLM-4.6V-Flash, a vision model, is now listed at $0 across every pricing column alongside GLM-4.7-Flash and GLM-4.5-Flash.",
+          "detail_zh": "视觉模型 GLM-4.6V-Flash 现在与 GLM-4.7-Flash、GLM-4.5-Flash 一样，定价各列均为 $0。"
+        },
+        {
+          "type": "added",
+          "provider_id": "sambanova",
+          "detail": "DeepSeek-V3.2 and gemma-4-31B-it appear in the free table as preview models, on the same 20 RPM / 20 RPD / 200K TPD numbers.",
+          "detail_zh": "DeepSeek-V3.2 与 gemma-4-31B-it 以预览身份进入免费表，数字同为 20 RPM / 20 RPD / 200K TPD。"
+        },
+        {
+          "type": "correction",
+          "provider_id": "pollinations",
+          "detail": "The API docs do publish limits after all, as a minimum interval per tier: Anonymous one request every 15s, Seed 5s, Flower 3s, Nectar none. The entry previously said no figures were published.",
+          "detail_zh": "API 文档其实是公布了限额的，形式是每档的最小请求间隔：Anonymous 每 15 秒 1 次、Seed 5 秒、Flower 3 秒、Nectar 不限。此前本条写的是「没有公布数字」。"
+        },
+        {
+          "type": "correction",
+          "provider_id": "nebius",
+          "detail": "The 60 RPM / 400,000 TPM pair carried here as a baseline appears on the source page only inside a table labelled a visual example. No account default is published; the entry no longer quotes a number.",
+          "detail_zh": "本条原先当作基准值的 60 RPM / 400,000 TPM，在源页面上只出现在标着「示意」的表内。官方未公布账号默认值，本条不再引用数字。"
+        },
+        {
+          "type": "correction",
+          "provider_id": "vercel-ai-gateway",
+          "detail": "The $5 monthly free credit is no longer published on the pricing page. The free tier still exists but no amount is stated, so none is quoted here.",
+          "detail_zh": "每月 $5 的免费额度已不在定价页上。免费档仍在，但页面不再给出金额，本条因此也不再引用。"
+        },
+        {
+          "type": "correction",
+          "provider_id": "cloudflare-workers-ai",
+          "detail": "Some models sit outside the 10,000 Neuron allowance and need a paid billing method regardless: @cf/moonshotai/kimi-k2.6, @cf/zai-org/glm-5.2 and @cf/deepseek-ai/deepseek-v4-pro-0813.",
+          "detail_zh": "有几个模型不在每天 10,000 Neurons 的额度内，无论如何都要付费方式：@cf/moonshotai/kimi-k2.6、@cf/zai-org/glm-5.2、@cf/deepseek-ai/deepseek-v4-pro-0813。"
+        },
+        {
+          "type": "lifecycle",
+          "provider_id": "moonshot",
+          "detail": "Docs moved to platform.kimi.ai. The lowest tier still requires a $1 recharge before any call goes through, so the entry moved out of the permanent free tier list into metered access.",
+          "detail_zh": "文档迁至 platform.kimi.ai。最低一档仍需先充值 $1 才调得通，因此本条从「永久免费额度」移入按量计费。"
+        }
+      ]
+    },
+    {
       "week_of": "2026-07-25",
       "summary": "First published catalog: 26 providers, every published number traced to an official page checked this week.",
       "summary_zh": "首次发布清单：26 家服务商，每个公布的数字都能追溯到本周核验过的官方页面。",
       "changes": [
-        { "type": "added", "provider_id": "gemini", "detail": "Per-model free tier limits published by Google AI Studio.", "detail_zh": "Google AI Studio 按模型公布免费额度限制。" },
-        { "type": "added", "provider_id": "groq", "detail": "30 RPM / 1,000 requests per day on llama-3.3-70b-versatile.", "detail_zh": "llama-3.3-70b-versatile 上限为 30 RPM、每天 1,000 次请求。" },
-        { "type": "added", "provider_id": "sambanova", "detail": "Free Tier 20 RPM / 20 requests per day / 200,000 tokens per day, no payment method.", "detail_zh": "免费档 20 RPM、每天 20 次请求、每天 20 万 token，无需绑定支付方式。" },
-        { "type": "added", "provider_id": "cohere", "detail": "Trial keys capped at 1,000 API calls per month, with per-endpoint rates.", "detail_zh": "试用 key 每月上限 1,000 次调用，速率按端点分别限制。" },
-        { "type": "added", "provider_id": "cloudflare-workers-ai", "detail": "10,000 Neurons per day, resetting at 00:00 UTC.", "detail_zh": "每天 10,000 Neurons，UTC 00:00 重置。" },
-        { "type": "added", "provider_id": "huggingface", "detail": "$0.10 of monthly inference credits on the free account.", "detail_zh": "免费账号每月 $0.10 推理额度。" },
-        { "type": "added", "provider_id": "siliconflow", "detail": "L0 tier 1,000 RPM / 40,000 TPM; DeepSeek models capped at 100 requests per day.", "detail_zh": "L0 档 1,000 RPM、40,000 TPM；DeepSeek 系列每天上限 100 次请求。" },
-        { "type": "added", "provider_id": "fireworks", "detail": "10 RPM account-wide while no payment method is on file.", "detail_zh": "未绑定支付方式时，账号整体限速 10 RPM。" },
-        { "type": "added", "provider_id": "zai", "detail": "GLM-4.7-Flash and GLM-4.5-Flash listed at $0 input and output.", "detail_zh": "GLM-4.7-Flash 与 GLM-4.5-Flash 的输入输出价格标为 $0。" },
-        { "type": "added", "provider_id": "novita", "detail": "Ling-3.0-flash and Macaron V1 Venti listed with free input and output.", "detail_zh": "Ling-3.0-flash 与 Macaron V1 Venti 的输入输出标为免费。" },
-        { "type": "added", "provider_id": "mistral", "detail": "Free tier exists, but the tier page in Mistral's own docs index returns 404.", "detail_zh": "免费档存在，但 Mistral 官方文档索引里的档位页面返回 404。" },
-        { "type": "added", "provider_id": "dashscope", "detail": "Per-model free quotas documented for Alibaba Cloud Model Studio.", "detail_zh": "阿里云百炼按模型公布免费额度。" },
-        { "type": "added", "provider_id": "moonshot", "detail": "Rate limits documented per account tier.", "detail_zh": "限流按账号档位分别公布。" },
-        { "type": "added", "provider_id": "pollinations", "detail": "Anonymous and registered access with no published numeric limits.", "detail_zh": "匿名与注册均可访问，未公布具体数值限制。" },
-        { "type": "added", "provider_id": "ollama-cloud", "detail": "Hourly and daily limits enforced but not published as numbers.", "detail_zh": "有按小时和按天的限制，但未公布具体数字。" },
-        { "type": "added", "provider_id": "cerebras", "detail": "$5 of trial credits expiring after 30 days; 5 RPM / 1M tokens per day.", "detail_zh": "$5 试用额度，30 天后过期；5 RPM、每天 100 万 token。" },
-        { "type": "added", "provider_id": "vercel-ai-gateway", "detail": "$5 of monthly credits, usable on the Free Tier model subset.", "detail_zh": "每月 $5 额度，可用于免费档的模型子集。" },
-        { "type": "added", "provider_id": "watsonx", "detail": "Trial plan with no numeric request limits published.", "detail_zh": "试用方案未公布具体的请求数限制。" },
-        { "type": "added", "provider_id": "openrouter", "detail": "20 RPM fixed; 50 requests per day under 10 credits, 1,000 at 10 or more.", "detail_zh": "固定 20 RPM；余额不足 10 credits 时每天 50 次请求，达到 10 及以上为 1,000 次。" },
-        { "type": "added", "provider_id": "github-models", "detail": "Recorded for its retirement date rather than as a signup option.", "detail_zh": "收录是为了记录下线日期，而不是作为可注册选项。" },
-        { "type": "added", "provider_id": "together", "detail": "Dynamic per-model limits; Together publishes no fixed numbers.", "detail_zh": "按模型动态限流，官方未公布固定数字。" },
-        { "type": "added", "provider_id": "nebius", "detail": "Baseline 60 RPM / 400,000 TPM, scaled on rolling 15-minute windows.", "detail_zh": "基线 60 RPM、400,000 TPM，按 15 分钟滚动窗口浮动。" },
-        { "type": "added", "provider_id": "perplexity", "detail": "Tier 0 allows 1 query per second and 50 RPM at $0 spend.", "detail_zh": "消费为 $0 的 Tier 0 允许每秒 1 次查询、50 RPM。" },
-        { "type": "added", "provider_id": "deepinfra", "detail": "Pay-as-you-go pricing; the pricing page documents no free allowance.", "detail_zh": "按量付费，定价页面未写明任何免费额度。" },
-        { "type": "added", "provider_id": "chutes", "detail": "Paid plans from $10 per month bundle a daily quota.", "detail_zh": "每月 $10 起的付费方案自带每日额度。" },
-        { "type": "added", "provider_id": "scaleway", "detail": "Base limits require a registered payment method.", "detail_zh": "基础额度要求先绑定支付方式。" },
+        {
+          "type": "added",
+          "provider_id": "gemini",
+          "detail": "Per-model free tier limits published by Google AI Studio.",
+          "detail_zh": "Google AI Studio 按模型公布免费额度限制。"
+        },
+        {
+          "type": "added",
+          "provider_id": "groq",
+          "detail": "30 RPM / 1,000 requests per day on llama-3.3-70b-versatile.",
+          "detail_zh": "llama-3.3-70b-versatile 上限为 30 RPM、每天 1,000 次请求。"
+        },
+        {
+          "type": "added",
+          "provider_id": "sambanova",
+          "detail": "Free Tier 20 RPM / 20 requests per day / 200,000 tokens per day, no payment method.",
+          "detail_zh": "免费档 20 RPM、每天 20 次请求、每天 20 万 token，无需绑定支付方式。"
+        },
+        {
+          "type": "added",
+          "provider_id": "cohere",
+          "detail": "Trial keys capped at 1,000 API calls per month, with per-endpoint rates.",
+          "detail_zh": "试用 key 每月上限 1,000 次调用，速率按端点分别限制。"
+        },
+        {
+          "type": "added",
+          "provider_id": "cloudflare-workers-ai",
+          "detail": "10,000 Neurons per day, resetting at 00:00 UTC.",
+          "detail_zh": "每天 10,000 Neurons，UTC 00:00 重置。"
+        },
+        {
+          "type": "added",
+          "provider_id": "huggingface",
+          "detail": "$0.10 of monthly inference credits on the free account.",
+          "detail_zh": "免费账号每月 $0.10 推理额度。"
+        },
+        {
+          "type": "added",
+          "provider_id": "siliconflow",
+          "detail": "L0 tier 1,000 RPM / 40,000 TPM; DeepSeek models capped at 100 requests per day.",
+          "detail_zh": "L0 档 1,000 RPM、40,000 TPM；DeepSeek 系列每天上限 100 次请求。"
+        },
+        {
+          "type": "added",
+          "provider_id": "fireworks",
+          "detail": "10 RPM account-wide while no payment method is on file.",
+          "detail_zh": "未绑定支付方式时，账号整体限速 10 RPM。"
+        },
+        {
+          "type": "added",
+          "provider_id": "zai",
+          "detail": "GLM-4.7-Flash and GLM-4.5-Flash listed at $0 input and output.",
+          "detail_zh": "GLM-4.7-Flash 与 GLM-4.5-Flash 的输入输出价格标为 $0。"
+        },
+        {
+          "type": "added",
+          "provider_id": "novita",
+          "detail": "Ling-3.0-flash and Macaron V1 Venti listed with free input and output.",
+          "detail_zh": "Ling-3.0-flash 与 Macaron V1 Venti 的输入输出标为免费。"
+        },
+        {
+          "type": "added",
+          "provider_id": "mistral",
+          "detail": "Free tier exists, but the tier page in Mistral's own docs index returns 404.",
+          "detail_zh": "免费档存在，但 Mistral 官方文档索引里的档位页面返回 404。"
+        },
+        {
+          "type": "added",
+          "provider_id": "dashscope",
+          "detail": "Per-model free quotas documented for Alibaba Cloud Model Studio.",
+          "detail_zh": "阿里云百炼按模型公布免费额度。"
+        },
+        {
+          "type": "added",
+          "provider_id": "moonshot",
+          "detail": "Rate limits documented per account tier.",
+          "detail_zh": "限流按账号档位分别公布。"
+        },
+        {
+          "type": "added",
+          "provider_id": "pollinations",
+          "detail": "Anonymous and registered access with no published numeric limits.",
+          "detail_zh": "匿名与注册均可访问，未公布具体数值限制。"
+        },
+        {
+          "type": "added",
+          "provider_id": "ollama-cloud",
+          "detail": "Hourly and daily limits enforced but not published as numbers.",
+          "detail_zh": "有按小时和按天的限制，但未公布具体数字。"
+        },
+        {
+          "type": "added",
+          "provider_id": "cerebras",
+          "detail": "$5 of trial credits expiring after 30 days; 5 RPM / 1M tokens per day.",
+          "detail_zh": "$5 试用额度，30 天后过期；5 RPM、每天 100 万 token。"
+        },
+        {
+          "type": "added",
+          "provider_id": "vercel-ai-gateway",
+          "detail": "$5 of monthly credits, usable on the Free Tier model subset.",
+          "detail_zh": "每月 $5 额度，可用于免费档的模型子集。"
+        },
+        {
+          "type": "added",
+          "provider_id": "watsonx",
+          "detail": "Trial plan with no numeric request limits published.",
+          "detail_zh": "试用方案未公布具体的请求数限制。"
+        },
+        {
+          "type": "added",
+          "provider_id": "openrouter",
+          "detail": "20 RPM fixed; 50 requests per day under 10 credits, 1,000 at 10 or more.",
+          "detail_zh": "固定 20 RPM；余额不足 10 credits 时每天 50 次请求，达到 10 及以上为 1,000 次。"
+        },
+        {
+          "type": "added",
+          "provider_id": "github-models",
+          "detail": "Recorded for its retirement date rather than as a signup option.",
+          "detail_zh": "收录是为了记录下线日期，而不是作为可注册选项。"
+        },
+        {
+          "type": "added",
+          "provider_id": "together",
+          "detail": "Dynamic per-model limits; Together publishes no fixed numbers.",
+          "detail_zh": "按模型动态限流，官方未公布固定数字。"
+        },
+        {
+          "type": "added",
+          "provider_id": "nebius",
+          "detail": "Baseline 60 RPM / 400,000 TPM, scaled on rolling 15-minute windows.",
+          "detail_zh": "基线 60 RPM、400,000 TPM，按 15 分钟滚动窗口浮动。"
+        },
+        {
+          "type": "added",
+          "provider_id": "perplexity",
+          "detail": "Tier 0 allows 1 query per second and 50 RPM at $0 spend.",
+          "detail_zh": "消费为 $0 的 Tier 0 允许每秒 1 次查询、50 RPM。"
+        },
+        {
+          "type": "added",
+          "provider_id": "deepinfra",
+          "detail": "Pay-as-you-go pricing; the pricing page documents no free allowance.",
+          "detail_zh": "按量付费，定价页面未写明任何免费额度。"
+        },
+        {
+          "type": "added",
+          "provider_id": "chutes",
+          "detail": "Paid plans from $10 per month bundle a daily quota.",
+          "detail_zh": "每月 $10 起的付费方案自带每日额度。"
+        },
+        {
+          "type": "added",
+          "provider_id": "scaleway",
+          "detail": "Base limits require a registered payment method.",
+          "detail_zh": "基础额度要求先绑定支付方式。"
+        },
         {
           "type": "lifecycle",
           "provider_id": "github-models",

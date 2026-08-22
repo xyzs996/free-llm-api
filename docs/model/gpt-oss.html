@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Which providers serve gpt-oss models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta name="description" content="Which providers serve gpt-oss models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <title>Free gpt-oss API: 10 providers compared</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/model/gpt-oss.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Free gpt-oss API: 10 providers compared">
-  <meta property="og:description" content="Which providers serve gpt-oss models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta property="og:description" content="Which providers serve gpt-oss models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/model/gpt-oss.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,7 +22,7 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free gpt-oss API: 10 providers compared">
-  <meta name="twitter:description" content="Which providers serve gpt-oss models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta name="twitter:description" content="Which providers serve gpt-oss models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"gpt-oss","item":"https://xyzs996.github.io/free-llm-api/model/gpt-oss.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Providers offering gpt-oss on free terms","description":"Every provider in this catalog that lists a gpt-oss model as free, ordered as the comparison table on the page.","numberOfItems":10,"itemListElement":[{"@type":"ListItem","position":1,"name":"GroqCloud","url":"https://xyzs996.github.io/free-llm-api/provider/groq.html"},{"@type":"ListItem","position":2,"name":"SambaNova Cloud","url":"https://xyzs996.github.io/free-llm-api/provider/sambanova.html"},{"@type":"ListItem","position":3,"name":"Cloudflare Workers AI","url":"https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html"},{"@type":"ListItem","position":4,"name":"Hugging Face Inference Providers","url":"https://xyzs996.github.io/free-llm-api/provider/huggingface.html"},{"@type":"ListItem","position":5,"name":"Fireworks AI","url":"https://xyzs996.github.io/free-llm-api/provider/fireworks.html"},{"@type":"ListItem","position":6,"name":"Ollama Cloud","url":"https://xyzs996.github.io/free-llm-api/provider/ollama-cloud.html"},{"@type":"ListItem","position":7,"name":"Cerebras Inference","url":"https://xyzs996.github.io/free-llm-api/provider/cerebras.html"},{"@type":"ListItem","position":8,"name":"Vercel AI Gateway","url":"https://xyzs996.github.io/free-llm-api/provider/vercel-ai-gateway.html"},{"@type":"ListItem","position":9,"name":"Together AI","url":"https://xyzs996.github.io/free-llm-api/provider/together.html"},{"@type":"ListItem","position":10,"name":"Scaleway Generative APIs","url":"https://xyzs996.github.io/free-llm-api/provider/scaleway.html"}]}</script>
@@ -54,7 +54,7 @@
               <td data-label="Free access">Provider free tier</td>
               <td data-label="Published limits">30 requests per minute, 1000 requests per day</td>
               <td data-label="Card">Not required</td>
-              <td data-label="Matching models">openai/gpt-oss-120b, openai/gpt-oss-20b</td>
+              <td data-label="Matching models">openai/gpt-oss-120b, openai/gpt-oss-20b, openai/gpt-oss-safeguard-20b</td>
             </tr>
             <tr>
               <td data-label="Provider"><a href="../provider/sambanova.html">SambaNova Cloud</a></td>
@@ -131,8 +131,8 @@
           <li><a href="../provider/huggingface.html">Hugging Face Inference Providers</a> — Signed-in free users receive $0.10 in monthly Inference Provider credits (Hugging Face notes this is subject to change); PRO users receive $2.00 and Team or Enterprise organizations $2.00 per seat.</li>
           <li><a href="../provider/fireworks.html">Fireworks AI</a> — An account with no payment method and no credits is limited to 10 requests per minute across the entire account.</li>
           <li><a href="../provider/ollama-cloud.html">Ollama Cloud</a> — Cloud models run on Ollama&#39;s servers while keeping the local CLI workflow, and require only an ollama.com account to start.</li>
-          <li><a href="../provider/cerebras.html">Cerebras Inference</a> — Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b, zai-glm-4.7 and gemma-4-31b.</li>
-          <li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a> — Every Vercel team account receives $5 of AI Gateway credits per month on the free tier, usable only against the Free Tier model subset rather than the full catalogue.</li>
+          <li><a href="../provider/cerebras.html">Cerebras Inference</a> — Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b and gemma-4-31b — zai-glm-4.7 is no longer in that table.</li>
+          <li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a> — Every Vercel team account gets a free tier, but it covers a subset of models rather than the full catalog, and free-tier requests are rate limited per model at lower limits than the paid tier — those per-model numbers are not published.</li>
           <li><a href="../provider/together.html">Together AI</a> — Together applies dynamic per-model rate limits that rise with sustained successful traffic and fall when traffic drops, and states plainly that there are no fixed per-model limits published.</li>
           <li><a href="../provider/scaleway.html">Scaleway Generative APIs</a> — Every model served through Generative APIs - Serverless is limited by tokens per minute, queries per minute and concurrent requests.</li>
         </ul>

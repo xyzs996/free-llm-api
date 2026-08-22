@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="哪些服务商以免费额度提供 Kimi 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta name="description" content="哪些服务商以免费额度提供 Kimi 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <title>Kimi 免费 API：2 家服务商横评</title>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/model/kimi.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Kimi 免费 API：2 家服务商横评">
-  <meta property="og:description" content="哪些服务商以免费额度提供 Kimi 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta property="og:description" content="哪些服务商以免费额度提供 Kimi 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/model/kimi.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,7 +22,7 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kimi 免费 API：2 家服务商横评">
-  <meta name="twitter:description" content="哪些服务商以免费额度提供 Kimi 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta name="twitter:description" content="哪些服务商以免费额度提供 Kimi 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"Kimi","item":"https://xyzs996.github.io/free-llm-api/zh/model/kimi.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"以免费条款提供 Kimi 的服务商","description":"本清单里所有把 Kimi 模型标为免费的服务商，顺序与页面上的对比表一致。","numberOfItems":2,"itemListElement":[{"@type":"ListItem","position":1,"name":"Moonshot AI (Kimi)","url":"https://xyzs996.github.io/free-llm-api/zh/provider/moonshot.html"},{"@type":"ListItem","position":2,"name":"Vercel AI Gateway","url":"https://xyzs996.github.io/free-llm-api/zh/provider/vercel-ai-gateway.html"}]}</script>
@@ -51,7 +51,7 @@
             <tbody>
             <tr>
               <td data-label="服务商"><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a></td>
-              <td data-label="免费形式">厂商免费额度</td>
+              <td data-label="免费形式">按量计费</td>
               <td data-label="官方公布限额">按层级公布</td>
               <td data-label="信用卡">不需要</td>
               <td data-label="匹配到的模型">kimi-k2-0905-preview、moonshot-v1-8k、moonshot-v1-128k</td>
@@ -69,8 +69,8 @@
 
         <h2>免费条款到底差在哪</h2>
         <ul class="difference-list">
-          <li><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a> — 限额用并发数、RPM、TPM 和 TPD 表示，公布的分层表对应的是累计充值金额，而不是一份常设的免费额度；累计充值达到 5 美元会赠送 5 美元代金券。</li>
-          <li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a> — 免费层下每个 Vercel 团队账号每月获得 5 美元的 AI Gateway 额度，而且只能用在 Free Tier 那部分模型上，不是整个模型目录。</li>
+          <li><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a> — 分档表挂钩的是累计充值金额，而不是一份长期免费额度：文档写明必须先充值至少 $1 才能开始使用，此后 Tier0 给 1 路并发、3 RPM、500K TPM、1.5M TPD。</li>
+          <li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a> — 每个 Vercel team 账号都有免费档，但免费档只覆盖模型子集，不是全部目录；免费档的请求还按模型限流，上限低于付费档，而这些按模型的数字并不公布。</li>
         </ul>
 
         <h2>怎么挑一家</h2>

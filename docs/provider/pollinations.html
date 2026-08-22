@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Pollinations.AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="description" content="Pollinations.AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <title>Pollinations.AI free tier: limits and models</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/pollinations.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Pollinations.AI free tier: limits and models">
-  <meta property="og:description" content="Pollinations.AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:description" content="Pollinations.AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/pollinations.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Pollinations.AI free tier: limits and models">
-  <meta name="twitter:description" content="Pollinations.AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:description" content="Pollinations.AI free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Pollinations.AI","item":"https://xyzs996.github.io/free-llm-api/provider/pollinations.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Pollinations.AI free tier terms","description":"Pollinations exposes an OpenAI-compatible text endpoint that can be called without a key for basic use, and the official API docs do not publish RPM or RPD figures. The docs do state that since 2025-03-31 free-tier images may include watermarks, so free-tier output is not identical to paid output.","url":"https://xyzs996.github.io/free-llm-api/provider/pollinations.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Pollinations API documentation","url":"https://github.com/pollinations/pollinations/blob/master/APIDOCS.md"},{"@type":"CreativeWork","name":"Pollinations project repository","url":"https://github.com/pollinations/pollinations"},{"@type":"CreativeWork","name":"Pollinations.AI home","url":"https://pollinations.ai/"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Pollinations.AI ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Pollinations.AI is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Pollinations.AI's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Pollinations.AI publishes no single free-tier number: its limits are enforced but not published. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Pollinations.AI key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Pollinations.AI free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Pollinations.AI's own documentation says so as of 2026-07-25. This is a community-operated service rather than a commercial provider; treat availability as best-effort and do not build production dependencies on it."}},{"@type":"Question","name":"Can Pollinations.AI be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pollinations.AI serves the OpenAI chat completions protocol at https://text.pollinations.ai/openai, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Pollinations.AI free tier terms","description":"The API docs now publish four tiers by minimum interval between requests: Anonymous, no signup, basic models, one request every 15 seconds; Seed, free registration, standard models, one request every 5 seconds; Flower, paid, advanced models, one request every 3 seconds; Nectar, enterprise, all models, no limit. The RPM column here is the Anonymous tier expressed per minute (one per 15s = 4/min). Since 2025-03-31 free-tier images may carry a watermark, and removing it with the nologo parameter needs an account.","url":"https://xyzs996.github.io/free-llm-api/provider/pollinations.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Pollinations API documentation","url":"https://github.com/pollinations/pollinations/blob/master/APIDOCS.md"},{"@type":"CreativeWork","name":"Pollinations project repository","url":"https://github.com/pollinations/pollinations"},{"@type":"CreativeWork","name":"Pollinations.AI home","url":"https://pollinations.ai/"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Pollinations.AI ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Pollinations.AI is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Pollinations.AI's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Pollinations.AI publishes 4 requests per minute. Those are the numbers in its own documentation as reviewed on 2026-08-22."}},{"@type":"Question","name":"What happens when a Pollinations.AI key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Pollinations.AI free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Pollinations.AI's own documentation says so as of 2026-08-22. Still callable with no key at all, which is what makes it useful for a first test; treat availability as best-effort and do not build production dependencies on it."}},{"@type":"Question","name":"Can Pollinations.AI be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pollinations.AI serves the OpenAI chat completions protocol at https://text.pollinations.ai/openai, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Pollinations.AI</span></li></ol></nav>
-      <p class="eyebrow">Provider free tier · Sources reviewed 2026-07-25</p>
+      <p class="eyebrow">Provider free tier · Sources reviewed 2026-08-22</p>
       <h1>Pollinations.AI free tier</h1>
       <p class="lede">What Pollinations.AI publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
     </div>
@@ -42,26 +42,26 @@
     <div class="shell page-grid">
       <article class="page-body" id="page-body">
         <h2>What Pollinations.AI's free tier allows</h2>
-        <p>Pollinations exposes an OpenAI-compatible text endpoint that can be called without a key for basic use, and the official API docs do not publish RPM or RPD figures. The docs do state that since 2025-03-31 free-tier images may include watermarks, so free-tier output is not identical to paid output.</p>
+        <p>The API docs now publish four tiers by minimum interval between requests: Anonymous, no signup, basic models, one request every 15 seconds; Seed, free registration, standard models, one request every 5 seconds; Flower, paid, advanced models, one request every 3 seconds; Nectar, enterprise, all models, no limit. The RPM column here is the Anonymous tier expressed per minute (one per 15s = 4/min). Since 2025-03-31 free-tier images may carry a watermark, and removing it with the nologo parameter needs an account.</p>
         <dl class="fact-grid">
-          <div><dt>Published limits</dt><dd>Enforced but not published</dd></div>
+          <div><dt>Published limits</dt><dd>4 requests per minute</dd></div>
           <div><dt>Free access type</dt><dd>Provider free tier</dd></div>
           <div><dt>Credit card</dt><dd>Not required</dd></div>
           <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://text.pollinations.ai/openai</code></dd></div>
           <div><dt>Lifecycle</dt><dd>Active</dd></div>
-          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-08-22</dd></div>
         </dl>
-        <p>This is a community-operated service rather than a commercial provider; treat availability as best-effort and do not build production dependencies on it.</p>
+        <p>Still callable with no key at all, which is what makes it useful for a first test; treat availability as best-effort and do not build production dependencies on it.</p>
 
         <h2>Where Pollinations.AI sits in this catalog</h2>
-        <p>Pollinations.AI is one of 15 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <p>Pollinations.AI is one of 13 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes fixed numbers — 4 requests per minute — which only 9 of the 25 do.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
             <tbody>
               <tr class="row-self">
                 <td data-label="Compared with">Pollinations.AI (this page)</td>
-                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Published limits">4 requests per minute</td>
                 <td data-label="Card">Not required</td>
                 <td data-label="Endpoint"><code>text.pollinations.ai</code></td>
               </tr>
@@ -129,11 +129,11 @@ wire_api = &quot;responses&quot;
         <h3>Does Pollinations.AI ask for a credit card?</h3>
         <p>No. Pollinations.AI is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
         <h3>What are Pollinations.AI&#39;s free-tier rate limits?</h3>
-        <p>Pollinations.AI publishes no single free-tier number: its limits are enforced but not published. This catalog leaves that blank rather than guessing a figure.</p>
+        <p>Pollinations.AI publishes 4 requests per minute. Those are the numbers in its own documentation as reviewed on 2026-08-22.</p>
         <h3>What happens when a Pollinations.AI key hits the limit?</h3>
         <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
         <h3>Is the Pollinations.AI free tier going away?</h3>
-        <p>Nothing in Pollinations.AI's own documentation says so as of 2026-07-25. This is a community-operated service rather than a commercial provider; treat availability as best-effort and do not build production dependencies on it.</p>
+        <p>Nothing in Pollinations.AI's own documentation says so as of 2026-08-22. Still callable with no key at all, which is what makes it useful for a first test; treat availability as best-effort and do not build production dependencies on it.</p>
         <h3>Can Pollinations.AI be used with Codex, Cline, or Continue?</h3>
         <p>Yes. Pollinations.AI serves the OpenAI chat completions protocol at <code>https://text.pollinations.ai/openai</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
 
@@ -143,7 +143,7 @@ wire_api = &quot;responses&quot;
           <li><a href="https://github.com/pollinations/pollinations" rel="noreferrer">Pollinations project repository</a><span class="source-url">https://github.com/pollinations/pollinations</span></li>
           <li><a href="https://pollinations.ai/" rel="noreferrer">Pollinations.AI home</a><span class="source-url">https://pollinations.ai/</span></li>
         </ul>
-        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+        <p>Every figure above was read from those pages on 2026-08-22. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
       </article>
       <aside class="related" aria-label="Related pages">
         <div>

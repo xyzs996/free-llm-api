@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SambaNova Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="description" content="SambaNova Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <title>SambaNova Cloud free tier: limits and models</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/sambanova.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="SambaNova Cloud free tier: limits and models">
-  <meta property="og:description" content="SambaNova Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:description" content="SambaNova Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/sambanova.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SambaNova Cloud free tier: limits and models">
-  <meta name="twitter:description" content="SambaNova Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:description" content="SambaNova Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"SambaNova Cloud","item":"https://xyzs996.github.io/free-llm-api/provider/sambanova.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"SambaNova Cloud free tier terms","description":"The Free Tier applies whenever no payment method is linked to the account. For DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b the free limits are 20 RPM, 20 RPD and 200,000 tokens per day. Linking a payment method moves the account to the Developer Tier (60-240 RPM, 12,000-48,000 RPD, 20M tokens/day across all models).","url":"https://xyzs996.github.io/free-llm-api/provider/sambanova.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"SambaNova model rate limits","url":"https://sambanova-systems.mintlify.dev/docs/en/models/rate-limits.md"},{"@type":"CreativeWork","name":"SambaNova developer guide","url":"https://docs.sambanova.ai/docs/en/get-started/overview"},{"@type":"CreativeWork","name":"SambaNova OpenAI compatibility","url":"https://docs.sambanova.ai/docs/en/features/openai-compatibility"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does SambaNova Cloud ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. SambaNova Cloud is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are SambaNova Cloud's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"SambaNova Cloud publishes 20 requests per minute, 20 requests per day. Those are the numbers in its own documentation as reviewed on 2026-07-25."}},{"@type":"Question","name":"What happens when a SambaNova Cloud key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the SambaNova Cloud free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in SambaNova Cloud's own documentation says so as of 2026-07-25. Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. The 20 requests-per-day cap is the binding constraint for most users."}},{"@type":"Question","name":"Can SambaNova Cloud be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. SambaNova Cloud serves the OpenAI chat completions protocol at https://api.sambanova.ai/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"SambaNova Cloud free tier terms","description":"The Free Tier applies whenever no payment method is linked to the account. Every model in the free table shares the same numbers: 20 RPM, 20 RPD and 200,000 tokens per day. Production models are DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b; DeepSeek-V3.2 and gemma-4-31B-it are listed as preview. SambaNova publishes no tokens-per-minute figure for the free tier, only RPM, RPD and TPD. MiniMax-M2.7 appears in the Developer tier tables only. Linking a payment method moves the account to the Developer Tier.","url":"https://xyzs996.github.io/free-llm-api/provider/sambanova.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"SambaNova model rate limits","url":"https://sambanova-systems.mintlify.dev/docs/en/models/rate-limits.md"},{"@type":"CreativeWork","name":"SambaNova developer guide","url":"https://docs.sambanova.ai/docs/en/get-started/overview"},{"@type":"CreativeWork","name":"SambaNova OpenAI compatibility","url":"https://docs.sambanova.ai/docs/en/features/openai-compatibility"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does SambaNova Cloud ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. SambaNova Cloud is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are SambaNova Cloud's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"SambaNova Cloud publishes 20 requests per minute, 20 requests per day. Those are the numbers in its own documentation as reviewed on 2026-08-22."}},{"@type":"Question","name":"What happens when a SambaNova Cloud key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the SambaNova Cloud free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in SambaNova Cloud's own documentation says so as of 2026-08-22. Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. RPM and RPD are both 20, so one busy minute can spend the whole day."}},{"@type":"Question","name":"Can SambaNova Cloud be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. SambaNova Cloud serves the OpenAI chat completions protocol at https://api.sambanova.ai/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">SambaNova Cloud</span></li></ol></nav>
-      <p class="eyebrow">Provider free tier · Sources reviewed 2026-07-25</p>
+      <p class="eyebrow">Provider free tier · Sources reviewed 2026-08-22</p>
       <h1>SambaNova Cloud free tier</h1>
       <p class="lede">What SambaNova Cloud publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
     </div>
@@ -42,19 +42,19 @@
     <div class="shell page-grid">
       <article class="page-body" id="page-body">
         <h2>What SambaNova Cloud's free tier allows</h2>
-        <p>The Free Tier applies whenever no payment method is linked to the account. For DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b the free limits are 20 RPM, 20 RPD and 200,000 tokens per day. Linking a payment method moves the account to the Developer Tier (60-240 RPM, 12,000-48,000 RPD, 20M tokens/day across all models).</p>
+        <p>The Free Tier applies whenever no payment method is linked to the account. Every model in the free table shares the same numbers: 20 RPM, 20 RPD and 200,000 tokens per day. Production models are DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b; DeepSeek-V3.2 and gemma-4-31B-it are listed as preview. SambaNova publishes no tokens-per-minute figure for the free tier, only RPM, RPD and TPD. MiniMax-M2.7 appears in the Developer tier tables only. Linking a payment method moves the account to the Developer Tier.</p>
         <dl class="fact-grid">
           <div><dt>Published limits</dt><dd>20 requests per minute, 20 requests per day</dd></div>
           <div><dt>Free access type</dt><dd>Provider free tier</dd></div>
           <div><dt>Credit card</dt><dd>Not required</dd></div>
           <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://api.sambanova.ai/v1</code></dd></div>
           <div><dt>Lifecycle</dt><dd>Active</dd></div>
-          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-08-22</dd></div>
         </dl>
-        <p>Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. The 20 requests-per-day cap is the binding constraint for most users.</p>
+        <p>Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. RPM and RPD are both 20, so one busy minute can spend the whole day.</p>
 
         <h2>Where SambaNova Cloud sits in this catalog</h2>
-        <p>SambaNova Cloud is one of 15 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes fixed numbers — 20 requests per minute, 20 requests per day — which only 9 of the 25 do.</p>
+        <p>SambaNova Cloud is one of 13 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes fixed numbers — 20 requests per minute, 20 requests per day — which only 9 of the 25 do.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
@@ -92,8 +92,10 @@
           <li><code>DeepSeek-V3.1</code> — <a href="../model/deepseek.html">DeepSeek</a>, also free at 4 other providers here</li>
           <li><code>Meta-Llama-3.3-70B-Instruct</code> — <a href="../model/llama.html">Llama</a>, also free at 8 other providers here</li>
           <li><code>gpt-oss-120b</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
+          <li><code>DeepSeek-V3.2</code> — <a href="../model/deepseek.html">DeepSeek</a>, also free at 4 other providers here</li>
+          <li><code>gemma-4-31B-it</code> — not part of any family this catalog tracks across providers</li>
         </ul>
-        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 8 other providers here also host the <a href="../model/llama.html">Llama</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/watsonx.html">IBM watsonx.ai</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 4 other providers here also host the <a href="../model/deepseek.html">DeepSeek</a> family on free terms, and the terms are not the same: <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>.</p>
+        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 8 other providers here also host the <a href="../model/llama.html">Llama</a> family on free terms, and the terms are not the same: <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/novita.html">Novita AI</a>, <a href="../provider/watsonx.html">IBM watsonx.ai</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 4 other providers here also host the <a href="../model/deepseek.html">DeepSeek</a> family on free terms, and the terms are not the same: <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>.</p>
 
         <h2>Checking a SambaNova Cloud key</h2>
         <p>The CORS preflight succeeds but returns no allow-origin header, so a browser refuses to send the Authorization header. That was measured against <code>https://api.sambanova.ai</code> on 2026-07-25.</p>
@@ -129,11 +131,11 @@ wire_api = &quot;responses&quot;
         <h3>Does SambaNova Cloud ask for a credit card?</h3>
         <p>No. SambaNova Cloud is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
         <h3>What are SambaNova Cloud&#39;s free-tier rate limits?</h3>
-        <p>SambaNova Cloud publishes 20 requests per minute, 20 requests per day. Those are the numbers in its own documentation as reviewed on 2026-07-25.</p>
+        <p>SambaNova Cloud publishes 20 requests per minute, 20 requests per day. Those are the numbers in its own documentation as reviewed on 2026-08-22.</p>
         <h3>What happens when a SambaNova Cloud key hits the limit?</h3>
         <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
         <h3>Is the SambaNova Cloud free tier going away?</h3>
-        <p>Nothing in SambaNova Cloud's own documentation says so as of 2026-07-25. Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. The 20 requests-per-day cap is the binding constraint for most users.</p>
+        <p>Nothing in SambaNova Cloud's own documentation says so as of 2026-08-22. Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. RPM and RPD are both 20, so one busy minute can spend the whole day.</p>
         <h3>Can SambaNova Cloud be used with Codex, Cline, or Continue?</h3>
         <p>Yes. SambaNova Cloud serves the OpenAI chat completions protocol at <code>https://api.sambanova.ai/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
 
@@ -143,7 +145,7 @@ wire_api = &quot;responses&quot;
           <li><a href="https://docs.sambanova.ai/docs/en/get-started/overview" rel="noreferrer">SambaNova developer guide</a><span class="source-url">https://docs.sambanova.ai/docs/en/get-started/overview</span></li>
           <li><a href="https://docs.sambanova.ai/docs/en/features/openai-compatibility" rel="noreferrer">SambaNova OpenAI compatibility</a><span class="source-url">https://docs.sambanova.ai/docs/en/features/openai-compatibility</span></li>
         </ul>
-        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+        <p>Every figure above was read from those pages on 2026-08-22. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
       </article>
       <aside class="related" aria-label="Related pages">
         <div>

@@ -40,6 +40,7 @@ import {
   localeDepth,
   localePath,
 } from './site.js';
+import { hasRetired } from './lifecycle.js';
 import { CHANGELOG_CHANGE_LABELS, isLandingPageEligible } from './validate.js';
 import { connectSrcOrigins, renderVerifyPage } from './verify-page.js';
 
@@ -52,7 +53,7 @@ function renderSources(sources) {
 
 function renderProviderRow(provider, t, locale) {
   const retirement = provider.availability.retires_at
-    ? `\n              <span class="retirement">${t('home.rowRetires', { date: escapeHtml(provider.availability.retires_at) })}</span>`
+    ? `\n              <span class="retirement">${t(hasRetired(provider) ? 'home.rowRetired' : 'home.rowRetires', { date: escapeHtml(provider.availability.retires_at) })}</span>`
     : '';
   const signup = provider.signup_url
     ? `<a class="row-action" href="${escapeHtml(provider.signup_url)}" rel="noreferrer">${escapeHtml(t('home.rowSignup'))}</a>`
@@ -159,7 +160,7 @@ function renderReadmeRows(providers, { includeType = false } = {}) {
       : source.url;
     const access = provider.signup_url ? `[Open](${provider.signup_url})` : 'Closed to new users';
     const type = provider.availability.retires_at
-      ? `${titleForCategory(provider.category)}<br>Retires ${provider.availability.retires_at}`
+      ? `${titleForCategory(provider.category)}<br>${hasRetired(provider) ? 'Retired' : 'Retires'} ${provider.availability.retires_at}`
       : titleForCategory(provider.category);
     const cells = [
       `[${escapeMarkdown(provider.name)}](${detail})`,

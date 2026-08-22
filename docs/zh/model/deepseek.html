@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="哪些服务商以免费额度提供 DeepSeek 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta name="description" content="哪些服务商以免费额度提供 DeepSeek 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <title>DeepSeek 免费 API：5 家服务商横评</title>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/model/deepseek.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="DeepSeek 免费 API：5 家服务商横评">
-  <meta property="og:description" content="哪些服务商以免费额度提供 DeepSeek 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta property="og:description" content="哪些服务商以免费额度提供 DeepSeek 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/model/deepseek.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,7 +22,7 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="DeepSeek 免费 API：5 家服务商横评">
-  <meta name="twitter:description" content="哪些服务商以免费额度提供 DeepSeek 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta name="twitter:description" content="哪些服务商以免费额度提供 DeepSeek 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"DeepSeek","item":"https://xyzs996.github.io/free-llm-api/zh/model/deepseek.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"以免费条款提供 DeepSeek 的服务商","description":"本清单里所有把 DeepSeek 模型标为免费的服务商，顺序与页面上的对比表一致。","numberOfItems":5,"itemListElement":[{"@type":"ListItem","position":1,"name":"SambaNova Cloud","url":"https://xyzs996.github.io/free-llm-api/zh/provider/sambanova.html"},{"@type":"ListItem","position":2,"name":"Hugging Face Inference Providers","url":"https://xyzs996.github.io/free-llm-api/zh/provider/huggingface.html"},{"@type":"ListItem","position":3,"name":"SiliconFlow","url":"https://xyzs996.github.io/free-llm-api/zh/provider/siliconflow.html"},{"@type":"ListItem","position":4,"name":"Nebius Token Factory","url":"https://xyzs996.github.io/free-llm-api/zh/provider/nebius.html"},{"@type":"ListItem","position":5,"name":"DeepInfra","url":"https://xyzs996.github.io/free-llm-api/zh/provider/deepinfra.html"}]}</script>
@@ -54,7 +54,7 @@
               <td data-label="免费形式">厂商免费额度</td>
               <td data-label="官方公布限额">每分钟 20 次请求，每天 20 次请求</td>
               <td data-label="信用卡">不需要</td>
-              <td data-label="匹配到的模型">DeepSeek-V3.1</td>
+              <td data-label="匹配到的模型">DeepSeek-V3.1、DeepSeek-V3.2</td>
             </tr>
             <tr>
               <td data-label="服务商"><a href="../provider/huggingface.html">Hugging Face Inference Providers</a></td>
@@ -73,7 +73,7 @@
             <tr>
               <td data-label="服务商"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
               <td data-label="免费形式">按量计费</td>
-              <td data-label="官方公布限额">每分钟 60 次请求</td>
+              <td data-label="官方公布限额">动态，无固定数值</td>
               <td data-label="信用卡">不需要</td>
               <td data-label="匹配到的模型">deepseek-ai/DeepSeek-V3</td>
             </tr>
@@ -90,15 +90,15 @@
 
         <h2>免费条款到底差在哪</h2>
         <ul class="difference-list">
-          <li><a href="../provider/sambanova.html">SambaNova Cloud</a> — 只要账号没有绑定支付方式，就处于 Free Tier。</li>
+          <li><a href="../provider/sambanova.html">SambaNova Cloud</a> — 只要账号没有绑定支付方式，就适用免费档。</li>
           <li><a href="../provider/huggingface.html">Hugging Face Inference Providers</a> — 登录的免费用户每月获得 0.10 美元的 Inference Provider 额度（Hugging Face 注明这个数额可能调整）；PRO 用户 2.00 美元，Team 或 Enterprise 组织按每席位 2.00 美元。</li>
           <li><a href="../provider/siliconflow.html">SiliconFlow</a> — 免费模型的限流是固定值；付费模型按月消费分层，L0 起步为 1,000 RPM、40,000 TPM。</li>
-          <li><a href="../provider/nebius.html">Nebius Token Factory</a> — 限额是动态的，公布的基线为 60 RPM 和 400,000 TPM。</li>
+          <li><a href="../provider/nebius.html">Nebius Token Factory</a> — 限额是动态的，文档不公布账号默认值：它让你去 Token Factory 里的 Rate Limits 页面自己看。</li>
           <li><a href="../provider/deepinfra.html">DeepInfra</a> — 官方定价页为每个在服模型列出了每百万 token 的输入与输出价格，既没有描述免费额度，也没有公布请求速率限制。</li>
         </ul>
 
         <h2>怎么挑一家</h2>
-        <p>这 5 家里有 3 家公布了固定的请求次数，其余的只给出层级或额度余额，也就是说「到底免费多少」唯一诚实的答案在它们各自的控制台里。有 5 家不要信用卡。有 4 家会响应跨域浏览器请求，所以这些家的 key 不用装任何东西，直接在<a href="../verify.html">浏览器检测页</a>里就能验。</p>
+        <p>这 5 家里有 2 家公布了固定的请求次数，其余的只给出层级或额度余额，也就是说「到底免费多少」唯一诚实的答案在它们各自的控制台里。有 5 家不要信用卡。有 4 家会响应跨域浏览器请求，所以这些家的 key 不用装任何东西，直接在<a href="../verify.html">浏览器检测页</a>里就能验。</p>
         <p>model id 匹配上 DeepSeek，并不等于承诺免费额度里就包含它。服务商会在不改 id 的情况下把某个模型在付费和免费之间挪动，所以每一行都链回对应的服务商页面，那里放着该服务商自己的原话和读取日期。</p>
 
         <h2>免费额度用完之后是什么价</h2>

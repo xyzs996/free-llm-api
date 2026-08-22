@@ -9,7 +9,7 @@ English · [简体中文](README_zh.md)
 
 Permanent free tiers, no-card options, direct API key links, models, and verified limits — every claim points to an official source.
 
-> 15 permanent provider free tiers · 15 require no credit card · 15 are OpenAI compatible · sources reviewed 2026-07-25. No keys are distributed here. A probe describes one sampled request, not provider-wide uptime.
+> 13 permanent provider free tiers · 13 require no credit card · 13 are OpenAI compatible · sources reviewed 2026-08-22. No keys are distributed here. A probe describes one sampled request, not provider-wide uptime.
 
 **[Browse the live directory](https://xyzs996.github.io/free-llm-api/) · [Pick by model](https://xyzs996.github.io/free-llm-api/#browse) · [Set up a coding agent](docs/clients.md) · [Check your own key](https://xyzs996.github.io/free-llm-api/verify.html)**
 
@@ -49,19 +49,17 @@ These Provider Free Tiers are the main list: they do not expire like trial credi
 | Provider | Models | Published limits | Card | OpenAI compatible | Get API key |
 | --- | --- | --- | --- | --- | --- |
 | [Google Gemini API](https://xyzs996.github.io/free-llm-api/provider/gemini.html) | Free-tier eligibility varies by model<br>gemini-2.5-flash<br>gemini-2.5-flash-lite | [Dynamic / model-dependent](https://ai.google.dev/gemini-api/docs/rate-limits) | Not required | Yes | [Open](https://aistudio.google.com/apikey) |
-| [GroqCloud](https://xyzs996.github.io/free-llm-api/provider/groq.html) | llama-3.3-70b-versatile<br>llama-3.1-8b-instant<br>openai/gpt-oss-120b | [30 RPM, 1,000 requests/day](https://console.groq.com/docs/rate-limits) | Not required | Yes | [Open](https://console.groq.com/keys) |
+| [GroqCloud](https://xyzs996.github.io/free-llm-api/provider/groq.html) | openai/gpt-oss-120b<br>openai/gpt-oss-20b<br>openai/gpt-oss-safeguard-20b | [30 RPM, 1,000 requests/day](https://console.groq.com/docs/rate-limits) | Not required | Yes | [Open](https://console.groq.com/keys) |
 | [SambaNova Cloud](https://xyzs996.github.io/free-llm-api/provider/sambanova.html) | DeepSeek-V3.1<br>Meta-Llama-3.3-70B-Instruct<br>gpt-oss-120b | [20 RPM, 20 requests/day](https://sambanova-systems.mintlify.dev/docs/en/models/rate-limits.md) | Not required | Yes | [Open](https://cloud.sambanova.ai/apis) |
 | [Cohere](https://xyzs996.github.io/free-llm-api/provider/cohere.html) | command-a-03-2025<br>command-r-plus<br>embed-v4.0 | [20 RPM](https://docs.cohere.com/docs/rate-limits) | Not required | Yes | [Open](https://dashboard.cohere.com/api-keys) |
 | [Cloudflare Workers AI](https://xyzs996.github.io/free-llm-api/provider/cloudflare-workers-ai.html) | @cf/meta/llama-3.3-70b-instruct-fp8-fast<br>@cf/openai/gpt-oss-120b<br>@cf/qwen/qwen2.5-coder-32b-instruct | [Dynamic / model-dependent](https://developers.cloudflare.com/workers-ai/platform/pricing/) | Not required | Yes | [Open](https://dash.cloudflare.com/profile/api-tokens) |
 | [Hugging Face Inference Providers](https://xyzs996.github.io/free-llm-api/provider/huggingface.html) | deepseek-ai/DeepSeek-V3-0324<br>openai/gpt-oss-120b<br>200+ models routed across partner providers | [Dynamic / model-dependent](https://huggingface.co/docs/inference-providers/pricing) | Not required | Yes | [Open](https://huggingface.co/settings/tokens) |
 | [SiliconFlow](https://xyzs996.github.io/free-llm-api/provider/siliconflow.html) | Qwen/Qwen3-8B<br>THUDM/GLM-4-9B-0414<br>deepseek-ai/DeepSeek-R1 | [1,000 RPM](https://docs.siliconflow.com/en/userguide/rate-limits/rate-limit-and-upgradation) | Not required | Yes | [Open](https://cloud.siliconflow.com/account/ak) |
 | [Fireworks AI](https://xyzs996.github.io/free-llm-api/provider/fireworks.html) | accounts/fireworks/models/llama-v3p3-70b-instruct<br>accounts/fireworks/models/gpt-oss-120b | [10 RPM](https://docs.fireworks.ai/guides/quotas_usage/account-quotas) | Not required | Yes | [Open](https://app.fireworks.ai/settings/users/api-keys) |
-| [Z.AI Open Platform](https://xyzs996.github.io/free-llm-api/provider/zai.html) | GLM-4.7-Flash<br>GLM-4.5-Flash | [Dynamic / model-dependent](https://docs.z.ai/guides/overview/pricing) | Not required | Yes | [Open](https://z.ai/manage-apikey/apikey-list) |
-| [Novita AI](https://xyzs996.github.io/free-llm-api/provider/novita.html) | inclusionai/Ling-3.0-flash<br>Mind Lab Macaron V1 Venti | [Dynamic / model-dependent](https://novita.ai/pricing) | Not required | Yes | [Open](https://novita.ai/settings/key-management) |
+| [Z.AI Open Platform](https://xyzs996.github.io/free-llm-api/provider/zai.html) | GLM-4.7-Flash<br>GLM-4.5-Flash<br>GLM-4.6V-Flash | [Dynamic / model-dependent](https://docs.z.ai/guides/overview/pricing) | Not required | Yes | [Open](https://z.ai/manage-apikey/apikey-list) |
 | [Mistral La Plateforme](https://xyzs996.github.io/free-llm-api/provider/mistral.html) | mistral-small-latest<br>open-mistral-nemo<br>codestral-latest | [Dynamic / model-dependent](https://docs.mistral.ai/) | Not required | Yes | [Open](https://console.mistral.ai/api-keys) |
 | [Alibaba Cloud Model Studio](https://xyzs996.github.io/free-llm-api/provider/dashscope.html) | qwen-plus<br>qwen-turbo<br>qwen3-coder-plus | [Dynamic / model-dependent](https://www.alibabacloud.com/help/en/model-studio/rate-limit) | Not required | Yes | [Open](https://bailian.console.alibabacloud.com/) |
-| [Moonshot AI (Kimi)](https://xyzs996.github.io/free-llm-api/provider/moonshot.html) | kimi-k2-0905-preview<br>moonshot-v1-8k<br>moonshot-v1-128k | [Dynamic / model-dependent](https://platform.moonshot.ai/docs/pricing/limits) | Not required | Yes | [Open](https://platform.moonshot.ai/console/api-keys) |
-| [Pollinations.AI](https://xyzs996.github.io/free-llm-api/provider/pollinations.html) | openai<br>mistral<br>Community-hosted open models | [Dynamic / model-dependent](https://github.com/pollinations/pollinations/blob/master/APIDOCS.md) | Not required | Yes | [Open](https://pollinations.ai/) |
+| [Pollinations.AI](https://xyzs996.github.io/free-llm-api/provider/pollinations.html) | openai<br>mistral<br>Community-hosted open models | [4 RPM](https://github.com/pollinations/pollinations/blob/master/APIDOCS.md) | Not required | Yes | [Open](https://pollinations.ai/) |
 | [Ollama Cloud](https://xyzs996.github.io/free-llm-api/provider/ollama-cloud.html) | gpt-oss:120b-cloud<br>gpt-oss:20b-cloud<br>qwen3-coder:480b-cloud | [Dynamic / model-dependent](https://docs.ollama.com/cloud) | Not required | Yes | [Open](https://ollama.com/settings/keys) |
 
 ## Other access options
@@ -70,13 +68,15 @@ These entries can still be useful, but they are aggregators, trial credits, reti
 
 | Provider | Access type | Models | Published limits | Card | OpenAI compatible | Get API key |
 | --- | --- | --- | --- | --- | --- | --- |
-| [Cerebras Inference](https://xyzs996.github.io/free-llm-api/provider/cerebras.html) | Free trial credit | gpt-oss-120b<br>zai-glm-4.7<br>gemma-4-31b | [5 RPM](https://inference-docs.cerebras.ai/support/rate-limits) | Required | Yes | [Open](https://cloud.cerebras.ai/) |
+| [Novita AI](https://xyzs996.github.io/free-llm-api/provider/novita.html) | Metered access | Llama 3.1 8B Instruct<br>OpenAI: GPT OSS 20B<br>BAAI:BGE-M3 | [Dynamic / model-dependent](https://novita.ai/pricing) | Not required | Yes | [Open](https://novita.ai/settings/key-management) |
+| [Moonshot AI (Kimi)](https://xyzs996.github.io/free-llm-api/provider/moonshot.html) | Metered access | kimi-k2-0905-preview<br>moonshot-v1-8k<br>moonshot-v1-128k | [Dynamic / model-dependent](https://platform.kimi.ai/docs/pricing/limits) | Not required | Yes | [Open](https://platform.moonshot.ai/console/api-keys) |
+| [Cerebras Inference](https://xyzs996.github.io/free-llm-api/provider/cerebras.html) | Free trial credit | gpt-oss-120b<br>gemma-4-31b | [5 RPM](https://inference-docs.cerebras.ai/support/rate-limits) | Required | Yes | [Open](https://cloud.cerebras.ai/) |
 | [Vercel AI Gateway](https://xyzs996.github.io/free-llm-api/provider/vercel-ai-gateway.html) | Free trial credit | Free Tier eligible model subset<br>openai/gpt-oss-120b<br>moonshotai/kimi-k2 | [Dynamic / model-dependent](https://vercel.com/docs/ai-gateway/pricing) | Not required | Yes | [Open](https://vercel.com/dashboard/ai-gateway) |
 | [IBM watsonx.ai](https://xyzs996.github.io/free-llm-api/provider/watsonx.html) | Free trial credit | ibm/granite-3-8b-instruct<br>meta-llama/llama-3-3-70b-instruct<br>mistralai/mistral-large | [Dynamic / model-dependent](https://www.ibm.com/products/watsonx-ai/pricing) | Not required | No | [Open](https://dataplatform.cloud.ibm.com/registration/stepone) |
 | [OpenRouter](https://xyzs996.github.io/free-llm-api/provider/openrouter.html) | Free model aggregator | Model IDs ending in :free<br>openrouter/free | [20 RPM, 50 requests/day](https://openrouter.ai/docs/api-reference/limits) | Not required | Yes | [Open](https://openrouter.ai/settings/keys) |
-| [GitHub Models](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/) | Retiring free tier<br>Retires 2026-07-30 | Existing-customer catalog only until retirement | [Dynamic / model-dependent](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/) | Not required | Yes | Closed to new users |
+| [GitHub Models](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/) | Retired free tier<br>Retired 2026-07-30 | Retired — the model catalog is gone | [Dynamic / model-dependent](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/) | Not required | Yes | Closed to new users |
 | [Together AI](https://xyzs996.github.io/free-llm-api/provider/together.html) | Metered access | meta-llama/Llama-3.3-70B-Instruct-Turbo<br>openai/gpt-oss-120b<br>Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo | [Dynamic / model-dependent](https://docs.together.ai/docs/serverless/rate-limits) | Not required | Yes | [Open](https://api.together.ai/settings/api-keys) |
-| [Nebius Token Factory](https://xyzs996.github.io/free-llm-api/provider/nebius.html) | Metered access | deepseek-ai/DeepSeek-V3<br>meta-llama/Llama-3.3-70B-Instruct<br>Qwen/Qwen3-235B-A22B | [60 RPM](https://docs.tokenfactory.nebius.com/ai-models-inference/rate-limits) | Not required | Yes | [Open](https://tokenfactory.nebius.com/) |
+| [Nebius Token Factory](https://xyzs996.github.io/free-llm-api/provider/nebius.html) | Metered access | deepseek-ai/DeepSeek-V3<br>meta-llama/Llama-3.3-70B-Instruct<br>Qwen/Qwen3-235B-A22B | [Dynamic / model-dependent](https://docs.tokenfactory.nebius.com/ai-models-inference/rate-limits) | Not required | Yes | [Open](https://tokenfactory.nebius.com/) |
 | [Perplexity API](https://xyzs996.github.io/free-llm-api/provider/perplexity.html) | Metered access | sonar<br>sonar-pro<br>sonar-reasoning | [50 RPM](https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers) | Not required | Yes | [Open](https://www.perplexity.ai/account/api/keys) |
 | [DeepInfra](https://xyzs996.github.io/free-llm-api/provider/deepinfra.html) | Metered access | deepseek-ai/DeepSeek-V3<br>Qwen/Qwen3-Next-80B-A3B-Instruct<br>meta-llama/Llama-4-Scout-17B-16E | [Dynamic / model-dependent](https://deepinfra.com/pricing) | Not required | Yes | [Open](https://deepinfra.com/dash/api_keys) |
 | [Chutes](https://xyzs996.github.io/free-llm-api/provider/chutes.html) | Metered access | zai-org/GLM-5<br>Qwen/Qwen3-32B<br>unsloth/Mistral-Nemo-Instruct-2407 | [Dynamic / model-dependent](https://chutes.ai/pricing) | Not required | Yes | [Open](https://chutes.ai/app/api) |
@@ -157,12 +157,16 @@ The ignored `data/probe-output.json` contains only a bounded classification, sta
 
 ## Changed this week
 
-Week of 2026-07-25. First published catalog: 26 providers, every published number traced to an official page checked this week.
+Week of 2026-08-22. First re-check since publication. Every source was read again: GitHub Models is gone, Novita has no free rows left, and Groq dropped both Llama models from the free table. Two entries could not be re-read and keep their old check date.
 
-- **Added (26):** Google Gemini API, GroqCloud, SambaNova Cloud, Cohere, Cloudflare Workers AI, Hugging Face Inference Providers, SiliconFlow, Fireworks AI, Z.AI Open Platform, Novita AI, Mistral La Plateforme, Alibaba Cloud Model Studio, Moonshot AI (Kimi), Pollinations.AI, Ollama Cloud, Cerebras Inference, Vercel AI Gateway, IBM watsonx.ai, OpenRouter, GitHub Models, Together AI, Nebius Token Factory, Perplexity API, DeepInfra, Chutes, Scaleway Generative APIs
-- **Lifecycle — GitHub Models:** Free tier retires 2026-07-30, so the catalog carries no signup link for it.
-- **Corrected — Cerebras Inference:** A verified payment method is a precondition for API access, so this is not a card-free free tier.
-- **Corrected — Fireworks AI:** The 10 RPM cap for accounts without a payment method applies account-wide, not per model.
+- **Lifecycle — GitHub Models:** Retired on 2026-07-30 as announced: playground, model catalog, inference API and BYOK endpoints are all gone. Kept as a tombstone entry.
+- **Lifecycle — Novita AI:** inclusionai/Ling-3.0-flash and Mind Lab Macaron V1 Venti are no longer priced at zero; no model on the pricing table is free any more. Moved to metered access.
+- **Lifecycle — Moonshot AI (Kimi):** Docs moved to platform.kimi.ai. The lowest tier still requires a $1 recharge before any call goes through, so the entry moved out of the permanent free tier list into metered access.
+- **Limits changed — GroqCloud:** llama-3.3-70b-versatile and llama-3.1-8b-instant left the free plan table. openai/gpt-oss-safeguard-20b, qwen/qwen3.6-27b and groq/compound-mini are in it. The RPM/RPD columns now quote openai/gpt-oss-120b at 30 RPM / 1K RPD.
+- **Limits changed — Cerebras Inference:** zai-glm-4.7 left the Free Trial table; only gpt-oss-120b and gemma-4-31b remain at 5 RPM / 30K TPM / 1M TPH / 1M TPD.
+- **Added — Z.AI Open Platform:** GLM-4.6V-Flash, a vision model, is now listed at $0 across every pricing column alongside GLM-4.7-Flash and GLM-4.5-Flash.
+- **Added — SambaNova Cloud:** DeepSeek-V3.2 and gemma-4-31B-it appear in the free table as preview models, on the same 20 RPM / 20 RPD / 200K TPD numbers.
+- **Corrected (4):** Pollinations.AI, Nebius Token Factory, Vercel AI Gateway, Cloudflare Workers AI
 
 Every entry above is dated and sourced in the catalog below. Full history: [`data/changelog.json`](data/changelog.json).
 

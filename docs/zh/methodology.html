@@ -25,13 +25,13 @@
   <meta name="twitter:description" content="什么算免费额度、每个限流数字从哪来、一次探活能证明什么，以及为什么有些服务商有独立页面、有些只作为清单行。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"数据方法","item":"https://xyzs996.github.io/free-llm-api/zh/methodology.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"这份免费 LLM API 数据是怎么来的","description":"每一条记录背后的规则：什么算免费额度、每个数字从哪来、一次探活能证明什么，以及哪些服务商是被刻意留作清单行的。","url":"https://xyzs996.github.io/free-llm-api/zh/methodology.html","dateModified":"2026-07-25","inLanguage":"zh-Hans","author":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"publisher":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"license":"https://opensource.org/licenses/MIT"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"这份免费 LLM API 数据是怎么来的","description":"每一条记录背后的规则：什么算免费额度、每个数字从哪来、一次探活能证明什么，以及哪些服务商是被刻意留作清单行的。","url":"https://xyzs996.github.io/free-llm-api/zh/methodology.html","dateModified":"2026-08-22","inLanguage":"zh-Hans","author":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"publisher":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"license":"https://opensource.org/licenses/MIT"}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="./index.html">免费 LLM API</a></li><li><span aria-current="page">数据方法</span></li></ol></nav>
-      <p class="eyebrow">数据契约 · 核验于 2026-07-25</p>
+      <p class="eyebrow">数据契约 · 核验于 2026-08-22</p>
       <h1>这份数据是怎么来的</h1>
       <p class="lede">本清单遵守的全部规则，包括那些专门用来把数字挡在外面的规则。</p>
     </div>
@@ -42,7 +42,7 @@
       <article class="page-body" id="page-body">
         <h2>这里所说的「免费 LLM API」指什么</h2>
         <p>只有服务商自己在文档里写明「零成本即可开始」的访问方式才会被收录：常设的免费额度、一批标价为零的模型，或者注册赠送的额度。逆向出来的端点、泄露的 key、以及转卖别人配额的网关都不在范围内，本项目也不分发任何形式的 key。每一条都链到你自己去创建 key 的那个页面。</p>
-        <p>本清单目前收录 26 家服务商，覆盖 5 种免费形式，以及 7 个在不止一家出现的模型系列。</p>
+        <p>本清单目前收录 26 家服务商，覆盖 6 种免费形式，以及 7 个在不止一家出现的模型系列。</p>
 
         <h2>这些数字是从哪来的</h2>
         <p>每条服务商记录都至少带一个官方来源 URL 和一个 <code>source_checked_at</code> 日期。只有来源里写明了的限流数值才允许被记录，否则校验器会让构建失败。如果某家只在登录后的控制台里给出限额，或者限额随层级伸缩，那么该字段就留空，由状态字段说明情况。这就是为什么有些行写的是「按项目层级设定」而不是一个数字：编一个看起来合理的数字，只会让表格显得更完整，同时更不值钱。</p>

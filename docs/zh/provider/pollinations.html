@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Pollinations.AI 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="description" content="Pollinations.AI 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <title>Pollinations.AI 免费额度：限流与可用模型</title>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/provider/pollinations.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Pollinations.AI 免费额度：限流与可用模型">
-  <meta property="og:description" content="Pollinations.AI 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta property="og:description" content="Pollinations.AI 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/provider/pollinations.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Pollinations.AI 免费额度：限流与可用模型">
-  <meta name="twitter:description" content="Pollinations.AI 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="twitter:description" content="Pollinations.AI 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"Pollinations.AI","item":"https://xyzs996.github.io/free-llm-api/zh/provider/pollinations.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Pollinations.AI free tier terms","description":"Pollinations 提供一个 OpenAI 兼容的文本端点，基础用法不带 key 也能调用，官方 API 文档也没有公布 RPM 或 RPD。文档确实写明自 2025-03-31 起免费层的图片可能带水印，所以免费层的产出和付费层并不完全一样。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/pollinations.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Pollinations API documentation","url":"https://github.com/pollinations/pollinations/blob/master/APIDOCS.md"},{"@type":"CreativeWork","name":"Pollinations project repository","url":"https://github.com/pollinations/pollinations"},{"@type":"CreativeWork","name":"Pollinations.AI home","url":"https://pollinations.ai/"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Pollinations.AI 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，Pollinations.AI 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"Pollinations.AI 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"Pollinations.AI 没有公布单一的免费额度数字：它的限额形式是「有限流但未公布数值」。本清单在这里留空，而不是猜一个数。"}},{"@type":"Question","name":"Pollinations.AI 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"Pollinations.AI 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-07-25，Pollinations.AI 自己的文档里没有这样的说法。这是社区运营的服务而不是商业服务商，可用性按尽力而为看待，不要把生产依赖压在上面。"}},{"@type":"Question","name":"Pollinations.AI 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。Pollinations.AI 在 https://text.pollinations.ai/openai 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Pollinations.AI free tier terms","description":"API 文档现在按「两次请求的最小间隔」公布了四档：Anonymous，免注册，基础模型，每 15 秒 1 次；Seed，免费注册，标准模型，每 5 秒 1 次；Flower，付费，高级模型，每 3 秒 1 次；Nectar，企业版，全部模型，不限。本页 RPM 一列取的是 Anonymous 档折算成每分钟的值（每 15 秒 1 次 = 每分钟 4 次）。自 2025-03-31 起免费档产出的图片可能带水印，用 nologo 参数去掉水印需要账号。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/pollinations.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Pollinations API documentation","url":"https://github.com/pollinations/pollinations/blob/master/APIDOCS.md"},{"@type":"CreativeWork","name":"Pollinations project repository","url":"https://github.com/pollinations/pollinations"},{"@type":"CreativeWork","name":"Pollinations.AI home","url":"https://pollinations.ai/"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Pollinations.AI 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，Pollinations.AI 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"Pollinations.AI 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"Pollinations.AI 公布的是每分钟 4 次请求。这些数字来自它自己的文档，核验日期为 2026-08-22。"}},{"@type":"Question","name":"Pollinations.AI 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"Pollinations.AI 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-08-22，Pollinations.AI 自己的文档里没有这样的说法。仍然可以完全不带 key 直接调，这正是它适合拿来做第一次试探的原因；可用性按尽力而为对待，不要让生产环境依赖它。"}},{"@type":"Question","name":"Pollinations.AI 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。Pollinations.AI 在 https://text.pollinations.ai/openai 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">服务商</a></li><li><span aria-current="page">Pollinations.AI</span></li></ol></nav>
-      <p class="eyebrow">厂商免费额度 · 来源核验于 2026-07-25</p>
+      <p class="eyebrow">厂商免费额度 · 来源核验于 2026-08-22</p>
       <h1>Pollinations.AI 免费额度</h1>
       <p class="lede">Pollinations.AI 官方就免费额度公布了什么、覆盖哪些模型，以及怎么把现有工具指过去。</p>
     </div>
@@ -42,26 +42,26 @@
     <div class="shell page-grid">
       <article class="page-body" id="page-body">
         <h2>Pollinations.AI 的免费额度给到哪一步</h2>
-        <p>Pollinations 提供一个 OpenAI 兼容的文本端点，基础用法不带 key 也能调用，官方 API 文档也没有公布 RPM 或 RPD。文档确实写明自 2025-03-31 起免费层的图片可能带水印，所以免费层的产出和付费层并不完全一样。</p>
+        <p>API 文档现在按「两次请求的最小间隔」公布了四档：Anonymous，免注册，基础模型，每 15 秒 1 次；Seed，免费注册，标准模型，每 5 秒 1 次；Flower，付费，高级模型，每 3 秒 1 次；Nectar，企业版，全部模型，不限。本页 RPM 一列取的是 Anonymous 档折算成每分钟的值（每 15 秒 1 次 = 每分钟 4 次）。自 2025-03-31 起免费档产出的图片可能带水印，用 nologo 参数去掉水印需要账号。</p>
         <dl class="fact-grid">
-          <div><dt>官方公布限额</dt><dd>有限流但未公布数值</dd></div>
+          <div><dt>官方公布限额</dt><dd>每分钟 4 次请求</dd></div>
           <div><dt>免费形式</dt><dd>厂商免费额度</dd></div>
           <div><dt>信用卡</dt><dd>不需要</dd></div>
           <div><dt>协议</dt><dd>兼容 OpenAI，端点 <code>https://text.pollinations.ai/openai</code></dd></div>
           <div><dt>生命周期</dt><dd>正常开放</dd></div>
-          <div><dt>来源核验日期</dt><dd>2026-07-25</dd></div>
+          <div><dt>来源核验日期</dt><dd>2026-08-22</dd></div>
         </dl>
-        <p>这是社区运营的服务而不是商业服务商，可用性按尽力而为看待，不要把生产依赖压在上面。</p>
+        <p>仍然可以完全不带 key 直接调，这正是它适合拿来做第一次试探的原因；可用性按尽力而为对待，不要让生产环境依赖它。</p>
 
         <h2>Pollinations.AI 在这份清单里处于什么位置</h2>
-        <p>本站详列的 25 家服务商里，属于厂商免费额度的有 15 家，Pollinations.AI 是其中之一。它不要求绑信用卡，25 家里有 23 家是这样。它没有公布固定的请求次数，25 家里有 16 家同样没有。</p>
+        <p>本站详列的 25 家服务商里，属于厂商免费额度的有 13 家，Pollinations.AI 是其中之一。它不要求绑信用卡，25 家里有 23 家是这样。它公布了固定数值——每分钟 4 次请求——25 家里只有 9 家做到了这一点。</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>对比对象</th><th>官方公布限额</th><th>信用卡</th><th>端点</th></tr></thead>
             <tbody>
               <tr class="row-self">
                 <td data-label="对比对象">Pollinations.AI（当前页）</td>
-                <td data-label="官方公布限额">有限流但未公布数值</td>
+                <td data-label="官方公布限额">每分钟 4 次请求</td>
                 <td data-label="信用卡">不需要</td>
                 <td data-label="端点"><code>text.pollinations.ai</code></td>
               </tr>
@@ -129,11 +129,11 @@ wire_api = &quot;responses&quot;
         <h3>Pollinations.AI 需要绑信用卡吗？</h3>
         <p>不需要。本站有 23 家不用绑卡就能拿到免费访问，Pollinations.AI 是其中之一，所以试一下的成本只有注册本身。</p>
         <h3>Pollinations.AI 免费额度的限流是多少？</h3>
-        <p>Pollinations.AI 没有公布单一的免费额度数字：它的限额形式是「有限流但未公布数值」。本清单在这里留空，而不是猜一个数。</p>
+        <p>Pollinations.AI 公布的是每分钟 4 次请求。这些数字来自它自己的文档，核验日期为 2026-08-22。</p>
         <h3>Pollinations.AI 的 key 撞到限额会怎样？</h3>
         <p>端点返回 <code>429</code>。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。</p>
         <h3>Pollinations.AI 的免费额度会取消吗？</h3>
-        <p>截至 2026-07-25，Pollinations.AI 自己的文档里没有这样的说法。这是社区运营的服务而不是商业服务商，可用性按尽力而为看待，不要把生产依赖压在上面。</p>
+        <p>截至 2026-08-22，Pollinations.AI 自己的文档里没有这样的说法。仍然可以完全不带 key 直接调，这正是它适合拿来做第一次试探的原因；可用性按尽力而为对待，不要让生产环境依赖它。</p>
         <h3>Pollinations.AI 能配合 Codex、Cline 或 Continue 使用吗？</h3>
         <p>可以。Pollinations.AI 在 <code>https://text.pollinations.ai/openai</code> 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。</p>
 
@@ -143,7 +143,7 @@ wire_api = &quot;responses&quot;
           <li><a href="https://github.com/pollinations/pollinations" rel="noreferrer">Pollinations project repository</a><span class="source-url">https://github.com/pollinations/pollinations</span></li>
           <li><a href="https://pollinations.ai/" rel="noreferrer">Pollinations.AI home</a><span class="source-url">https://pollinations.ai/</span></li>
         </ul>
-        <p>以上每个数字都是 2026-07-25 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
+        <p>以上每个数字都是 2026-08-22 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
       </article>
       <aside class="related" aria-label="相关页面">
         <div>

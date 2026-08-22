@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ollama Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="description" content="Ollama Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <title>Ollama Cloud free tier: limits and models</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/ollama-cloud.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Ollama Cloud free tier: limits and models">
-  <meta property="og:description" content="Ollama Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:description" content="Ollama Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/ollama-cloud.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ollama Cloud free tier: limits and models">
-  <meta name="twitter:description" content="Ollama Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:description" content="Ollama Cloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Ollama Cloud","item":"https://xyzs996.github.io/free-llm-api/provider/ollama-cloud.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Ollama Cloud free tier terms","description":"Cloud models run on Ollama's servers while keeping the local CLI workflow, and require only an ollama.com account to start. The Cloud documentation page describes access and model retirement policy but does not publish hourly or daily request limits, so the account page is the authoritative source for the active quota.","url":"https://xyzs996.github.io/free-llm-api/provider/ollama-cloud.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Ollama Cloud documentation","url":"https://docs.ollama.com/cloud"},{"@type":"CreativeWork","name":"Ollama Cloud API access","url":"https://docs.ollama.com/api"},{"@type":"CreativeWork","name":"Ollama model library","url":"https://ollama.com/library"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Ollama Cloud ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Ollama Cloud is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Ollama Cloud's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Ollama Cloud publishes no single free-tier number: its limits are enforced but not published. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Ollama Cloud key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Ollama Cloud free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Ollama Cloud's own documentation says so as of 2026-07-25. Ollama periodically retires older cloud models as newer open-weight models ship; local models are unaffected by those retirements."}},{"@type":"Question","name":"Can Ollama Cloud be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Ollama Cloud serves the OpenAI chat completions protocol at https://ollama.com/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Ollama Cloud free tier terms","description":"Cloud models run on Ollama's servers while keeping the local CLI workflow, and require only an ollama.com account to start. The Cloud documentation page describes access and model retirement policy but does not publish hourly or daily request limits, so the account page is the authoritative source for the active quota.","url":"https://xyzs996.github.io/free-llm-api/provider/ollama-cloud.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Ollama Cloud documentation","url":"https://docs.ollama.com/cloud"},{"@type":"CreativeWork","name":"Ollama Cloud API access","url":"https://docs.ollama.com/api"},{"@type":"CreativeWork","name":"Ollama model library","url":"https://ollama.com/library"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Ollama Cloud ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Ollama Cloud is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Ollama Cloud's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Ollama Cloud publishes no single free-tier number: its limits are enforced but not published. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Ollama Cloud key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Ollama Cloud free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Ollama Cloud's own documentation says so as of 2026-08-22. Ollama periodically retires older cloud models as newer open-weight models ship; local models are unaffected by those retirements."}},{"@type":"Question","name":"Can Ollama Cloud be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Ollama Cloud serves the OpenAI chat completions protocol at https://ollama.com/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Ollama Cloud</span></li></ol></nav>
-      <p class="eyebrow">Provider free tier · Sources reviewed 2026-07-25</p>
+      <p class="eyebrow">Provider free tier · Sources reviewed 2026-08-22</p>
       <h1>Ollama Cloud free tier</h1>
       <p class="lede">What Ollama Cloud publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
     </div>
@@ -49,12 +49,12 @@
           <div><dt>Credit card</dt><dd>Not required</dd></div>
           <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://ollama.com/v1</code></dd></div>
           <div><dt>Lifecycle</dt><dd>Active</dd></div>
-          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-08-22</dd></div>
         </dl>
         <p>Ollama periodically retires older cloud models as newer open-weight models ship; local models are unaffected by those retirements.</p>
 
         <h2>Where Ollama Cloud sits in this catalog</h2>
-        <p>Ollama Cloud is one of 15 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <p>Ollama Cloud is one of 13 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
@@ -91,9 +91,9 @@
         <ul class="model-list">
           <li><code>gpt-oss:120b-cloud</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
           <li><code>gpt-oss:20b-cloud</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
-          <li><code>qwen3-coder:480b-cloud</code> — <a href="../model/qwen.html">Qwen</a>, also free at 8 other providers here</li>
+          <li><code>qwen3-coder:480b-cloud</code> — <a href="../model/qwen.html">Qwen</a>, also free at 9 other providers here</li>
         </ul>
-        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 8 other providers here also host the <a href="../model/qwen.html">Qwen</a> family on free terms, and the terms are not the same: <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/chutes.html">Chutes</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>.</p>
+        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 9 other providers here also host the <a href="../model/qwen.html">Qwen</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/chutes.html">Chutes</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>.</p>
 
         <h2>Checking a Ollama Cloud key</h2>
         <p>The endpoint answers the CORS preflight with 405 and no allow-origin header, so a browser refuses to send the Authorization header. That was measured against <code>https://ollama.com</code> on 2026-07-25.</p>
@@ -133,7 +133,7 @@ wire_api = &quot;responses&quot;
         <h3>What happens when a Ollama Cloud key hits the limit?</h3>
         <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
         <h3>Is the Ollama Cloud free tier going away?</h3>
-        <p>Nothing in Ollama Cloud's own documentation says so as of 2026-07-25. Ollama periodically retires older cloud models as newer open-weight models ship; local models are unaffected by those retirements.</p>
+        <p>Nothing in Ollama Cloud's own documentation says so as of 2026-08-22. Ollama periodically retires older cloud models as newer open-weight models ship; local models are unaffected by those retirements.</p>
         <h3>Can Ollama Cloud be used with Codex, Cline, or Continue?</h3>
         <p>Yes. Ollama Cloud serves the OpenAI chat completions protocol at <code>https://ollama.com/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
 
@@ -143,7 +143,7 @@ wire_api = &quot;responses&quot;
           <li><a href="https://docs.ollama.com/api" rel="noreferrer">Ollama Cloud API access</a><span class="source-url">https://docs.ollama.com/api</span></li>
           <li><a href="https://ollama.com/library" rel="noreferrer">Ollama model library</a><span class="source-url">https://ollama.com/library</span></li>
         </ul>
-        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+        <p>Every figure above was read from those pages on 2026-08-22. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
       </article>
       <aside class="related" aria-label="Related pages">
         <div>

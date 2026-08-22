@@ -26,6 +26,7 @@
 import { FIELD_NOTES_ROWS, FIELD_NOTES_TABLE, SIBLING_INDEXES, readerUrl } from './field-notes.js';
 import { CLIENT_PAGE_TITLES, MODEL_FAMILIES, clientPageIds } from './pages.js';
 import { DEFAULT_LOCALE, LOCALES, REPO_URL, SITE_URL, THREAD_QA, heardUrl, pageUrl } from './site.js';
+import { hasRetired } from './lifecycle.js';
 import { providersInFamily } from './validate.js';
 
 // The units the catalog itself publishes. `limits.status` carries the shape of
@@ -49,6 +50,9 @@ const NO_NUMBER = Object.freeze({
   // Not "free tier retiring" a second time: the category already says that,
   // and a line that says the same thing twice reads as two facts.
   retiring: 'limits vary by model and plan',
+  // 已经关停的那一家没有「限额」可言。这一句是给抓这份 llms.txt 的模型看的
+  // ——写成「限额随模型而不同」它就会照着推荐,而那个端点已经不在了。
+  retired: 'shut down, no endpoint left to call',
 });
 
 const CATEGORY = Object.freeze({
@@ -57,6 +61,7 @@ const CATEGORY = Object.freeze({
   'trial-credit': 'trial credit',
   'metered-access': 'metered access',
   'retiring-free-tier': 'free tier retiring',
+  'retired-free-tier': 'free tier retired',
 });
 
 function limitPhrase({ limits }) {
@@ -83,7 +88,9 @@ function providerLine(provider, hasPage) {
     provider.openai_compatible ? `OpenAI-compatible at ${provider.base_url}` : 'not OpenAI-compatible',
     `sources read ${provider.source_checked_at}`,
   ];
-  if (provider.availability.retires_at) facts.push(`retires ${provider.availability.retires_at}`);
+  if (provider.availability.retires_at) {
+    facts.push(`${hasRetired(provider) ? 'retired' : 'retires'} ${provider.availability.retires_at}`);
+  }
   if (!hasPage) facts.push('in the catalog table, no page of its own');
   const url = hasPage ? pageUrl(`provider/${provider.id}.html`) : SITE_URL;
   return `- [${provider.name}](${url}): ${facts.join(' · ')}.`;

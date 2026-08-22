@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Which providers serve Mistral models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta name="description" content="Which providers serve Mistral models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <title>Free Mistral API: 4 providers compared</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/model/mistral.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Free Mistral API: 4 providers compared">
-  <meta property="og:description" content="Which providers serve Mistral models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta property="og:description" content="Which providers serve Mistral models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/model/mistral.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,7 +22,7 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Mistral API: 4 providers compared">
-  <meta name="twitter:description" content="Which providers serve Mistral models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta name="twitter:description" content="Which providers serve Mistral models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Mistral","item":"https://xyzs996.github.io/free-llm-api/model/mistral.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Providers offering Mistral on free terms","description":"Every provider in this catalog that lists a Mistral model as free, ordered as the comparison table on the page.","numberOfItems":4,"itemListElement":[{"@type":"ListItem","position":1,"name":"Mistral La Plateforme","url":"https://xyzs996.github.io/free-llm-api/provider/mistral.html"},{"@type":"ListItem","position":2,"name":"Pollinations.AI","url":"https://xyzs996.github.io/free-llm-api/provider/pollinations.html"},{"@type":"ListItem","position":3,"name":"IBM watsonx.ai","url":"https://xyzs996.github.io/free-llm-api/provider/watsonx.html"},{"@type":"ListItem","position":4,"name":"Chutes","url":"https://xyzs996.github.io/free-llm-api/provider/chutes.html"}]}</script>
@@ -59,7 +59,7 @@
             <tr>
               <td data-label="Provider"><a href="../provider/pollinations.html">Pollinations.AI</a></td>
               <td data-label="Free access">Provider free tier</td>
-              <td data-label="Published limits">Enforced but not published</td>
+              <td data-label="Published limits">4 requests per minute</td>
               <td data-label="Card">Not required</td>
               <td data-label="Matching models">mistral</td>
             </tr>
@@ -84,13 +84,13 @@
         <h2>How the free terms actually differ</h2>
         <ul class="difference-list">
           <li><a href="../provider/mistral.html">Mistral La Plateforme</a> — Mistral documents a Free mode (also referred to as the Experiment plan) that lets you activate a workspace and generate an API key without paying, but the public documentation does not currently expose a reachable rate-limit page for it: the tier URL listed in Mistral&#39;s own documentation index returns 404 as of the check date.</li>
-          <li><a href="../provider/pollinations.html">Pollinations.AI</a> — Pollinations exposes an OpenAI-compatible text endpoint that can be called without a key for basic use, and the official API docs do not publish RPM or RPD figures.</li>
+          <li><a href="../provider/pollinations.html">Pollinations.AI</a> — The API docs now publish four tiers by minimum interval between requests: Anonymous, no signup, basic models, one request every 15 seconds; Seed, free registration, standard models, one request every 5 seconds; Flower, paid, advanced models, one request every 3 seconds; Nectar, enterprise, all models, no limit.</li>
           <li><a href="../provider/watsonx.html">IBM watsonx.ai</a> — IBM offers a no-cost trial of watsonx.ai alongside the paid Essentials and Standard plans, and the pricing page invites you to start building at no cost.</li>
           <li><a href="../provider/chutes.html">Chutes</a> — Chutes prices inference per token and sells subscription plans that bundle a daily quota: Plus at $10/month with a bundled daily quota and 6% off pay-as-you-go rates beyond it, and Pro at $20/month with a larger daily quota and 10% off.</li>
         </ul>
 
         <h2>Picking one</h2>
-        <p>0 of these 4 publish a fixed request count; the rest state a tier or a credit balance instead, which means the only honest answer to "how much is free" is the one in their console. 4 take no credit card. 3 answer a cross-origin browser request, so a key for those can be checked from the <a href="../verify.html">browser checker</a> with nothing installed.</p>
+        <p>1 of these 4 publish a fixed request count; the rest state a tier or a credit balance instead, which means the only honest answer to "how much is free" is the one in their console. 4 take no credit card. 3 answer a cross-origin browser request, so a key for those can be checked from the <a href="../verify.html">browser checker</a> with nothing installed.</p>
         <p>A model id that matches Mistral is not a promise that the free tier includes it. Providers move individual models between paid and free without changing the id, which is why each row links to the provider page carrying that provider's own wording and the date it was read.</p>
       </article>
       <aside class="related" aria-label="Related pages">

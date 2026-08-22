@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Which providers serve Kimi models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta name="description" content="Which providers serve Kimi models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <title>Free Kimi API: 2 providers compared</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/model/kimi.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Free Kimi API: 2 providers compared">
-  <meta property="og:description" content="Which providers serve Kimi models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta property="og:description" content="Which providers serve Kimi models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/model/kimi.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,7 +22,7 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Kimi API: 2 providers compared">
-  <meta name="twitter:description" content="Which providers serve Kimi models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-07-25.">
+  <meta name="twitter:description" content="Which providers serve Kimi models on a free tier, what each one publishes as its limit, and how the terms differ. Reviewed 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Kimi","item":"https://xyzs996.github.io/free-llm-api/model/kimi.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Providers offering Kimi on free terms","description":"Every provider in this catalog that lists a Kimi model as free, ordered as the comparison table on the page.","numberOfItems":2,"itemListElement":[{"@type":"ListItem","position":1,"name":"Moonshot AI (Kimi)","url":"https://xyzs996.github.io/free-llm-api/provider/moonshot.html"},{"@type":"ListItem","position":2,"name":"Vercel AI Gateway","url":"https://xyzs996.github.io/free-llm-api/provider/vercel-ai-gateway.html"}]}</script>
@@ -51,7 +51,7 @@
             <tbody>
             <tr>
               <td data-label="Provider"><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a></td>
-              <td data-label="Free access">Provider free tier</td>
+              <td data-label="Free access">Metered access</td>
               <td data-label="Published limits">Published per tier</td>
               <td data-label="Card">Not required</td>
               <td data-label="Matching models">kimi-k2-0905-preview, moonshot-v1-8k, moonshot-v1-128k</td>
@@ -69,8 +69,8 @@
 
         <h2>How the free terms actually differ</h2>
         <ul class="difference-list">
-          <li><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a> — Limits are expressed as concurrency, RPM, TPM and TPD, and the published tier table is keyed to cumulative recharge rather than to a standing free allowance; reaching $5 of cumulative recharge grants a $5 voucher.</li>
-          <li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a> — Every Vercel team account receives $5 of AI Gateway credits per month on the free tier, usable only against the Free Tier model subset rather than the full catalogue.</li>
+          <li><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a> — The tier table is keyed to cumulative recharge rather than to a standing free allowance: the docs state you must recharge at least $1 before you can start using the platform, and Tier0 then gives 1 concurrent request, 3 RPM, 500K TPM and 1.5M TPD.</li>
+          <li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a> — Every Vercel team account gets a free tier, but it covers a subset of models rather than the full catalog, and free-tier requests are rate limited per model at lower limits than the paid tier — those per-model numbers are not published.</li>
         </ul>
 
         <h2>Picking one</h2>

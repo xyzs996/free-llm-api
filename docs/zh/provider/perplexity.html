@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Perplexity API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="description" content="Perplexity API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <title>Perplexity API 免费额度：限流与可用模型</title>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/provider/perplexity.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Perplexity API 免费额度：限流与可用模型">
-  <meta property="og:description" content="Perplexity API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta property="og:description" content="Perplexity API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/provider/perplexity.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Perplexity API 免费额度：限流与可用模型">
-  <meta name="twitter:description" content="Perplexity API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="twitter:description" content="Perplexity API 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"Perplexity API","item":"https://xyzs996.github.io/free-llm-api/zh/provider/perplexity.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Perplexity API free tier terms","description":"用量层级由累计购买的 API 额度决定，而且只升不降。Tier 0（累计购买 0 美元）在 Agent API 上允许 1 QPS、50 次请求/分钟；Tier 1（50 美元以上）是 3 QPS、150 次/分钟，到 Tier 4 提升到 33 QPS、2,000 次/分钟。Search API 在所有层级都单独限为 50 次请求/秒。Tier 0 只是划定了速率上限，并不是一份免费 token 赠额，调用之前仍然要先有余额。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/perplexity.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Perplexity rate limits and usage tiers","url":"https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers"},{"@type":"CreativeWork","name":"Perplexity pricing","url":"https://docs.perplexity.ai/docs/getting-started/pricing"},{"@type":"CreativeWork","name":"Perplexity OpenAI compatibility","url":"https://docs.perplexity.ai/docs/agent-api/openai-compatibility"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Perplexity API 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，Perplexity API 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"Perplexity API 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"Perplexity API 公布的是每分钟 50 次请求。这些数字来自它自己的文档，核验日期为 2026-07-25。"}},{"@type":"Question","name":"Perplexity API 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"Perplexity API 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-07-25，Perplexity API 自己的文档里没有这样的说法。Perplexity Pro 订阅者会通过订阅拿到每月的 API 额度；这份额度没有写在限流页面上。"}},{"@type":"Question","name":"Perplexity API 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。Perplexity API 在 https://api.perplexity.ai 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Perplexity API free tier terms","description":"用量层级由累计购买的 API 额度决定，而且只升不降。Tier 0（累计购买 0 美元）在 Agent API 上允许 1 QPS、50 次请求/分钟；Tier 1（50 美元以上）是 3 QPS、150 次/分钟，到 Tier 4 提升到 33 QPS、2,000 次/分钟。Search API 在所有层级都单独限为 50 次请求/秒。Tier 0 只是划定了速率上限，并不是一份免费 token 赠额，调用之前仍然要先有余额。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/perplexity.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Perplexity rate limits and usage tiers","url":"https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers"},{"@type":"CreativeWork","name":"Perplexity pricing","url":"https://docs.perplexity.ai/docs/getting-started/pricing"},{"@type":"CreativeWork","name":"Perplexity OpenAI compatibility","url":"https://docs.perplexity.ai/docs/agent-api/openai-compatibility"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Perplexity API 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，Perplexity API 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"Perplexity API 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"Perplexity API 公布的是每分钟 50 次请求。这些数字来自它自己的文档，核验日期为 2026-08-22。"}},{"@type":"Question","name":"Perplexity API 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"Perplexity API 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-08-22，Perplexity API 自己的文档里没有这样的说法。Perplexity Pro 订阅者会通过订阅拿到每月的 API 额度；这份额度没有写在限流页面上。"}},{"@type":"Question","name":"Perplexity API 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。Perplexity API 在 https://api.perplexity.ai 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">服务商</a></li><li><span aria-current="page">Perplexity API</span></li></ol></nav>
-      <p class="eyebrow">按量计费 · 来源核验于 2026-07-25</p>
+      <p class="eyebrow">按量计费 · 来源核验于 2026-08-22</p>
       <h1>Perplexity API 免费额度</h1>
       <p class="lede">Perplexity API 官方就免费额度公布了什么、覆盖哪些模型，以及怎么把现有工具指过去。</p>
     </div>
@@ -49,12 +49,12 @@
           <div><dt>信用卡</dt><dd>不需要</dd></div>
           <div><dt>协议</dt><dd>兼容 OpenAI，端点 <code>https://api.perplexity.ai</code></dd></div>
           <div><dt>生命周期</dt><dd>正常开放</dd></div>
-          <div><dt>来源核验日期</dt><dd>2026-07-25</dd></div>
+          <div><dt>来源核验日期</dt><dd>2026-08-22</dd></div>
         </dl>
         <p>Perplexity Pro 订阅者会通过订阅拿到每月的 API 额度；这份额度没有写在限流页面上。</p>
 
         <h2>Perplexity API 在这份清单里处于什么位置</h2>
-        <p>本站详列的 25 家服务商里，属于按量计费的有 6 家，Perplexity API 是其中之一。它不要求绑信用卡，25 家里有 23 家是这样。它公布了固定数值——每分钟 50 次请求——25 家里只有 9 家做到了这一点。</p>
+        <p>本站详列的 25 家服务商里，属于按量计费的有 8 家，Perplexity API 是其中之一。它不要求绑信用卡，25 家里有 23 家是这样。它公布了固定数值——每分钟 50 次请求——25 家里只有 9 家做到了这一点。</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>对比对象</th><th>官方公布限额</th><th>信用卡</th><th>端点</th></tr></thead>
@@ -129,11 +129,11 @@ wire_api = &quot;responses&quot;
         <h3>Perplexity API 需要绑信用卡吗？</h3>
         <p>不需要。本站有 23 家不用绑卡就能拿到免费访问，Perplexity API 是其中之一，所以试一下的成本只有注册本身。</p>
         <h3>Perplexity API 免费额度的限流是多少？</h3>
-        <p>Perplexity API 公布的是每分钟 50 次请求。这些数字来自它自己的文档，核验日期为 2026-07-25。</p>
+        <p>Perplexity API 公布的是每分钟 50 次请求。这些数字来自它自己的文档，核验日期为 2026-08-22。</p>
         <h3>Perplexity API 的 key 撞到限额会怎样？</h3>
         <p>端点返回 <code>429</code>。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。</p>
         <h3>Perplexity API 的免费额度会取消吗？</h3>
-        <p>截至 2026-07-25，Perplexity API 自己的文档里没有这样的说法。Perplexity Pro 订阅者会通过订阅拿到每月的 API 额度；这份额度没有写在限流页面上。</p>
+        <p>截至 2026-08-22，Perplexity API 自己的文档里没有这样的说法。Perplexity Pro 订阅者会通过订阅拿到每月的 API 额度；这份额度没有写在限流页面上。</p>
         <h3>Perplexity API 能配合 Codex、Cline 或 Continue 使用吗？</h3>
         <p>可以。Perplexity API 在 <code>https://api.perplexity.ai</code> 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。</p>
 
@@ -143,7 +143,7 @@ wire_api = &quot;responses&quot;
           <li><a href="https://docs.perplexity.ai/docs/getting-started/pricing" rel="noreferrer">Perplexity pricing</a><span class="source-url">https://docs.perplexity.ai/docs/getting-started/pricing</span></li>
           <li><a href="https://docs.perplexity.ai/docs/agent-api/openai-compatibility" rel="noreferrer">Perplexity OpenAI compatibility</a><span class="source-url">https://docs.perplexity.ai/docs/agent-api/openai-compatibility</span></li>
         </ul>
-        <p>以上每个数字都是 2026-07-25 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
+        <p>以上每个数字都是 2026-08-22 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
       </article>
       <aside class="related" aria-label="相关页面">
         <div>

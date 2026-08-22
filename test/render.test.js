@@ -127,7 +127,9 @@ test('Pages HTML includes accessible filters and source-backed provider rows bef
     assert.match(html, new RegExp(`id="${id}"`));
   }
   assert.match(html, /GitHub Models/);
-  assert.match(html, /Retires 2026-07-30/);
+  // 这一格量的是「下线日期出现在表里」。日期到了之后措辞得是过去式 ——
+  // 时态那条判据在本文件末尾。
+  assert.match(html, /Retired 2026-07-30/);
   assert.match(html, /No authenticated probe has been published\./);
   assert.match(html, /<script type="module" src="\.\/app\.js"><\/script>/);
   assert.match(
@@ -234,4 +236,32 @@ test('the count printed beside the jq is the count that jq returns', async () =>
   }
   assert.equal(noCardOpenAiCompatible(carded).length, 0);
   assert.match(renderer.renderArtifacts(carded)['README.md'], /The 0 that speak OpenAI/);
+});
+
+// ⚠ 2026-08-22 抓线上产物:首页表格、README、给模型读的 llms.txt 三处都写着
+// 「Retires 2026-07-30」—— 那一天已经过去 23 天。六个渲染点各自判断
+// `availability.retires_at` 非空就排将来时,关停当天一起开始说假话,而字段还在、
+// 页面照样 200,没有一处会红。时态现在只认 `hasRetired()`,这一条守住它:
+// 已经下线的那家,任何一份产物里都不能再和将来时的措辞挨在一起。
+test('a provider that has already shut down is not described in the future tense', async () => {
+  const renderer = await loadRenderer();
+  assert.ok(renderer, 'src/render.js should export renderArtifacts');
+
+  const retired = providers.filter(
+    ({ availability }) => availability.status === 'retired' && availability.retires_at,
+  );
+  assert.ok(retired.length > 0, 'this criterion needs at least one shut-down provider to guard');
+
+  const artifacts = renderer.renderArtifacts(providers);
+  for (const { id, availability: { retires_at: date } } of retired) {
+    for (const [path, body] of Object.entries(artifacts)) {
+      if (typeof body !== 'string') continue;
+      for (const phrase of [`Retires ${date}`, `retires ${date}`, `${date} 下线`]) {
+        assert.ok(
+          !body.includes(phrase),
+          `${path} says "${phrase}" about ${id}, which shut down on ${date}`,
+        );
+      }
+    }
+  }
 });

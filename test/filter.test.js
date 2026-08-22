@@ -51,8 +51,10 @@ test('search matches provider names, model labels, and limit summaries', async (
     assert.ok(haystack.includes('gpt-oss'), `${provider.id} matched 'gpt-oss' without containing it`);
   }
 
-  const retiring = filter.filterProviders(providers, { query: 'retires' });
-  assert.ok(retiring.map(({ id }) => id).includes('github-models'));
+  // 关停之前站上写的是「retires on …」,关停之后整条记录改成过去式,搜 retires
+  // 一个都搜不到。搜的人打的是这个词,墓碑得站在结果里。
+  const retired = filter.filterProviders(providers, { query: 'retired' });
+  assert.ok(retired.map(({ id }) => id).includes('github-models'));
 });
 
 test('all filter values leave the catalog unchanged', async () => {

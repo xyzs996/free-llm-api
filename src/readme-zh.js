@@ -19,6 +19,7 @@ import {
   heardUrl,
   localePath,
 } from './site.js';
+import { hasRetired } from './lifecycle.js';
 import { connectSrcOrigins } from './verify-page.js';
 
 // This README sends readers to the Chinese edition of the site, not to the
@@ -111,7 +112,7 @@ function renderReadmeRowsZh(providers, { includeType = false } = {}) {
     const detail = zhUrl(`provider/${provider.id}.html`);
     const access = provider.signup_url ? `[申请](${provider.signup_url})` : '已停止新用户注册';
     const type = provider.availability.retires_at
-      ? `${categoryTitle(provider.category)}<br>${provider.availability.retires_at} 下线`
+      ? `${categoryTitle(provider.category)}<br>${provider.availability.retires_at}${hasRetired(provider) ? ' 已下线' : ' 下线'}`
       : categoryTitle(provider.category);
     const cells = [
       `[${escapeMarkdown(provider.name)}](${detail})`,

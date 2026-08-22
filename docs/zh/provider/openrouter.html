@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="OpenRouter 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="description" content="OpenRouter 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <title>OpenRouter 免费额度：限流与可用模型</title>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/provider/openrouter.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="OpenRouter 免费额度：限流与可用模型">
-  <meta property="og:description" content="OpenRouter 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta property="og:description" content="OpenRouter 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/provider/openrouter.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="OpenRouter 免费额度：限流与可用模型">
-  <meta name="twitter:description" content="OpenRouter 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="twitter:description" content="OpenRouter 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"OpenRouter","item":"https://xyzs996.github.io/free-llm-api/zh/provider/openrouter.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"OpenRouter free tier terms","description":"model ID 以 :free 结尾的变体一律限 20 次请求/分钟，与账号状态无关。每日上限取决于历史累计购买的额度：不足 10 credits 是每天 50 次请求，达到 10 credits 及以上提升到每天 1,000 次。OpenRouter 在全局层面调度容量，所以多开账号或多建 API key 都不会把这些限额抬高。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/openrouter.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"OpenRouter API rate limits","url":"https://openrouter.ai/docs/api-reference/limits"},{"@type":"CreativeWork","name":"OpenRouter free model variants","url":"https://openrouter.ai/docs/guides/routing/model-variants/free"},{"@type":"CreativeWork","name":"OpenRouter quickstart","url":"https://openrouter.ai/docs/quickstart"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"OpenRouter 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，OpenRouter 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"OpenRouter 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"OpenRouter 公布的是每分钟 20 次请求，每天 50 次请求。这些数字来自它自己的文档，核验日期为 2026-07-25。"}},{"@type":"Question","name":"OpenRouter 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"OpenRouter 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-07-25，OpenRouter 自己的文档里没有这样的说法。账号余额为负时，即使调用免费模型也可能收到 402，直到把余额补回零以上为止。"}},{"@type":"Question","name":"OpenRouter 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。OpenRouter 在 https://openrouter.ai/api/v1 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"OpenRouter free tier terms","description":"model ID 以 :free 结尾的变体一律限 20 次请求/分钟，与账号状态无关。每日上限取决于历史累计购买的额度：不足 10 credits 是每天 50 次请求，达到 10 credits 及以上提升到每天 1,000 次。OpenRouter 在全局层面调度容量，所以多开账号或多建 API key 都不会把这些限额抬高。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/openrouter.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"OpenRouter API rate limits","url":"https://openrouter.ai/docs/api-reference/limits"},{"@type":"CreativeWork","name":"OpenRouter free model variants","url":"https://openrouter.ai/docs/guides/routing/model-variants/free"},{"@type":"CreativeWork","name":"OpenRouter quickstart","url":"https://openrouter.ai/docs/quickstart"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"OpenRouter 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，OpenRouter 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"OpenRouter 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"OpenRouter 公布的是每分钟 20 次请求，每天 50 次请求。这些数字来自它自己的文档，核验日期为 2026-08-22。"}},{"@type":"Question","name":"OpenRouter 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"OpenRouter 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-08-22，OpenRouter 自己的文档里没有这样的说法。账号余额为负时，即使调用免费模型也可能收到 402，直到把余额补回零以上为止。"}},{"@type":"Question","name":"OpenRouter 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。OpenRouter 在 https://openrouter.ai/api/v1 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">服务商</a></li><li><span aria-current="page">OpenRouter</span></li></ol></nav>
-      <p class="eyebrow">免费模型聚合 · 来源核验于 2026-07-25</p>
+      <p class="eyebrow">免费模型聚合 · 来源核验于 2026-08-22</p>
       <h1>OpenRouter 免费额度</h1>
       <p class="lede">OpenRouter 官方就免费额度公布了什么、覆盖哪些模型，以及怎么把现有工具指过去。</p>
     </div>
@@ -49,7 +49,7 @@
           <div><dt>信用卡</dt><dd>不需要</dd></div>
           <div><dt>协议</dt><dd>兼容 OpenAI，端点 <code>https://openrouter.ai/api/v1</code></dd></div>
           <div><dt>生命周期</dt><dd>正常开放</dd></div>
-          <div><dt>来源核验日期</dt><dd>2026-07-25</dd></div>
+          <div><dt>来源核验日期</dt><dd>2026-08-22</dd></div>
         </dl>
         <p>账号余额为负时，即使调用免费模型也可能收到 402，直到把余额补回零以上为止。</p>
 
@@ -73,7 +73,7 @@
               </tr>
               <tr>
                 <td data-label="对比对象"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
-                <td data-label="官方公布限额">每分钟 60 次请求</td>
+                <td data-label="官方公布限额">动态，无固定数值</td>
                 <td data-label="信用卡">不需要</td>
                 <td data-label="端点"><code>api.tokenfactory.nebius.com</code></td>
               </tr>
@@ -128,11 +128,11 @@ wire_api = &quot;responses&quot;
         <h3>OpenRouter 需要绑信用卡吗？</h3>
         <p>不需要。本站有 23 家不用绑卡就能拿到免费访问，OpenRouter 是其中之一，所以试一下的成本只有注册本身。</p>
         <h3>OpenRouter 免费额度的限流是多少？</h3>
-        <p>OpenRouter 公布的是每分钟 20 次请求，每天 50 次请求。这些数字来自它自己的文档，核验日期为 2026-07-25。</p>
+        <p>OpenRouter 公布的是每分钟 20 次请求，每天 50 次请求。这些数字来自它自己的文档，核验日期为 2026-08-22。</p>
         <h3>OpenRouter 的 key 撞到限额会怎样？</h3>
         <p>端点返回 <code>429</code>。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。</p>
         <h3>OpenRouter 的免费额度会取消吗？</h3>
-        <p>截至 2026-07-25，OpenRouter 自己的文档里没有这样的说法。账号余额为负时，即使调用免费模型也可能收到 402，直到把余额补回零以上为止。</p>
+        <p>截至 2026-08-22，OpenRouter 自己的文档里没有这样的说法。账号余额为负时，即使调用免费模型也可能收到 402，直到把余额补回零以上为止。</p>
         <h3>OpenRouter 能配合 Codex、Cline 或 Continue 使用吗？</h3>
         <p>可以。OpenRouter 在 <code>https://openrouter.ai/api/v1</code> 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。</p>
 
@@ -142,7 +142,7 @@ wire_api = &quot;responses&quot;
           <li><a href="https://openrouter.ai/docs/guides/routing/model-variants/free" rel="noreferrer">OpenRouter free model variants</a><span class="source-url">https://openrouter.ai/docs/guides/routing/model-variants/free</span></li>
           <li><a href="https://openrouter.ai/docs/quickstart" rel="noreferrer">OpenRouter quickstart</a><span class="source-url">https://openrouter.ai/docs/quickstart</span></li>
         </ul>
-        <p>以上每个数字都是 2026-07-25 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
+        <p>以上每个数字都是 2026-08-22 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
       </article>
       <aside class="related" aria-label="相关页面">
         <div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GroqCloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="description" content="GroqCloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <title>GroqCloud free tier: limits and models</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/groq.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="GroqCloud free tier: limits and models">
-  <meta property="og:description" content="GroqCloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:description" content="GroqCloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/groq.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="GroqCloud free tier: limits and models">
-  <meta name="twitter:description" content="GroqCloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:description" content="GroqCloud free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"GroqCloud","item":"https://xyzs996.github.io/free-llm-api/provider/groq.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"GroqCloud free tier terms","description":"Free plan limits are per model and enforced per organization. llama-3.3-70b-versatile: 30 RPM, 1,000 RPD, 12K TPM, 100K TPD. llama-3.1-8b-instant: 30 RPM, 14,400 RPD, 6K TPM, 500K TPD. openai/gpt-oss-120b and openai/gpt-oss-20b: 30 RPM, 1,000 RPD, 8K TPM, 200K TPD. groq/compound: 30 RPM, 250 RPD, 70K TPM. Cached tokens do not count toward token limits. The RPM/RPD columns here quote llama-3.3-70b-versatile.","url":"https://xyzs996.github.io/free-llm-api/provider/groq.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"GroqCloud rate limits","url":"https://console.groq.com/docs/rate-limits"},{"@type":"CreativeWork","name":"Groq OpenAI compatibility","url":"https://console.groq.com/docs/openai"},{"@type":"CreativeWork","name":"Groq billing FAQ","url":"https://console.groq.com/docs/billing-faqs"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does GroqCloud ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. GroqCloud is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are GroqCloud's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"GroqCloud publishes 30 requests per minute, 1000 requests per day. Those are the numbers in its own documentation as reviewed on 2026-07-25."}},{"@type":"Question","name":"What happens when a GroqCloud key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the GroqCloud free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in GroqCloud's own documentation says so as of 2026-07-25. The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization."}},{"@type":"Question","name":"Can GroqCloud be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. GroqCloud serves the OpenAI chat completions protocol at https://api.groq.com/openai/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"GroqCloud free tier terms","description":"Free plan limits are per model and enforced per organization. openai/gpt-oss-120b, openai/gpt-oss-20b, openai/gpt-oss-safeguard-20b and qwen/qwen3.6-27b: 30 RPM, 1K RPD, 8K TPM, 200K TPD. groq/compound and groq/compound-mini: 30 RPM, 250 RPD, 70K TPM, no daily token cap listed. meta-llama/llama-prompt-guard-2-22m and -86m: 30 RPM, 14.4K RPD, 15K TPM, 500K TPD. Whisper large-v3 and turbo are metered in audio seconds: 20 RPM, 2K RPD, 7.2K ASH, 28.8K ASD. llama-3.3-70b-versatile and llama-3.1-8b-instant no longer appear in the free table. The RPM/RPD columns here quote openai/gpt-oss-120b.","url":"https://xyzs996.github.io/free-llm-api/provider/groq.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"GroqCloud rate limits","url":"https://console.groq.com/docs/rate-limits"},{"@type":"CreativeWork","name":"Groq OpenAI compatibility","url":"https://console.groq.com/docs/openai"},{"@type":"CreativeWork","name":"Groq billing FAQ","url":"https://console.groq.com/docs/billing-faqs"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does GroqCloud ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. GroqCloud is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are GroqCloud's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"GroqCloud publishes 30 requests per minute, 1000 requests per day. Those are the numbers in its own documentation as reviewed on 2026-08-22."}},{"@type":"Question","name":"What happens when a GroqCloud key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the GroqCloud free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in GroqCloud's own documentation says so as of 2026-08-22. The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization."}},{"@type":"Question","name":"Can GroqCloud be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. GroqCloud serves the OpenAI chat completions protocol at https://api.groq.com/openai/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">GroqCloud</span></li></ol></nav>
-      <p class="eyebrow">Provider free tier · Sources reviewed 2026-07-25</p>
+      <p class="eyebrow">Provider free tier · Sources reviewed 2026-08-22</p>
       <h1>GroqCloud free tier</h1>
       <p class="lede">What GroqCloud publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
     </div>
@@ -42,19 +42,19 @@
     <div class="shell page-grid">
       <article class="page-body" id="page-body">
         <h2>What GroqCloud's free tier allows</h2>
-        <p>Free plan limits are per model and enforced per organization. llama-3.3-70b-versatile: 30 RPM, 1,000 RPD, 12K TPM, 100K TPD. llama-3.1-8b-instant: 30 RPM, 14,400 RPD, 6K TPM, 500K TPD. openai/gpt-oss-120b and openai/gpt-oss-20b: 30 RPM, 1,000 RPD, 8K TPM, 200K TPD. groq/compound: 30 RPM, 250 RPD, 70K TPM. Cached tokens do not count toward token limits. The RPM/RPD columns here quote llama-3.3-70b-versatile.</p>
+        <p>Free plan limits are per model and enforced per organization. openai/gpt-oss-120b, openai/gpt-oss-20b, openai/gpt-oss-safeguard-20b and qwen/qwen3.6-27b: 30 RPM, 1K RPD, 8K TPM, 200K TPD. groq/compound and groq/compound-mini: 30 RPM, 250 RPD, 70K TPM, no daily token cap listed. meta-llama/llama-prompt-guard-2-22m and -86m: 30 RPM, 14.4K RPD, 15K TPM, 500K TPD. Whisper large-v3 and turbo are metered in audio seconds: 20 RPM, 2K RPD, 7.2K ASH, 28.8K ASD. llama-3.3-70b-versatile and llama-3.1-8b-instant no longer appear in the free table. The RPM/RPD columns here quote openai/gpt-oss-120b.</p>
         <dl class="fact-grid">
           <div><dt>Published limits</dt><dd>30 requests per minute, 1000 requests per day</dd></div>
           <div><dt>Free access type</dt><dd>Provider free tier</dd></div>
           <div><dt>Credit card</dt><dd>Not required</dd></div>
           <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://api.groq.com/openai/v1</code></dd></div>
           <div><dt>Lifecycle</dt><dd>Active</dd></div>
-          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-08-22</dd></div>
         </dl>
         <p>The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization.</p>
 
         <h2>Where GroqCloud sits in this catalog</h2>
-        <p>GroqCloud is one of 15 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes fixed numbers — 30 requests per minute, 1000 requests per day — which only 9 of the 25 do.</p>
+        <p>GroqCloud is one of 13 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes fixed numbers — 30 requests per minute, 1000 requests per day — which only 9 of the 25 do.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
@@ -89,13 +89,14 @@
 
         <h2>Models GroqCloud lists as free</h2>
         <ul class="model-list">
-          <li><code>llama-3.3-70b-versatile</code> — <a href="../model/llama.html">Llama</a>, also free at 8 other providers here</li>
-          <li><code>llama-3.1-8b-instant</code> — <a href="../model/llama.html">Llama</a>, also free at 8 other providers here</li>
           <li><code>openai/gpt-oss-120b</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
           <li><code>openai/gpt-oss-20b</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
+          <li><code>openai/gpt-oss-safeguard-20b</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
+          <li><code>qwen/qwen3.6-27b</code> — <a href="../model/qwen.html">Qwen</a>, also free at 9 other providers here</li>
           <li><code>groq/compound</code> — not part of any family this catalog tracks across providers</li>
+          <li><code>groq/compound-mini</code> — not part of any family this catalog tracks across providers</li>
         </ul>
-        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 8 other providers here also host the <a href="../model/llama.html">Llama</a> family on free terms, and the terms are not the same: <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/watsonx.html">IBM watsonx.ai</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>.</p>
+        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>. 9 other providers here also host the <a href="../model/qwen.html">Qwen</a> family on free terms, and the terms are not the same: <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/chutes.html">Chutes</a>, <a href="../provider/scaleway.html">Scaleway Generative APIs</a>.</p>
 
         <h2>Checking a GroqCloud key</h2>
         <p>The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://api.groq.com</code> on 2026-07-25.</p>
@@ -117,7 +118,7 @@ curl --silent --show-error \
 <p>GroqCloud serves the OpenAI chat completions protocol at <code>https://api.groq.com/openai/v1</code>. Point any client that accepts a custom base URL at it, and let the client read the key from <code>GROQ_API_KEY</code> so the value never lands in a config file:</p>
         <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
 # Project-level config cannot select a custom model provider.
-model = &quot;llama-3.3-70b-versatile&quot;
+model = &quot;openai/gpt-oss-120b&quot;
 model_provider = &quot;groq&quot;
 
 [model_providers.groq]
@@ -131,11 +132,11 @@ wire_api = &quot;responses&quot;
         <h3>Does GroqCloud ask for a credit card?</h3>
         <p>No. GroqCloud is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup.</p>
         <h3>What are GroqCloud&#39;s free-tier rate limits?</h3>
-        <p>GroqCloud publishes 30 requests per minute, 1000 requests per day. Those are the numbers in its own documentation as reviewed on 2026-07-25.</p>
+        <p>GroqCloud publishes 30 requests per minute, 1000 requests per day. Those are the numbers in its own documentation as reviewed on 2026-08-22.</p>
         <h3>What happens when a GroqCloud key hits the limit?</h3>
         <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
         <h3>Is the GroqCloud free tier going away?</h3>
-        <p>Nothing in GroqCloud's own documentation says so as of 2026-07-25. The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization.</p>
+        <p>Nothing in GroqCloud's own documentation says so as of 2026-08-22. The Free Plan is available without a payment method; the account Limits page is authoritative for the quota actually active on your organization.</p>
         <h3>Can GroqCloud be used with Codex, Cline, or Continue?</h3>
         <p>Yes. GroqCloud serves the OpenAI chat completions protocol at <code>https://api.groq.com/openai/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
 
@@ -145,7 +146,7 @@ wire_api = &quot;responses&quot;
           <li><a href="https://console.groq.com/docs/openai" rel="noreferrer">Groq OpenAI compatibility</a><span class="source-url">https://console.groq.com/docs/openai</span></li>
           <li><a href="https://console.groq.com/docs/billing-faqs" rel="noreferrer">Groq billing FAQ</a><span class="source-url">https://console.groq.com/docs/billing-faqs</span></li>
         </ul>
-        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+        <p>Every figure above was read from those pages on 2026-08-22. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
       </article>
       <aside class="related" aria-label="Related pages">
         <div>
@@ -154,7 +155,7 @@ wire_api = &quot;responses&quot;
         </div>
         <div>
           <h2>Model families</h2>
-          <ul><li><a href="../model/gpt-oss.html">Free gpt-oss API</a></li><li><a href="../model/llama.html">Free Llama API</a></li></ul>
+          <ul><li><a href="../model/gpt-oss.html">Free gpt-oss API</a></li><li><a href="../model/qwen.html">Free Qwen API</a></li></ul>
         </div>
         <div>
           <h2>Use it with</h2>

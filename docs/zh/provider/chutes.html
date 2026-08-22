@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Chutes 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="description" content="Chutes 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <title>Chutes 免费额度：限流与可用模型</title>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/provider/chutes.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Chutes 免费额度：限流与可用模型">
-  <meta property="og:description" content="Chutes 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta property="og:description" content="Chutes 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/provider/chutes.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Chutes 免费额度：限流与可用模型">
-  <meta name="twitter:description" content="Chutes 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-07-25 核验的官方来源。">
+  <meta name="twitter:description" content="Chutes 免费额度的限流数值、免费模型、浏览器可达性与接入方式，取自 2026-08-22 核验的官方来源。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"Chutes","item":"https://xyzs996.github.io/free-llm-api/zh/provider/chutes.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Chutes free tier terms","description":"Chutes 按 token 计费，并出售包含每日额度的订阅计划：Plus 每月 10 美元，含一份每日额度，超出部分在按量价上打 94 折；Pro 每月 20 美元，每日额度更大，超出部分打 9 折。定价页没有记录任何零成本层级，各计划的请求速率数字在计划限额页上，而不在定价页上。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/chutes.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Chutes pricing","url":"https://chutes.ai/pricing"},{"@type":"CreativeWork","name":"Chutes documentation","url":"https://chutes.ai/docs"},{"@type":"CreativeWork","name":"Chutes app","url":"https://chutes.ai/app"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Chutes 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，Chutes 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"Chutes 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"Chutes 没有公布单一的免费额度数字：它的限额形式是「按付费计划公布」。本清单在这里留空，而不是猜一个数。"}},{"@type":"Question","name":"Chutes 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"Chutes 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-07-25，Chutes 自己的文档里没有这样的说法。模型以 TEE（可信执行环境）变体提供，这才是它的差异点，而不是价格。"}},{"@type":"Question","name":"Chutes 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。Chutes 在 https://llm.chutes.ai/v1 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Chutes free tier terms","description":"Chutes 按 token 计费，并出售包含每日额度的订阅计划：Plus 每月 10 美元，含一份每日额度，超出部分在按量价上打 94 折；Pro 每月 20 美元，每日额度更大，超出部分打 9 折。定价页没有记录任何零成本层级，各计划的请求速率数字在计划限额页上，而不在定价页上。","url":"https://xyzs996.github.io/free-llm-api/zh/provider/chutes.html","inLanguage":"zh-Hans","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Chutes pricing","url":"https://chutes.ai/pricing"},{"@type":"CreativeWork","name":"Chutes documentation","url":"https://chutes.ai/docs"},{"@type":"CreativeWork","name":"Chutes app","url":"https://chutes.ai/app"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Chutes 需要绑信用卡吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。本站有 23 家不用绑卡就能拿到免费访问，Chutes 是其中之一，所以试一下的成本只有注册本身。"}},{"@type":"Question","name":"Chutes 免费额度的限流是多少？","acceptedAnswer":{"@type":"Answer","text":"Chutes 没有公布单一的免费额度数字：它的限额形式是「按付费计划公布」。本清单在这里留空，而不是猜一个数。"}},{"@type":"Question","name":"Chutes 的 key 撞到限额会怎样？","acceptedAnswer":{"@type":"Answer","text":"端点返回 429。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。"}},{"@type":"Question","name":"Chutes 的免费额度会取消吗？","acceptedAnswer":{"@type":"Answer","text":"截至 2026-08-22，Chutes 自己的文档里没有这样的说法。模型以 TEE（可信执行环境）变体提供，这才是它的差异点，而不是价格。"}},{"@type":"Question","name":"Chutes 能配合 Codex、Cline 或 Continue 使用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。Chutes 在 https://llm.chutes.ai/v1 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。"}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">服务商</a></li><li><span aria-current="page">Chutes</span></li></ol></nav>
-      <p class="eyebrow">按量计费 · 来源核验于 2026-07-25</p>
+      <p class="eyebrow">按量计费 · 来源核验于 2026-08-22</p>
       <h1>Chutes 免费额度</h1>
       <p class="lede">Chutes 官方就免费额度公布了什么、覆盖哪些模型，以及怎么把现有工具指过去。</p>
     </div>
@@ -49,12 +49,12 @@
           <div><dt>信用卡</dt><dd>不需要</dd></div>
           <div><dt>协议</dt><dd>兼容 OpenAI，端点 <code>https://llm.chutes.ai/v1</code></dd></div>
           <div><dt>生命周期</dt><dd>正常开放</dd></div>
-          <div><dt>来源核验日期</dt><dd>2026-07-25</dd></div>
+          <div><dt>来源核验日期</dt><dd>2026-08-22</dd></div>
         </dl>
         <p>模型以 TEE（可信执行环境）变体提供，这才是它的差异点，而不是价格。</p>
 
         <h2>Chutes 在这份清单里处于什么位置</h2>
-        <p>本站详列的 25 家服务商里，属于按量计费的有 6 家，Chutes 是其中之一。它不要求绑信用卡，25 家里有 23 家是这样。它没有公布固定的请求次数，25 家里有 16 家同样没有。</p>
+        <p>本站详列的 25 家服务商里，属于按量计费的有 8 家，Chutes 是其中之一。它不要求绑信用卡，25 家里有 23 家是这样。它没有公布固定的请求次数，25 家里有 16 家同样没有。</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>对比对象</th><th>官方公布限额</th><th>信用卡</th><th>端点</th></tr></thead>
@@ -72,16 +72,16 @@
                 <td data-label="端点"><code>api.scaleway.ai</code></td>
               </tr>
               <tr>
-                <td data-label="对比对象"><a href="../provider/together.html">Together AI</a></td>
-                <td data-label="官方公布限额">动态，无固定数值</td>
+                <td data-label="对比对象"><a href="../provider/novita.html">Novita AI</a></td>
+                <td data-label="官方公布限额">有限流但未公布数值</td>
                 <td data-label="信用卡">不需要</td>
-                <td data-label="端点"><code>api.together.xyz</code></td>
+                <td data-label="端点"><code>api.novita.ai</code></td>
               </tr>
               <tr>
-                <td data-label="对比对象"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
-                <td data-label="官方公布限额">每分钟 60 次请求</td>
+                <td data-label="对比对象"><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a></td>
+                <td data-label="官方公布限额">按层级公布</td>
                 <td data-label="信用卡">不需要</td>
-                <td data-label="端点"><code>api.tokenfactory.nebius.com</code></td>
+                <td data-label="端点"><code>api.moonshot.ai</code></td>
               </tr>
             </tbody>
           </table>
@@ -89,11 +89,11 @@
 
         <h2>Chutes 标为免费的模型</h2>
         <ul class="model-list">
-          <li><code>zai-org/GLM-5</code> —— <a href="../model/glm.html">GLM</a>，本站另有 3 家服务商也免费提供</li>
-          <li><code>Qwen/Qwen3-32B</code> —— <a href="../model/qwen.html">通义千问 Qwen</a>，本站另有 8 家服务商也免费提供</li>
+          <li><code>zai-org/GLM-5</code> —— <a href="../model/glm.html">GLM</a>，本站另有 2 家服务商也免费提供</li>
+          <li><code>Qwen/Qwen3-32B</code> —— <a href="../model/qwen.html">通义千问 Qwen</a>，本站另有 9 家服务商也免费提供</li>
           <li><code>unsloth/Mistral-Nemo-Instruct-2407</code> —— <a href="../model/mistral.html">Mistral</a>，本站另有 3 家服务商也免费提供</li>
         </ul>
-        <p>本站另有 8 家服务商也以免费条款提供 <a href="../model/qwen.html">通义千问 Qwen</a> 系列，而且条款并不相同：<a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>、<a href="../provider/siliconflow.html">SiliconFlow</a>、<a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>、<a href="../provider/ollama-cloud.html">Ollama Cloud</a>、<a href="../provider/together.html">Together AI</a>、<a href="../provider/nebius.html">Nebius Token Factory</a>、<a href="../provider/deepinfra.html">DeepInfra</a>、<a href="../provider/scaleway.html">Scaleway Generative APIs</a>。本站另有 3 家服务商也以免费条款提供 <a href="../model/mistral.html">Mistral</a> 系列，而且条款并不相同：<a href="../provider/mistral.html">Mistral La Plateforme</a>、<a href="../provider/pollinations.html">Pollinations.AI</a>、<a href="../provider/watsonx.html">IBM watsonx.ai</a>。本站另有 3 家服务商也以免费条款提供 <a href="../model/glm.html">GLM</a> 系列，而且条款并不相同：<a href="../provider/siliconflow.html">SiliconFlow</a>、<a href="../provider/zai.html">Z.AI Open Platform</a>、<a href="../provider/cerebras.html">Cerebras Inference</a>。</p>
+        <p>本站另有 9 家服务商也以免费条款提供 <a href="../model/qwen.html">通义千问 Qwen</a> 系列，而且条款并不相同：<a href="../provider/groq.html">GroqCloud</a>、<a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>、<a href="../provider/siliconflow.html">SiliconFlow</a>、<a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>、<a href="../provider/ollama-cloud.html">Ollama Cloud</a>、<a href="../provider/together.html">Together AI</a>、<a href="../provider/nebius.html">Nebius Token Factory</a>、<a href="../provider/deepinfra.html">DeepInfra</a>、<a href="../provider/scaleway.html">Scaleway Generative APIs</a>。本站另有 3 家服务商也以免费条款提供 <a href="../model/mistral.html">Mistral</a> 系列，而且条款并不相同：<a href="../provider/mistral.html">Mistral La Plateforme</a>、<a href="../provider/pollinations.html">Pollinations.AI</a>、<a href="../provider/watsonx.html">IBM watsonx.ai</a>。本站另有 2 家服务商也以免费条款提供 <a href="../model/glm.html">GLM</a> 系列，而且条款并不相同：<a href="../provider/siliconflow.html">SiliconFlow</a>、<a href="../provider/zai.html">Z.AI Open Platform</a>。</p>
 
         <h2>怎么验一个 Chutes 的 key</h2>
         <p>CORS 预检允许任意源携带 Authorization 请求头，所以浏览器可以直接调用这个端点。这一结论是 2026-07-25 针对 <code>https://llm.chutes.ai</code> 实测得到的。</p>
@@ -133,7 +133,7 @@ wire_api = &quot;responses&quot;
         <h3>Chutes 的 key 撞到限额会怎样？</h3>
         <p>端点返回 <code>429</code>。这只说明那一次请求被拒了，不说明还剩多少额度；只有服务商返回的 reset 响应头才能告诉你什么时候恢复。</p>
         <h3>Chutes 的免费额度会取消吗？</h3>
-        <p>截至 2026-07-25，Chutes 自己的文档里没有这样的说法。模型以 TEE（可信执行环境）变体提供，这才是它的差异点，而不是价格。</p>
+        <p>截至 2026-08-22，Chutes 自己的文档里没有这样的说法。模型以 TEE（可信执行环境）变体提供，这才是它的差异点，而不是价格。</p>
         <h3>Chutes 能配合 Codex、Cline 或 Continue 使用吗？</h3>
         <p>可以。Chutes 在 <code>https://llm.chutes.ai/v1</code> 上提供 OpenAI chat completions 协议，任何支持自定义 base URL 的客户端都能用。例外是 Claude Code，它讲的是 Anthropic 协议。</p>
 
@@ -143,12 +143,12 @@ wire_api = &quot;responses&quot;
           <li><a href="https://chutes.ai/docs" rel="noreferrer">Chutes documentation</a><span class="source-url">https://chutes.ai/docs</span></li>
           <li><a href="https://chutes.ai/app" rel="noreferrer">Chutes app</a><span class="source-url">https://chutes.ai/app</span></li>
         </ul>
-        <p>以上每个数字都是 2026-07-25 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
+        <p>以上每个数字都是 2026-08-22 从这些页面上读到的。如果某家只在控制台里给出限额，本清单就如实记下这件事，而不是填一个数字。收录标准和纠错流程见<a href="../methodology.html">数据方法</a>。</p>
       </article>
       <aside class="related" aria-label="相关页面">
         <div>
           <h2>横向对比</h2>
-          <ul><li><a href="../provider/scaleway.html">Scaleway Generative APIs</a></li><li><a href="../provider/together.html">Together AI</a></li><li><a href="../provider/nebius.html">Nebius Token Factory</a></li></ul>
+          <ul><li><a href="../provider/scaleway.html">Scaleway Generative APIs</a></li><li><a href="../provider/novita.html">Novita AI</a></li><li><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a></li></ul>
         </div>
         <div>
           <h2>模型系列</h2>

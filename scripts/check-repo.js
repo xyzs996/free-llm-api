@@ -3,6 +3,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { checkRepository } from '../src/check.js';
+import { STALE_AFTER_DAYS, staleSources } from '../src/lifecycle.js';
 
 const ignoredDirectories = new Set(['.git', '.free-llm', 'node_modules', 'coverage']);
 const requiredFiles = [
@@ -95,6 +96,29 @@ async function main(args) {
     return;
   }
   process.stdout.write('Repository checks passed.\n');
+  await warnAboutStaleSources();
+}
+
+// 只报不拦:退出码不动。见 src/lifecycle.js 里那段说明 —— 源没重读是欠账,
+// 该有人看见;把它做成硬闸,人只会去把天数调大。
+async function warnAboutStaleSources() {
+  const catalogPath = new URL('../data/providers.json', import.meta.url);
+  const providers = JSON.parse(await readFile(catalogPath, 'utf8'));
+  const today = new Date().toISOString().slice(0, 10);
+  const stale = staleSources(providers, today);
+  if (stale.length === 0) {
+    // 没有欠账的时候也印一行。只在坏消息时说话的检查,和被人删掉的检查,
+    // 输出一模一样。
+    process.stdout.write(
+      `Sources: all ${providers.length} re-read within ${STALE_AFTER_DAYS} days.\n`,
+    );
+    return;
+  }
+
+  const lines = stale.map(({ id, checkedAt, daysAgo }) => `  - ${id}: ${checkedAt} (${daysAgo} days ago)`);
+  process.stdout.write(
+    `Sources not re-read in over ${STALE_AFTER_DAYS} days (${stale.length} of ${providers.length}):\n${lines.join('\n')}\n`,
+  );
 }
 
 main(process.argv.slice(2)).catch((error) => {

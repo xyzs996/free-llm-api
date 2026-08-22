@@ -39,8 +39,17 @@ function alternatesOf(html) {
 // The text a reader actually sees. Script blocks come out first: the checker
 // embeds its provider data as JSON, and the raw ids in it are addressed to a
 // script rather than to a person.
+//
+// 引用链接那一段也拿掉:里面只有 official_sources[].title,是被引文档自己的标题
+// (`renderSources` 除了标题吐不出别的)。英文文档的标题在中文页上照原样出现是对的
+// —— 点过去看到的就是这一行字;把它译了,读者反而对不上。而这条判据要抓的是
+// 「该查表的地方直接把值印出来了」,和文档标题是两回事。
 function visibleText(html) {
-  return plainText(html.replaceAll(/<script[\s\S]*?<\/script>/g, ' '));
+  return plainText(
+    html
+      .replaceAll(/<script[\s\S]*?<\/script>/g, ' ')
+      .replaceAll(/<span class="source-links">[\s\S]*?<\/span>/g, ' '),
+  );
 }
 
 test('both string tables define exactly the same keys', () => {

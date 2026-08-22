@@ -31,7 +31,7 @@
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="面包屑导航"><ol><li><a href="../index.html">免费 LLM API</a></li><li><a href="../index.html">客户端</a></li><li><span aria-current="page">Codex CLI</span></li></ol></nav>
-      <p class="eyebrow">客户端接入 · 清单核验于 2026-07-25</p>
+      <p class="eyebrow">客户端接入 · 清单核验于 2026-08-22</p>
       <h1>Codex CLI 搭配免费 LLM API</h1>
       <p class="lede">Codex CLI 需要的配置由清单直接生成，另附真正能配合它工作的免费额度。</p>
     </div>
@@ -53,7 +53,7 @@
         <p>运行 <code>npx free-llm-api setup codex</code> 会写出 <code>config.toml</code>。它由清单生成，所以 base URL 和 model id 都是服务商文档里的原值，不用你再去翻。下面是按 GroqCloud 填好的样子：</p>
         <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
 # Project-level config cannot select a custom model provider.
-model = &quot;llama-3.3-70b-versatile&quot;
+model = &quot;openai/gpt-oss-120b&quot;
 model_provider = &quot;groq&quot;
 
 [model_providers.groq]
@@ -138,7 +138,7 @@ wire_api = &quot;responses&quot;
         <ul class="source-list">
           <li><a href="https://developers.openai.com/codex/config-advanced#custom-model-providers" rel="noreferrer">Codex advanced configuration and custom model providers</a></li>
         </ul>
-        <p>这里引用的服务商数字，都来自各家自己的文档，核验日期 2026-07-25。哪些内容会被记录、哪些是有意留空的，见<a href="../methodology.html">数据方法</a>。</p>
+        <p>这里引用的服务商数字，都来自各家自己的文档，核验日期 2026-08-22。哪些内容会被记录、哪些是有意留空的，见<a href="../methodology.html">数据方法</a>。</p>
       </article>
       <aside class="related" aria-label="相关页面">
         <div>

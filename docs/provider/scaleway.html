@@ -54,7 +54,7 @@
         <p>Requests sent through the Batches API are not rate limited and are billed at a 50% discount, which is the documented escape hatch for non-real-time work.</p>
 
         <h2>Where Scaleway Generative APIs sits in this catalog</h2>
-        <p>Scaleway Generative APIs is one of 6 metered access entries among the 25 providers detailed here. It asks for a credit card, as 2 of the 25 do. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <p>Scaleway Generative APIs is one of 8 metered access entries among the 25 providers detailed here. It asks for a credit card, as 2 of the 25 do. It publishes no fixed request count, as 16 of the 25 do not.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
@@ -66,22 +66,22 @@
                 <td data-label="Endpoint"><code>api.scaleway.ai</code></td>
               </tr>
               <tr>
+                <td data-label="Compared with"><a href="../provider/novita.html">Novita AI</a></td>
+                <td data-label="Published limits">Enforced but not published</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.novita.ai</code></td>
+              </tr>
+              <tr>
+                <td data-label="Compared with"><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a></td>
+                <td data-label="Published limits">Published per tier</td>
+                <td data-label="Card">Not required</td>
+                <td data-label="Endpoint"><code>api.moonshot.ai</code></td>
+              </tr>
+              <tr>
                 <td data-label="Compared with"><a href="../provider/together.html">Together AI</a></td>
                 <td data-label="Published limits">Dynamic, no fixed numbers</td>
                 <td data-label="Card">Not required</td>
                 <td data-label="Endpoint"><code>api.together.xyz</code></td>
-              </tr>
-              <tr>
-                <td data-label="Compared with"><a href="../provider/nebius.html">Nebius Token Factory</a></td>
-                <td data-label="Published limits">60 requests per minute</td>
-                <td data-label="Card">Not required</td>
-                <td data-label="Endpoint"><code>api.tokenfactory.nebius.com</code></td>
-              </tr>
-              <tr>
-                <td data-label="Compared with"><a href="../provider/perplexity.html">Perplexity API</a></td>
-                <td data-label="Published limits">50 requests per minute</td>
-                <td data-label="Card">Not required</td>
-                <td data-label="Endpoint"><code>api.perplexity.ai</code></td>
               </tr>
             </tbody>
           </table>
@@ -91,9 +91,9 @@
         <ul class="model-list">
           <li><code>llama-3.3-70b-instruct</code> — <a href="../model/llama.html">Llama</a>, also free at 8 other providers here</li>
           <li><code>gpt-oss-120b</code> — <a href="../model/gpt-oss.html">gpt-oss</a>, also free at 9 other providers here</li>
-          <li><code>qwen3-coder-30b-a3b-instruct</code> — <a href="../model/qwen.html">Qwen</a>, also free at 8 other providers here</li>
+          <li><code>qwen3-coder-30b-a3b-instruct</code> — <a href="../model/qwen.html">Qwen</a>, also free at 9 other providers here</li>
         </ul>
-        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>. 8 other providers here also host the <a href="../model/llama.html">Llama</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/watsonx.html">IBM watsonx.ai</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>. 8 other providers here also host the <a href="../model/qwen.html">Qwen</a> family on free terms, and the terms are not the same: <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/chutes.html">Chutes</a>.</p>
+        <p>9 other providers here also host the <a href="../model/gpt-oss.html">gpt-oss</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/huggingface.html">Hugging Face Inference Providers</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/cerebras.html">Cerebras Inference</a>, <a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a>, <a href="../provider/together.html">Together AI</a>. 8 other providers here also host the <a href="../model/llama.html">Llama</a> family on free terms, and the terms are not the same: <a href="../provider/sambanova.html">SambaNova Cloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/fireworks.html">Fireworks AI</a>, <a href="../provider/novita.html">Novita AI</a>, <a href="../provider/watsonx.html">IBM watsonx.ai</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>. 9 other providers here also host the <a href="../model/qwen.html">Qwen</a> family on free terms, and the terms are not the same: <a href="../provider/groq.html">GroqCloud</a>, <a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a>, <a href="../provider/siliconflow.html">SiliconFlow</a>, <a href="../provider/dashscope.html">Alibaba Cloud Model Studio</a>, <a href="../provider/ollama-cloud.html">Ollama Cloud</a>, <a href="../provider/together.html">Together AI</a>, <a href="../provider/nebius.html">Nebius Token Factory</a>, <a href="../provider/deepinfra.html">DeepInfra</a>, <a href="../provider/chutes.html">Chutes</a>.</p>
 
         <h2>Checking a Scaleway Generative APIs key</h2>
         <p>The CORS preflight echoes the requesting origin and allows an Authorization header, so a browser can call this endpoint directly. That was measured against <code>https://api.scaleway.ai</code> on 2026-07-25.</p>
@@ -148,7 +148,7 @@ wire_api = &quot;responses&quot;
       <aside class="related" aria-label="Related pages">
         <div>
           <h2>Compare with</h2>
-          <ul><li><a href="../provider/together.html">Together AI</a></li><li><a href="../provider/nebius.html">Nebius Token Factory</a></li><li><a href="../provider/perplexity.html">Perplexity API</a></li></ul>
+          <ul><li><a href="../provider/novita.html">Novita AI</a></li><li><a href="../provider/moonshot.html">Moonshot AI (Kimi)</a></li><li><a href="../provider/together.html">Together AI</a></li></ul>
         </div>
         <div>
           <h2>Model families</h2>

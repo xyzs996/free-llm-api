@@ -29,11 +29,9 @@ This writes a review guide. The values are entered in the Cline settings panel b
 | SiliconFlow | `https://api.siliconflow.com/v1` | 1000 RPM | [Sign up](https://cloud.siliconflow.com/account/ak) |
 | Fireworks AI | `https://api.fireworks.ai/inference/v1` | 10 RPM | [Sign up](https://app.fireworks.ai/settings/users/api-keys) |
 | Z.AI Open Platform | `https://api.z.ai/api/paas/v4` | Selected models priced at zero | [Sign up](https://z.ai/manage-apikey/apikey-list) |
-| Novita AI | `https://api.novita.ai/openai` | Selected models priced at zero | [Sign up](https://novita.ai/settings/key-management) |
 | Mistral La Plateforme | `https://api.mistral.ai/v1` | Enforced but not published | [Sign up](https://console.mistral.ai/api-keys) |
 | Alibaba Cloud Model Studio | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | Published per model | [Sign up](https://bailian.console.alibabacloud.com/) |
-| Moonshot AI (Kimi) | `https://api.moonshot.ai/v1` | Published per tier | [Sign up](https://platform.moonshot.ai/console/api-keys) |
-| Pollinations.AI | `https://text.pollinations.ai/openai` | Enforced but not published | [Sign up](https://pollinations.ai/) |
+| Pollinations.AI | `https://text.pollinations.ai/openai` | 4 RPM | [Sign up](https://pollinations.ai/) |
 | Ollama Cloud | `https://ollama.com/v1` | Enforced but not published | [Sign up](https://ollama.com/settings/keys) |
 | Vercel AI Gateway | `https://ai-gateway.vercel.sh/v1` | Published as a credit balance | [Sign up](https://vercel.com/dashboard/ai-gateway) |
 | OpenRouter | `https://openrouter.ai/api/v1` | 20 RPM, 50/day | [Sign up](https://openrouter.ai/settings/keys) |

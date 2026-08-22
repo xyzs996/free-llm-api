@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Hugging Face Inference Providers free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="description" content="Hugging Face Inference Providers free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <title>Hugging Face Inference Providers free tier: limits and model</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/provider/huggingface.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="Hugging Face Inference Providers free tier: limits and model">
-  <meta property="og:description" content="Hugging Face Inference Providers free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta property="og:description" content="Hugging Face Inference Providers free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/provider/huggingface.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,17 +22,17 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hugging Face Inference Providers free tier: limits and model">
-  <meta name="twitter:description" content="Hugging Face Inference Providers free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-07-25.">
+  <meta name="twitter:description" content="Hugging Face Inference Providers free-tier rate limits, free models, browser reachability, and setup, taken from official sources on 2026-08-22.">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free LLM API","item":"https://xyzs996.github.io/free-llm-api/"},{"@type":"ListItem","position":2,"name":"Hugging Face Inference Providers","item":"https://xyzs996.github.io/free-llm-api/provider/huggingface.html"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Hugging Face Inference Providers free tier terms","description":"Signed-in free users receive $0.10 in monthly Inference Provider credits (Hugging Face notes this is subject to change); PRO users receive $2.00 and Team or Enterprise organizations $2.00 per seat. Credits only apply to requests routed by Hugging Face, not to requests made with your own provider key. Once the monthly credits are spent you must purchase credits to continue.","url":"https://xyzs996.github.io/free-llm-api/provider/huggingface.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-07-25","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Inference Providers pricing and billing","url":"https://huggingface.co/docs/inference-providers/pricing"},{"@type":"CreativeWork","name":"Inference Providers OpenAI compatibility","url":"https://huggingface.co/docs/inference-providers/index"},{"@type":"CreativeWork","name":"Inference Providers settings","url":"https://huggingface.co/settings/inference-providers"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Hugging Face Inference Providers ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Hugging Face Inference Providers is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Hugging Face Inference Providers's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Hugging Face Inference Providers publishes no single free-tier number: its limits are published as a credit balance. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Hugging Face Inference Providers key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Hugging Face Inference Providers free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Hugging Face Inference Providers's own documentation says so as of 2026-07-25. Hugging Face charges provider list rates with no markup, so the free allowance converts to very different request counts depending on which model you route to."}},{"@type":"Question","name":"Can Hugging Face Inference Providers be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Hugging Face Inference Providers serves the OpenAI chat completions protocol at https://router.huggingface.co/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Hugging Face Inference Providers free tier terms","description":"Signed-in free users receive $0.10 in monthly Inference Provider credits (Hugging Face notes this is subject to change); PRO users receive $2.00 and Team or Enterprise organizations $2.00 per seat. Credits only apply to requests routed by Hugging Face, not to requests made with your own provider key. Once the monthly credits are spent you must purchase credits to continue.","url":"https://xyzs996.github.io/free-llm-api/provider/huggingface.html","inLanguage":"en","isAccessibleForFree":true,"dateModified":"2026-08-22","creator":{"@type":"Organization","name":"Free LLM API","url":"https://github.com/xyzs996/free-llm-api"},"citation":[{"@type":"CreativeWork","name":"Inference Providers pricing and billing","url":"https://huggingface.co/docs/inference-providers/pricing"},{"@type":"CreativeWork","name":"Inference Providers OpenAI compatibility","url":"https://huggingface.co/docs/inference-providers/index"},{"@type":"CreativeWork","name":"Inference Providers settings","url":"https://huggingface.co/settings/inference-providers"}],"includedInDataCatalog":{"@type":"DataCatalog","name":"Free LLM API provider catalog","url":"https://xyzs996.github.io/free-llm-api/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Hugging Face Inference Providers ask for a credit card?","acceptedAnswer":{"@type":"Answer","text":"No. Hugging Face Inference Providers is one of 23 providers here that hand out free access without a card, so the only cost of trying it is the signup."}},{"@type":"Question","name":"What are Hugging Face Inference Providers's free-tier rate limits?","acceptedAnswer":{"@type":"Answer","text":"Hugging Face Inference Providers publishes no single free-tier number: its limits are published as a credit balance. This catalog leaves that blank rather than guessing a figure."}},{"@type":"Question","name":"What happens when a Hugging Face Inference Providers key hits the limit?","acceptedAnswer":{"@type":"Answer","text":"The endpoint answers 429. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears."}},{"@type":"Question","name":"Is the Hugging Face Inference Providers free tier going away?","acceptedAnswer":{"@type":"Answer","text":"Nothing in Hugging Face Inference Providers's own documentation says so as of 2026-08-22. Hugging Face charges provider list rates with no markup, so the free allowance converts to very different request counts depending on which model you route to."}},{"@type":"Question","name":"Can Hugging Face Inference Providers be used with Codex, Cline, or Continue?","acceptedAnswer":{"@type":"Answer","text":"Yes. Hugging Face Inference Providers serves the OpenAI chat completions protocol at https://router.huggingface.co/v1, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead."}}]}</script>
 </head>
 <body>
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Providers</a></li><li><span aria-current="page">Hugging Face Inference Providers</span></li></ol></nav>
-      <p class="eyebrow">Provider free tier · Sources reviewed 2026-07-25</p>
+      <p class="eyebrow">Provider free tier · Sources reviewed 2026-08-22</p>
       <h1>Hugging Face Inference Providers free tier</h1>
       <p class="lede">What Hugging Face Inference Providers publishes about its free allowance, which models it covers, and how to point an existing tool at it.</p>
     </div>
@@ -49,12 +49,12 @@
           <div><dt>Credit card</dt><dd>Not required</dd></div>
           <div><dt>Protocol</dt><dd>OpenAI-compatible at <code>https://router.huggingface.co/v1</code></dd></div>
           <div><dt>Lifecycle</dt><dd>Active</dd></div>
-          <div><dt>Sources reviewed</dt><dd>2026-07-25</dd></div>
+          <div><dt>Sources reviewed</dt><dd>2026-08-22</dd></div>
         </dl>
         <p>Hugging Face charges provider list rates with no markup, so the free allowance converts to very different request counts depending on which model you route to.</p>
 
         <h2>Where Hugging Face Inference Providers sits in this catalog</h2>
-        <p>Hugging Face Inference Providers is one of 15 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
+        <p>Hugging Face Inference Providers is one of 13 provider free tier entries among the 25 providers detailed here. It asks for no credit card, which is true of 23 of the 25. It publishes no fixed request count, as 16 of the 25 do not.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Compared with</th><th>Published limits</th><th>Card</th><th>Endpoint</th></tr></thead>
@@ -133,7 +133,7 @@ wire_api = &quot;responses&quot;
         <h3>What happens when a Hugging Face Inference Providers key hits the limit?</h3>
         <p>The endpoint answers <code>429</code>. That is a statement about the request that was refused, not about how much quota is left; only a reset header from the provider tells you when it clears.</p>
         <h3>Is the Hugging Face Inference Providers free tier going away?</h3>
-        <p>Nothing in Hugging Face Inference Providers's own documentation says so as of 2026-07-25. Hugging Face charges provider list rates with no markup, so the free allowance converts to very different request counts depending on which model you route to.</p>
+        <p>Nothing in Hugging Face Inference Providers's own documentation says so as of 2026-08-22. Hugging Face charges provider list rates with no markup, so the free allowance converts to very different request counts depending on which model you route to.</p>
         <h3>Can Hugging Face Inference Providers be used with Codex, Cline, or Continue?</h3>
         <p>Yes. Hugging Face Inference Providers serves the OpenAI chat completions protocol at <code>https://router.huggingface.co/v1</code>, so any client that accepts a custom base URL can use it. Claude Code is the exception, because it speaks the Anthropic protocol instead.</p>
 
@@ -143,7 +143,7 @@ wire_api = &quot;responses&quot;
           <li><a href="https://huggingface.co/docs/inference-providers/index" rel="noreferrer">Inference Providers OpenAI compatibility</a><span class="source-url">https://huggingface.co/docs/inference-providers/index</span></li>
           <li><a href="https://huggingface.co/settings/inference-providers" rel="noreferrer">Inference Providers settings</a><span class="source-url">https://huggingface.co/settings/inference-providers</span></li>
         </ul>
-        <p>Every figure above was read from those pages on 2026-07-25. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
+        <p>Every figure above was read from those pages on 2026-08-22. Where a provider states a limit only inside a console, this catalog records that fact instead of a number. See the <a href="../methodology.html">methodology</a> for how an entry gets in and how it gets corrected.</p>
       </article>
       <aside class="related" aria-label="Related pages">
         <div>

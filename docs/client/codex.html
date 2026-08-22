@@ -31,7 +31,7 @@
   <header class="page-head">
     <div class="shell">
       <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../index.html">Free LLM API</a></li><li><a href="../index.html">Clients</a></li><li><span aria-current="page">Codex CLI</span></li></ol></nav>
-      <p class="eyebrow">Client setup · Catalog reviewed 2026-07-25</p>
+      <p class="eyebrow">Client setup · Catalog reviewed 2026-08-22</p>
       <h1>Codex CLI with a free LLM API</h1>
       <p class="lede">The configuration Codex CLI needs, generated from the catalog, plus the free tiers that actually work with it.</p>
     </div>
@@ -53,7 +53,7 @@
         <p>Running <code>npx free-llm-api setup codex</code> writes <code>config.toml</code>. It is generated from the catalog, so the base URL and model id are the ones the provider documents rather than ones you have to look up. Here it is filled in for GroqCloud:</p>
         <pre class="page-code"><code># Merge this snippet into ~/.codex/config.toml.
 # Project-level config cannot select a custom model provider.
-model = &quot;llama-3.3-70b-versatile&quot;
+model = &quot;openai/gpt-oss-120b&quot;
 model_provider = &quot;groq&quot;
 
 [model_providers.groq]
@@ -138,7 +138,7 @@ wire_api = &quot;responses&quot;
         <ul class="source-list">
           <li><a href="https://developers.openai.com/codex/config-advanced#custom-model-providers" rel="noreferrer">Codex advanced configuration and custom model providers</a></li>
         </ul>
-        <p>Provider figures shown here come from each provider’s own documentation, reviewed on 2026-07-25. The <a href="../methodology.html">methodology</a> covers what is recorded and what is deliberately left blank.</p>
+        <p>Provider figures shown here come from each provider’s own documentation, reviewed on 2026-08-22. The <a href="../methodology.html">methodology</a> covers what is recorded and what is deliberately left blank.</p>
       </article>
       <aside class="related" aria-label="Related pages">
         <div>

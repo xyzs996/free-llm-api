@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="哪些服务商以免费额度提供 gpt-oss 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta name="description" content="哪些服务商以免费额度提供 gpt-oss 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <title>gpt-oss 免费 API：10 家服务商横评</title>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="canonical" href="https://xyzs996.github.io/free-llm-api/zh/model/gpt-oss.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Free LLM API">
   <meta property="og:title" content="gpt-oss 免费 API：10 家服务商横评">
-  <meta property="og:description" content="哪些服务商以免费额度提供 gpt-oss 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta property="og:description" content="哪些服务商以免费额度提供 gpt-oss 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <meta property="og:url" content="https://xyzs996.github.io/free-llm-api/zh/model/gpt-oss.html">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
@@ -22,7 +22,7 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="gpt-oss 免费 API：10 家服务商横评">
-  <meta name="twitter:description" content="哪些服务商以免费额度提供 gpt-oss 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-07-25。">
+  <meta name="twitter:description" content="哪些服务商以免费额度提供 gpt-oss 模型、各自公布的限额是什么、条款差在哪里。核验于 2026-08-22。">
   <meta name="twitter:image" content="https://xyzs996.github.io/free-llm-api/assets/social-preview.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"免费 LLM API","item":"https://xyzs996.github.io/free-llm-api/zh/"},{"@type":"ListItem","position":2,"name":"gpt-oss","item":"https://xyzs996.github.io/free-llm-api/zh/model/gpt-oss.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"以免费条款提供 gpt-oss 的服务商","description":"本清单里所有把 gpt-oss 模型标为免费的服务商，顺序与页面上的对比表一致。","numberOfItems":10,"itemListElement":[{"@type":"ListItem","position":1,"name":"GroqCloud","url":"https://xyzs996.github.io/free-llm-api/zh/provider/groq.html"},{"@type":"ListItem","position":2,"name":"SambaNova Cloud","url":"https://xyzs996.github.io/free-llm-api/zh/provider/sambanova.html"},{"@type":"ListItem","position":3,"name":"Cloudflare Workers AI","url":"https://xyzs996.github.io/free-llm-api/zh/provider/cloudflare-workers-ai.html"},{"@type":"ListItem","position":4,"name":"Hugging Face Inference Providers","url":"https://xyzs996.github.io/free-llm-api/zh/provider/huggingface.html"},{"@type":"ListItem","position":5,"name":"Fireworks AI","url":"https://xyzs996.github.io/free-llm-api/zh/provider/fireworks.html"},{"@type":"ListItem","position":6,"name":"Ollama Cloud","url":"https://xyzs996.github.io/free-llm-api/zh/provider/ollama-cloud.html"},{"@type":"ListItem","position":7,"name":"Cerebras Inference","url":"https://xyzs996.github.io/free-llm-api/zh/provider/cerebras.html"},{"@type":"ListItem","position":8,"name":"Vercel AI Gateway","url":"https://xyzs996.github.io/free-llm-api/zh/provider/vercel-ai-gateway.html"},{"@type":"ListItem","position":9,"name":"Together AI","url":"https://xyzs996.github.io/free-llm-api/zh/provider/together.html"},{"@type":"ListItem","position":10,"name":"Scaleway Generative APIs","url":"https://xyzs996.github.io/free-llm-api/zh/provider/scaleway.html"}]}</script>
@@ -54,7 +54,7 @@
               <td data-label="免费形式">厂商免费额度</td>
               <td data-label="官方公布限额">每分钟 30 次请求，每天 1000 次请求</td>
               <td data-label="信用卡">不需要</td>
-              <td data-label="匹配到的模型">openai/gpt-oss-120b、openai/gpt-oss-20b</td>
+              <td data-label="匹配到的模型">openai/gpt-oss-120b、openai/gpt-oss-20b、openai/gpt-oss-safeguard-20b</td>
             </tr>
             <tr>
               <td data-label="服务商"><a href="../provider/sambanova.html">SambaNova Cloud</a></td>
@@ -126,13 +126,13 @@
         <h2>免费条款到底差在哪</h2>
         <ul class="difference-list">
           <li><a href="../provider/groq.html">GroqCloud</a> — 免费计划的限额按模型区分，并按组织（organization）合并计算。</li>
-          <li><a href="../provider/sambanova.html">SambaNova Cloud</a> — 只要账号没有绑定支付方式，就处于 Free Tier。</li>
-          <li><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a> — Workers Free 和 Workers Paid 两个计划都包含每天 10,000 Neurons 的免费额度，每天 UTC 00:00 重置。</li>
+          <li><a href="../provider/sambanova.html">SambaNova Cloud</a> — 只要账号没有绑定支付方式，就适用免费档。</li>
+          <li><a href="../provider/cloudflare-workers-ai.html">Cloudflare Workers AI</a> — Workers Free 和 Workers Paid 两种计划都含每天 10,000 Neurons 的免费额度，每天 00:00 UTC 重置。</li>
           <li><a href="../provider/huggingface.html">Hugging Face Inference Providers</a> — 登录的免费用户每月获得 0.10 美元的 Inference Provider 额度（Hugging Face 注明这个数额可能调整）；PRO 用户 2.00 美元，Team 或 Enterprise 组织按每席位 2.00 美元。</li>
           <li><a href="../provider/fireworks.html">Fireworks AI</a> — 既没有绑定支付方式、也没有余额的账号，整个账号合计限 10 次请求/分钟。</li>
           <li><a href="../provider/ollama-cloud.html">Ollama Cloud</a> — 云端模型跑在 Ollama 自己的服务器上，本地 CLI 的用法保持不变，只要一个 ollama.com 账号就能开始。</li>
-          <li><a href="../provider/cerebras.html">Cerebras Inference</a> — 免费试用的限额是每个模型 5 RPM、30K TPM，并有每小时 100 万 token、每天 100 万 token 的封顶，适用于 gpt-oss-120b、zai-glm-4.7 和 gemma-4-31b。</li>
-          <li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a> — 免费层下每个 Vercel 团队账号每月获得 5 美元的 AI Gateway 额度，而且只能用在 Free Tier 那部分模型上，不是整个模型目录。</li>
+          <li><a href="../provider/cerebras.html">Cerebras Inference</a> — 免费试用的限额是每个模型 5 RPM、30K TPM，并有每小时 100 万 token、每天 100 万 token 的封顶，适用于 gpt-oss-120b 和 gemma-4-31b —— zai-glm-4.7 已不在这张表里。</li>
+          <li><a href="../provider/vercel-ai-gateway.html">Vercel AI Gateway</a> — 每个 Vercel team 账号都有免费档，但免费档只覆盖模型子集，不是全部目录；免费档的请求还按模型限流，上限低于付费档，而这些按模型的数字并不公布。</li>
           <li><a href="../provider/together.html">Together AI</a> — Together 采用按模型的动态限流：持续成功的流量会把限额抬上去，流量降下来限额也跟着回落，官方明确说明不公布固定的按模型限额。</li>
           <li><a href="../provider/scaleway.html">Scaleway Generative APIs</a> — 通过 Generative APIs - Serverless 提供的每个模型，都同时受每分钟 token 数、每分钟查询数和并发请求数三重限制。</li>
         </ul>

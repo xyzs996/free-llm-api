@@ -43,7 +43,7 @@
         "url": "https://ai.google.dev/gemini-api/docs/openai"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -68,18 +68,19 @@
     "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
-      "llama-3.3-70b-versatile",
-      "llama-3.1-8b-instant",
       "openai/gpt-oss-120b",
       "openai/gpt-oss-20b",
-      "groq/compound"
+      "openai/gpt-oss-safeguard-20b",
+      "qwen/qwen3.6-27b",
+      "groq/compound",
+      "groq/compound-mini"
     ],
     "limits": {
       "status": "documented-per-model",
       "requests_per_minute": 30,
       "requests_per_day": 1000,
-      "summary": "Free plan limits are per model and enforced per organization. llama-3.3-70b-versatile: 30 RPM, 1,000 RPD, 12K TPM, 100K TPD. llama-3.1-8b-instant: 30 RPM, 14,400 RPD, 6K TPM, 500K TPD. openai/gpt-oss-120b and openai/gpt-oss-20b: 30 RPM, 1,000 RPD, 8K TPM, 200K TPD. groq/compound: 30 RPM, 250 RPD, 70K TPM. Cached tokens do not count toward token limits. The RPM/RPD columns here quote llama-3.3-70b-versatile.",
-      "summary_zh": "免费计划的限额按模型区分，并按组织（organization）合并计算。llama-3.3-70b-versatile：30 RPM、1,000 RPD、12K TPM、100K TPD。llama-3.1-8b-instant：30 RPM、14,400 RPD、6K TPM、500K TPD。openai/gpt-oss-120b 与 openai/gpt-oss-20b：30 RPM、1,000 RPD、8K TPM、200K TPD。groq/compound：30 RPM、250 RPD、70K TPM。命中缓存的 token 不计入 token 限额。本页 RPM/RPD 两列取的是 llama-3.3-70b-versatile 的数值。"
+      "summary": "Free plan limits are per model and enforced per organization. openai/gpt-oss-120b, openai/gpt-oss-20b, openai/gpt-oss-safeguard-20b and qwen/qwen3.6-27b: 30 RPM, 1K RPD, 8K TPM, 200K TPD. groq/compound and groq/compound-mini: 30 RPM, 250 RPD, 70K TPM, no daily token cap listed. meta-llama/llama-prompt-guard-2-22m and -86m: 30 RPM, 14.4K RPD, 15K TPM, 500K TPD. Whisper large-v3 and turbo are metered in audio seconds: 20 RPM, 2K RPD, 7.2K ASH, 28.8K ASD. llama-3.3-70b-versatile and llama-3.1-8b-instant no longer appear in the free table. The RPM/RPD columns here quote openai/gpt-oss-120b.",
+      "summary_zh": "免费计划的限额按模型区分，并按组织（organization）合并计算。openai/gpt-oss-120b、openai/gpt-oss-20b、openai/gpt-oss-safeguard-20b、qwen/qwen3.6-27b：30 RPM、1K RPD、8K TPM、200K TPD。groq/compound 和 groq/compound-mini：30 RPM、250 RPD、70K TPM，没有列每日 token 上限。meta-llama/llama-prompt-guard-2-22m 与 -86m：30 RPM、14.4K RPD、15K TPM、500K TPD。Whisper large-v3 与 turbo 按音频秒数计量：20 RPM、2K RPD、7.2K ASH、28.8K ASD。llama-3.3-70b-versatile 和 llama-3.1-8b-instant 已不在免费表内。本页 RPM/RPD 两列取的是 openai/gpt-oss-120b 的数值。"
     },
     "availability": {
       "status": "active",
@@ -102,7 +103,7 @@
         "url": "https://console.groq.com/docs/billing-faqs"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -129,21 +130,23 @@
     "models": [
       "DeepSeek-V3.1",
       "Meta-Llama-3.3-70B-Instruct",
-      "gpt-oss-120b"
+      "gpt-oss-120b",
+      "DeepSeek-V3.2",
+      "gemma-4-31B-it"
     ],
     "limits": {
       "status": "documented-per-model",
       "requests_per_minute": 20,
       "requests_per_day": 20,
-      "summary": "The Free Tier applies whenever no payment method is linked to the account. For DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b the free limits are 20 RPM, 20 RPD and 200,000 tokens per day. Linking a payment method moves the account to the Developer Tier (60-240 RPM, 12,000-48,000 RPD, 20M tokens/day across all models).",
-      "summary_zh": "只要账号没有绑定支付方式，就处于 Free Tier。DeepSeek-V3.1、Meta-Llama-3.3-70B-Instruct 和 gpt-oss-120b 的免费限额是 20 RPM、每天 20 次请求、每天 20 万 token。绑定支付方式后账号转入 Developer Tier（全模型合计 60–240 RPM、12,000–48,000 RPD、每天 2,000 万 token）。"
+      "summary": "The Free Tier applies whenever no payment method is linked to the account. Every model in the free table shares the same numbers: 20 RPM, 20 RPD and 200,000 tokens per day. Production models are DeepSeek-V3.1, Meta-Llama-3.3-70B-Instruct and gpt-oss-120b; DeepSeek-V3.2 and gemma-4-31B-it are listed as preview. SambaNova publishes no tokens-per-minute figure for the free tier, only RPM, RPD and TPD. MiniMax-M2.7 appears in the Developer tier tables only. Linking a payment method moves the account to the Developer Tier.",
+      "summary_zh": "只要账号没有绑定支付方式，就适用免费档。免费表里每个模型的数字都一样：20 RPM、20 RPD、每天 200,000 token。生产（production）模型是 DeepSeek-V3.1、Meta-Llama-3.3-70B-Instruct 和 gpt-oss-120b；DeepSeek-V3.2 和 gemma-4-31B-it 标着预览（preview）。SambaNova 没有为免费档公布每分钟 token 数，只有 RPM、RPD 和 TPD 三项。MiniMax-M2.7 只出现在开发者档的表里。绑定支付方式后账号转入开发者档。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. The 20 requests-per-day cap is the binding constraint for most users.",
-      "note_zh": "Free Tier 的定义就是\"没有绑定支付方式\"，所以不用信用卡也能用上。每天 20 次请求这一条，对多数人才是真正的瓶颈。"
+      "note": "Free Tier is defined by the absence of a linked payment method, so it is reachable without a card. RPM and RPD are both 20, so one busy minute can spend the whole day.",
+      "note_zh": "免费档是以「没绑支付方式」来定义的，所以不用卡就能用到。RPM 和 RPD 都是 20，也就是说忙碌的一分钟就能把一整天的额度花光。"
     },
     "official_sources": [
       {
@@ -159,7 +162,7 @@
         "url": "https://docs.sambanova.ai/docs/en/features/openai-compatibility"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -217,7 +220,7 @@
         "url": "https://cohere.com/pricing"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -250,8 +253,8 @@
       "status": "documented-in-compute-units",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Both the Workers Free and Workers Paid plans include 10,000 Neurons per day at no charge, resetting daily at 00:00 UTC. Neurons are a compute unit rather than a request count, so the number of requests you get depends on the model and prompt size. On the Free plan there is no overage: once the allocation is spent, requests fail until reset. Workers Paid bills overage at $0.011 per 1,000 Neurons.",
-      "summary_zh": "Workers Free 和 Workers Paid 两个计划都包含每天 10,000 Neurons 的免费额度，每天 UTC 00:00 重置。Neuron 是计算单位而不是请求数，所以能换到多少次请求取决于模型和 prompt 大小。Free 计划没有超额继续用这一说：额度花完后请求直接失败，直到下次重置。Workers Paid 的超额按每 1,000 Neurons 0.011 美元计费。"
+      "summary": "Both the Workers Free and Workers Paid plans include 10,000 Neurons per day at no charge, resetting daily at 00:00 UTC. Neurons are a compute unit rather than a request count, so the number of requests you get depends on the model and prompt size. On the Free plan there is no overage: once the allocation is spent, requests fail until reset. Workers Paid bills overage at $0.011 per 1,000 Neurons. A handful of models sit outside the free allowance entirely and require a paid billing method regardless — @cf/moonshotai/kimi-k2.6, @cf/zai-org/glm-5.2 and @cf/deepseek-ai/deepseek-v4-pro-0813 — reachable through Workers Paid or prepaid AI Gateway credits.",
+      "summary_zh": "Workers Free 和 Workers Paid 两种计划都含每天 10,000 Neurons 的免费额度，每天 00:00 UTC 重置。Neuron 是计算单位而不是请求次数，所以能换到多少次请求取决于模型和 prompt 大小。免费计划没有超额选项：额度用完，请求就失败到下次重置为止。Workers Paid 的超额价格是每 1,000 Neurons $0.011。有几个模型完全不在免费额度覆盖范围内，无论如何都要先有付费方式 —— @cf/moonshotai/kimi-k2.6、@cf/zai-org/glm-5.2 和 @cf/deepseek-ai/deepseek-v4-pro-0813 —— 要走 Workers Paid 或预付的 AI Gateway 额度。"
     },
     "availability": {
       "status": "active",
@@ -274,7 +277,7 @@
         "url": "https://developers.cloudflare.com/workers-ai/models/"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -331,7 +334,7 @@
         "url": "https://huggingface.co/settings/inference-providers"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -388,7 +391,7 @@
         "url": "https://cloud.siliconflow.com/models"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -444,7 +447,7 @@
         "url": "https://fireworks.ai/pricing"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -470,14 +473,15 @@
     "credit_card_required": false,
     "models": [
       "GLM-4.7-Flash",
-      "GLM-4.5-Flash"
+      "GLM-4.5-Flash",
+      "GLM-4.6V-Flash"
     ],
     "limits": {
       "status": "free-models-listed",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "GLM-4.7-Flash and GLM-4.5-Flash are listed at $0 for input, cached input and output on the official pricing table, making them free to call rather than merely discounted. Z.AI does not publish per-model RPM or TPM for these models on the pricing page; the rate limit reference is a separate page and the console is authoritative.",
-      "summary_zh": "官方定价表把 GLM-4.7-Flash 和 GLM-4.5-Flash 的输入、缓存输入与输出都标成 $0，也就是真的免费调用，而不只是打折。Z.AI 没有在定价页上给出这两个模型的 RPM 或 TPM，限流说明在另一个页面上，实际以控制台为准。"
+      "summary": "GLM-4.7-Flash, GLM-4.5-Flash and the vision model GLM-4.6V-Flash are listed at $0 for input, cached input, cached input storage and output on the official pricing table, making them free to call rather than merely discounted. Z.AI does not publish per-model RPM or TPM for these models on the pricing page; the rate limit reference is a separate page and the console is authoritative.",
+      "summary_zh": "GLM-4.7-Flash、GLM-4.5-Flash 和视觉模型 GLM-4.6V-Flash 在官方定价表上的输入、缓存输入、缓存输入存储和输出四列都标着 $0，也就是真的免费调用，不是打折。Z.AI 没有在定价页上公布这几个模型的 RPM 或 TPM；限流说明在另一页，最终以控制台为准。"
     },
     "availability": {
       "status": "active",
@@ -500,7 +504,7 @@
         "url": "https://docs.z.ai/guides/develop/openai/python"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -516,7 +520,7 @@
   {
     "id": "novita",
     "name": "Novita AI",
-    "category": "provider-free-tier",
+    "category": "metered-access",
     "signup_url": "https://novita.ai/settings/key-management",
     "base_url": "https://api.novita.ai/openai",
     "openai_compatible": true,
@@ -525,22 +529,23 @@
     "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
-      "inclusionai/Ling-3.0-flash",
-      "Mind Lab Macaron V1 Venti"
+      "Llama 3.1 8B Instruct",
+      "OpenAI: GPT OSS 20B",
+      "BAAI:BGE-M3"
     ],
     "limits": {
-      "status": "free-models-listed",
+      "status": "not_published",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "The official pricing table lists inclusionai/Ling-3.0-flash and Mind Lab's Macaron V1 Venti with both input and output priced Free; every other listed model is billed per million tokens. Novita does not publish RPM or RPD for the free models on the pricing page.",
-      "summary_zh": "官方定价表把 inclusionai/Ling-3.0-flash 和 Mind Lab 的 Macaron V1 Venti 的输入与输出都标成 Free，其余列出的模型都按每百万 token 计费。Novita 没有在定价页上给出这些免费模型的 RPM 或 RPD。"
+      "summary": "No model on the pricing table is priced at zero any more. The two entries this catalog previously listed as Free — inclusionai/Ling-3.0-flash and Mind Lab Macaron V1 Venti — are gone from the table. The cheapest rows are now Llama 3.1 8B Instruct at $0.02 input / $0.05 output per million and BAAI:BGE-M3 embeddings at $0.01 per million. No signup credit is published, and the page states no request-rate numbers.",
+      "summary_zh": "定价表里已经没有任何一个模型标价为零。本清单原先列的两个免费项 — inclusionai/Ling-3.0-flash 和 Mind Lab Macaron V1 Venti — 已从表中消失。现在最便宜的是 Llama 3.1 8B Instruct（每百万 token 输入 $0.02、输出 $0.05）和 BAAI:BGE-M3 向量模型（每百万 $0.01）。页面没有公布注册赠额，也没有公布任何请求速率数字。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Which models are free changes with the catalogue, so re-check the pricing table before depending on a specific free model ID.",
-      "note_zh": "哪些模型免费会随目录调整，把某个具体的免费 model ID 写进依赖之前，请重新核对定价表。"
+      "note": "Moved out of the free-tier list because the free rows disappeared, not because the service did. Batch inference carries an introductory 50% discount.",
+      "note_zh": "从免费清单里移出，是因为免费的那几行没了，不是服务没了。批量推理有一个 50% 的入门折扣。"
     },
     "official_sources": [
       {
@@ -556,7 +561,7 @@
         "url": "https://novita.ai/models"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -613,7 +618,7 @@
         "url": "https://docs.mistral.ai/llms.txt"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -670,7 +675,7 @@
         "url": "https://www.alibabacloud.com/help/en/model-studio/models"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -686,7 +691,7 @@
   {
     "id": "moonshot",
     "name": "Moonshot AI (Kimi)",
-    "category": "provider-free-tier",
+    "category": "metered-access",
     "signup_url": "https://platform.moonshot.ai/console/api-keys",
     "base_url": "https://api.moonshot.ai/v1",
     "openai_compatible": true,
@@ -703,31 +708,31 @@
       "status": "documented-per-tier",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Limits are expressed as concurrency, RPM, TPM and TPD, and the published tier table is keyed to cumulative recharge rather than to a standing free allowance; reaching $5 of cumulative recharge grants a $5 voucher. New accounts start at the lowest tier, so treat the console tier page as authoritative before planning volume.",
-      "summary_zh": "限额用并发数、RPM、TPM 和 TPD 表示，公布的分层表对应的是累计充值金额，而不是一份常设的免费额度；累计充值达到 5 美元会赠送 5 美元代金券。新账号从最低档起步，所以规划用量之前请以控制台的层级页面为准。"
+      "summary": "The tier table is keyed to cumulative recharge rather than to a standing free allowance: the docs state you must recharge at least $1 before you can start using the platform, and Tier0 then gives 1 concurrent request, 3 RPM, 500K TPM and 1.5M TPD. Tier1 at $10 cumulative gives 50 concurrent, 200 RPM, 2M TPM and unlimited TPD, rising to Tier5 at $3,000. A $5 voucher arrives only once cumulative payments reach $5, and vouchers do not count toward that cumulative total. The docs moved to platform.kimi.ai and the old platform.moonshot.ai paths now 301 there; the page also carries a notice that the tier rules were slated for revision in August because of abusive traffic.",
+      "summary_zh": "分档表挂钩的是累计充值金额，而不是一份长期免费额度：文档写明必须先充值至少 $1 才能开始使用，此后 Tier0 给 1 路并发、3 RPM、500K TPM、1.5M TPD。累计 $10 的 Tier1 给 50 路并发、200 RPM、2M TPM、TPD 不限，一直到 Tier5 的 $3,000。$5 代金券要等累计付款达到 $5 才发放，而代金券本身不计入累计充值。文档已迁到 platform.kimi.ai，原先 platform.moonshot.ai 的路径现在 301 过去；页面另有一条告示：因异常流量，分档与限额规则拟于 8 月修订。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Because the tiers key off recharge rather than a free grant, budget for at least a small top-up if you need more than trivial throughput.",
-      "note_zh": "因为分层跟充值挂钩而不是跟免费赠额挂钩，吞吐需求一旦超过尝鲜级别，就得预留一笔小额充值。"
+      "note": "Not a free tier in practice: the lowest bracket still requires a $1 payment before any call goes through. Kept in the catalog so the $1 floor is visible rather than discovered at signup.",
+      "note_zh": "实际上不算免费额度：最低那一档也要先付 $1 才调得通。留在清单里，是为了让这道 $1 的门槛提前看得见，而不是注册到一半才发现。"
     },
     "official_sources": [
       {
         "title": "Kimi rate limits",
-        "url": "https://platform.moonshot.ai/docs/pricing/limits"
+        "url": "https://platform.kimi.ai/docs/pricing/limits"
       },
       {
         "title": "Kimi API overview",
-        "url": "https://platform.moonshot.ai/docs/introduction"
+        "url": "https://platform.kimi.ai/docs/introduction"
       },
       {
         "title": "Kimi pricing",
-        "url": "https://platform.moonshot.ai/docs/pricing/chat"
+        "url": "https://platform.kimi.ai/docs/pricing/chat"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -757,18 +762,18 @@
       "Community-hosted open models"
     ],
     "limits": {
-      "status": "not_published",
-      "requests_per_minute": null,
+      "status": "documented-per-tier",
+      "requests_per_minute": 4,
       "requests_per_day": null,
-      "summary": "Pollinations exposes an OpenAI-compatible text endpoint that can be called without a key for basic use, and the official API docs do not publish RPM or RPD figures. The docs do state that since 2025-03-31 free-tier images may include watermarks, so free-tier output is not identical to paid output.",
-      "summary_zh": "Pollinations 提供一个 OpenAI 兼容的文本端点，基础用法不带 key 也能调用，官方 API 文档也没有公布 RPM 或 RPD。文档确实写明自 2025-03-31 起免费层的图片可能带水印，所以免费层的产出和付费层并不完全一样。"
+      "summary": "The API docs now publish four tiers by minimum interval between requests: Anonymous, no signup, basic models, one request every 15 seconds; Seed, free registration, standard models, one request every 5 seconds; Flower, paid, advanced models, one request every 3 seconds; Nectar, enterprise, all models, no limit. The RPM column here is the Anonymous tier expressed per minute (one per 15s = 4/min). Since 2025-03-31 free-tier images may carry a watermark, and removing it with the nologo parameter needs an account.",
+      "summary_zh": "API 文档现在按「两次请求的最小间隔」公布了四档：Anonymous，免注册，基础模型，每 15 秒 1 次；Seed，免费注册，标准模型，每 5 秒 1 次；Flower，付费，高级模型，每 3 秒 1 次；Nectar，企业版，全部模型，不限。本页 RPM 一列取的是 Anonymous 档折算成每分钟的值（每 15 秒 1 次 = 每分钟 4 次）。自 2025-03-31 起免费档产出的图片可能带水印，用 nologo 参数去掉水印需要账号。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "This is a community-operated service rather than a commercial provider; treat availability as best-effort and do not build production dependencies on it.",
-      "note_zh": "这是社区运营的服务而不是商业服务商，可用性按尽力而为看待，不要把生产依赖压在上面。"
+      "note": "Still callable with no key at all, which is what makes it useful for a first test; treat availability as best-effort and do not build production dependencies on it.",
+      "note_zh": "仍然可以完全不带 key 直接调，这正是它适合拿来做第一次试探的原因；可用性按尽力而为对待，不要让生产环境依赖它。"
     },
     "official_sources": [
       {
@@ -784,7 +789,7 @@
         "url": "https://pollinations.ai/"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -841,7 +846,7 @@
         "url": "https://ollama.com/library"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -867,15 +872,14 @@
     "credit_card_required": true,
     "models": [
       "gpt-oss-120b",
-      "zai-glm-4.7",
       "gemma-4-31b"
     ],
     "limits": {
       "status": "documented-per-model",
       "requests_per_minute": 5,
       "requests_per_day": null,
-      "summary": "Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b, zai-glm-4.7 and gemma-4-31b. New accounts receive $5 in credits that expire 30 days after being granted. Cerebras states that if you skip adding a payment method at sign-up, Playground and API access remain inactive until you add one.",
-      "summary_zh": "免费试用的限额是每个模型 5 RPM、30K TPM，并有每小时 100 万 token、每天 100 万 token 的封顶，适用于 gpt-oss-120b、zai-glm-4.7 和 gemma-4-31b。新账号获得 5 美元额度，自发放起 30 天过期。Cerebras 说明：注册时如果跳过绑定支付方式，Playground 和 API 访问会一直是未激活状态，直到补上为止。"
+      "summary": "Free Trial limits are 5 RPM and 30K TPM per model, capped at 1M tokens per hour and 1M tokens per day, for gpt-oss-120b and gemma-4-31b — zai-glm-4.7 is no longer in that table. gemma-4-31b additionally caps images at 2 per request and 4 MB per payload. New accounts receive $5 in credits that expire 30 days after being granted, and Cerebras states plainly that it offers no always-free per-model allowance. Skipping the payment method at sign-up leaves Playground and API access inactive.",
+      "summary_zh": "免费试用的限额是每个模型 5 RPM、30K TPM，并有每小时 100 万 token、每天 100 万 token 的封顶，适用于 gpt-oss-120b 和 gemma-4-31b —— zai-glm-4.7 已不在这张表里。gemma-4-31b 另有图片限制：每次请求 2 张、单次载荷 4 MB。新账号获得 5 美元额度，自发放起 30 天过期；Cerebras 明确说明不提供按模型的长期免费额度。注册时跳过绑定支付方式，Playground 和 API 访问会一直是未激活状态。"
     },
     "availability": {
       "status": "active",
@@ -898,7 +902,7 @@
         "url": "https://inference-docs.cerebras.ai/resources/openai"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -931,15 +935,15 @@
       "status": "documented-in-credits",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Every Vercel team account receives $5 of AI Gateway credits per month on the free tier, usable only against the Free Tier model subset rather than the full catalogue. Free tier requests are additionally rate limited per model with lower limits than the paid tier, and Vercel does not publish those per-model numbers. Credits start counting from your first Gateway request.",
-      "summary_zh": "免费层下每个 Vercel 团队账号每月获得 5 美元的 AI Gateway 额度，而且只能用在 Free Tier 那部分模型上，不是整个模型目录。免费层的请求还会按模型单独限流，限额低于付费层，Vercel 没有公布这些按模型的具体数字。额度从你第一次调用 Gateway 起开始计算。"
+      "summary": "Every Vercel team account gets a free tier, but it covers a subset of models rather than the full catalog, and free-tier requests are rate limited per model at lower limits than the paid tier — those per-model numbers are not published. The free credits start counting from your first Gateway request. The pricing page no longer states a dollar figure for the monthly credit: the $5 per month this catalog previously quoted is gone from the page, so no amount is quoted here.",
+      "summary_zh": "每个 Vercel team 账号都有免费档，但免费档只覆盖模型子集，不是全部目录；免费档的请求还按模型限流，上限低于付费档，而这些按模型的数字并不公布。免费额度从你第一次调用 Gateway 时开始计。定价页已经不再写出每月免费额度的具体金额：本清单原先引用的每月 5 美元已经不在页面上，所以这里不再给出金额。"
     },
     "availability": {
       "status": "active",
       "accepting_new_users": true,
       "retires_at": null,
-      "note": "Purchasing AI Gateway credits moves the team to the paid tier, which serves the full model catalogue plus bring-your-own-key routing.",
-      "note_zh": "购买 AI Gateway 额度会把团队转到付费层，付费层提供完整模型目录，并支持自带 key 路由。"
+      "note": "Purchasing credits moves the team to the paid tier and the monthly free credit stops applying — it is not additive.",
+      "note_zh": "一旦购买额度，team 就转到付费档，每月的免费额度不再生效 —— 两者不叠加。"
     },
     "official_sources": [
       {
@@ -955,7 +959,7 @@
         "url": "https://vercel.com/docs/ai-gateway/models-and-providers"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -1068,7 +1072,7 @@
         "url": "https://openrouter.ai/docs/quickstart"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -1084,7 +1088,7 @@
   {
     "id": "github-models",
     "name": "GitHub Models",
-    "category": "retiring-free-tier",
+    "category": "retired-free-tier",
     "signup_url": null,
     "base_url": "https://models.github.ai/inference",
     "openai_compatible": true,
@@ -1093,37 +1097,29 @@
     "browser_checked_at": "2026-07-25",
     "credit_card_required": false,
     "models": [
-      "Existing-customer catalog only until retirement"
+      "Retired — the model catalog is gone"
     ],
     "limits": {
-      "status": "retiring",
+      "status": "retired",
       "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Limits vary by model and Copilot plan. New customers are no longer accepted, and the service retires on 2026-07-30.",
-      "summary_zh": "限额随模型和 Copilot 计划而不同。已不再接受新客户，服务将于 2026-07-30 下线。"
+      "summary": "Retired on 2026-07-30. GitHub shut down the playground, the model catalog, the inference API and the BYOK endpoints; the changelog entry dated that day reads “GitHub Models is now retired.” There is no free tier left to quote. GitHub points existing users at Microsoft Foundry for a broad model catalog and at GitHub Copilot for AI workflows.",
+      "summary_zh": "2026-07-30 已下线。GitHub 关停了 playground、模型目录、推理 API 和 BYOK 端点；当天的更新日志把它标注为已下线（英文原话见下方来源链接）。已经没有免费额度可以引用。GitHub 让原有用户转向 Microsoft Foundry（模型选择面广）或 GitHub Copilot（AI 工作流）。"
     },
     "availability": {
-      "status": "retiring",
+      "status": "retired",
       "accepting_new_users": false,
       "retires_at": "2026-07-30",
-      "note": "GitHub announced full retirement of the playground, catalog, inference API and BYOK on 2026-07-30.",
-      "note_zh": "GitHub 宣布 playground、模型目录、推理 API 和 BYOK 将于 2026-07-30 全部下线。"
+      "note": "Kept in the catalog as a tombstone: the shutdown covered all customers including those with active usage, and searches for a GitHub Models free tier still land here.",
+      "note_zh": "留在清单里当一块墓碑：这次关停覆盖所有客户，包括仍在用的；而搜「GitHub Models 免费额度」的人还是会找到这里。"
     },
     "official_sources": [
       {
-        "title": "GitHub Models retirement announcement",
+        "title": "GitHub Models is being fully retired on July 30, 2026",
         "url": "https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/"
-      },
-      {
-        "title": "GitHub Models catalog API",
-        "url": "https://docs.github.com/en/rest/models/catalog"
-      },
-      {
-        "title": "GitHub Models billing",
-        "url": "https://docs.github.com/en/billing/concepts/product-billing/github-models"
       }
     ],
-    "source_checked_at": "2026-07-15",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -1180,7 +1176,7 @@
         "url": "https://www.together.ai/pricing"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -1210,11 +1206,11 @@
       "Qwen/Qwen3-235B-A22B"
     ],
     "limits": {
-      "status": "documented-baseline",
-      "requests_per_minute": 60,
+      "status": "dynamic-no-fixed-numbers",
+      "requests_per_minute": null,
       "requests_per_day": null,
-      "summary": "Limits are dynamic with a published baseline of 60 RPM and 400,000 TPM. Usage is evaluated in rolling 15-minute windows: averaging at or above 80% of the current limit raises it by 20% for the next window, averaging at or below 50% divides it by 1.5, and the ceiling is 20x the base allocation before an Enterprise plan is required. No standing free allowance is documented on this page.",
-      "summary_zh": "限额是动态的，公布的基线为 60 RPM 和 400,000 TPM。用量按 15 分钟滚动窗口评估：窗口内平均达到或超过当前限额的 80%，下一个窗口上调 20%；平均低于或等于 50% 则除以 1.5；上限是基础配额的 20 倍，再往上要走 Enterprise 计划。该页面没有记录任何常设的免费额度。"
+      "summary": "Limits are dynamic and the docs do not publish an account default: they tell you to read the Rate Limits page inside Token Factory. The 60 RPM / 400,000 TPM pair this catalog previously carried as a baseline appears on the page only inside a table labelled a visual example, so it is not quoted as a limit here. The published rules that do apply: usage is evaluated in rolling 15-minute windows, averaging at or above 80% of the current limit raises it by 20% for the next window, averaging at or below 50% divides it by 1.5, and the ceiling is 20x the base allocation before an Enterprise plan is required. No standing free allowance is documented.",
+      "summary_zh": "限额是动态的，文档不公布账号默认值：它让你去 Token Factory 里的 Rate Limits 页面自己看。本清单原先当作基准值的 60 RPM / 400,000 TPM，在页面上只出现在一张标着「示意」（visual example）的表里，所以这里不再把它当限额引用。真正通用的规则是：按 15 分钟滚动窗口评估用量，窗口内平均达到当前限额的 80% 及以上，下一窗口上调 20%；平均在 50% 及以下，则除以 1.5；上限是基准配额的 20 倍，再往上要走企业版。文档没有记载任何长期免费额度。"
     },
     "availability": {
       "status": "active",
@@ -1237,7 +1233,7 @@
         "url": "https://docs.tokenfactory.nebius.com/other-capabilities/billing-new"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -1294,7 +1290,7 @@
         "url": "https://docs.perplexity.ai/docs/agent-api/openai-compatibility"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -1351,7 +1347,7 @@
         "url": "https://deepinfra.com/models"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
@@ -1408,7 +1404,7 @@
         "url": "https://chutes.ai/app"
       }
     ],
-    "source_checked_at": "2026-07-25",
+    "source_checked_at": "2026-08-22",
     "probe": {
       "endpoint_reachable": null,
       "credential_valid": null,
