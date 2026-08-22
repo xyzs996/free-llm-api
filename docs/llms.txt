@@ -83,7 +83,16 @@ Which of these providers a given tool can be pointed at, and the exact configura
 
 ## What it costs once a free tier ends
 
-Out of scope for this catalog, which stops where the free tier does. These prices come from a sibling project that keeps every figure it has cited with the sentence it appeared in, and the model and coding-agent pages here quote the ones that name their own subject:
+Out of scope for this catalog, which stops where the free tier does. A sibling project re-reads OpenRouter's whole catalog every day. On **2026-08-22** it held 60 models with a list price; these were the cheapest by input price:
+
+- **Gemini 3.7 Flash** — $0.1875 per million input tokens, $0.9375 per million output (batch/queued price, not the interactive one), ranked #3 in the Design Arena `androidnative` agent category.
+- **Gemini 3 Flash Preview** — $0.25 per million input tokens, $1.50 per million output (batch/queued price, not the interactive one), ranked #9 in the Design Arena `agenticslides` agent category.
+- **MiniMax M3** — $0.30 per million input tokens, $1.20 per million output, ranked #10 in the Design Arena `python-pptxslides` agent category.
+- **Gemini 3.6 Flash** — $0.375 per million input tokens, $1.875 per million output (batch/queued price, not the interactive one), ranked #6 in the Design Arena `agenticgamedev` agent category.
+- **GLM 4.7** — $0.40 per million input tokens, $1.75 per million output, ranked #27 in the Design Arena `androidnative` agent category.
+- Read on 2026-08-22 from OpenRouter's public catalog. All 60 rows: [JSON](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.json) · [CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.csv) · [repository](https://github.com/xyzs996/llm-api-pricing).
+
+A list price is what a vendor publishes. What a month of it came to is a different number, and the same project keeps those separately — every figure it has cited, with the sentence it appeared in. The model and coding-agent pages here quote the ones that name their own subject:
 
 - `$0.06 / $0.2` per million — "At the low end, MiniMax M3 runs $0.06 to $0.2 per million and draws 60% to 70% of its revenue from outside its home market." ([1.6 Billion Free Tokens Is a Compression Ratio, Not a Strategy](https://xyzs996.github.io/llm-api-pricing/articles/1-6-billion-free-tokens-is-a-compression-ratio-not-a.html))
 - `$0.19 / $5` per million tokens — "Chinese AI models provide a cost-effective alternative to their American counterparts, with input costs as low as $0.19 per million tokens, compared to OpenAI's $5-12." ([How Chinese AI Agent Tools Leverage 1.6 Billion Free Tokens](https://markyanai.medium.com/how-chinese-ai-agent-tools-leverage-1-6-billion-free-tokens-69b483c4eb6a))

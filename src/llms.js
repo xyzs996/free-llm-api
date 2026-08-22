@@ -23,7 +23,16 @@
 // page list from the artifacts that were actually generated, and the prices
 // from the sibling project's export. A file that restated any of them would be
 // wrong within a week, and wrong in the one place nobody looks.
-import { FIELD_NOTES_ROWS, FIELD_NOTES_TABLE, SIBLING_INDEXES, readerUrl } from './field-notes.js';
+import {
+  FIELD_NOTES_PRICES,
+  FIELD_NOTES_PRICES_CSV,
+  FIELD_NOTES_PRICES_JSON,
+  FIELD_NOTES_REPO,
+  FIELD_NOTES_ROWS,
+  FIELD_NOTES_TABLE,
+  SIBLING_INDEXES,
+  readerUrl,
+} from './field-notes.js';
 import { CLIENT_PAGE_TITLES, MODEL_FAMILIES, clientPageIds } from './pages.js';
 import { DEFAULT_LOCALE, LOCALES, REPO_URL, SITE_URL, THREAD_QA, heardUrl, pageUrl } from './site.js';
 import { hasRetired } from './lifecycle.js';
@@ -108,6 +117,37 @@ function familyLine(family, providers) {
 // sentence to fit a list would reintroduce exactly that.
 function figureLine(row) {
   return `- \`${row.value}\` ${row.unit} — "${row.context}" ([${row.article}](${readerUrl(row)}))`;
+}
+
+// The dated list price, for the reader that arrives here as a machine.
+//
+// This file is not a courtesy copy. `chatgpt.com` is this catalog's second
+// largest referrer — 15 unique visitors in a fortnight, against 42 from
+// github.com — so an answer engine is already reading this address and
+// citing what it finds. Until now the only prices in it were quotations:
+// true, sourced, and as old as the write-up they came from.
+//
+// "What is the cheapest LLM API for coding right now" is answerable from a
+// quotation only by accident. It is answerable from today's catalog exactly,
+// which is why every line below carries the date it was read: a price with
+// no date is one an engine cannot safely repeat, and one it repeats anyway
+// is our error in someone else's mouth.
+function priceLine(row) {
+  const money = (value) => {
+    const amount = Number(value);
+    if (!Number.isFinite(amount)) return '?';
+    const exact = amount.toFixed(6).replace(/0+$/, '').replace(/\.$/, '');
+    return `$${amount.toFixed(Math.max(2, (exact.split('.')[1] ?? '').length))}`;
+  };
+  const rank = row.agent_rank
+    ? `, ranked #${row.agent_rank} in the Design Arena \`${row.agent_category}\` agent category`
+    : '';
+  // The queued price is labelled in the same clause as the number, not in a
+  // note underneath it. A line lifted out of this file takes its own caveat
+  // with it or it takes none at all.
+  const batch = row.batch ? ' (batch/queued price, not the interactive one)' : '';
+  return `- **${row.model}** — ${money(row.input_per_million)} per million input tokens, `
+    + `${money(row.output_per_million)} per million output${batch}${rank}.`;
 }
 
 // Questions this catalog is asked, deliberately does not answer, and can point
@@ -222,7 +262,12 @@ ${clients.map((id) => `- [${CLIENT_PAGE_TITLES[id]}](${pageUrl(`client/${id}.htm
 
     `## What it costs once a free tier ends
 
-Out of scope for this catalog, which stops where the free tier does. These prices come from a sibling project that keeps every figure it has cited with the sentence it appeared in, and the model and coding-agent pages here quote the ones that name their own subject:
+Out of scope for this catalog, which stops where the free tier does. A sibling project re-reads ${FIELD_NOTES_PRICES.source_name}'s whole catalog every day. On **${FIELD_NOTES_PRICES.checked}** it held ${FIELD_NOTES_PRICES.total} models with a list price; these were the cheapest by input price:
+
+${FIELD_NOTES_PRICES.rows.map(priceLine).join('\n')}
+- Read on ${FIELD_NOTES_PRICES.checked} from ${FIELD_NOTES_PRICES.source_name}'s public catalog. All ${FIELD_NOTES_PRICES.total} rows: [JSON](${FIELD_NOTES_PRICES_JSON}) · [CSV](${FIELD_NOTES_PRICES_CSV}) · [repository](${FIELD_NOTES_REPO}).
+
+A list price is what a vendor publishes. What a month of it came to is a different number, and the same project keeps those separately — every figure it has cited, with the sentence it appeared in. The model and coding-agent pages here quote the ones that name their own subject:
 
 ${FIELD_NOTES_ROWS.map(figureLine).join('\n')}
 - [The whole table](${FIELD_NOTES_TABLE}): all figures, not only prices.`,

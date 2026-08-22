@@ -250,6 +250,81 @@ test('the machine index still points at the rendered page', async () => {
   assert.ok(pages['docs/llms.txt'].includes(FIELD_NOTES_TABLE), 'llms.txt lost the table link');
 });
 
+/* --- today's catalog reaches the machine index, added 2026-08-22 --- */
+
+// ⚠ These assert on `docs/llms.txt` and on nothing else. `chatgpt.com` is the
+// second largest referrer this repository has — 15 uniques in a fortnight,
+// against 42 from github.com — so this file is provably read and quoted by an
+// answer engine. Until today the only prices in it were quotations: true when
+// written, undated in the quoting, and therefore unsafe to repeat as current.
+
+test('llms.txt carries every priced row, not a summary of them', async () => {
+  const llms = pages['docs/llms.txt'];
+  assert.ok(llms, 'docs/llms.txt was not rendered');
+  const { FIELD_NOTES_PRICES } = await import('../src/field-notes.js');
+
+  // Non-vacuous: an empty `rows` would satisfy every loop below.
+  assert.ok(FIELD_NOTES_PRICES.rows.length >= 3, 'too few rows to be a catalog');
+
+  for (const row of FIELD_NOTES_PRICES.rows) {
+    const line = llms.split('\n').find((l) => l.startsWith(`- **${row.model}**`));
+    assert.ok(line, `llms.txt is missing the row for ${row.model}`);
+    // Both numbers, on that model's own line. A model name with one price is
+    // half an answer, and the half an engine quotes is whichever it saw.
+    for (const price of [row.input_per_million, row.output_per_million]) {
+      const amount = Number(price);
+      assert.ok(Number.isFinite(amount), `${row.model} has an unreadable price`);
+      assert.ok(line.includes(`$${amount.toFixed(2)}`) || /\$\d+\.\d{3,}/.test(line),
+        `${row.model}'s line does not print ${price}: ${line}`);
+    }
+    // ⚠ The caveat rides the same line as the number. A queued price quoted
+    // without it reads as the interactive price and is roughly half of it.
+    if (row.batch) {
+      assert.ok(line.includes('batch'), `${row.model} is a queued price with no label: ${line}`);
+    }
+  }
+  // No row may print the `?` that `priceLine` emits for an unreadable number:
+  // an engine repeating `$?` is worse than a row that was never offered.
+  assert.ok(!/^- \*\*.+\$\?/m.test(llms), 'llms.txt printed a placeholder price');
+});
+
+test('llms.txt dates the catalog and says how large it is', async () => {
+  const llms = pages['docs/llms.txt'];
+  const { FIELD_NOTES_PRICES } = await import('../src/field-notes.js');
+  const { checked, total, rows } = FIELD_NOTES_PRICES;
+
+  // ⚠ The date is the difference between a price an engine can safely repeat
+  // and one it repeats anyway. It has to be next to the numbers, not in a
+  // header three sections up.
+  assert.match(checked, /^\d{4}-\d{2}-\d{2}$/, `unreadable checked date: ${checked}`);
+  assert.ok(llms.includes(checked), 'llms.txt does not say when the catalog was read');
+
+  // `total` comes from the exporter, which counts only rows it could price.
+  // Hand-writing it here is how a sentence stays fluent while its number rots.
+  assert.ok(Number(total) >= rows.length, `total ${total} is under the ${rows.length} printed`);
+  assert.ok(llms.includes(`${total} models`), `llms.txt does not name ${total} models`);
+  assert.ok(llms.includes(`All ${total} rows`), 'llms.txt does not offer the whole catalog');
+
+  // And the whole catalog has to be fetchable, not merely mentioned: an engine
+  // that wants the other 55 rows follows a link or it invents them.
+  const { FIELD_NOTES_PRICES_JSON, FIELD_NOTES_PRICES_CSV } = await import('../src/field-notes.js');
+  for (const url of [FIELD_NOTES_PRICES_JSON, FIELD_NOTES_PRICES_CSV]) {
+    assert.ok(llms.includes(url), `llms.txt is missing ${url}`);
+  }
+});
+
+test('the dated catalog precedes the quoted figures in llms.txt', async () => {
+  // Same ordering rule the READMEs are held to. A reader who stops after the
+  // first list should have stopped on today's prices, not on a sentence from
+  // a write-up whose date is nowhere near it.
+  const llms = pages['docs/llms.txt'];
+  const { FIELD_NOTES_PRICES, FIELD_NOTES_ROWS } = await import('../src/field-notes.js');
+  const catalog = llms.indexOf(`${FIELD_NOTES_PRICES.total} models`);
+  const quoted = llms.indexOf(FIELD_NOTES_ROWS[0].value);
+  assert.ok(catalog > -1 && quoted > -1, 'one of the two lists is missing');
+  assert.ok(catalog < quoted, 'the quoted figures now come before today\'s catalog');
+});
+
 test('a reader is sent to the repository, in the language they are reading', async () => {
   // ⚠ The opposite of the test above, and on purpose. Measured 2026-08-21:
   // the field-notes repository has 5 views, 3 uniques, 0 stars, and its
