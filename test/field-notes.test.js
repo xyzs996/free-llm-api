@@ -245,6 +245,51 @@ test('a catalog that lost its rows, its date or its count refuses to render', ()
   assert.throws(() => validatePrices({ ...good, total: 0 }, 'fixture'), /claims 0 models/);
 });
 
+test('a long-context block that contradicts the catalog refuses to render', () => {
+  const good = { source_name: 'OpenRouter', checked: '2026-08-22', total: 60, rows: [{ model: 'x' }] };
+  // Absent is the normal case on a day when no row carries a second rate card.
+  // It must stay silent rather than render "0 of the 60 rows".
+  assert.deepEqual(validatePrices(good, 'fixture'), good);
+
+  const cliff = {
+    cliff_rows: 12,
+    thresholds: [200_000, 272_000],
+    in_table: 0,
+    worst: {
+      id: 'x-ai/grok-4.20',
+      input_per_million: 1.25,
+      long_input_per_million: 2.5,
+      long_context_from: 200_000,
+      context_tokens: 2_000_000,
+      share: 0.9,
+    },
+  };
+  const withCliff = (patch, worst) => ({
+    ...good,
+    long_context: { ...cliff, ...patch, worst: { ...cliff.worst, ...worst } },
+  });
+  assert.deepEqual(validatePrices(withCliff({}), 'fixture').long_context.cliff_rows, 12);
+
+  // Zero rows means the exporter should have dropped the key, not written the
+  // block — the paragraph's first clause is a count.
+  assert.throws(() => validatePrices(withCliff({ cliff_rows: 0 }), 'fixture'), /omit the key/);
+  // "61 of the 60 rows below" is the block describing a different catalog.
+  assert.throws(() => validatePrices(withCliff({ cliff_rows: 61 }), 'fixture'), /out of 60 total/);
+  // `in_table` counts the printed rows; it cannot exceed how many were printed.
+  assert.throws(() => validatePrices(withCliff({ in_table: 2 }), 'fixture'), /of the printed 1 rows/);
+  // A share is a fraction of one window. 1.4 would print as "140% of that
+  // window bills high", which is not a thing that can be true.
+  assert.throws(() => validatePrices(withCliff({}, { share: 1.4 }), 'fixture'), /must be a fraction/);
+  assert.throws(() => validatePrices(withCliff({}, { share: 0 }), 'fixture'), /must be a fraction/);
+  // The sentence prints the step as "X to Y". A step that does not step up is
+  // the one shape that renders cleanly while making the whole claim false.
+  assert.throws(
+    () => validatePrices(withCliff({}, { long_input_per_million: 1.25 }), 'fixture'),
+    /steps from 1.25 to 1.25/,
+  );
+  assert.throws(() => validatePrices(withCliff({ thresholds: [] }), 'fixture'), /no thresholds/);
+});
+
 /* ------------------------------------------------- the block on the pages */
 
 // Two of the 86 generated pages linked the write-ups at all, and both were

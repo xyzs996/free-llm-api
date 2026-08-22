@@ -43,5 +43,21 @@
       "agent_rank": 27,
       "agent_category": "androidnative"
     }
-  ]
+  ],
+  "long_context": {
+    "cliff_rows": 12,
+    "thresholds": [
+      200000,
+      272000
+    ],
+    "in_table": 0,
+    "worst": {
+      "id": "x-ai/grok-4.20",
+      "input_per_million": 1.25,
+      "long_input_per_million": 2.5,
+      "long_context_from": 200000,
+      "context_tokens": 2000000,
+      "share": 0.9
+    }
+  }
 }

@@ -40,6 +40,8 @@ Free is not the same as cheap enough to keep running, and the number you need is
 
 A `(batch)` row is the queued price, not the interactive one — an agent waiting on the reply pays the other number. All 60 rows as [JSON](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.json) or [CSV](https://cdn.jsdelivr.net/gh/xyzs996/llm-api-pricing@main/data/prices.csv), re-read tomorrow.
 
+A row price is not a request price. **12 of those 60 rows carry a second, higher rate card that switches on when the prompt gets long** — and it applies to *every* token in the request, including the ones before the threshold, so a prompt one token over the line costs about double one token under it. The thresholds are 200k and 272k prompt tokens. The counter-intuitive part: the bigger the advertised context window, the smaller the share of it the advertised price covers — `x-ai/grok-4.20` advertises 2 000k of context at $1.25 per million input and steps to $2.50 at 200k, so **90% of that window bills at a number that is not in its row**. None of the five above is one of them, which is most of why they are the cheap ones. Both numbers ride on every row of the JSON and CSV as `long_context_from` and `long_input_per_million`.
+
 A list price is what a vendor publishes; what a month of it came to is a different number, and only somebody who paid it can tell you. The same repository keeps those too — every figure quoted in a write-up, with **the full sentence it came from** on every row:
 
 | Price | Unit | The sentence it was published in |

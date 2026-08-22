@@ -224,7 +224,43 @@ export function validatePrices(doc, path = PRICES_PATH) {
   if (!(Number(doc.total) >= doc.rows.length)) {
     throw new Error(`${path} claims ${doc.total} models but prints ${doc.rows.length}.`);
   }
+  validateCliff(doc, path);
   return doc;
+}
+
+// The long-context block is optional — the exporter omits the key entirely on
+// a day when no row in the catalog has a second rate card, rather than writing
+// zeroes. So absent is fine and gets no paragraph. Present-but-wrong is not:
+// every number in that paragraph is an assertion about the catalog, and a
+// paragraph that says "0 of the 60 rows" or "110% of that window" reads as a
+// template nobody finished, on a page an answer engine quotes.
+function validateCliff(doc, path) {
+  const cliff = doc.long_context;
+  if (cliff === undefined) return;
+  if (!(Number(cliff.cliff_rows) > 0)) {
+    throw new Error(`${path} has a long_context block claiming ${cliff.cliff_rows} rows; omit the key instead.`);
+  }
+  // The sentence is "N of the M rows below", so N cannot exceed M.
+  if (!(Number(cliff.cliff_rows) <= Number(doc.total))) {
+    throw new Error(`${path} claims ${cliff.cliff_rows} cliff rows out of ${doc.total} total.`);
+  }
+  // `in_table` counts the printed five; the paragraph says either "none of the
+  // five above" or "including N of them", and it cannot count more than exist.
+  if (!(Number(cliff.in_table) >= 0 && Number(cliff.in_table) <= doc.rows.length)) {
+    throw new Error(`${path} says ${cliff.in_table} of the printed ${doc.rows.length} rows have a cliff.`);
+  }
+  const share = Number(cliff.worst?.share);
+  if (!(share > 0 && share < 1)) {
+    throw new Error(`${path} claims ${cliff.worst?.share} of a context window is billed high; must be a fraction.`);
+  }
+  // The paragraph prints the step as "X to Y". A step that does not step is
+  // the one shape that would make the whole claim false while still rendering.
+  if (!(Number(cliff.worst?.long_input_per_million) > Number(cliff.worst?.input_per_million))) {
+    throw new Error(`${path} says ${cliff.worst?.id} steps from ${cliff.worst?.input_per_million} to ${cliff.worst?.long_input_per_million}.`);
+  }
+  if (!Array.isArray(cliff.thresholds) || cliff.thresholds.length === 0) {
+    throw new Error(`${path} has a long_context block with no thresholds; the sentence names them.`);
+  }
 }
 
 function loadPrices() {
@@ -347,6 +383,57 @@ function money(value) {
   return `$${amount.toFixed(Math.max(2, decimals))}`;
 }
 
+// `200000` -> `200k`. Thin space, not a comma, in the six-digit ones: the
+// paragraph they land in already has commas doing sentence work.
+function tokenCount(value) {
+  const thousands = Math.round(Number(value) / 1000);
+  return `${thousands.toLocaleString('en-US').replace(/,/g, ' ')}k`;
+}
+
+// Why this paragraph exists at all, given that today it says none of the five
+// rows above is affected.
+//
+// The table answers "what do I move to when the free tier runs out" with a
+// row price. Whether that row price is the price depends on how long the
+// prompt is: past a threshold, every token in the request bills at the higher
+// rate — including the tokens before it — so one token over the line roughly
+// doubles the bill. It is a cliff, not a tier. A reader budgeting off the
+// table is budgeting a number that only holds for short prompts, and an agent
+// that has read a repository is on the far side of the line on most turns.
+//
+// The reason it is worth saying even when the five cheapest rows are clean is
+// that it is the reason they *are* clean: the cheap rows here are the small
+// models, and the ones a reader graduates to are exactly the ones that carry
+// the second rate card. Saying "none of these five" is a real answer to a
+// question the table otherwise invites and does not answer.
+//
+// Every number comes from the block, none of it is written here. `''` when
+// the exporter omitted the block, so the paragraph disappears rather than
+// arguing from an empty catalog.
+function cliffNote() {
+  const cliff = FIELD_NOTES_PRICES.long_context;
+  if (!cliff) return '';
+  const { worst } = cliff;
+  const inTable = Number(cliff.in_table) === 0
+    ? 'None of the five above is one of them'
+    : `${cliff.in_table} of the five above ${cliff.in_table === 1 ? 'is' : 'are'} among them`;
+  return `
+
+A row price is not a request price. **${cliff.cliff_rows} of those ${FIELD_NOTES_PRICES.total} rows carry a second, higher rate card that switches on when the prompt gets long** — and it applies to *every* token in the request, including the ones before the threshold, so a prompt one token over the line costs about double one token under it. The thresholds are ${cliff.thresholds.map(tokenCount).join(' and ')} prompt tokens. The counter-intuitive part: the bigger the advertised context window, the smaller the share of it the advertised price covers — \`${worst.id}\` advertises ${tokenCount(worst.context_tokens)} of context at ${money(worst.input_per_million)} per million input and steps to ${money(worst.long_input_per_million)} at ${tokenCount(worst.long_context_from)}, so **${Math.round(worst.share * 100)}% of that window bills at a number that is not in its row**. ${inTable}, which is most of why they are the cheap ones. Both numbers ride on every row of the JSON and CSV as \`long_context_from\` and \`long_input_per_million\`.`;
+}
+
+function cliffNoteZh() {
+  const cliff = FIELD_NOTES_PRICES.long_context;
+  if (!cliff) return '';
+  const { worst } = cliff;
+  const inTable = Number(cliff.in_table) === 0
+    ? '上面那五行一行都不在里面'
+    : `上面那五行里有 ${cliff.in_table} 行在里面`;
+  return `
+
+行价不等于请求价。**这 ${FIELD_NOTES_PRICES.total} 行里有 ${cliff.cliff_rows} 行另带一张贵价卡，提示词一长就换上去**——而且换上去之后按贵价收的是**整个请求的每一个 token**，连门槛之前那些也一起，所以过线一个 token，账单大约翻倍。门槛是 ${cliff.thresholds.map(tokenCount).join(' 和 ')} 个提示词 token。反直觉的地方在于：广告出来的窗口越大，那个广告价管得着的部分越小——\`${worst.id}\` 广告的是 ${tokenCount(worst.context_tokens)} 的上下文、每百万输入 ${money(worst.input_per_million)}，到 ${tokenCount(worst.long_context_from)} 就跳到 ${money(worst.long_input_per_million)}，**它广告的那个窗口有 ${Math.round(worst.share * 100)}% 是按一个不在它那一行里的数收钱的**。${inTable}——它们便宜，很大一部分正是因为这个。这两个数在 JSON 和 CSV 里每一行都带着，叫 \`long_context_from\` 和 \`long_input_per_million\`。`;
+}
+
 // The rank column is the Design Arena `agents` leaderboard placing that the
 // sibling's catalog carries per model. It is here because "cheapest" on its
 // own is a trap: the cheapest row in any price list is the model nobody uses,
@@ -375,7 +462,7 @@ export function renderFieldNotes() {
 | --- | --- | --- | --- |
 ${priceRows()}
 
-A \`(batch)\` row is the queued price, not the interactive one — an agent waiting on the reply pays the other number. All ${prices.total} rows as [JSON](${FIELD_NOTES_PRICES_JSON}) or [CSV](${FIELD_NOTES_PRICES_CSV}), re-read tomorrow.
+A \`(batch)\` row is the queued price, not the interactive one — an agent waiting on the reply pays the other number. All ${prices.total} rows as [JSON](${FIELD_NOTES_PRICES_JSON}) or [CSV](${FIELD_NOTES_PRICES_CSV}), re-read tomorrow.${cliffNote()}
 
 A list price is what a vendor publishes; what a month of it came to is a different number, and only somebody who paid it can tell you. The same repository keeps those too — every figure quoted in a write-up, with **the full sentence it came from** on every row:
 
@@ -396,7 +483,7 @@ export function renderFieldNotesZh() {
 | --- | --- | --- | --- |
 ${priceRows()}
 
-标了 \`(batch)\` 的是排队价，不是即时价——写代码的 agent 在那儿等回复，付的是另一个数。整份 ${prices.total} 行读作 [JSON](${FIELD_NOTES_PRICES_JSON}) 或 [CSV](${FIELD_NOTES_PRICES_CSV})，明天再重读一遍。
+标了 \`(batch)\` 的是排队价，不是即时价——写代码的 agent 在那儿等回复，付的是另一个数。整份 ${prices.total} 行读作 [JSON](${FIELD_NOTES_PRICES_JSON}) 或 [CSV](${FIELD_NOTES_PRICES_CSV})，明天再重读一遍。${cliffNoteZh()}
 
 挂牌价是厂商今天贴出来的数；真跑一个月账单是多少，是另一个数，只有付过的人说得出。同一个仓库里另有一张表记的就是后者：写过的每一个带单位的数字，**每一行都带着它出处的整句话**——
 
