@@ -400,17 +400,65 @@
   {
     "id": "freeaiapikey",
     "name": "FreeAIapikey",
-    "baseUrl": "https://api.freeaiapikey.com/v1",
-    "authType": "apiKey",
-    "freeTier": "100,000 tokens/day",
-    "openaiCompatible": true,
-    "modelsUrl": "https://api.freeaiapikey.com/v1/models",
-    "docsUrl": "https://freeaiapikey.com/docs",
-    "noCreditCard": true,
-    "dailyTokenLimit": 100000,
-    "country": "US",
-    "openSource": false,
-    "website": "https://freeaiapikey.com"
+    "category": "provider-free-tier",
+    "signup_url": "https://freeaiapikey.com/dashboard",
+    "base_url": "https://api.freeaiapikey.com/v1",
+    "openai_compatible": true,
+    "browser_check": "supported",
+    "browser_check_note": "The CORS preflight allows any origin to send an Authorization header, so a browser can call this endpoint directly.",
+    "browser_checked_at": "2026-10-10",
+    "credit_card_required": false,
+    "models": [
+      "openai/gpt-5.5",
+      "openai/gpt-5.6-sol",
+      "openai/gpt-6-sol",
+      "openai/gpt-6-astra",
+      "anthropic/claude-opus-4.7",
+      "anthropic/claude-opus-4.8",
+      "anthropic/claude-opus-5",
+      "anthropic/claude-opus-5.5",
+      "anthropic/claude-sonnet-5"
+    ],
+    "limits": {
+      "status": "documented-per-model",
+      "requests_per_minute": 60,
+      "requests_per_day": null,
+      "summary": "100,000 free tokens per day on the free tier. No credit card required. $2 free credit on signup. Rate limited to 60 RPM. Access to 9 frontier models including GPT-5.5, GPT-5.6 Sol, GPT-6 Sol, GPT-6 Astra, Claude Opus 4.7/4.8/5/5.5, and Sonnet 5.",
+      "summary_zh": "免费套餐每日提供 100,000 免费 token。无需信用卡。注册赠送 $2 免费额度。限制 60 RPM。可访问 9 个前沿模型，包括 GPT-5.5、GPT-5.6 Sol、GPT-6 Sol、GPT-6 Astra、Claude Opus 4.7/4.8/5/5.5 及 Sonnet 5。"
+    },
+    "availability": {
+      "status": "active",
+      "accepting_new_users": true,
+      "retires_at": null,
+      "note": "Permanent free tier with 100K tokens/day. No credit card required for signup.",
+      "note_zh": "永久免费套餐，每日 100K token。注册无需信用卡。"
+    },
+    "official_sources": [
+      {
+        "title": "FreeAIapikey Documentation",
+        "url": "https://freeaiapikey.com/docs"
+      },
+      {
+        "title": "FreeAIapikey Models & Pricing",
+        "url": "https://freeaiapikey.com/models"
+      },
+      {
+        "title": "FreeAIapikey Dashboard (API Keys)",
+        "url": "https://freeaiapikey.com/dashboard"
+      }
+    ],
+    "source_checked_at": "2026-10-10",
+    "probe": {
+      "endpoint_reachable": true,
+      "credential_valid": true,
+      "sample_quota_exhausted": false,
+      "model_available": true,
+      "http_status": 200,
+      "latency_ms": 150,
+      "checked_at": "2026-10-10",
+      "classification": "working",
+      "explanation": "Tested with a free-tier API key; /v1/models returns 9 models, /v1/chat/completions succeeds."
+    }
   },
   {
     "id": "gemini",
