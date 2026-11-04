@@ -1473,5 +1473,63 @@
       "classification": "not-checked",
       "explanation": "No authenticated probe has been published."
     }
+  },
+  {
+    "id": "merkium",
+    "name": "Merkium",
+    "category": "provider-free-tier",
+    "signup_url": "https://chat.merkium.nl",
+    "base_url": "https://chat.merkium.nl/api/v1",
+    "openai_compatible": true,
+    "browser_check": "unverified",
+    "browser_check_note": "No CORS probe has been published.",
+    "browser_checked_at": null,
+    "credit_card_required": false,
+    "models": [
+      "ganymede-1.1",
+      "pluto-1.2-flash",
+      "pluto-1.2-pro",
+      "ceres-1.0"
+    ],
+    "limits": {
+      "status": "documented-per-model",
+      "requests_per_minute": 30,
+      "requests_per_day": null,
+      "summary": "30 requests per minute per API key; no credit card required; no published requests-per-day limit. Source: Merkium site and Ganymede 1.1 technical report.",
+      "summary_zh": null
+    },
+    "availability": {
+      "status": "active",
+      "accepting_new_users": true,
+      "retires_at": null,
+      "note": "Free OpenAI-compatible API with keys issued at the Console (https://chat.merkium.nl).",
+      "note_zh": null
+    },
+    "official_sources": [
+      {
+        "title": "Merkium",
+        "url": "https://www.merkium.nl"
+      },
+      {
+        "title": "Merkium Console (API keys)",
+        "url": "https://chat.merkium.nl"
+      },
+      {
+        "title": "Ganymede 1.1 technical report",
+        "url": "https://www.merkium.nl/research/ganymede-1-1-technical-report"
+      }
+    ],
+    "source_checked_at": "2026-11-04",
+    "probe": {
+      "endpoint_reachable": null,
+      "credential_valid": null,
+      "sample_quota_exhausted": null,
+      "model_available": null,
+      "http_status": null,
+      "latency_ms": null,
+      "checked_at": null,
+      "classification": "not-checked",
+      "explanation": "No authenticated probe has been published."
+    }
   }
 ]

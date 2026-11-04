@@ -71,6 +71,11 @@
           "provider_id": "moonshot",
           "detail": "Docs moved to platform.kimi.ai. The lowest tier still requires a $1 recharge before any call goes through, so the entry moved out of the permanent free tier list into metered access.",
           "detail_zh": "文档迁至 platform.kimi.ai。最低一档仍需先充值 $1 才调得通，因此本条从「永久免费额度」移入按量计费。"
+        },
+        {
+          "type": "added",
+          "provider_id": "merkium",
+          "detail": "Added Merkium, a free OpenAI-compatible inference API: base URL https://chat.merkium.nl/api/v1, keys issued in the Console at https://chat.merkium.nl, no credit card required, 30 requests per minute per key. Models ganymede-1.1, pluto-1.2-flash, pluto-1.2-pro and ceres-1.0; figures sourced from https://www.merkium.nl and the Ganymede 1.1 technical report at https://www.merkium.nl/research/ganymede-1-1-technical-report."
         }
       ]
     },
